@@ -1,0 +1,478 @@
+﻿/*#modalRecetaReport .modal-dialog {
+    height: 75% !important;
+}
+
+#modalRecetaReport .modal-content {
+    height: 150% !important;
+}*/
+/*#modalRecetaReport .modal-dialog .modal-content {
+    height: 150% !important;
+}*/
+
+/*.modal-tall .modal-dialog {
+  height: 90%;
+}
+.modal-tall .modal-content {
+  height: 100%;
+}*/
+
+#modalPacientes .modal-dialog {
+    position: relative;
+    /* width: auto; */
+    /* margin: 10px; */
+    width: 68%;
+    /*text-align: center;*/
+    min-height: 20em;
+    /* float: left; */
+    position: relative;
+    overflow: hidden;
+}
+
+
+#modalRecetaReport .modal-dialog {
+    position: relative;
+   /* width: auto;*/
+    /*margin: 10px;*/
+    width:68%;
+    text-align:center;
+   min-height:20em;
+   /*float:left;*/
+   position:relative;
+   overflow:hidden;
+}
+#modalRecetaReport .modal-body {
+ 
+    padding: 2px;
+
+    /*width:100%;
+   min-height:20em;
+   float:left;
+   position:relative;
+   overflow:hidden;*/
+
+}
+
+#modalRecetaReport .modal-header {
+    padding-bottom: 0px;
+    padding: 7px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.formaListbo.e-ddl-popup div > ul li, .formaListbo.e-ddl-popup div > .e-listbox li {
+    line-height: 1.8;
+    padding: 1px 0px 0px .857em;
+    padding-left: 3px !important;
+}
+
+.formaListbo.e-ddl-popup {
+    font-family: Segoe UI,Helvetica Neue;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    cursor: default;
+}
+
+.TimeWidth {
+    width: 115px;
+}
+
+.TimeHeight {
+    height: 50px;
+}
+
+@media (min-width:768px) {
+    .seven-cols .col-md-1, .seven-cols .col-sm-1, .seven-cols .col-lg-1 {
+        width: 100%;
+    }
+}
+
+@media (min-width:992px) {
+    .seven-cols .col-md-1, .seven-cols .col-sm-1, .seven-cols .col-lg-1 {
+        width: 14.285714285714285714285714285714%;
+    }
+}
+
+@media (min-width:1200px) {
+    .seven-cols .col-md-1, .seven-cols .col-sm-1, .seven-cols .col-lg-1 {
+        width: 14.285714285714285714285714285714%;
+    }
+}
+
+.Listwidth {
+    width: auto !important;
+}
+
+.ListHeight {
+    height: 100px !important;
+}
+
+.editor-label.centralizar {
+    text-align: center;
+}
+
+.panel-info > .panel-heading {
+    color: #6d6d6d;
+    background-color: #dcedc8;
+    border-color: #dcedc8;
+}
+
+#menu .col-md-2 {
+    width: 17.6%;
+}
+
+.paddingRightleftCinco {
+    Padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+.paddingRightZero {
+    Padding-right: 0 !important;
+}
+
+.paddingLeftZero {
+    Padding-left: 0 !important;
+}
+
+.marginRightZero {
+    margin-right: 0 !important;
+}
+
+.marginLeftZeron {
+    margin-left: 0 !important;
+}
+
+.heigConsulta {
+    min-height: 130px !important;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+#menuRecetaConsulta {
+    margin-top: 10px;
+}
+
+#modalValidacion .modal-dialog {
+    width: 908px;
+    margin: 30px auto;
+}
+
+#Consult_ReceComentario, #ReceComentario {
+    height: 11em !important;
+}
+
+#PaciPicture {
+    margin-top: 6px;
+}
+
+.formFields {
+    height: 52px;
+    margin-bottom: 3px;
+}
+
+#usar_ConsultaMedicaHistorial_CMHistComentario {
+    height: 88px;
+}
+
+#MenuEInformacion, #MenuEInformacionSegundaFila {
+    margin-top: -18px;
+}
+
+#usar_ObjEvaluacionFisicaEFisiSecuencia_fk_popup_list_wrapper, #usar_ObjMotivoConsultaMConsSecuencia_fk_popup_list_wrapper {
+    overflow: hidden;
+    min-width: 528px;
+    max-height: 152px;
+    min-height: 20px;
+    left: 281.12px;
+    top: 476px !important;
+    z-index: 10000;
+    visibility: visible;
+    height: auto;
+    display: block;
+}
+
+textarea.form-control {
+    height: 51px;
+}
+
+.e-datewidget .e-padding {
+    padding: 0 24px 0 0;
+    height: 27px;
+}
+
+.e-atc .e-in-wrap, .e-atc .e-input, .e-atc .e-options, .e-atc-popup {
+    border-color: #cecece;
+    background-color: #fff;
+    font-family: Segoe UI;
+    font-weight: 400;
+    height: 21px !important;
+}
+
+.e-ddl-popup .e-atc.e-search {
+    width: 100% !important;
+    height: 28px !important;
+    position: relative !important;
+}
+
+.nav {
+    padding-left: 0;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+.form-groupCheckbox {
+    margin-bottom: -24px;
+}
+
+#parcialpaciente img {
+    width: 8em;
+    height: 8em;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s;
+    margin-bottom: 5px;
+    object-fit: contain;
+}
+
+#datosPaciente {
+    padding-left: 10px;
+}
+
+.panel-body {
+    padding: 5px;
+}
+
+.panel-heading {
+    padding: 5px 6px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.btn-group-lg > .btn, .btn-lg {
+    padding: 9px 13px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
+
+#parcialpaciente { /* height: 137px;*/
+}
+
+    #parcialpaciente p {
+        margin: 0;
+    }
+
+#InformacionGeneral, #embarazo, #parcialpaciente {
+    border-radius: 4px;
+    padding: 4px 5px;
+}
+
+.classWithPad {
+    margin: 10px;
+    padding: 10px;
+}
+
+#PaciPicture, #doctPicture {
+    width: 2in;
+    height: 2in;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s;
+    object-fit: contain;
+}
+
+::-moz-placeholder {
+    color: #333;
+    font-size: 14px;
+}
+
+body {
+    color: #3d3a50;
+    font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.471;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 1px;
+    font-weight: 700;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 27px;
+    padding: 1px 2px;
+    font-size: 17px;
+    line-height: 1.42857143;
+    color: #090909;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.btn, .buttons, .modal-footer .btn + .btn, button {
+    margin-bottom: 5px !important;
+    margin-right: 5px !important;
+    background-color: #009688 !important;
+    border: 1px solid #169F85 !important;
+}
+
+.e-grid .e-ejinputtext, .e-grid .e-select {
+    outline: 0 !important;
+    background-color: #fff !important;
+}
+
+.e-grid .e-headercelldiv {
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    display: block !important;
+    border: 0 !important;
+    height: 29px !important;
+    line-height: 29px !important;
+    margin: -7px !important;
+    padding: 0 .7em !important;
+    text-align: left;
+    white-space: nowrap !important;
+}
+
+.e-btn div, .e-input.e-placeholder, .e-mask, .e-menu, .e-menu.e-context > li.e-separator, .e-menu.e-horizontal > .e-list, .e-menu.e-vertical > li.e-separator, .e-scale, .e-tab.e-js > .e-header, .e-tagcloud .e-load, .e-tbtn.e-chkbx-hidden, .e-uploadbox .e-action-perform, .e-uploadbox .uploaddialog.e-dialog.e-dialog-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    outline: 0 !important;
+    line-height: normal !important;
+    height: 38px !important;
+    width: 100% !important;
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 2px solid #4CAF50 !important;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19) !important;
+}
+
+.e-grid .e-select {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: normal !important;
+    height: 27px !important;
+    width: 100% !important;
+    color: #000 !important;
+    border: 2px solid #4CAF50 !important;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19) !important;
+}
+
+.e-ul {
+    border: none !important;
+}
+
+.e-btn, .e-split-btn, .e-tbtn {
+    font-family: Segoe UI !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+}
+
+.e-grid .e-ejinputtext {
+    border: 1px solid #cecece !important;
+    color: #2272b7 !important;
+    vertical-align: baseline !important;
+    height: 17px !important;
+    width: 25em !important;
+}
+
+.e-acrdn .e-select, .e-acrdn-scroller, .e-atc .e-in-wrap, .e-atc .e-in-wrap .e-input, .e-atc-popup, .e-btn.e-select, .e-check-wrap .e-chk-act, .e-check-wrap .e-chk-inact, .e-check-wrap .e-chk-indeter, .e-chkbox-wrap div > span, .e-currency .e-in-wrap, .e-currency .e-in-wrap .e-input, .e-datepicker.e-popup, .e-daterangepicker-popup.e-popup, .e-daterangepicker-popup.e-popup .e-custom-dateranges li, .e-daterangewidget .e-in-wrap, .e-daterangewidget .e-in-wrap .e-input, .e-datetime-popup .e-dt-button, .e-datetime-popup.e-popup, .e-datetime-wrap .e-in-wrap, .e-datetime-wrap .e-in-wrap .e-input, .e-datewidget .e-in-wrap, .e-datewidget .e-in-wrap .e-input, .e-ddl .e-in-wrap, .e-ddl .e-in-wrap .e-input, .e-ddl-popup.e-popup, .e-dialog-wrap, .e-dialog-wrap > .e-header .e-dialog-icon, .e-drpbuttons, .e-fileexplorer .e-tilenode, .e-fullrow-wrap .e-fullrow, .e-mask .e-in-wrap, .e-mask .e-in-wrap .e-input, .e-menu, .e-numeric .e-in-wrap, .e-numeric .e-in-wrap .e-input, .e-percent .e-in-wrap, .e-percent .e-in-wrap .e-input, .e-progressbar, .e-rte, .e-rte.e-dialog .e-inputtext, .e-splitbutton, .e-tab, .e-textbox, .e-time-popup.e-popup, .e-timewidget .e-in-wrap, .e-timewidget .e-in-wrap .e-input, .e-toolbar, .e-toolbar .e-tooltxt, .e-treeview .e-text, .e-upload-box .e-btn, .e-upload-box .e-selectpart {
+    border-radius: 13px;
+}
+
+.e-btn.e-select {
+    border: -1px solid !important;
+}
+
+.e-grid .e-rowcell {
+    height: 21px !important;
+    border-width: 1px 0 0 1px !important;
+    padding: 6px !important;
+    line-height: 22px !important;
+    white-space: normal !important;
+    width: auto !important;
+    vertical-align: middle !important;
+    font-size: 22px !important;
+}
+
+.e-grid .e-headercell, .e-grid .e-headercell-hover {
+    height: 24px !important;
+    padding: 0 .5em !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    text-align: left !important;
+}
+
+.e-grid .e-gridsummary, .e-grid .e-table {
+    width: 100%;
+    border: 0;
+    border-collapse: separate;
+    margin-top: 0;
+}
+
+.x_title {
+    border-bottom: 2px solid #E6E9ED;
+    padding: 1px 5px 0;
+    margin-bottom: 10px;
+}
+
+#PanelAccion, .x_panel {
+    position: relative;
+    margin-left: 5px;
+    padding: 10px 17px;
+    display: inline-block;
+    background: #fff;
+    -moz-column-break-inside: avoid;
+    opacity: 1;
+    transition: all .2s ease;
+}
+
+#PanelAccion {
+    margin-top: 1px;
+    width: 100%;
+    margin-bottom: 4px;
+    border: 1px solid #E6E9ED;
+    border-radius: 16px;
+    height: 32px;
+}
+
+.x_panel {
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #E6E9ED;
+    -webkit-column-break-inside: avoid;
+    column-break-inside: avoid;
+    border-radius: 16px;
+}
+
+div#EstadoAccion {
+    margin-top: -19px;
+    margin-left: -14px;
+}
+
+#col_Especialidad {
+    width: 22%;
+}
+
+.checkbox-inline + .checkbox-inline, .radio-inline + .radio-inline {
+    margin-top: 0;
+    margin-left: 0;
+}

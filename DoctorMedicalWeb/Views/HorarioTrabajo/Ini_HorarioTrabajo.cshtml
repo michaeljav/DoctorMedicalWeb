@@ -1,0 +1,1499 @@
+﻿@model DoctorMedicalWeb.Models.Usar_HorarioTrabajo
+
+@{
+    ViewBag.Title = "Ini_HorarioTrabajo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style type="text/css" class="cssStyles">
+    .ctrllabel {
+        padding: 0px 0px 12px 3px;
+        font-weight: 600;
+    }
+
+    .e-ddl-popup {
+        margin: 0 auto;
+    }
+</style>
+
+
+
+@*<script src="http://cdn.syncfusion.com/js/assets/external/jquery-1.10.2.min.js"></script>
+    <script src="http://cdn.syncfusion.com/js/assets/external/jquery.easing.1.3.min.js"></script>
+    <script src="http://cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
+    <script src="http://cdn.syncfusion.com/15.1.0.41/js/web/ej.web.all.min.js"></script>*@
+
+
+<script src="~/Scripts/ej/web/ej.listbox.min.js"></script>
+<script src="~/Scripts/ej/web/ej.checkbox.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>*@
+
+@*<script src="~/Scripts/ej/l10n/ej.localetexts.es-ES.min.js"></script>
+    <script src="~/Scripts/ej/i18n/ej.culture.es-ES.min.js"></script>*@
+@*<script src="~/Scripts/ej/l10n/ej.localetexts.en-US.min.js"></script>
+    <script src="~/Scripts/ej/i18n/ej.culture.en-US.min.js"></script>*@
+<div class="container">
+    @using (Html.BeginForm("Save", "HorarioTrabajo", FormMethod.Post, new { id = "frmHorarioTrabajo", autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Horario De Trabajo</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="cuerpo ">
+                        <div class="row">
+                            <div id="menu" class="col-xs-4 col-sm-4 col-md-4" style="bottom: 10px;z-index: 999;">
+                                <button type="button" id="btnNuevo" class="btn btn-lg btn-primary glyphicon glyphicon-plus " accesskey="n">Nuevo</button>
+                                <button type="button" id="btnSave" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk " accesskey="s" hidden>Guardar</button>
+                                @*  <button type="button" id="btnBuscarPaciente" class="btn btn-lg btn-danger glyphicon glyphicon-search  " accesskey="x">Pacientes</button>*@
+                            </div>
+                            <div class="col-xs-3 col-sm-4 col-md-4" style="bottom: 10px;z-index: 999;">
+                                <div class="col-xs-12 col-sm-6 col-md-6" style="bottom: 10px;z-index: 999;">
+                                    <div class="form-group ">
+                                        <div class="editor-label centralizar">
+                                            @Html.LabelFor(model => model.HTrabRepetirSiempre)
+                                        </div>
+                                        <div class="editor-field ">
+                                            @Html.CheckBoxFor(model => model.HTrabRepetirSiempre, new { @class = "form-control  " })
+                                            @Html.ValidationMessageFor(model => model.HTrabRepetirSiempre)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6" style="bottom: 10px;z-index: 999;">
+                                    <div class="form-group ">                                     
+                                        <div class="editor-label centralizar">
+                                            @Html.LabelFor(model => model.HTrabPartesHoraSchedule)
+                                        </div>
+                                        <div class="editor-field ">
+                                            @Html.DropDownListFor(m => m.HTrabPartesHoraSchedule, ViewBag.partesHoraCalendario as SelectList,  new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.HTrabPartesHoraSchedule, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="editor-label centralizar">
+                                    @Html.LabelFor(model => model.HTrabRepetirSiempre)
+                                </div>
+                                <div class="editor-field ">
+                                    @Html.CheckBoxFor(model => model.HTrabRepetirSiempre, new { @class = "form-control  " })
+                                    @Html.ValidationMessageFor(model => model.HTrabRepetirSiempre)
+                                </div>*@
+                            </div>
+                        </div>
+
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+
+                                <div class="row seven-cols">
+                                    <div class="col-md-1">
+                                        <div class="editor-label centralizar">
+                                            @Html.LabelFor(model => model.HTrabSundayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-field ">
+                                            @Html.CheckBoxFor(model => model.HTrabSundayDiaHabilitado, new { @class = "form-control  " })
+                                            @Html.ValidationMessageFor(model => model.HTrabSundayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-label centralizar">
+                                            <span class="Hor">Horas</span>
+                                        </div>
+                                        <div class="editor-field Listwidth ListHeight">
+                                            @Html.EJ().ListBox("SundaySelect").Datasource((IEnumerable<object>)ViewBag.datasource).Width("auto").CssClass("ListHeight formaListbo").ListBoxFields(df => df.Text("ht").Value("sec")).AllowMultiSelection(true)
+                                            @*.ClientSideEvents(evt => evt.Create("setheight")*@
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Inicio</span><input type="text" id="SuntimepickerIncio" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Final</span><input type="text" id="SuntimepickerFinal" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button type="button" id="btnAgregarSun" class="btn btn-sm btn-success glyphicon glyphicon-plus "></button>
+                                                    <button type="button" id="btnEliminarSun" class="btn btn-sm btn-success glyphicon glyphicon-minus  " style="float:right;"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="editor-label centralizar">
+                                            @Html.LabelFor(model => model.HTrabMondayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.CheckBoxFor(model => model.HTrabMondayDiaHabilitado, new { @class = "form-control  " })
+                                            @Html.ValidationMessageFor(model => model.HTrabMondayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-label centralizar">
+                                            <span class="Hor">Horas</span>
+                                        </div>
+                                        <div class="editor-field Listwidth heightList">
+                                            @Html.EJ().ListBox("MondaySelect").Datasource((IEnumerable<object>)ViewBag.datasource).Width("auto").CssClass("ListHeight formaListbo").ListBoxFields(df => df.Text("ht").Value("sec")).AllowMultiSelection(true).ClientSideEvents(evt => evt.Create("setheight"))
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Inicio</span><input type="text" id="MontimepickerIncio" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Final</span><input type="text" id="MontimepickerFinal" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button type="button" id="btnAgregarMon" class="btn btn-sm btn-success glyphicon glyphicon-plus "></button>
+                                                    <button type="button" id="btnEliminarMon" class="btn btn-sm btn-success glyphicon glyphicon-minus  " style="float:right;"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="editor-label centralizar">
+                                            @Html.LabelFor(model => model.HTrabTuesdayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.CheckBoxFor(model => model.HTrabTuesdayDiaHabilitado, new { @class = "form-control  " })
+                                            @Html.ValidationMessageFor(model => model.HTrabTuesdayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-label centralizar">
+                                            Horas
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.EJ().ListBox("TuesdaySelect").Datasource((IEnumerable<object>)ViewBag.datasource).Width("auto").CssClass("ListHeight formaListbo").ListBoxFields(df => df.Text("ht").Value("sec")).AllowMultiSelection(true).ClientSideEvents(evt => evt.Create("setheight"))
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Inicio</span><input type="text" id="TuetimepickerIncio" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Final</span><input type="text" id="TuetimepickerFinal" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button type="button" id="btnAgregarTue" class="btn btn-sm btn-success glyphicon glyphicon-plus "></button>
+                                                    <button type="button" id="btnEliminarTue" class="btn btn-sm btn-success glyphicon glyphicon-minus  " style="float:right;"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="editor-label centralizar">
+                                            @Html.LabelFor(model => model.HTrabWednesdayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.CheckBoxFor(model => model.HTrabWednesdayDiaHabilitado, new { @class = "form-control  " })
+                                            @Html.ValidationMessageFor(model => model.HTrabWednesdayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-label centralizar">
+                                            Horas
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.EJ().ListBox("WednesdaySelect").Datasource((IEnumerable<object>)ViewBag.datasource).Width("auto").CssClass("ListHeight formaListbo").ListBoxFields(df => df.Text("ht").Value("sec")).AllowMultiSelection(true).ClientSideEvents(evt => evt.Create("setheight"))
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Inicio</span><input type="text" id="WedtimepickerIncio" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Final</span><input type="text" id="WedtimepickerFinal" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button type="button" id="btnAgregarWed" class="btn btn-sm btn-success glyphicon glyphicon-plus "></button>
+                                                    <button type="button" id="btnEliminarWed" class="btn btn-sm btn-success glyphicon glyphicon-minus  " style="float:right;"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="editor-label centralizar">
+                                            @Html.LabelFor(model => model.HTrabThursdayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.CheckBoxFor(model => model.HTrabThursdayDiaHabilitado, new { @class = "form-control  " })
+                                            @Html.ValidationMessageFor(model => model.HTrabThursdayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-label centralizar">
+                                            Horas
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.EJ().ListBox("ThursdaySelect").Datasource((IEnumerable<object>)ViewBag.datasource).Width("auto").CssClass("ListHeight formaListbo").ListBoxFields(df => df.Text("ht").Value("sec")).AllowMultiSelection(true).ClientSideEvents(evt => evt.Create("setheight"))
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Inicio</span><input type="text" id="ThutimepickerIncio" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Final</span><input type="text" id="ThutimepickerFinal" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button type="button" id="btnAgregarThu" class="btn btn-sm btn-success glyphicon glyphicon-plus "></button>
+                                                    <button type="button" id="btnEliminarThu" class="btn btn-sm btn-success glyphicon glyphicon-minus  " style="float:right;"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="editor-label centralizar">
+                                            @Html.LabelFor(model => model.HTrabFridayiaHabilitado)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.CheckBoxFor(model => model.HTrabFridayiaHabilitado, new { @class = "form-control  " })
+                                            @Html.ValidationMessageFor(model => model.HTrabFridayiaHabilitado)
+                                        </div>
+                                        <div class="editor-label centralizar">
+                                            Horas
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.EJ().ListBox("FridaySelect").Datasource((IEnumerable<object>)ViewBag.datasource).Width("auto").CssClass("ListHeight formaListbo").ListBoxFields(df => df.Text("ht").Value("sec")).AllowMultiSelection(true).ClientSideEvents(evt => evt.Create("setheight"))
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Inicio</span><input type="text" id="FritimepickerIncio" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Final</span><input type="text" id="FritimepickerFinal" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button type="button" id="btnAgregarFri" class="btn btn-sm btn-success glyphicon glyphicon-plus "></button>
+                                                    <button type="button" id="btnEliminarFri" class="btn btn-sm btn-success glyphicon glyphicon-minus  " style="float:right;"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="editor-label centralizar">
+                                            @Html.LabelFor(model => model.HTrabSaturdayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.CheckBoxFor(model => model.HTrabSaturdayDiaHabilitado, new { @class = "form-control  " })
+                                            @Html.ValidationMessageFor(model => model.HTrabSaturdayDiaHabilitado)
+                                        </div>
+                                        <div class="editor-label centralizar">
+                                            Horas
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.EJ().ListBox("SaturdaySelect").Datasource((IEnumerable<object>)ViewBag.datasource).Width("auto").CssClass("ListHeight formaListbo").ListBoxFields(df => df.Text("ht").Value("sec")).AllowMultiSelection(true).ClientSideEvents(evt => evt.Create("setheight"))
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Inicio</span><input type="text" id="SattimepickerIncio" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <span>Final</span><input type="text" id="SattimepickerFinal" />
+                                        </div>
+                                        <div class="editor-field TimeWidth TimeHeight">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button type="button" id="btnAgregarSat" class="btn btn-sm btn-success glyphicon glyphicon-plus "></button>
+                                                    <button type="button" id="btnEliminarSat" class="btn btn-sm btn-success glyphicon glyphicon-minus  " style="float:right;"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <ul id="listbox"></ul>
+
+    }
+
+</div>
+
+
+@section Scripts{
+    <script>
+
+        var newValue;
+        var lhoursun = {}, lhourmon = {}, lhourtus = {}, lhourwed = {}, lhourthu = {}, lhourfri = {}, lhoursat = {};
+        // var lhoursun = [], lhourmon = [], lhourtus = [], lhourwed = [], lhourthu = [], lhourfri = [], lhoursat = [];
+
+        //jQuery(function ($) {
+
+
+        //    bikeList = [
+        //        { bikeId: "bk1", bikeName: "Apache RTR" },
+        //        { bikeId: "bk2", bikeName: "CBR 150-R" },
+        //        { bikeId: "bk3", bikeName: "CBZ Xtreme" },
+        //        { bikeId: "bk4", bikeName: "Discover" },
+        //        { bikeId: "bk5", bikeName: "Dazzler" },
+        //        { bikeId: "bk6", bikeName: "Flame" },
+        //        { bikeId: "bk7", bikeName: "Fazer" },
+        //        { bikeId: "bk8", bikeName: "FZ-S" },
+        //        { bikeId: "bk9", bikeName: "Pulsar" },
+        //        { bikeId: "bk10", bikeName: "Shine" },
+        //        { bikeId: "bk11", bikeName: "R15" },
+        //        { bikeId: "bk12", bikeName: "Unicorn" }
+        //    ];
+        //    $("#listbox").ejListBox({
+        //        dataSource: bikeList,
+        //        fields: {
+        //            //id: "bikeId",
+        //            //text: "bikeName"
+        //            value: "bikeId",
+        //            text: "bikeName"
+        //        }
+        //    });
+
+
+        //});
+
+
+
+
+
+
+
+        //function setheight(){
+        //    if (document.body.firstElementChild.className =="htmljssamplebrowser material" ||"htmljssamplebrowser office-365"){
+        //        setTimeout(function () {
+        //            var obj = $("#SundaySelect").ejListBox("instance");
+        //            obj._refreshScroller(); }, 500);
+        //    }
+        //}
+
+
+        $('#btnSave').click(function () {
+            var dat = '';
+
+            //get list all itmes
+            //get array object
+            var sundayL = convertObjectToArrayObject(lhoursun);
+            var mondayL = convertObjectToArrayObject(lhourmon);
+            var tuesdayL = convertObjectToArrayObject(lhourtus);
+            var wednesdayL = convertObjectToArrayObject(lhourwed);
+            var thursdayL = convertObjectToArrayObject(lhourthu);
+            var fridayL = convertObjectToArrayObject(lhourfri);
+            var saturdayL = convertObjectToArrayObject(lhoursat);
+            //object master
+            //var horario = {
+            //    HTrabRepetirSiempre: $('#HTrabRepetirSiempre').is(':checked'),
+            //    HTrabSundayDiaHabilitado: $('#HTrabSundayDiaHabilitado').is(':checked'),
+            //    HTrabMondayDiaHabilitado: $('#HTrabMondayDiaHabilitado').is(':checked'),
+            //    HTrabTuesdayDiaHabilitado: $('#HTrabTuesdayDiaHabilitado').is(':checked'),
+            //    HTrabWednesdayDiaHabilitado: $('#HTrabWednesdayDiaHabilitado').is(':checked'),
+            //    HTrabThursdayDiaHabilitado: $('#HTrabThursdayDiaHabilitado').is(':checked'),
+            //    HTrabFridayiaHabilitado: $('#HTrabFridayiaHabilitado').is(':checked'),
+            //    HTrabSaturdayDiaHabilitado: $('#HTrabSaturdayDiaHabilitado').is(':checked')
+            //}
+
+            var horario = [];
+            var hsu = { DSemaSecuencia_Fk: 1, HTrabDiaHabilitado: $('#HTrabSundayDiaHabilitado').is(':checked'), HTrabRepetirSiempre: $('#HTrabRepetirSiempre').is(':checked'),HTrabPartesHoraSchedule:$('#HTrabPartesHoraSchedule').find('option:selected').val() };
+            var hmo = { DSemaSecuencia_Fk: 2, HTrabDiaHabilitado: $('#HTrabMondayDiaHabilitado').is(':checked'), HTrabRepetirSiempre: $('#HTrabRepetirSiempre').is(':checked'), HTrabPartesHoraSchedule: $('#HTrabPartesHoraSchedule').find('option:selected').val() };
+            var htu = { DSemaSecuencia_Fk: 3, HTrabDiaHabilitado: $('#HTrabTuesdayDiaHabilitado').is(':checked'), HTrabRepetirSiempre: $('#HTrabRepetirSiempre').is(':checked'), HTrabPartesHoraSchedule: $('#HTrabPartesHoraSchedule').find('option:selected').val() };
+            var hwe = { DSemaSecuencia_Fk: 4, HTrabDiaHabilitado: $('#HTrabWednesdayDiaHabilitado').is(':checked'), HTrabRepetirSiempre: $('#HTrabRepetirSiempre').is(':checked'), HTrabPartesHoraSchedule: $('#HTrabPartesHoraSchedule').find('option:selected').val() };
+            var hth = { DSemaSecuencia_Fk: 5, HTrabDiaHabilitado: $('#HTrabThursdayDiaHabilitado').is(':checked'), HTrabRepetirSiempre: $('#HTrabRepetirSiempre').is(':checked'), HTrabPartesHoraSchedule: $('#HTrabPartesHoraSchedule').find('option:selected').val() };
+            var hfr = { DSemaSecuencia_Fk: 6, HTrabDiaHabilitado: $('#HTrabFridayiaHabilitado').is(':checked'), HTrabRepetirSiempre: $('#HTrabRepetirSiempre').is(':checked'), HTrabPartesHoraSchedule: $('#HTrabPartesHoraSchedule').find('option:selected').val() };
+            var hsa = { DSemaSecuencia_Fk: 7, HTrabDiaHabilitado: $('#HTrabSaturdayDiaHabilitado').is(':checked'), HTrabRepetirSiempre: $('#HTrabRepetirSiempre').is(':checked'), HTrabPartesHoraSchedule: $('#HTrabPartesHoraSchedule').find('option:selected').val() };
+
+            horario.push(hsu);
+            horario.push(hmo);
+            horario.push(htu);
+            horario.push(hwe);
+            horario.push(hth);
+            horario.push(hfr);
+            horario.push(hsa);
+
+
+            if (sundayL.length == 0 &&
+               mondayL.length == 0 &&
+               tuesdayL.length == 0 &&
+               wednesdayL.length == 0 &&
+               thursdayL.length == 0 &&
+               fridayL.length == 0 &&
+               saturdayL.length == 0) {
+
+                mensaje('Por favor ingrese por lo menos un rango de hora en un dia');
+                return;
+            }
+
+
+            dat = JSON.stringify({
+                HoraTra: horario,
+                HoraDetaSun: sundayL,
+                HoraDetaMon: mondayL,
+                HoraDetaTue: tuesdayL,
+                HoraDetaWed: wednesdayL,
+                HoraDetaThu: thursdayL,
+                HoraDetaFri: fridayL,
+                HoraDetaSat: saturdayL
+            });
+
+
+            //send horarios
+            let urz = '@Url.Action("Save", "HorarioTrabajo")'
+            //var data = AjaxSend(false, 'POST', '/HorarioTrabajo/Save', dat, 'application/json; charset=utf-8')
+            var data = AjaxSend(false, 'POST', urz, dat, 'application/json; charset=utf-8')
+            if (data.respuesta) {
+
+                cleanTimePicker($(":input"));
+                $("#msgExitoso").show()
+                setTimeout('$("#msgExitoso").hide()', 3000);
+
+
+
+
+                ////fill list
+                //FillListAssociative(data.dictionaryStringListObjecIenume['sundayL'], lhoursun);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['mondayL'], lhourmon);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['tuesdayL'], lhourtus);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['wednesdayL'], lhourwed);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['thursdayL'], lhourthu);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['fridayL'], lhourfri);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['saturdayL'], lhoursat);
+
+                lhoursun = FillListAssociative(data.dictionaryStringListObjecIenume['sundayL']);
+                lhourmon = FillListAssociative(data.dictionaryStringListObjecIenume['mondayL']);
+                lhourtus = FillListAssociative(data.dictionaryStringListObjecIenume['tuesdayL']);
+                lhourwed = FillListAssociative(data.dictionaryStringListObjecIenume['wednesdayL']);
+                lhourthu = FillListAssociative(data.dictionaryStringListObjecIenume['thursdayL']);
+                lhourfri = FillListAssociative(data.dictionaryStringListObjecIenume['fridayL']);
+                lhoursat = FillListAssociative(data.dictionaryStringListObjecIenume['saturdayL']);
+                //fill listbox
+                //cleam lisbox
+                cleanlistbox('SundaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhoursun, 'SundaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('MondaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhourmon, 'MondaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('TuesdaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhourtus, 'TuesdaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('WednesdaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhourwed, 'WednesdaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('ThursdaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhourthu, 'ThursdaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('FridaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhourfri, 'FridaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('SaturdaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhoursat, 'SaturdaySelect', 'sec', 'ht');
+
+
+               
+
+                if (data.someCollection.length > 0) {
+                    //fill master
+                    $('#HTrabSundayDiaHabilitado').prop('checked', data.someCollection[0].HTrabDiaHabilitado);
+                    $('#HTrabMondayDiaHabilitado').prop('checked', data.someCollection[1].HTrabDiaHabilitado);
+                    $('#HTrabTuesdayDiaHabilitado').prop('checked', data.someCollection[2].HTrabDiaHabilitado);
+                    $('#HTrabWednesdayDiaHabilitado').prop('checked', data.someCollection[3].HTrabDiaHabilitado);
+                    $('#HTrabThursdayDiaHabilitado').prop('checked', data.someCollection[4].HTrabDiaHabilitado);
+                    $('#HTrabFridayiaHabilitado').prop('checked', data.someCollection[5].HTrabDiaHabilitado);
+                    $('#HTrabSaturdayDiaHabilitado').prop('checked', data.someCollection[6].HTrabDiaHabilitado);
+                    //always the days has this property in true o false
+                    $('#HTrabRepetirSiempre').prop('checked', data.someCollection[0].HTrabRepetirSiempre);
+
+                    $('#HTrabPartesHoraSchedule').val(data.someCollection[0].HTrabPartesHoraSchedule);
+                  //  $('#HTrabPartesHoraSchedule').prop('selectedIndex', data.someCollection[0].HTrabPartesHoraSchedule);
+
+                }
+
+
+
+                //RECARGAR GRID
+                alertify.success('Guardado');
+
+            }
+
+        });
+
+
+
+
+        function searchHorariosDesdeServidor() {
+
+            cleanTimePicker($(":input"));
+
+
+
+            //start and fill
+            let urz = '@Url.Action("BuscarListaDehorarios", "HorarioTrabajo")'
+            //var data = AjaxSend(false, 'POST', '/HorarioTrabajo/BuscarListaDehorarios', JSON.stringify({}), 'application/json; charset=utf-8')
+            var data = AjaxSend(false, 'POST', urz, dat, 'application/json; charset=utf-8')
+            if (data.respuesta) {
+
+
+
+
+
+
+                //fill list
+                //FillListAssociative(data.dictionaryStringListObjecIenume['sundayL'], lhoursun);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['mondayL'], lhourmon);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['tuesdayL'], lhourtus);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['wednesdayL'], lhourwed);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['thursdayL'], lhourthu);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['fridayL'], lhourfri);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['saturdayL'], lhoursat);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['sundayL']);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['mondayL']);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['tuesdayL']);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['wednesdayL']);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['thursdayL']);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['fridayL']);
+                //FillListAssociative(data.dictionaryStringListObjecIenume['saturdayL']);
+
+                lhoursun = FillListAssociative(data.dictionaryStringListObjecIenume['sundayL']);
+                lhourmon = FillListAssociative(data.dictionaryStringListObjecIenume['mondayL']);
+                lhourtus = FillListAssociative(data.dictionaryStringListObjecIenume['tuesdayL']);
+                lhourwed = FillListAssociative(data.dictionaryStringListObjecIenume['wednesdayL']);
+                lhourthu = FillListAssociative(data.dictionaryStringListObjecIenume['thursdayL']);
+                lhourfri = FillListAssociative(data.dictionaryStringListObjecIenume['fridayL']);
+                lhoursat = FillListAssociative(data.dictionaryStringListObjecIenume['saturdayL']);
+
+                //fill listbox
+
+                //cleam lisbox
+                cleanlistbox('SundaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhoursun, 'SundaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('MondaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhourmon, 'MondaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('TuesdaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhourtus, 'TuesdaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('WednesdaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhourwed, 'WednesdaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('ThursdaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhourthu, 'ThursdaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('FridaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhourfri, 'FridaySelect', 'sec', 'ht');
+                //cleam lisbox
+                cleanlistbox('SaturdaySelect');
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(lhoursat, 'SaturdaySelect', 'sec', 'ht');
+
+                if (data.someCollection.length > 0) {
+                    //fill master
+                    $('#HTrabSundayDiaHabilitado').prop('checked', data.someCollection[0].HTrabDiaHabilitado);
+                    $('#HTrabMondayDiaHabilitado').prop('checked', data.someCollection[1].HTrabDiaHabilitado);
+                    $('#HTrabTuesdayDiaHabilitado').prop('checked', data.someCollection[2].HTrabDiaHabilitado);
+                    $('#HTrabWednesdayDiaHabilitado').prop('checked', data.someCollection[3].HTrabDiaHabilitado);
+                    $('#HTrabThursdayDiaHabilitado').prop('checked', data.someCollection[4].HTrabDiaHabilitado);
+                    $('#HTrabFridayiaHabilitado').prop('checked', data.someCollection[5].HTrabDiaHabilitado);
+                    $('#HTrabSaturdayDiaHabilitado').prop('checked', data.someCollection[6].HTrabDiaHabilitado);
+                    //always the days has this property in true o false
+                    $('#HTrabRepetirSiempre').prop('checked', data.someCollection[0].HTrabRepetirSiempre);
+
+                    $('#HTrabPartesHoraSchedule').val(data.someCollection[0].HTrabPartesHoraSchedule);
+                    //$('#HTrabPartesHoraSchedule').prop('selectedIndex', data.someCollection[0].HTrabPartesHoraSchedule);
+                }
+            }
+
+        }
+
+        $('#btnNuevo').click(function () {
+            searchHorariosDesdeServidor();
+        });
+            $(document).ready(function () {
+
+                
+                searchHorariosDesdeServidor();
+
+            });
+
+
+            $('#btnAgregarSun').click(function () {
+
+                var texboInicio = 'SuntimepickerIncio'
+                var texboFinal = 'SuntimepickerFinal';
+                var lisboxtoWork = 'SundaySelect';
+                objListDays = lhoursun;
+
+                if (isEmptyTimePicker(texboInicio) == true ||
+                    isEmptyTimePicker(texboFinal) == true) {
+
+                    mensaje('Favor Llenar los campos de hora');
+                    return;
+                }
+
+                //creo objecto con  hora para agregar a la lista y listbox
+                var obj = ObjToAddTolist(objListDays, texboInicio, texboFinal);
+
+                //agrego a la lista el nuevo objeto
+                var a = AddlistHour(objListDays, obj)
+                if (a['existe'] == true) {
+                    delete a['existe'];
+                    mensaje('Este rango de hora  ya lo ha introducido');
+                    return;
+
+                }
+
+                //cleam lisbox
+                cleanlistbox(lisboxtoWork);
+
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(objListDays, lisboxtoWork, 'sec', 'ht');
+
+            });
+
+            $('#btnEliminarSun').click(function (e) {
+
+                //delete itemes form   list  lhoursun
+                //removed items lisbox selected
+                var r = removeList('SundaySelect', lhoursun);
+                if (r < 1) {
+                    mensaje('Favor seleccione uno o mas  horas para borrar');
+                    return;
+
+                }
+            });
+
+            $('#btnAgregarMon').click(function () {
+
+                var texboInicio = 'MontimepickerIncio'
+                var texboFinal = 'MontimepickerFinal';
+                var lisboxtoWork = 'MondaySelect';
+                objListDays = lhourmon;
+
+                if (isEmptyTimePicker(texboInicio) == true ||
+                    isEmptyTimePicker(texboFinal) == true) {
+
+                    mensaje('Favor Llenar los campos de hora');
+                    return;
+                }
+
+                //creo objecto con  hora para agregar a la lista y listbox
+                var obj = ObjToAddTolist(objListDays, texboInicio, texboFinal);
+
+                //agrego a la lista el nuevo objeto
+                var a = AddlistHour(objListDays, obj)
+                if (a['existe'] == true) {
+                    delete a['existe'];
+                    mensaje('Este rango de hora  ya lo ha introducido');
+                    return;
+
+                }
+
+                //cleam lisbox
+                cleanlistbox(lisboxtoWork);
+
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(objListDays, lisboxtoWork, 'sec', 'ht');
+
+            });
+
+            $('#btnEliminarMon').click(function (e) {
+
+                //delete itemes form   list  lhoursun
+                //removed items lisbox selected
+                var r = removeList('MondaySelect', lhourmon);
+                if (r < 1) {
+                    mensaje('Favor seleccione uno o mas  horas para borrar');
+                    return;
+
+                }
+            });
+
+            $('#btnAgregarTue').click(function () {
+
+                var texboInicio = 'TuetimepickerIncio'
+                var texboFinal = 'TuetimepickerFinal';
+                var lisboxtoWork = 'TuesdaySelect';
+                objListDays = lhourtus;
+
+                if (isEmptyTimePicker(texboInicio) == true ||
+                    isEmptyTimePicker(texboFinal) == true) {
+
+                    mensaje('Favor Llenar los campos de hora');
+                    return;
+                }
+
+                //creo objecto con  hora para agregar a la lista y listbox
+                var obj = ObjToAddTolist(objListDays, texboInicio, texboFinal);
+
+                //agrego a la lista el nuevo objeto
+                var a = AddlistHour(objListDays, obj)
+                if (a['existe'] == true) {
+                    delete a['existe'];
+                    mensaje('Este rango de hora  ya lo ha introducido');
+                    return;
+
+                }
+
+                //cleam lisbox
+                cleanlistbox(lisboxtoWork);
+
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(objListDays, lisboxtoWork, 'sec', 'ht');
+
+            });
+
+            $('#btnEliminarTue').click(function (e) {
+
+                //delete itemes form   list  lhoursun
+                //removed items lisbox selected
+                var r = removeList('TuesdaySelect', lhourtus);
+                if (r < 1) {
+                    mensaje('Favor seleccione uno o mas  horas para borrar');
+                    return;
+
+                }
+            });
+
+            $('#btnAgregarWed').click(function () {
+
+                var texboInicio = 'WedtimepickerIncio'
+                var texboFinal = 'WedtimepickerFinal';
+                var lisboxtoWork = 'WednesdaySelect';
+                objListDays = lhourwed;
+
+                if (isEmptyTimePicker(texboInicio) == true ||
+                    isEmptyTimePicker(texboFinal) == true) {
+
+                    mensaje('Favor Llenar los campos de hora');
+                    return;
+                }
+
+                //creo objecto con  hora para agregar a la lista y listbox
+                var obj = ObjToAddTolist(objListDays, texboInicio, texboFinal);
+
+                //agrego a la lista el nuevo objeto
+                var a = AddlistHour(objListDays, obj)
+                if (a['existe'] == true) {
+                    delete a['existe'];
+                    mensaje('Este rango de hora  ya lo ha introducido');
+                    return;
+
+                }
+
+                //cleam lisbox
+                cleanlistbox(lisboxtoWork);
+
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(objListDays, lisboxtoWork, 'sec', 'ht');
+
+            });
+
+            $('#btnEliminarWed').click(function (e) {
+
+                //delete itemes form   list  lhoursun
+                //removed items lisbox selected
+                var r = removeList('WednesdaySelect', lhourwed);
+                if (r < 1) {
+                    mensaje('Favor seleccione uno o mas  horas para borrar');
+                    return;
+
+                }
+            });
+
+            $('#btnAgregarThu').click(function () {
+
+                var texboInicio = 'ThutimepickerIncio'
+                var texboFinal = 'ThutimepickerFinal';
+                var lisboxtoWork = 'ThursdaySelect';
+                objListDays = lhourthu;
+
+                if (isEmptyTimePicker(texboInicio) == true ||
+                    isEmptyTimePicker(texboFinal) == true) {
+
+                    mensaje('Favor Llenar los campos de hora');
+                    return;
+                }
+
+                //creo objecto con  hora para agregar a la lista y listbox
+                var obj = ObjToAddTolist(objListDays, texboInicio, texboFinal);
+
+                //agrego a la lista el nuevo objeto
+                var a = AddlistHour(objListDays, obj)
+                if (a['existe'] == true) {
+                    delete a['existe'];
+                    mensaje('Este rango de hora  ya lo ha introducido');
+                    return;
+
+                }
+
+                //cleam lisbox
+                cleanlistbox(lisboxtoWork);
+
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(objListDays, lisboxtoWork, 'sec', 'ht');
+
+            });
+
+            $('#btnEliminarThu').click(function (e) {
+
+                //delete itemes form   list  lhoursun
+                //removed items lisbox selected
+                var r = removeList('ThursdaySelect', lhourthu);
+                if (r < 1) {
+                    mensaje('Favor seleccione uno o mas  horas para borrar');
+                    return;
+
+                }
+            });
+
+            $('#btnAgregarFri').click(function () {
+
+                var texboInicio = 'FritimepickerIncio'
+                var texboFinal = 'FritimepickerFinal';
+                var lisboxtoWork = 'FridaySelect';
+                objListDays = lhourfri;
+
+                if (isEmptyTimePicker(texboInicio) == true ||
+                    isEmptyTimePicker(texboFinal) == true) {
+
+                    mensaje('Favor Llenar los campos de hora');
+                    return;
+                }
+
+                //creo objecto con  hora para agregar a la lista y listbox
+                var obj = ObjToAddTolist(objListDays, texboInicio, texboFinal);
+
+                //agrego a la lista el nuevo objeto
+                var a = AddlistHour(objListDays, obj)
+                if (a['existe'] == true) {
+                    delete a['existe'];
+                    mensaje('Este rango de hora  ya lo ha introducido');
+                    return;
+
+                }
+
+                //cleam lisbox
+                cleanlistbox(lisboxtoWork);
+
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(objListDays, lisboxtoWork, 'sec', 'ht');
+
+            });
+
+            $('#btnEliminarFri').click(function (e) {
+
+                //delete itemes form   list  lhoursun
+                //removed items lisbox selected
+                var r = removeList('FridaySelect', lhourfri);
+                if (r < 1) {
+                    mensaje('Favor seleccione uno o mas  horas para borrar');
+                    return;
+
+                }
+            });
+
+            $('#btnAgregarSat').click(function () {
+
+                var texboInicio = 'SattimepickerIncio'
+                var texboFinal = 'SattimepickerFinal';
+                var lisboxtoWork = 'SaturdaySelect';
+                objListDays = lhoursat;
+
+                if (isEmptyTimePicker(texboInicio) == true ||
+                    isEmptyTimePicker(texboFinal) == true) {
+
+                    mensaje('Favor Llenar los campos de hora');
+                    return;
+                }
+
+                //creo objecto con  hora para agregar a la lista y listbox
+                var obj = ObjToAddTolist(objListDays, texboInicio, texboFinal);
+
+                //agrego a la lista el nuevo objeto
+                var a = AddlistHour(objListDays, obj)
+                if (a['existe'] == true) {
+                    delete a['existe'];
+                    mensaje('Este rango de hora  ya lo ha introducido');
+                    return;
+
+                }
+
+                //cleam lisbox
+                cleanlistbox(lisboxtoWork);
+
+                //agrego el la lista de objctos al listbox
+                addItemsToLisbox(objListDays, lisboxtoWork, 'sec', 'ht');
+
+            });
+
+            $('#btnEliminarSat').click(function (e) {
+
+                //delete itemes form   list  lhoursun
+                //removed items lisbox selected
+                var r = removeList('SaturdaySelect', lhoursat);
+                if (r < 1) {
+                    mensaje('Favor seleccione uno o mas  horas para borrar');
+                    return;
+
+                }
+            });
+
+
+
+
+
+
+
+
+            // Create TimePicker
+
+            $("#SuntimepickerIncio,#SuntimepickerFinal,#MontimepickerIncio,#MontimepickerFinal,#TuetimepickerIncio,#TuetimepickerFinal,#WedtimepickerIncio,#WedtimepickerFinal,#ThutimepickerIncio,#ThutimepickerFinal,#FritimepickerIncio,#FritimepickerFinal,#SattimepickerIncio,#SattimepickerFinal").ejTimePicker({ timeFormat: "hh:mm tt", interval: 60, width: "auto", height: "auto" });
+
+            //sum a hour to end time
+
+            $("#SuntimepickerIncio").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            $("#SuntimepickerFinal").ejTimePicker({ value: "" });
+
+                            newValue = sumOneHour(args.value);
+
+
+                            //set min value
+                            $("#SuntimepickerFinal").ejTimePicker({ minTime: newValue });
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+
+                }
+            });
+
+            $("#MontimepickerIncio").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            $("#MontimepickerFinal").ejTimePicker({ value: "" });
+                            newValue = sumOneHour(args.value);
+                            //set min value
+                            $("#MontimepickerFinal").ejTimePicker({ minTime: newValue });
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+
+                }
+            });
+
+
+            $("#TuetimepickerIncio").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            $("#TuetimepickerFinal").ejTimePicker({ value: "" });
+                            newValue = sumOneHour(args.value);
+                            //set min value
+                            $("#TuetimepickerFinal").ejTimePicker({ minTime: newValue });
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+
+                }
+            });
+
+            $("#WedtimepickerIncio").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            $("#WedtimepickerFinal").ejTimePicker({ value: "" });
+                            newValue = sumOneHour(args.value);
+                            //set min value
+                            $("#WedtimepickerFinal").ejTimePicker({ minTime: newValue });
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+
+                }
+            });
+
+            $("#ThutimepickerIncio").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+
+                            $("#ThutimepickerFinal").ejTimePicker({ value: "" });
+                            newValue = sumOneHour(args.value);
+                            //set min value
+                            $("#ThutimepickerFinal").ejTimePicker({ minTime: newValue });
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+
+                }
+            });
+
+            $("#FritimepickerIncio").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+
+                            $("#FritimepickerFinal").ejTimePicker({ value: "" });
+                            newValue = sumOneHour(args.value);
+                            //set min value
+                            $("#FritimepickerFinal").ejTimePicker({ minTime: newValue });
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+
+                }
+            });
+
+            $("#SattimepickerIncio").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            $("#SattimepickerFinal").ejTimePicker({ value: "" });
+                            newValue = sumOneHour(args.value);
+                            //set min value
+                            $("#SattimepickerFinal").ejTimePicker({ minTime: newValue });
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+
+                }
+            });
+
+
+            //valid not same hour
+
+
+            $("#SuntimepickerFinal").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            var timeObj = $("#SuntimepickerIncio").ejTimePicker("getValue");
+                            if (args.value == timeObj) {
+                                $("#SuntimepickerFinal").ejTimePicker({ value: "" });
+                                mensaje("La fechas de inicio y final no pueden ser igual");
+                                // alertify.alert('', "La fechas de inicio y final no pueden ser igual");
+                            }
+
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+                    //  alert('modifico');
+                }
+            });
+
+
+            $("#MontimepickerFinal").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            var timeObj = $("#MontimepickerIncio").ejTimePicker("getValue");
+                            if (args.value == timeObj) {
+                                $("#MontimepickerFinal").ejTimePicker({ value: "" });
+                                mensaje("La fechas de inicio y final no pueden ser igual");
+                                // alertify.alert('', "La fechas de inicio y final no pueden ser igual");
+                            }
+
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+                    //  alert('modifico');
+                }
+            });
+
+            $("#TuetimepickerFinal").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            var timeObj = $("#TuetimepickerIncio").ejTimePicker("getValue");
+                            if (args.value == timeObj) {
+                                $("#TuetimepickerFinal").ejTimePicker({ value: "" });
+                                mensaje("La fechas de inicio y final no pueden ser igual");
+                                // alertify.alert('', "La fechas de inicio y final no pueden ser igual");
+                            }
+
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+                    //  alert('modifico');
+                }
+            });
+            $("#WedtimepickerFinal").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            var timeObj = $("#WedtimepickerIncio").ejTimePicker("getValue");
+                            if (args.value == timeObj) {
+                                $("#WedtimepickerFinal").ejTimePicker({ value: "" });
+                                mensaje("La fechas de inicio y final no pueden ser igual");
+                                // alertify.alert('', "La fechas de inicio y final no pueden ser igual");
+                            }
+
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+                    //  alert('modifico');
+                }
+            });
+            $("#ThutimepickerFinal,#FritimepickerFinal,#SattimepickerFinal").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            var timeObj = $("#ThutimepickerIncio").ejTimePicker("getValue");
+                            if (args.value == timeObj) {
+                                $("#ThutimepickerFinal").ejTimePicker({ value: "" });
+                                mensaje("La fechas de inicio y final no pueden ser igual");
+                                // alertify.alert('', "La fechas de inicio y final no pueden ser igual");
+                            }
+
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+                    //  alert('modifico');
+                }
+            });
+            $("#FritimepickerFinal").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            var timeObj = $("#FritimepickerIncio").ejTimePicker("getValue");
+                            if (args.value == timeObj) {
+                                $("#FritimepickerFinal").ejTimePicker({ value: "" });
+                                mensaje("La fechas de inicio y final no pueden ser igual");
+                                // alertify.alert('', "La fechas de inicio y final no pueden ser igual");
+                            }
+
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+                    //  alert('modifico');
+                }
+            });
+            $("#SattimepickerFinal").ejTimePicker({
+                change: function (args) {
+
+                    if (args.value !== null) {
+
+                        // From 0 to : get value
+                        if (args.value.length == 7 || args.value.length == 8) {
+
+                            var timeObj = $("#SattimepickerIncio").ejTimePicker("getValue");
+                            if (args.value == timeObj) {
+                                $("#SattimepickerFinal").ejTimePicker({ value: "" });
+                                mensaje("La fechas de inicio y final no pueden ser igual");
+                                // alertify.alert('', "La fechas de inicio y final no pueden ser igual");
+                            }
+
+                        }
+                        else {
+                            cleanTimePicker($(":input"));
+                            alertify.alert('', "Favor seleccione una hora correcta");
+                        }
+                    }
+
+                    //  alert('modifico');
+                }
+            });
+
+            //$("#SuntimepickerIncio,#SuntimepickerFinal,#MontimepickerIncio,#MontimepickerFinal,#TuetimepickerIncio,#TuetimepickerFinal,#WedtimepickerIncio,#WedtimepickerFinal,#ThutimepickerIncio,#ThutimepickerFinal,#FritimepickerIncio,#FritimepickerFinal,#SattimepickerIncio,#SattimepickerFinal").ejTimePicker({ value: "" });
+
+
+
+
+
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Ini_HorarioTrabajo</h2>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Usar_HorarioTrabajo</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DoctSecuencia_fk)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DoctSecuencia_fk)
+                @Html.ValidationMessageFor(model => model.DoctSecuencia_fk)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PaisSecuencia_fk)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PaisSecuencia_fk)
+                @Html.ValidationMessageFor(model => model.PaisSecuencia_fk)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ClinSecuencia_fk)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ClinSecuencia_fk)
+                @Html.ValidationMessageFor(model => model.ClinSecuencia_fk)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ConsSecuencia_fk)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ConsSecuencia_fk)
+                @Html.ValidationMessageFor(model => model.ConsSecuencia_fk)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HTrabSecuencia)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HTrabSecuencia)
+                @Html.ValidationMessageFor(model => model.HTrabSecuencia)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DSemaSecuencia_Fk)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DSemaSecuencia_Fk)
+                @Html.ValidationMessageFor(model => model.DSemaSecuencia_Fk)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HTrabHoraMinutoInicio)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HTrabHoraMinutoInicio)
+                @Html.ValidationMessageFor(model => model.HTrabHoraMinutoInicio)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HTrabHoraMinutoFinal)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HTrabHoraMinutoFinal)
+                @Html.ValidationMessageFor(model => model.HTrabHoraMinutoFinal)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HTrabRepetirSiempre)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HTrabRepetirSiempre)
+                @Html.ValidationMessageFor(model => model.HTrabRepetirSiempre)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HTrabFechaModificacion)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HTrabFechaModificacion)
+                @Html.ValidationMessageFor(model => model.HTrabFechaModificacion)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UsuaSecuenciaModificacion)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UsuaSecuenciaModificacion)
+                @Html.ValidationMessageFor(model => model.UsuaSecuenciaModificacion)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UsuaSecuenciaCreacion)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UsuaSecuenciaCreacion)
+                @Html.ValidationMessageFor(model => model.UsuaSecuenciaCreacion)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HTrabFechaCreacion)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HTrabFechaCreacion)
+                @Html.ValidationMessageFor(model => model.HTrabFechaCreacion)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HTrabEstaDesabilitado)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HTrabEstaDesabilitado)
+                @Html.ValidationMessageFor(model => model.HTrabEstaDesabilitado)
+            </div>
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

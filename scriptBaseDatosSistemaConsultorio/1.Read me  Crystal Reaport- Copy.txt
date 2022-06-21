@@ -1,0 +1,4 @@
+Importante copiar dentro del proyecto y ponerlo donde esta  el viewer
+Crystal report la carpeta crystalreportviewers13 del crystal report js, etc.
+
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\ASP.NETClientFiles

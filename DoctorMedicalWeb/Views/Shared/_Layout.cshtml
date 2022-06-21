@@ -1,0 +1,1542 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    @*<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />*@
+    @*<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">*@
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    @*<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />*@
+
+    <!-- Meta, title, CSS, favicons, etc. -->
+    @*<meta charset="utf-8" />*@
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @*<meta http-equiv="Cache-Control" content="no-cache" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />*@
+
+
+    <title>DoctorMedicalWeb</title>
+    <link href="~/Content/ImagenSoftware/Sistema.ico" rel="shortcut icon" type="image/x-icon" />
+    @*@Styles.Render("~/Content/ej/web/bootstrap-theme/ej.web.all.min.css")*@
+
+
+    @*@Styles.Render("~/Content/css")*@
+    @*para datepicket*@
+
+    @*@Styles.Render("~/Content/themes/base/css", "~/Content/css")*@
+    @*@Styles.Render("~/Content/themes/base/css")*@
+
+
+    @*<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
+
+
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">*@
+    @*<link rel="stylesheet" href="/resources/demos/style.css">*@
+    @* <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+
+
+
+    @* fin para datepicket*@
+
+
+    @*@Scripts.Render("~/bundles/modernizr")*@
+
+
+    @* @Styles.Render("~/Content/csss")*@
+    <!-- Bootstrap -->
+    <link href="~/Content/AdminFiles/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    @Styles.Render("~/Content/AdminFiles/vendors/font-awesome/css/font-awesome.min.css")
+    @* <link href="~/Content/AdminFiles/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />*@
+
+    <!-- Custom Theme Style -->
+    @* @Styles.Render("~/bundles/custtt")*@
+    <link href="~/Content/AdminFiles/build/css/custom.min.css" rel="stylesheet" />
+    @*<link href="~/Content/AdminFiles/build/css/custom.css" rel="stylesheet" />*@
+
+
+
+
+    <!-- NProgress -->
+    @*<link href="~/Content/AdminFiles/vendors/nprogress/nprogress.css" rel="stylesheet" />*@
+
+    <!-- iCheck -->
+    @*<link href="~/Content/AdminFiles/vendors/iCheck/skins/flat/green.css" rel="stylesheet" />*@
+    <!-- bootstrap-progressbar -->
+    @*<link href="~/Content/AdminFiles/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" />*@
+    <!-- JQVMap -->
+    @*<link href="~/Content/AdminFiles/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />*@
+    <!-- bootstrap-daterangepicker -->
+    @*<link href="~/Content/AdminFiles/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />*@
+
+    @*Estilos personalizada*@
+    @*<link href="~/Content/AdminFiles/css/estilosDashboard.css" rel="stylesheet" />*@
+    <link href="~/Content/AdminFiles/css/estilosDashboard.min.css" rel="stylesheet" />
+   @* <link href="~/Content/AdminFiles/estilos.min.css" rel="stylesheet" />*@
+    <link href="~/Content/AdminFiles/estilos.css" rel="stylesheet" />
+
+
+
+    @* PRUEBA DE SYNFUSION funcionando*@
+    @Styles.Render("~/Content/ej/web/bootstrap-theme/ej.web.all.min.css")
+    @*@Styles.Render("~/Content/Syn")*@
+    @*css para el grid*@
+    @*<link href="~/Content/ej/web/responsive-css/ejgrid.responsive.css" rel="stylesheet" />*@
+    <link href="~/Content/ej/web/responsive-css/ejgrid.responsive.min.css" rel="stylesheet" />
+
+
+
+    @*Jquery*@
+    @*<script src="~/Content/DatosPaginaPresentacion/jquery/jquery-3.1.1.min.js"></script>*@
+    @*@Scripts.Render("~/javaScriptComu")*@
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <!-- jQuery -->
+    @*<script src="~/Content/AdminFiles/vendors/jquery/dist/jquery.min.js"></script>*@
+    <!-- Bootstrap -->
+    @*<script src="~/Content/AdminFiles/vendors/bootstrap/dist/js/bootstrap.min.js"></script>*@
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.easing.1.3.min.js"></script>
+    <script src="~/Scripts/jsrender.min.js"></script>
+
+    @* @Scripts.Render("~/Scripts/ej/web/ej.web.all.min.js")*@
+
+    <script src="~/Scripts/ej/common/ej.core.min.js"></script>
+    <script src="~/Scripts/ej/common/ej.data.min.js"></script>
+    <script src="~/Scripts/ej/common/ej.globalize.min.js"></script>
+    <script src="~/Scripts/ej/common/ej.scroller.min.js"></script>
+    <script src="~/Scripts/ej/common/ej.touch.min.js"></script>
+    <script src="~/Scripts/ej/common/ej.draggable.min.js"></script>
+
+    <script src="~/Scripts/ej/web/ej.print.min.js"></script>
+
+    @*<script src="~/Scripts/ej/common/ej.core.min.js"></script>
+        <script src="~/Scripts/ej/common/ej.data.min.js"></script>
+        <script src="~/Scripts/ej/common/ej.touch.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.print.min.js"></script>
+        <script src="~/Scripts/ej/common/ej.globalize.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.schedule.min.js"></script>
+        <script src="~/Scripts/ej/common/ej.draggable.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.listview.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.recurrenceeditor.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.grid.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.pager.min.js"></script>
+        <script src="~/Scripts/ej/common/ej.scroller.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.waitingpopup.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.radiobutton.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.dropdownlist.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.dialog.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.button.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.autocomplete.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.checkbox.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.editor.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.menu.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.navigationdrawer.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.toolbar.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.excelfilter.min.js"></script>
+        <script src="~/Scripts/ej/web/ej.tooltip.min.js"></script>
+        <script src="~/Scripts/ej/l10n/ej.localetexts.es-ES.min.js"></script>
+        <script src="~/Scripts/ej/i18n/ej.culture.es-ES.min.js"></script>*@
+
+
+
+    @*Library to convert ForM Json*@
+
+    @*<script src="~/Scripts/jquery.serializeToJSON.js"></script>*@
+    <script src="~/Scripts/jquery.serializeToJSON.min.js"></script>
+
+    @*loading screen block*@
+    <script src="~/Scripts/loadingoverlay.min.js"></script>
+
+
+
+    @* PRUEBA DE SYNFUSION funcionando*@
+
+    @*CND PRUEBA DE SYNFUSION funcionando*@
+    @*<link href="http://cdn.syncfusion.com/14.4.0.15/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />*@
+    @*<script src="http://cdn.syncfusion.com/js/assets/external/jquery-1.10.2.min.js"></script>*@
+    @*<script src="http://cdn.syncfusion.com/js/assets/external/jquery.easing.1.3.min.js"></script>*@
+    @*<script src="http://cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>*@
+    @*<script src="http://cdn.syncfusion.com/14.4.0.15/js/web/ej.web.all.min.js"></script>*@
+    @*CND PRUEBA DE SYNFUSION*@
+
+    @*<script src="http://js.syncfusion.com/demos/web/scripts/jsondata.min.js"></script>*@
+
+
+
+    @*notify *@
+    <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
+    <script src="~/Scripts/alertify.min.js"></script>
+
+    <script src="~/Scripts/LibJs/Libjs.js"></script>
+
+    @* *@
+
+
+
+
+    <!-- CSS -->
+    @*<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/alertify.min.css" />*@
+    <!-- Default theme -->
+    @*<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/themes/default.min.css" />*@
+    <!-- Semantic UI theme -->
+    @*<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/themes/semantic.min.css" />*@
+    <!-- Bootstrap theme -->
+    @*<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/themes/bootstrap.min.css" />*@
+
+    <!--
+        RTL version
+    -->
+    @*<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/alertify.rtl.min.css" />*@
+    <!-- Default theme -->
+    @*<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/themes/default.rtl.min.css" />*@
+    <!-- Semantic UI theme -->
+    @*<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/themes/semantic.rtl.min.css" />*@
+    <!-- Bootstrap theme -->
+    @*<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/themes/bootstrap.rtl.min.css" />*@
+
+    @*end notify *@
+
+
+</head>
+<body class="nav-md">
+
+    <script type="text/javascript">
+
+
+        function blockScreen() {
+
+            //show screen block
+            $.LoadingOverlay("show");
+        }
+
+        //when up the web
+        blockScreen();
+
+        $(document).ready(function () {
+            //valid date
+            //var ur = '@*@Url.Action("IsRightDate", "DashBoard")*@';
+            isRightDateClient('@Url.Action("IsRightDate", "DashBoard")');
+
+            // alertify.alert('','Hola michael!');
+            //alertify.alert('Alert Title', 'Alert Message!', function () { alertify.success('Ok'); });
+            //alertify.alert( '','cuerpo', function () { alertify.success('Ok'); });
+            //when click tag a
+            $("a").click(function (event) {
+                var as = event.target.id.indexOf("Menu");
+                var ped = event.target.id;
+
+                //if it is not  Menu or empty
+                if ((event.target.id.indexOf("Menu") == -1) && (event.target.id !== "")) {
+                    //  blockScreen();
+                    //alert(event.target.id);
+                }
+            });
+        });
+
+    </script>
+
+
+
+    @if (TempData["NoTienePermisoParaPagina"] != null)
+    {
+
+        <script language='javascript' type='text/javascript'>
+
+            $(document).ready(function () {
+                //alert('@*@TempData["Success"]*@');
+                alertify.alert('', '@TempData["NoTienePermisoParaPagina"]');
+                @*@TempData["NoTienePermisoParaPagina"]=null;*@
+
+            });
+
+        </script>
+    }
+
+
+
+
+
+
+    <header>
+
+
+        @*@{
+
+            var user = Session["user"];
+
+            if (user != null)
+            {
+            <ol>
+            <li><a href="@Url.Action("cerrarSesion", "PaginaPresentacion")">Cerrar Sesión</a></li>
+            </ol>
+            }
+            else
+            {
+            @*<li><a href="@Url.Action("UserLog", "Home")">Iniciar sec</a></li>*@
+        @*  }
+            }*@
+    </header>
+
+
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href=@Url.Action( "Index", "DashBoard") class="site_title"><i class="fa fa-user-md "></i> <span>Doctor Medical Web </span></a>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+
+                            @{
+                                DoctorMedicalWeb.ModelsComplementarios.UsuarioLoguiado uf = (DoctorMedicalWeb.ModelsComplementarios.UsuarioLoguiado)HttpContext.Current.Session["user"];
+                                if (!string.IsNullOrEmpty(uf.imagPath))
+                                {
+
+                                    @*<img src='@Url.Content(uf.imagPath.ToString() + "?" + DoctorMedicalWeb.Libreria.Lib.GetLocalDateTime().ToString("ddyyhhmmss"))' alt="..." class="img-circle profile_img">*@
+                                }
+                                else
+                                {
+                                    if (uf.persSecuencia == 0)
+                                    {
+                                        @*<img src="~/Content/AdminFiles/images/_user-alt.png" alt="..." class="img-circle profile_img">*@
+                                    }
+
+                                }
+                            }
+
+
+
+                        </div>
+                        <div class="profile_info">
+
+                            @*<span>Bienvenid@@,</span>*@
+                            <p class="Nombre " style="visibility: hidden;">
+                                @{
+                                    DoctorMedicalWeb.ModelsComplementarios.UsuarioLoguiado u = (DoctorMedicalWeb.ModelsComplementarios.UsuarioLoguiado)HttpContext.Current.Session["user"];
+                                    ViewBag.NombreCompleto = "Dr." + u.NombreCompleto;
+                                }
+                                @ViewBag.NombreCompleto
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            @*<h3>General</h3>*@
+                            @*<hr class="style18">*@
+                            <hr class="">
+                            <ul class="nav side-menu">
+
+                                <li>
+                                    <a href=@Url.Action( "Index", "DashBoard")><i class="fa fa-home"></i> Inicio <span class="fa "></span></a>
+
+                                </li>
+
+                                <li>
+                                    <a id="pag_Consulta" href=@Url.Action("Ini_Consulta", "Consulta")><i class="fa fa-stethoscope"></i> Consulta <span class="fa "></span></a>
+
+                                </li>
+                                <li>
+                                    <a id="pag_Paciente" href=@Url.Action( "Ini_Paciente", "Paciente")><i class="fa fa-user"></i> Paciente <span class="fa "></span></a>
+
+                                </li>
+                                <li>
+                                    <a id="pag_Receta" href=@Url.Action( "Ini_Receta", "Receta")><i class="fa fa-medkit"></i> Receta <span class="fa "></span></a>
+
+                                </li>
+
+                                <li>
+                                    <a id="pag_Cita" href=@Url.Action( "Ini_Cita", "Cita")><i class="fa fa-book"></i> Cita/Agenda <span class="fa "></span></a>
+
+                                </li>
+                                @*<li>
+                                        <a id="pag_Agenda"  href=@Url.Action( "Index", "DashBoard")><i class="fa fa-calendar"></i> Agenda <span class="fa "></span></a>
+
+                                    </li>*@
+
+                                <li>
+                                    <a id="pag_FacturacionMenu"><i class="fa fa-file-text-o"></i>Facturación<span class="fa fa-chevron-down"> </span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a id="pag_Facturacion" href="index.html">Facturacion</a></li>
+                                        <li><a id="pag_Caja" onclick="blockScreen();" href="index2.html">Caja</a></li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a id="pag_ContabilidadMenu"><i class="fa fa-calculator"></i>Contabilidad<span class="fa fa-chevron-down"> </span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a id="pag_607" href="index.html">Reporte 607</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a id="pag_MantenimientoMenu"><i class="fa fa-wrench"></i>Mantenimiento<span class="fa fa-chevron-down"> </span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a id="pag_AnalisisClinico" href=@Url.Action("Ini_AnalisisClinico", "AnalisisClinico")>Análisis Clínico</a></li>
+                                        <li><a id="pag_Diagnosticos" href=@Url.Action("Ini_Diagnostico", "Diagnostico")>Diagnosticos</a></li>
+                                        <li><a id="pag_Enfermedad" href=@Url.Action("Ini_Enfermedades", "Enfermedades")>Enfermedades</a></li>
+                                        <li><a id="pag_EvaluacionFisica" href=@Url.Action("Ini_EvaluacionFisica", "EvaluacionFisica")>Evaluación Física</a></li>
+                                        <li><a id="pag_Imagenes" href=@Url.Action("Ini_Imagenes", "Imagenes")>Imágenes</a></li>
+                                        <li><a id="pag_InstitucionesAseguradoras" href=@Url.Action("Ini_InstitucionAseguradora", "InstitucionAseguradora")>Instituciones Aseguradoras</a></li>
+                                        <li><a id="pag_Medicamentos" href=@Url.Action("Ini_Medicamentos", "Medicamentos")>Medicamentos</a></li>
+                                        <li><a id="pag_MotivoConsulta" href=@Url.Action("Ini_MotivoConsulta", "MotivoConsulta")>Motivo de Consulta</a></li>
+
+                                        <li><a id="pag_Procedimientos" href="index.html">Procedimientos</a></li>
+                                        <li><a id="pag_Tratamiento" href=@Url.Action("Ini_Tratamiento", "Tratamiento")>Tratamiento</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a id="pag_ConfiguracionMenu"><i class="fa fa-cog"></i>Configuracion<span class="fa fa-chevron-down"> </span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a id="pag_Doctor" href=@Url.Action( "Index", "Doctor")>Doctor</a></li>
+                                        <li><a id="pag_Consultorio" href=@Url.Action("Ini_Consultorio", "Consultorio")>Consultorio</a></li>
+                                        <li><a id="pag_Clinica" href=@Url.Action("Ini_Clinica", "Clinica")>Clínica</a></li>
+                                        <li><a id="pag_CategoriaPersonal" href=@Url.Action("categoriaPersonal", "CategoriaPersonal")>Categoria Personal</a></li>
+                                        <li><a id="pag_Personal" href=@Url.Action("Ini_Personal", "Personal")>Personal</a></li>
+                                        <li><a id="pag_HorarioTrabajo" href=@Url.Action("Ini_HorarioTrabajo", "HorarioTrabajo")>Horario De Trabajo</a></li>
+
+
+                                        <li><a id="Ini_TipoFormulario" href=@Url.Action("Ini_TipoFormulario", "TipoFormulario")>Tipo Formulario</a></li>
+                                        <li><a id="PruebaAngular" href=@Url.Action("PruebaAngular", "TipoFormulario")>PruebaAngular</a></li>
+
+                                        <li><a id="pag_BackupExcelConsulta" href="index2.html">BackupExcelConsulta</a></li>
+                                        <li><a id="pag_CitaPacienteEnLinea" href="index2.html">Cita Paciente EnLinea</a></li>
+                                        <li><a id="pag_DigitalizacionConsultas" href="index2.html">Digitalizacion de consultas</a></li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a id="pag_SeguridadMenu"><i class="fa fa-lock"></i>Seguridad<span class="fa fa-chevron-down"> </span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a id="pag_UsuarioDoctor" href=@Url.Action("Ini_Usuario", "Usuario")>Usuario Doctor</a></li>
+                                        <li><a id="pag_UsuarioPersonal" href=@Url.Action("Ini_UsuarioPersonal", "UsuarioPersonal")>Usuario Personal</a></li>
+                                        <li><a id="pag_Roles" href=@Url.Action( "Roles", "Roles")>Perfil</a></li>
+                                        <li><a id="pag_RolePages" href=@Url.Action("Ini_RolePages", "RolePages")>Asignar Paginas a Perfil</a></li>
+                                        <li><a id="pag_Auditoria" href="index.html">Auditoria</a></li>
+                                    </ul>
+
+                                </li>
+
+
+
+
+                                @*<li>
+                                    <a><i class="fa fa-home"></i><span class="fa fa-chevron-down">Home </span></a>
+                                    <ul class="nav child_menu">
+                                    <li><a href="index.html">Dashboard</a></li>
+                                    <li><a href="index2.html">Dashboard2</a></li>
+                                    <li><a href="index3.html">Dashboard3</a></li>
+                                    </ul>
+                                    </li>
+                                    <li>
+                                    <a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                    <li><a href="form.html">General Form</a></li>
+                                    <li><a href="form_advanced.html">Advanced Components</a></li>
+                                    <li><a href="form_validation.html">Form Validation</a></li>
+                                    <li><a href="form_wizards.html">Form Wizard</a></li>
+                                    <li><a href="form_upload.html">Form Upload</a></li>
+                                    <li><a href="form_buttons.html">Form Buttons</a></li>
+                                    </ul>
+                                    </li>
+                                    <li>
+                                    <a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                    <li><a href="general_elements.html">General Elements</a></li>
+                                    <li><a href="media_gallery.html">Media Gallery</a></li>
+                                    <li><a href="typography.html">Typography</a></li>
+                                    <li><a href="icons.html">Icons</a></li>
+                                    <li><a href="glyphicons.html">Glyphicons</a></li>
+                                    <li><a href="widgets.html">Widgets</a></li>
+                                    <li><a href="invoice.html">Invoice</a></li>
+                                    <li><a href="inbox.html">Inbox</a></li>
+                                    <li><a href="calendar.html">Calendar</a></li>
+                                    </ul>
+                                    </li>
+                                    <li>
+                                    <a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                    <li><a href="tables.html">Tables</a></li>
+                                    <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                                    </ul>
+                                    </li>
+                                    <li>
+                                    <a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                    <li><a href="chartjs.html">Chart JS</a></li>
+                                    <li><a href="chartjs2.html">Chart JS2</a></li>
+                                    <li><a href="morisjs.html">Moris JS</a></li>
+                                    <li><a href="echarts.html">ECharts</a></li>
+                                    <li><a href="other_charts.html">Other Charts</a></li>
+                                    </ul>
+                                    </li>
+                                    <li>
+                                    <a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                    <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
+                                    <li><a href="fixed_footer.html">Fixed Footer</a></li>
+                                    </ul>
+                                    </li>*@
+                            </ul>
+                        </div>
+                        @*<div class="menu_section">
+                            <h3>Live On</h3>
+                            <ul class="nav side-menu">
+                            <li>
+                            <a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                            <li><a href="e_commerce.html">E-commerce</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="project_detail.html">Project Detail</a></li>
+                            <li><a href="contacts.html">Contacts</a></li>
+                            <li><a href="profile.html">Profile</a></li>
+                            </ul>
+                            </li>
+                            <li>
+                            <a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                            <li><a href="page_403.html">403 Error</a></li>
+                            <li><a href="page_404.html">404 Error</a></li>
+                            <li><a href="page_500.html">500 Error</a></li>
+                            <li><a href="plain_page.html">Plain Page</a></li>
+                            <li><a href="login.html">Login Page</a></li>
+                            <li><a href="pricing_tables.html">Pricing Tables</a></li>
+                            </ul>
+                            </li>
+                            <li>
+                            <a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                            <li><a href="#level1_1">Level One</a>
+                            <li>
+                            <a>Level One<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                            <li class="sub_menu">
+                            <a href="level2.html">Level Two</a>
+                            </li>
+                            <li>
+                            <a href="#level2_1">Level Two</a>
+                            </li>
+                            <li>
+                            <a href="#level2_2">Level Two</a>
+                            </li>
+                            </ul>
+                            </li>
+                            <li>
+                            <a href="#level1_2">Level One</a>
+                            </li>
+                            </ul>
+                            </li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+                            </ul>
+                            </div>*@
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        @*<a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                            </a>*@
+                        @* <a data-toggle="tooltip" data-placement="top" title="Logout" href="@Url.Action("cerrarSesion", "PaginaPresentacion")">*@
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:confirmToLogout();">
+
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    @*<img src="~/Content/AdminFiles/images/img.jpg" alt="">*@
+
+                                    @{
+                                        DoctorMedicalWeb.ModelsComplementarios.UsuarioLoguiado uff = (DoctorMedicalWeb.ModelsComplementarios.UsuarioLoguiado)HttpContext.Current.Session["user"];
+                                        if (!string.IsNullOrEmpty(uf.imagPath))
+                                        {
+
+                                            <img src="@Url.Content(uff.imagPath.ToString() + "?" + DoctorMedicalWeb.Libreria.Lib.GetLocalDateTime().ToString("ddyyhhmmss"))" alt="">
+                                        }
+                                        else
+                                        {
+                                            if (uf.persSecuencia == 0)
+                                            {
+                                                <img src="~/Content/AdminFiles/images/_user-alt.png" alt="">
+                                            }
+                                        }
+                                    }
+                                    @ViewBag.NombreCompleto
+
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    @*<li><a href="javascript:;"> Profile</a></li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="badge bg-red pull-right">50%</span>
+                                                <span>Settings</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="javascript:;">Help</a></li>*@
+                                    @*<li><a href="@Url.Action("cerrarSesion", "PaginaPresentacion")"><i class="fa fa-sign-out pull-right"></i> Cerrar Sessión</a></li>*@
+                                    <li><a href="javascript:confirmToLogout();"><i class="fa fa-sign-out pull-right"></i> Cerrar Sessión</a></li>
+                                </ul>
+                            </li>
+                            @*<li role="presentation" class="dropdown">
+                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <span class="badge bg-green">6</span>
+                                    </a>
+                                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                        <li>
+                                            <a>
+                                                <span class="image"><img src="~/Content/AdminFiles/images/img.jpg" alt="Profile Image" /></span>
+                                                <span>
+                                                    <span>@ViewBag.NombreCompleto</span>
+                                                    <span class="time">3 mins ago</span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a>
+                                                <span class="image"><img src="~/Content/AdminFiles/images/img.jpg" alt="Profile Image" /></span>
+                                                <span>
+                                                    <span>@ViewBag.NombreCompleto</span>
+                                                    <span class="time">3 mins ago</span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a>
+                                                <span class="image"><img src="~/Content/AdminFiles/images/img.jpg" alt="Profile Image" /></span>
+                                                <span>
+                                                    <span>John Smith</span>
+                                                    <span class="time">3 mins ago</span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a>
+                                                <span class="image"><img src="~/Content/AdminFiles/images/img.jpg" alt="Profile Image" /></span>
+                                                <span>
+                                                    <span>John Smith</span>
+                                                    <span class="time">3 mins ago</span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="text-center">
+                                                <a>
+                                                    <strong>See All Alerts</strong>
+                                                    <i class="fa fa-angle-right"></i>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>*@
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div id="msgBorrado" class="alert alert-danger" hidden>
+                    <strong>Borrado Exitosamente!</strong>.
+                </div>
+                <div id="msgExitoso" class="alert alert-success" hidden>
+                    <strong>Guardado Exitosamente!</strong>.
+                </div>
+                @*<div id="reportviewer" class="x_panel">*@
+
+                    @*<div style="height: 650px;width: 950px;min-height:404px;" id="viewer"></div>*@
+                        @*@{Html.RenderPartial("~/Views/Shared/ReportViewer.cshtml");}*@
+
+                    @*</div>*@
+
+                @{if (!ViewBag.isHome)
+                {
+                    <div id="PanelAccion" class="panel panel-default">
+                        <div class="panel-body" id="EstadoAccion">
+                            <h2>Usted Realiza Acción:  <span class="label label-info"></span></h2>
+                        </div>
+                    </div>
+                }}
+
+                @RenderBody()
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    v1.0.2
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+
+        </div>
+    </div>
+
+
+
+
+
+    <!--Modal Receta-->
+    <div class="modal fade " data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="modalRecetaReport">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @using (Html.BeginForm("Receta", "Consulta", FormMethod.Post, new { @id = "frmRecetaReportt", @class = "form-horizontal", @role = "form" }))
+                {
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-primary"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="col-md-12">
+
+                                @*<iframe id="loadReport" src='@Url.Content(("~/Reports/CrystalViewer/RecetaGinecologica.aspx?id=" + ViewBag.doctReport))' style="width:100%; height:800px; border:none;"></iframe>*@
+                                @*<iframe id="loadReport" src="" style="width:100%; height:800px; border:none;"></iframe>*@
+                                @* <div style="height: 650px;width: 950px;min-height:404px;" id="viewer"> </div>*@
+                                @*   @{Html.RenderPartial("~/Views/Shared/ReportViewer.cshtml");}*@
+                                <div id="reportviewerContent"></div>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </div>
+                    @*<div class="modal-footer">
+                            <button type="button" id="btnReceta" class="btn btn-primary">Seleccionar</button>
+                        </div>*@
+                }
+            </div>
+        </div>
+    </div>
+    <!--EndModal Receta-->
+
+
+
+
+
+
+
+
+    <script src="~/Scripts/ej/l10n/ej.localetexts.es-ES.min.js"></script>
+    <script src="~/Scripts/ej/i18n/ej.culture.es-ES.min.js"></script>
+
+
+
+    @*Jquery*@
+    @*<script src="~/Content/DatosPaginaPresentacion/jquery/jquery-3.1.1.min.js"></script>*@
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@RenderSection("scripts", required: false)*@
+
+
+
+    <!-- jQuery -->
+    @*<script src="~/Content/AdminFiles/vendors/jquery/dist/jquery.min.js"></script>*@
+    <!-- Bootstrap -->
+    @*<script src="~/Content/AdminFiles/vendors/bootstrap/dist/js/bootstrap.min.js"></script>*@
+
+    <!-- Syncfusion -->
+    @*@Scripts.Render("~/Scripts/ej/web/ej.web.all.min.js")*@
+    @*<script src="http://cdn.syncfusion.com/14.4.0.15/js/web/ej.web.all.min.js"></script>*@
+
+
+    @*@Scripts.Render("~/Scripts/ej/web/ej.culture.en-US.min.js")*@ @*la comente  pero no se lo que hace esta libreria por eso no la puedo borrar*@
+
+
+    @*si utilizo esta linea en el web config
+        debe de estar desabilitado UnobtrusiveJavaScriptEnabled
+        pero la validacion de jquery dataannotacion no funcionara*@
+    @*@Html.EJ().ScriptManager()*@
+    <script src="~/Scripts/ej/common/ej.unobtrusive.min.js"></script>
+
+    @*maskedit*@
+    <script src="~/Scripts/jquery.maskedinput.min.js"></script>
+
+
+
+    <!-- FastClick -->
+    @*<script src="~/Content/AdminFiles/vendors/fastclick/lib/fastclick.js"></script>*@
+    <!-- NProgress -->
+    @*<script src="~/Content/AdminFiles/vendors/nprogress/nprogress.js"></script>*@
+
+    <!-- Chart.js -->
+    @*<script src="~/Content/AdminFiles/vendors/Chart.js/dist/Chart.min.js"></script>*@
+    <!-- gauge.js -->
+    @*<script src="~/Content/AdminFiles/vendors/gauge.js/dist/gauge.min.js"></script>*@
+    <!-- bootstrap-progressbar -->
+    @*<script src="~/Content/AdminFiles/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>*@
+
+
+    <!--Library to date get age-->
+    <script src="~/Scripts/moment.min.js"></script>
+    <!--End Library to date get age-->
+    <!-- iCheck -->
+    @*<script src="~/Content/AdminFiles/vendors/iCheck/icheck.min.js"></script>*@
+    <!-- Skycons -->
+    @*<script src="~/Content/AdminFiles/vendors/skycons/skycons.js"></script>*@
+    <!-- Flot -->
+    @*<script src="~/Content/AdminFiles/vendors/Flot/jquery.flot.js"></script>
+        <script src="~/Content/AdminFiles/vendors/Flot/jquery.flot.pie.js"></script>
+        <script src="~/Content/AdminFiles/vendors/Flot/jquery.flot.time.js"></script>
+        <script src="~/Content/AdminFiles/vendors/Flot/jquery.flot.stack.js"></script>
+        <script src="~/Content/AdminFiles/vendors/Flot/jquery.flot.resize.js"></script>*@
+    <!-- Flot plugins -->
+    @*<script src="~/Content/AdminFiles/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+        <script src="~/Content/AdminFiles/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+        <script src="~/Content/AdminFiles/vendors/flot.curvedlines/curvedLines.js"></script>*@
+    <!-- DateJS -->
+    @*<script src="~/Content/AdminFiles/vendors/DateJS/build/date.js"></script>*@
+    <!-- JQVMap -->
+    @*<script src="~/Content/AdminFiles/vendors/jqvmap/dist/jquery.vmap.js"></script>
+        <script src="~/Content/AdminFiles/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script src="~/Content/AdminFiles/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>*@
+    <!-- bootstrap-daterangepicker -->
+    @*<script src="~/Content/AdminFiles/vendors/moment/min/moment.min.js"></script>*@
+    @*<script src="~/Content/AdminFiles/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>*@
+
+    @*Funct. disabel button click y cookie*@
+    <script type="text/javascript" src="~/Scripts/loading.js"></script>
+
+    <!-- Custom Theme Scripts base -->
+    <script src="~/Content/AdminFiles/build/js/custom.min.js"></script>
+
+    @*popup message confirm*@
+    @*<script src="~/Content/AdminFiles/js/messageBox/bootbox.min.js"></script>*@
+
+    @*Para validar  jquery valid() desde el cliente*@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @*<script src="~/Scripts/jquery.validate.min.js"></script>*@
+    <script src="~/Scripts/jquery.validate.js"></script>
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @*End Para validar  jquery valid() desde el cliente*@
+    @*<script src="~/Scripts/ej/web/ej.web.all.min.js"></script>*@
+    @*<script src="http://cdn.syncfusion.com/13.4.0.53/js/cultures/ej.culture.fr-FR.min.js"> </script>*@
+
+    @* <script src="~/Scripts/ej.culture.es-ES.min.js"></script>*@ @*Este mismo codigo lo tengo mas arriba y no se todavia que hace*@
+    @*<script src="https://cdn.syncfusion.com/js/assets/i18n/ej.culture.es-ES.min.js"></script>*@
+
+    @*datepicker fecha*@
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*Importante para datetipckert syncfusiion*@
+
+    @* @Scripts.Render("~/bundles/jqueryui")*@
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    @*datepicker fecha*@
+
+    @*Para trabajar con el message desde el controller*@
+    @*end Para trabajar con el message desde el controller*@
+
+
+
+    @*<script src="@Url.Content("~/Scripts/jquery.globalize.min.js")"></script>*@
+
+    @*<script src="~/Scripts/globalize.0.1.3/globalize.js"></script>*@
+    <script src="~/Scripts/globalize.0.1.3/globalize.min.js"></script>
+    <script src="~/Scripts/jquery.sort-1.1.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+
+
+
+        //$(function () {
+        //    $("#viewer").ejReportViewer({
+        //        reportServiceUrl: "/api/ReportApi",
+        //        processingMode: ej.ReportViewer.ProcessingMode.Local,
+        //        reportPath: '~/ReportSSR/primer reporte.rdl'
+        //        //reportPath: '~/App_Data/primer reporte.rdl'
+        //    });
+
+        //});
+
+
+
+
+
+
+
+        /* to collapse panel*/
+
+        $(document).on('click', '.panel-heading span.clickable', function (e) {
+            var $this = $(this);
+            if (!$this.hasClass('panel-collapsed')) {
+                $this.parents('.panel').find('.panel-body').slideUp();
+                $this.addClass('panel-collapsed');
+                $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+            } else {
+                $this.parents('.panel').find('.panel-body').slideDown();
+                $this.removeClass('panel-collapsed');
+                $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+            }
+        })
+        /*end to collapse panel*/
+
+
+
+        //$(document).ready(function () {
+        //    // executes when HTML-Document is loaded and DOM is ready
+        //    alert("document is ready");
+        //});
+
+
+        //$(window).load(function () {
+        //    // executes when complete page is fully loaded, including all frames, objects and images
+        //    alert("window is loaded");
+        //});
+
+        function confirmToLogout() {
+            alertify.confirm('', '¿Seguro que desea salir del sistema?', function () {
+
+
+                window.location.href = "@Url.Action("cerrarSesion", "PaginaPresentacion")";
+
+                alertify.success('Si')
+            }
+                , function () {
+                    ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+
+                    alertify.error('No')
+                    return true;
+                });/*End message confirm*/
+
+        }
+
+
+        function DesabilitarLink() {
+            //var r = $.Deferred();
+
+            //alert("entro a desabilitar link");
+            //$('#pag_ConfiguracionMenu').hide();
+            //desabilito todos los tag a
+            //$('#pag_ConfiguracionSubMenu li a').hide();
+
+            var formularioDesabilitar =  @Html.Raw(Json.Encode(ViewBag.VBformularioParaDesabilitar))
+            console.log(formularioDesabilitar);
+            ////alert("Formulario");
+            if (formularioDesabilitar === undefined || formularioDesabilitar === null) {
+                alert("Contacte a Administrador, no aparece el listado de todos los  formulario en el controler ");
+                window.location.href = "/DashBoard/Index";
+            }
+            //////desabilitando todos los menu
+            $.each(formularioDesabilitar, function (index, data) {
+                //alert(index + ' ' + data.FormDescripcion);
+                var d = '#' + data.FormDescripcion;
+                //alert(d+" Antes");
+                if ($(d).length > 0) {
+                    //alert(d + "  Entro");
+                    //si no existe un formulario set hiden
+                    $(d).hide();
+                }
+                //$(d).hide();
+                //desabiliatr todos los a dentro del id
+                //$(d+' li a').hide();
+            });
+
+            //return r.promise();
+            return true;
+        }
+
+        function HabilitarLink() {
+            //alert("entro a habilitar link");
+            var inc =  @Html.Raw(Json.Encode(ViewBag.ListaFormulario))
+            console.log(inc);
+
+            if (inc === undefined || inc === null) {
+                alert("Contacte a Administrador, no aparece el listado de formulario o falta asignar el viewbag de listaformularios en el controler");
+                window.location.href = "/DashBoard/Index";
+            }
+
+
+
+            //menu
+            //$('#pag_ConfiguracionMenu').hide();
+            //desabilito todos los tag a
+            //$('#pag_ConfiguracionSubMenu li a').hide();
+
+            $.each(inc, function (index, data) {
+                //alert(index + ' ' + data.FormDescripcion);
+                var d = '#' + data.FormDescripcion;
+                if ($(d).length > 0) {
+                    //alert(d + "entro");
+                    //si no existe un formulario set hiden
+                    $(d).show();
+                }
+                //$(d+' li a').show();
+            });
+
+            return true;
+        }
+
+        function CheckingSession() {
+
+            var urche = '@Url.Action("LogoutCheck", "PaginaPresentacion")';
+            $.ajax({
+                type: "POST",
+                url: urche,
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "Json",
+                success: function (response) {
+                    if (response.respuesta == true) {
+                        window.location = response.redirect;
+                    }
+                },
+                failure: function (msg) { alertify.alert('', msg) }
+            });
+
+
+            //send object to controller
+            //start ajax
+            //$.ajax({
+            //    type: "POST",
+            //url: '@*@Url.Action("LogoutCheck", "PaginaPresentacion")*@',
+            //    url: "/PaginaPresentacion/LogoutCheck",
+            //    dataType: "json",
+            //    //data: JSON.stringify(record),
+            //    data: "{}",
+            //    contentType: "application/json; charset=utf-8",
+            //    cache: false
+            //})
+            //    .success(function (data) {
+
+            //        if (data.respuesta) {
+
+            //            var di = data.redirect;
+            //            window.location.href = di;
+            //        }
+
+            //        ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+            //        //doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+            //    })//end susccess
+            //    .error(function (throwError) {
+
+            //        try {
+            //            alertify.alert('','Error en controller login y no se ejecuto el result json ' + throwError);
+            //        } catch (e) {
+            //            alertify.alert('','Problemas en el result json del controller, favor consultar al administrador ');
+            //        }
+
+
+            //    });    //end error
+
+        }
+
+
+        $(document).ready(function () {
+
+            /*start logout check*/
+            CheckingSession();
+            /*end logout check*/
+
+
+            DesabilitarLink();
+            HabilitarLink();
+
+
+
+        });
+
+
+
+
+        //comentado por que daba error
+        ////$(window).bind("load", function () {
+
+        //desabilitar todos los form
+        //var formularioDesabilitar = @*@Html.Raw(Json.Encode(ViewBag.VBformularioParaDesabilitar))*@
+        //var formularioDesabilitar = @*@Html.Raw(Session["VBformularioParaDesabilitar"]);*@
+        //var formularioDesabilitar = @*@ViewBag.VBformularioParaDesabilitar;*@
+
+        //DesabilitarLink();
+        //HabilitarLink();
+        //DesabilitarLink().done(HabilitarLink());
+
+
+
+        ////});
+
+    </script>
+
+
+    <!-- Flot -->
+    <script>
+
+        $(document).ready(function () {
+
+
+
+
+
+            /*Formularios permitidos por plan*/
+            //var vwplanUsuario;
+
+            //vwplanUsuario = ViewBag.ListaFormulario
+            //$.each(vwplanUsuario, function(i, item) {
+            //    alert(item.FormDescripcion);
+            //    //alert("hola");
+            //});
+            //$.each( vwplanUsuario, function( key, value ) {
+            //    alert( key + ": " + value );
+            //});
+            //var obj = jQuery.parseJSON(ViewBag.ListaFormulario);
+            //$.each(obj, function (key, value) {
+            //    alert(value.com);
+            //});
+            //           var json = [
+            //{ 'red': '#f00' },
+            //{ 'green': '#0f0' },
+            //{ 'blue': '#00f' }
+            //           ];
+
+            //           var obj = ViewBag.ListaFormulario;
+            //           $.each(obj, function () {
+            //               $.each(this, function (name, value) {
+            //                   console.log(name + '=' + value);
+            //               });
+            //           });
+
+
+            @*@{foreach (DoctorMedicalWeb.App_Data.vw_PlanUsuario item in ViewBag.ListaFormulario)
+                      {
+
+                        }
+
+
+                  }*@
+
+
+
+            //    var data1 = [
+            //      [gd(2012, 1, 1), 17],
+            //      [gd(2012, 1, 2), 74],
+            //      [gd(2012, 1, 3), 6],
+            //      [gd(2012, 1, 4), 39],
+            //      [gd(2012, 1, 5), 20],
+            //      [gd(2012, 1, 6), 85],
+            //      [gd(2012, 1, 7), 7]
+            //    ];
+
+            //    var data2 = [
+            //      [gd(2012, 1, 1), 82],
+            //      [gd(2012, 1, 2), 23],
+            //      [gd(2012, 1, 3), 66],
+            //      [gd(2012, 1, 4), 9],
+            //      [gd(2012, 1, 5), 119],
+            //      [gd(2012, 1, 6), 6],
+            //      [gd(2012, 1, 7), 9]
+            //    ];
+            //    $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+            //      data1, data2
+            //    ], {
+            //        series: {
+            //            lines: {
+            //                show: false,
+            //                fill: true
+            //            },
+            //            splines: {
+            //                show: true,
+            //                tension: 0.4,
+            //                lineWidth: 1,
+            //                fill: 0.4
+            //            },
+            //            points: {
+            //                radius: 0,
+            //                show: true
+            //            },
+            //            shadowSize: 2
+            //        },
+            //        grid: {
+            //            verticalLines: true,
+            //            hoverable: true,
+            //            clickable: true,
+            //            tickColor: "#d5d5d5",
+            //            borderWidth: 1,
+            //            color: '#fff'
+            //        },
+            //        colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+            //        xaxis: {
+            //            tickColor: "rgba(51, 51, 51, 0.06)",
+            //            mode: "time",
+            //            tickSize: [1, "day"],
+            //            //tickLength: 10,
+            //            axisLabel: "Date",
+            //            axisLabelUseCanvas: true,
+            //            axisLabelFontSizePixels: 12,
+            //            axisLabelFontFamily: 'Verdana, Arial',
+            //            axisLabelPadding: 10
+            //        },
+            //        yaxis: {
+            //            ticks: 8,
+            //            tickColor: "rgba(51, 51, 51, 0.06)",
+            //        },
+            //        tooltip: false
+            //    });
+
+            //    function gd(year, month, day) {
+            //        return new Date(year, month - 1, day).getTime();
+            //    }
+        });
+    </script>
+    <!-- /Flot -->
+    <!-- JQVMap -->
+    <script>
+        //$(document).ready(function () {
+        //    $('#world-map-gdp').vectorMap({
+        //        map: 'world_en',
+        //        backgroundColor: null,
+        //        color: '#ffffff',
+        //        hoverOpacity: 0.7,
+        //        selectedColor: '#666666',
+        //        enableZoom: true,
+        //        showTooltip: true,
+        //        values: sample_data,
+        //        scaleColors: ['#E6F2F0', '#149B7E'],
+        //        normalizeFunction: 'polynomial'
+        //    });
+        //});
+    </script>
+    <!-- /JQVMap -->
+    <!-- Skycons -->
+    <script>
+        //$(document).ready(function () {
+        //    var icons = new Skycons({
+        //        "color": "#73879C"
+        //    }),
+        //      list = [
+        //        "clear-day", "clear-night", "partly-cloudy-day",
+        //        "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+        //        "fog"
+        //      ],
+        //      i;
+
+        //    for (i = list.length; i--;)
+        //        icons.set(list[i], list[i]);
+
+        //    icons.play();
+        //});
+    </script>
+    <!-- /Skycons -->
+    <!-- Doughnut Chart -->
+    <script>
+        //$(document).ready(function () {
+
+
+
+
+
+
+
+
+
+
+
+
+        //    var options = {
+        //        legend: false,
+        //        responsive: false
+        //    };
+
+        //    new Chart(document.getElementById("canvas1"), {
+        //        type: 'doughnut',
+        //        tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+        //        data: {
+        //            labels: [
+        //              "Symbian",
+        //              "Blackberry",
+        //              "Other",
+        //              "Android",
+        //              "IOS"
+        //            ],
+        //            datasets: [{
+        //                data: [15, 20, 30, 10, 30],
+        //                backgroundColor: [
+        //                  "#BDC3C7",
+        //                  "#9B59B6",
+        //                  "#E74C3C",
+        //                  "#26B99A",
+        //                  "#3498DB"
+        //                ],
+        //                hoverBackgroundColor: [
+        //                  "#CFD4D8",
+        //                  "#B370CF",
+        //                  "#E95E4F",
+        //                  "#36CAAB",
+        //                  "#49A9EA"
+        //                ]
+        //            }]
+        //        },
+        //        options: options
+        //    });
+        //});
+    </script>
+    <!-- /Doughnut Chart -->
+    <!-- bootstrap-daterangepicker -->
+    <script>
+        //$(document).ready(function () {
+
+
+
+
+
+
+        //    var cb = function (start, end, label) {
+        //        console.log(start.toISOString(), end.toISOString(), label);
+        //        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        //    };
+
+        //    var optionSet1 = {
+        //        startDate: moment().subtract(29, 'days'),
+        //        endDate: moment(),
+        //        minDate: '01/01/2012',
+        //        maxDate: '12/31/2015',
+        //        dateLimit: {
+        //            days: 60
+        //        },
+        //        showDropdowns: true,
+        //        showWeekNumbers: true,
+        //        timePicker: false,
+        //        timePickerIncrement: 1,
+        //        timePicker12Hour: true,
+        //        ranges: {
+        //            'Today': [moment(), moment()],
+        //            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        //            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        //            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        //            'This Month': [moment().startOf('month'), moment().endOf('month')],
+        //            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        //        },
+        //        opens: 'left',
+        //        buttonClasses: ['btn btn-default'],
+        //        applyClass: 'btn-small btn-primary',
+        //        cancelClass: 'btn-small',
+        //        format: 'MM/DD/YYYY',
+        //        separator: ' to ',
+        //        locale: {
+        //            applyLabel: 'Submit',
+        //            cancelLabel: 'Clear',
+        //            fromLabel: 'From',
+        //            toLabel: 'To',
+        //            customRangeLabel: 'Custom',
+        //            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+        //            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        //            firstDay: 1
+        //        }
+        //    };
+        //    $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        //    $('#reportrange').daterangepicker(optionSet1, cb);
+        //    $('#reportrange').on('show.daterangepicker', function () {
+        //        console.log("show event fired");
+        //    });
+        //    $('#reportrange').on('hide.daterangepicker', function () {
+        //        console.log("hide event fired");
+        //    });
+        //    $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+        //        console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+        //    });
+        //    $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
+        //        console.log("cancel event fired");
+        //    });
+        //    $('#options1').click(function () {
+        //        $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+        //    });
+        //    $('#options2').click(function () {
+        //        $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+        //    });
+        //    $('#destroy').click(function () {
+        //        $('#reportrange').data('daterangepicker').remove();
+        //    });
+        //});
+    </script>
+    <!-- /bootstrap-daterangepicker -->
+    <!-- gauge.js -->
+    <script>
+        //var opts = {
+        //    lines: 12,
+        //    angle: 0,
+        //    lineWidth: 0.4,
+        //    pointer: {
+        //        length: 0.75,
+        //        strokeWidth: 0.042,
+        //        color: '#1D212A'
+        //    },
+        //    limitMax: 'false',
+        //    colorStart: '#1ABC9C',
+        //    colorStop: '#1ABC9C',
+        //    strokeColor: '#F0F3F3',
+        //    generateGradient: true
+        //};
+        //var target = document.getElementById('foo'),
+        //    gauge = new Gauge(target).setOptions(opts);
+
+        //gauge.maxValue = 6000;
+        //gauge.animationSpeed = 32;
+        //gauge.set(3200);
+        //gauge.setTextField(document.getElementById("gauge-text"));
+
+        //$(window).bind("load", function () {
+
+        //});
+        @*$(window).bind("load", function () {
+
+
+            alert('bind');
+            var inc = @Html.Raw(Json.Encode(ViewBag.ListaFormulario))
+            //desabilito todos los tag a
+            $('#ConfiguracionMenu li a').hide();
+            $.each(inc, function (index, data) {
+                //alert(index + ' ' + data.FormDescripcion);
+                var d = '#' + data.FormDescripcion;
+                //si no existe un formulario set hiden
+                $(d).show();
+            });
+        });*@
+
+
+        //window.onload = function () {
+
+        @*var inc = '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ListaFormulario))';
+            inc = JSON.parse(inc);*@
+
+        @*alert('onload');
+            var inc = @Html.Raw(Json.Encode(ViewBag.ListaFormulario))
+                //desabilito todos los tag a
+                 $('#ConfiguracionMenu li a').hide();
+            $.each(inc, function (index, data) {
+                //alert(index + ' ' + data.FormDescripcion);
+                var d = '#' + data.FormDescripcion;
+                //si no existe un formulario set hiden
+                   $(d).show();
+            });*@
+
+        //var elem = $('#sidebar-menu a')
+        //elem.each(function () {
+        //    var aa = this.id;
+        //    //alert(""+aa);
+        //    //var textValue = this.text();
+        //    // anything you want to do here.
+        //});
+
+        //jQuery("[id^=column]").each(function () {
+        //    valid = 0;
+        //    alert("preu");
+        //    //jQuery(this).find("input[type=text]").each(function () {
+        //    //    if (jQuery(this).val() != "") valid += 1;
+        //    //});
+
+        //    //if (valid == 0) {
+        //    //    jQuery(this).hide();
+        //    //}
+        //});
+
+        //Step 1: initialize the array making it a global variable
+        //var myarr = [];
+
+        //Step 2: Search for all IDs and add them to the array
+        //$(function () {
+        //    $('div').each(function () {
+        //        myarr[myarr.length] = $(this).attr('id');
+
+        //    });
+        //});
+
+        //$.each(myarr, function (i, val) {
+        //    alert(myarr[i]);
+        //});
+
+
+
+
+        @*var model = @Html.Raw(Json.Encode(ViewBag.ListaFormulario))
+
+            // fetch data
+
+            $.each(model,function (key, val) {
+                //$('#Categories').append('<option id="' + key + '">' + val + '></option>');
+                //function () {
+                //alert(key + ' ' + val);
+
+                // console.log($(this).attr("GroupName"));
+                //alert(model.EspeNombre + " pagina principal");
+            });
+            //   alert("pagina principal");*@
+
+
+
+        //}
+
+
+
+
+
+
+
+    </script>
+    <!-- /gauge.js -->
+    @*<script type="text/javascript">
+        window.onload = function () {
+        var inc = @Html.Raw(Json.Encode(ViewBag.ListaFormulario));
+        EnableLink();
+        }
+
+        </script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            //hide screen block
+            $.LoadingOverlay("hide");
+
+        });
+
+
+    </script>
+
+
+</body>
+</html>

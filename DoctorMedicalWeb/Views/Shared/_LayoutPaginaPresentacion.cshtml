@@ -1,0 +1,363 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*<meta charset="UTF-8">*@
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DoctorMedicalWeb</title>
+    <link href="~/Content/ImagenSoftware/Sistema.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/DatosPaginaPresentacion/css/normalize.css" rel="stylesheet" />
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
+
+    @*<script src="~/Scripts/modernizr-2.6.2.js"></script>
+        <script src="~/Scripts/_references.js"></script>*@
+
+    @*<script src="~/Scripts/jquery-1.8.2.js"></script>
+        <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+        <script src="~/Scripts/jquery-ui-1.8.24.js"></script>
+        <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+        <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/Scripts/knockout-2.2.0.debug.js"></script>
+        <script src="~/Scripts/knockout-2.2.0.js"></script>*@
+
+
+
+
+
+    @*<script src="/Scripts/jquery-1.11.1.min.js"></script>
+        <script src="/Scripts/jquery-ui.min.js"></script>
+        <script src="/Scripts/jquery.nouislider.all.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,places"></script>
+
+
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>*@
+
+
+
+
+
+
+    @*Bootstrap*@
+
+    <link href="~/Content/DatosPaginaPresentacion/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/DatosPaginaPresentacion/css/estilos.css" rel="stylesheet" />
+    
+
+    @*Bootstrap cdn*@
+    <!-- Latest compiled and minified CSS -->
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">*@
+    <!-- Optional theme -->
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">*@
+    <!-- Latest compiled and minified JavaScript -->
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>*@
+
+    @*jquery cdn*@
+    @*<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>*@
+
+    @*final prueba*@
+
+
+
+    <style>
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            width: 70%;
+            margin: auto;
+        }
+    </style>
+
+    @*Jquery*@
+    @Styles.Render("~/Content/ej/web/bootstrap-theme/ej.web.all.min.css")
+    <link href="~/Content/ej/web/responsive-css/ejgrid.responsive.min.css" rel="stylesheet" />
+
+    @*<script src="~/Content/DatosPaginaPresentacion/jquery/jquery-3.1.1.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.easing.1.3.min.js"></script>
+    <script src="~/Scripts/jsrender.min.js"></script>
+
+    <script src="~/Scripts/ej/common/ej.core.min.js"></script>
+    <script src="~/Scripts/ej/common/ej.data.min.js"></script>
+    <script src="~/Scripts/ej/common/ej.globalize.min.js"></script>
+
+    @*Library to convert ForM Json*@
+
+    @*<script src="~/Scripts/jquery.serializeToJSON.js"></script>*@
+    <script src="~/Scripts/jquery.serializeToJSON.min.js"></script>
+    <script src="~/Scripts/LibJs/Libjs.js"></script>
+    @*loading screen block*@
+ 
+</head>
+@*<body background="~/Content/DatosPaginaPresentacion/img/fondo.png">*@
+<body >
+
+    <header>
+        <div class="container-fluid">
+
+            @*<h1>DoctorMedicalWeb</h1>*@
+            <div class="row">
+                <noscript><h1 class="text-danger bg-warning TextoAdvertencia ">Usted debe de activar  JavaScript en su navegador o contacte la administración.</h1></noscript>
+            </div>
+            <div class="row">
+
+                <div id="msg" class="text-danger bg-warning TextoAdvertencia"></div>
+
+
+            </div>
+
+
+
+
+        </div>
+
+        @if (TempData["NoTienePermisoParaPagina"] != null)
+        {
+
+            <script language='javascript' type='text/javascript'>
+                $(document).ready(function () {
+                    //alert('@*@TempData["Success"]*@');
+                    alertify.alert('','@TempData["NoTienePermisoParaPagina"]');
+                    @TempData["NoTienePermisoParaPagina"]=null;
+
+                });
+
+            </script>
+        }
+
+
+
+
+        @{
+
+            var user = Session["user"];
+
+            if (user != null)
+            {
+
+                <ol>
+                    <li><a href="@Url.Action("cerrarSesion", "PaginaPresentacion")">Cerrar Sesión</a></li>
+                </ol>
+            }
+            else
+            {
+                @*<li><a href="@Url.Action("UserLog", "Home")">Iniciar sec</a></li>*@
+            }
+        }
+    </header>
+
+  
+
+
+
+        @* <div class="container ">
+                    <div class="row">
+                        <nav class="navbar navbar-inverse">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <a class="navbar-brand" href="#">Bienvenido </a>
+                                </div>
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#">Home</a></li>
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Page 1-1</a></li>
+                                            <li><a href="#">Page 1-2</a></li>
+                                            <li><a href="#">Page 1-3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Page 2</a></li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>d</li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+
+            </div>*@
+
+
+        @RenderBody()
+
+ 
+    @*  <footer>
+            <div class="container">
+                <h3>Michael Javier</h3>
+            </div>
+        </footer>*@
+
+    @*Funct. disabel button click y cookie*@
+    <script src="~/Scripts/loading.js"></script>
+
+    @*<script type="text/javascript">
+
+            ////Bloquear boton
+            //function doct_DisabledButtonAndEventClick(ctl, msg) {
+            //    $(ctl).prop("disabled", true).text(msg);
+            //    //$(".submit-progress").removeClass("hidden");
+            //    //$(".submit-progress").removeClass("hidden");
+            //    return true;
+            //}
+            //function doct_EnableButtonAndEventClick(ctl, msg) {
+            //    $(ctl).prop("disabled", false).text(msg);
+            //    //$(".submit-progress").removeClass("hidden");
+            //    //$(".submit-progress").removeClass("hidden");
+            //    return true;
+            //}
+
+
+
+                //function cookiesEnabled() {
+                //    var cookiesEnabled = (navigator.cookieEnabled) ? true : false;
+
+                //    if (typeof navigator.cookieEnabled == "undefined" && !cookiesEnabled) {
+                //        document.cookie = "mytestcookie";
+                //        cookiesEnabled = (document.cookie.indexOf("mytestcookie") != -1) ? true : false;
+                //    }
+
+                //    return cookiesEnabled;
+                //}
+
+                //if (cookiesEnabled()) {
+                //    //  document.getElementById("msg").innerHTML = "Cookies enabled";
+                //}
+                //else {
+                //    document.getElementById("msg").innerHTML = "Cookies Esta desactivada, favor de activarla o contacte a la administración. ";
+                //    //document.getElementById("msg").style.fontFamily = "Impact,Charcoal,sans-serif";
+                //    //document.getElementById('msg').setAttribute("style", "width:5000px");
+                //    //document.getElementById('msg').style.height = '200px'
+                //    document.getElementById("msg").style.fontSize = "40px";
+                //}
+
+        </script>*@
+
+
+
+    @*Jquery*@
+    @*<script src="~/Content/DatosPaginaPresentacion/jquery/jquery-3.1.1.min.js"></script>*@
+    @* JavaScript Bootstrap *@
+    @*DEBO DE ESCOMENTAR ESTO ESTABA USANDOSE ANTES DE YO COPIAR  LOS SCRIPT ABAJO PARA PROBAR  DATEPICKER  <script src="~/Content/DatosPaginaPresentacion/js/bootstrap.min.js"></script>*@
+
+    @*popup message confirm*@
+    @*<script src="~/Content/AdminFiles/js/messageBox/bootbox.min.js"></script>*@
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+
+    @*ESTA FUNCION LA TENIA HABILITADA IGUIAL QUE LA DE ARRIABA, PERO  SI DESABILITO IGUAL
+        QUE ESTA, LA DE ARRIBA jquery-1.10.2.min.js, NO SE QUITA LA PANTALLA DE  LOGUIN*@
+    @*<script src="~/Scripts/jquery-1.8.2.min.js"></script>*@
+
+
+
+    @*<script src="~/Scripts/ej/l10n/ej.localetexts.es-ES.min.js"></script>
+        <script src="~/Scripts/ej/i18n/ej.culture.es-ES.min.js"></script>*@
+
+    @*Para validar desde el cliente*@
+    @*DEBO DE ESCOMENTAR ESTO ESTABA USANDOSE ANTES DE YO COPIAR  LOS SCRIPT ABAJO PARA PROBAR  DATEPICKER <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
+    @*Para validar desde el cliente*@
+
+    @*si utilizo esta linea en el web config
+        debe de estar desabilitado UnobtrusiveJavaScriptEnabled
+        pero la validacion de jquery dataannotacion no funcionara*@
+    @*@Html.EJ().ScriptManager()*@
+    @*<script src="~/Scripts/ej/common/ej.unobtrusive.min.js"></script>*@
+
+
+
+    @*<script src="~/Content/DatosPaginaPresentacion/js/app.js"></script>*@
+    @*<script src="/Scripts/jquery-1.8.2.js"></script>*@
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*loading screen block*@
+    <script src="~/Scripts/loadingoverlay.min.js"></script>
+    @*<script src="~/Scripts/loadingoverlay_progress.min.js"></script>*@
+
+    @*maskedit*@
+    @*DEBO DE ESCOMENTAR ESTO ESTABA USANDOSE ANTES DE YO COPIAR  LOS SCRIPT ABAJO PARA PROBAR  DATEPICKER <script src="~/Scripts/jquery.maskedinput.min.js"></script>*@
+
+
+
+
+
+    @*Prueba de librerias que me faltan*@
+
+
+
+
+
+
+    <script src="~/Scripts/ej/l10n/ej.localetexts.es-ES.min.js"></script>
+    <script src="~/Scripts/ej/i18n/ej.culture.es-ES.min.js"></script>
+
+
+    @*si utilizo esta linea en el web config
+        debe de estar desabilitado UnobtrusiveJavaScriptEnabled
+        pero la validacion de jquery dataannotacion no funcionara*@
+    @*@Html.EJ().ScriptManager()*@
+    <script src="~/Scripts/ej/common/ej.unobtrusive.min.js"></script>
+
+    @*maskedit*@
+    <script src="~/Scripts/jquery.maskedinput.min.js"></script>
+
+    <!--Library to date get age-->
+    <script src="~/Scripts/moment.min.js"></script>
+    <!--End Library to date get age-->
+    @*Funct. disabel button click y cookie*@
+    @*<script type="text/javascript" src="~/Scripts/loading.js"></script>*@
+
+    <!-- Custom Theme Scripts base -->
+    <script src="~/Content/AdminFiles/build/js/custom.min.js"></script>
+
+
+
+    @*Para validar  jquery valid() desde el cliente*@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @*End Para validar  jquery valid() desde el cliente*@
+
+
+    @*datepicker fecha*@
+    @*Importante para datetipckert syncfusiion*@
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    @*datepicker fecha*@
+
+    @*Para trabajar con el message desde el controller*@
+    @*end Para trabajar con el message desde el controller*@
+    <script src="~/Scripts/globalize.0.1.3/globalize.min.js"></script>
+    <script src="~/Scripts/jquery.sort-1.1.js"></script>
+
+    @*notify *@
+    <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
+    <script src="~/Scripts/alertify.min.js"></script>
+
+
+    @*Prueba de librerias que me faltan*@
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+﻿@model DoctorMedicalWeb.Models.Usar_InstitucionesAseguradora
+
+@{
+    ViewBag.Title = "InstitucionAseguradoralista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/ej/web/ej.grid.min.js"></script>
+<script src="~/Scripts/ej/web/ej.pager.min.js"></script>
+<script src="~/Scripts/ej/web/ej.waitingpopup.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dropdownlist.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dialog.min.js"></script>
+<script src="~/Scripts/ej/web/ej.button.min.js"></script>
+<script src="~/Scripts/ej/web/ej.autocomplete.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.checkbox.min.js"></script>
+<script src="~/Scripts/ej/web/ej.editor.min.js"></script>
+<script src="~/Scripts/ej/web/ej.tooltip.min.js"></script>
+<script src="~/Scripts/ej/web/ej.toolbar.min.js"></script>
+<script src="~/Scripts/ej/web/ej.menu.min.js"></script>
+<script src="~/Scripts/ej/web/ej.radiobutton.min.js"></script>
+<script src="~/Scripts/ej/web/ej.excelfilter.min.js"></script>
+
+
+<a class="btn btn-info btn-lg" href=@Url.Action(ViewBag.VistaCsharp, ViewBag.ControlCsharp)><span class="glyphicon glyphicon-arrow-left"></span></a>
+<div class="jumbotron">
+    <h1>Listado</h1>
+</div>
+@{<span class="sampleName"> Listado</span>}
+@{
+    @(Html.EJ().Grid<DoctorMedicalWeb.Models.Usar_InstitucionesAseguradora>("Searching")
+                    .Datasource((IEnumerable<object>)ViewBag.datasource)
+
+
+           .ToolbarSettings(toolbar =>
+                {
+                    toolbar.ShowToolbar().ToolbarItems(items =>
+                    {
+                        items.AddTool(ToolBarItems.PrintGrid);
+                    });
+                })
+
+        .AllowPaging()
+        .ToolbarSettings(toolbar => { toolbar.ShowToolbar().ToolbarItems(items => { items.AddTool(ToolBarItems.Search); }); })
+        .Columns(col =>
+        {
+            col.Field("IAsegSecuencia").HeaderText("ID").IsPrimaryKey(true).TextAlign(TextAlign.Right).Width(75).Add();
+            col.Field("IAsegNombre").HeaderText("Aseguradora").Width(120).Add();
+            col.Field("IAsegRNC").HeaderText("RNC").Width(150).Add();
+            col.HeaderText("Gestionar Registros").Commands(command =>
+               {
+                   command.Type("detail")
+                          .ButtonOptions(new Syncfusion.JavaScript.Models.ButtonProperties()
+                          {
+                              Text = "Editar",
+                              Width = "100px",
+                              Click = "onClick"
+                          }).Add();
+
+               }).TextAlign(TextAlign.Left)
+
+               .Width(150)
+               .Add();
+
+        })
+
+    )
+}
+
+@section Scripts{
+    <script type="text/javascript">
+
+        function onClick(args) {
+
+            //button proseesand
+            var btn = $(this);
+
+            //var todosbtn = $('#btnDelete');
+            var todosbtn = $('button');
+
+            //bloquear boton
+            doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+            var grid = $("#Searching").ejGrid("instance");
+            var index = this.element.closest("tr").index();
+            var record = grid.getCurrentViewData()[index];
+
+
+            //show screen block
+            $.LoadingOverlay("show");
+            //send object to controller
+            //start ajax
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Editar", ViewBag.ControlCsharp)',
+                dataType: "json",
+                data: JSON.stringify(record),
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                complete: (function () {
+
+                    //No utilizo el  esbloqueador bloquear por que como la pagina se recarga
+                    //y le puse un bloqueador y desbloqueador  en el layout no necesito este
+                    //   $.LoadingOverlay("hide");
+                }),
+                     success:(function (data) {
+
+                if (data.respuesta) {
+
+                    //$("#msgExitoso").fadeIn('slow').animate({ opacity: 1.0 }, 1500).effect("pulsate", { times: 2 }, 800).fadeOut('slow');
+                    //$("#msgExitoso").show()
+                    //setTimeout('$("#msgExitoso").hide()', 2500);
+
+                    //location.reload();
+                    var di = data.redirect;
+                    window.location.href = di;
+                }
+        else {
+
+                    alert(data.error);
+        }
+
+
+        ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+        doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+
+        }),//end susccess
+            error:(function () {
+
+                try {
+                    alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                } catch (e) {
+                    alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                }
+
+                //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                //quito splash
+                //$.LoadingOverlay("hide");
+            })    //end error
+            })
+       
+
+        }//end onClick
+
+
+    </script>
+}
+
+
+
+
+
+

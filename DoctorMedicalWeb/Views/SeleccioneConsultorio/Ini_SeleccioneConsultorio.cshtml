@@ -1,0 +1,196 @@
+﻿@model DoctorMedicalWeb.App_Data.vw_UsuarioConsultorios
+
+@{
+    ViewBag.Title = "Ini_SeleccioneConsultorio";
+    Layout = "~/Views/Shared/_LayoutPaginaPresentacion.cshtml";
+}
+
+
+
+
+<div class="container-login  center   ">
+
+    @*<center>
+        <p><h1>Doctor Medical Web</h1></p> <center />*@
+    <div class="row ">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                    Seleccione Consultorio
+                    </h3>
+                </div>
+                <div class="panel-body ">
+                    <div class="row" id="LoginUsar_usuario">
+                        <div class="col-xs-12 col-md-12 well well-sm login-box">
+                            @using (Html.BeginForm("Ini_SeleccioneConsultorio", "SeleccioneConsultorio", FormMethod.Post, new { Id = "frmIni_SeleccioneConsultorio", autocomplete = "off" }))
+                            {
+                                @*begin wait messages area*@
+                                <div class="submit-progress hidden">
+                                    <label>Procesando, por favor espere . . . @*<img src="~/Content/AdminFiles/images/ajax-loader.gif" />*@</label>
+                                </div>
+                                @*end wait messages area*@
+
+                                @Html.ValidationSummary(true)
+                                @Html.AntiForgeryToken()
+                                <div class="col-xs-12 col-md-10 margin-col-login ">
+                                   @* @Html.LabelFor(model => model.Usar_login.Email, new { @class = "col-md-6  control-label  labelMarginLogin   " })*@
+                                    @*<div class="input-group paddin-textbox-login ">*@
+                                        <label class="col-md-12  control-label   label-register " for="PaisSecuencia">Consultorio</label>
+                                        @*<div class="input-group textbox-register  ">*@
+                                            @Html.DropDownListFor(m => m.ConsSecuencia_fk, ViewBag.ConsultoriosDoc as SelectList,
+                                                    "Seleccione Consultorio",
+                                                    new { @class = "form-control" })
+
+                                            @Html.ValidationMessageFor(model => model.ConsSecuencia_fk, null, new { @class = "label label-danger" })
+                                        @*</div>*@
+                                    @*</div>*@
+                                    <p class="paddin-textbox-login">@* @Html.ValidationMessageFor(model => model.Usar_login.Email, null, new { @class = "label label-danger" })*@</p>
+                                </div>
+                                
+                                <div class="col-xs-12 col-md-2 margin-col-buton-login">
+                          
+                                    <button type="button"
+                                            id="btnLogin"
+                                            class="btn btn-labeled btn-success retroceder-textbox margin-top-Login"
+                                            @*onclick="return doct_DisabledButtonAndEventClick(this,'Procesando...')"*@>
+                                        Iniciar Sesion
+                                    </button>
+
+                                </div>
+                                @*<div class="form-group">
+                                        <button id="btnRegistrarUser" type="button" class="btn btn-info btn-block">Crea tu cuenta</button>
+                                    </div>*@
+                            }
+                        </div>
+                    </div>
+             
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+@section Scripts{
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //habilitar boton 
+        $("#btnLogin").prop("disabled", false);
+        doct_EnableButtonAndEventClick($("#btnLogin"), " Iniciar Sesion", $('button'));
+        //quito splash
+        $.LoadingOverlay("hide");
+    });
+    
+    
+    
+
+   //login
+    $("#btnLogin").on("click", function () {
+
+        var f = $('#frmIni_SeleccioneConsultorio').valid();
+                if (f == false) { return false; }
+
+                //button proseesand
+                var btn = $(this);
+
+                var todosbtn = $('button');
+                //bloquear boton
+                doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+                
+                //Comienzo LOADING
+                $.LoadingOverlay("show");
+
+                // Hide it after 3 seconds
+                //setTimeout(function () {
+                //    $.LoadingOverlay("hide");
+                //    //si falla el iniciar sesion para que vuelva a su estado normal
+                //    ////doct_EnableButtonAndEventClick($("#btnValidaUsuario"), "Iniciar Sesion");
+                //}, 3000);
+                //fIN LOADING
+
+
+
+      
+
+
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Ini_SeleccioneConsultorio", "SeleccioneConsultorio")',
+                    data: $('#frmIni_SeleccioneConsultorio').serialize(),
+                    datatype: "application/json; charset=utf-8",
+                    cache: false,
+                    complete: (function () {
+
+            
+                           $.LoadingOverlay("hide");
+                    }),
+                    success:(function (data) {
+
+
+
+
+                    // alert("Entro devolvio data ");
+                    if (data.respuesta) {
+                        location.reload();
+                        // alert("" + data.redirect);
+                        // window.location.href = data.redirect;
+                        var di = data.redirect;
+                        //  alert("salida desde  controller " + di);
+                        //if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+                        //  alert("Es local host " + window.location.pathname + di);
+                        //window.location.href = window.location.pathname + di;
+                        //}else
+                        //{
+
+                        //doct_EnableButtonAndEventClick(btn, "Validar Usuario", todosbtn);
+                        //quito splash
+                        //$.LoadingOverlay("hide");
+
+                        window.location.href = di;
+
+
+                        //}
+                    }
+    else {
+
+        //cuando devuelva del controlador la respuesta entonces se abilita el boton
+
+                    doct_EnableButtonAndEventClick(btn, "Iniciar Sesion", todosbtn);
+        //quito splash
+        $.LoadingOverlay("hide");
+
+        alert(data.error);
+    }
+
+
+
+            }),
+                    error:(function () {
+                        //cuando devuelva del controlador la respuesta entonces se abilita el boton
+
+                        doct_EnableButtonAndEventClick(btn, "Iniciar Sesion", todosbtn);
+                        //quito splash
+                        $.LoadingOverlay("hide");
+
+                        try {
+                            alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                        } catch (e) {
+                            alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                        }
+                    })
+                    })
+                    
+                    return false;
+                    });
+
+
+</script>
+
+}

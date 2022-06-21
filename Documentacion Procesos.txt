@@ -1,0 +1,17 @@
+Proceso de calculo de fecha de embarazo.
+Se guarda en la tabla consultamedica si esta embarazada.
+cuando se llena la primera fecha, se calcula 9 meses y se pune 
+automaticamente la segunda fecha
+cuando se llena  las dos fechas, entonces se hacen los calculos.
+reestablecer fecha de embarazo a como estaba habra un boton.
+
+en cada historial se guarda esa fecha.
+una vez que salga del embarazo en la tabla consultamedica no ya no estaria guardado.
+
+
+1.PARA SABER SI ESTA EMBARAZADA ACTUALMENTE 
+LO GUARDARE EN LA TABLA CONSULTAMEDICA. 
+QUE ES DONDE GUARDO LOS ANTECEDENTES.
+ Y TAMBIEN EN EL HISTORIAL, PARA LLEVAR ESE HISTORIAL.
+
+

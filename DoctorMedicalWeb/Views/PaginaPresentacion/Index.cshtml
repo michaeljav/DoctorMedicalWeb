@@ -1,0 +1,229 @@
+﻿@model DoctorMedicalWeb.LoginView.LoginRegisterView
+@using System.Web.Helpers;
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPaginaPresentacion.cshtml";
+    HtmlHelper.ClientValidationEnabled = true;
+}
+
+<!-- Modal Start here-->
+<!-- Modal ends Here -->
+
+
+<article class="row   " id="artFirst">
+    <div class="col-xs-12 col-sm-12 col-md-12 paddingLeftZero paddingRightZero">
+        <div class="panel panel-primary" id="loginUs">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Iniciar Sesión
+                </h3>
+            </div>
+            <div class="panel-body ">
+                <div class="row" id="LoginUsar_usuario">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 well well-sm ">
+                        @using (Html.BeginForm("Index", "PaginaPresentacion", FormMethod.Post, new { Id = "frmInicioSesionUsar_usuario", autocomplete = "off" }))
+                        {
+                            @*begin wait messages area*@
+                            <div class="submit-progress hidden">
+                                <label>Procesando, por favor espere . . . @*<img src="~/Content/AdminFiles/images/ajax-loader.gif" />*@</label>
+                            </div>
+                            @*end wait messages area*@
+
+                            @Html.ValidationSummary(true)
+                            @Html.AntiForgeryToken()
+                            <div class=" paddingLeftZero paddingRightZero pdgRight-s  col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                                @Html.LabelFor(model => model.Usar_login.Email, new { @class = "" })
+                                <div class="input-group  ">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                    @Html.TextBoxFor(model => model.Usar_login.Email, new { id = "txtEmail", @class = "form-control ", placeholder = Html.DisplayNameFor(n => n.Usar_login.Email), @autofocus = "autofocus" })
+                                </div>
+                                <p class="paddin-textbox-login"> @Html.ValidationMessageFor(model => model.Usar_login.Email, null, new { @class = "label label-danger" })</p>
+                            </div>
+                            <div class="paddingLeftZero paddingRightZero col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                                @Html.LabelFor(model => model.Usar_login.Clave, new { @class = "" })
+                                <div class="input-group ">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                    @Html.PasswordFor(model => model.Usar_login.Clave, new { Id = "txtClave", @class = "form-control", placeholder = Html.DisplayNameFor(n => n.Usar_login.Clave) })
+                                </div>
+                                <p hidden> @Html.ValidationMessageFor(model => model.Usar_login.Clave, null, new { @class = "label label-danger" })</p>
+                                <div class="txt-right mg-top-s mg-bottom-s ">
+                                    <a class="" href="#" onclick="LlamarAdministrador();">¿Olvidó su Contraseña?</a>
+                                </div>
+                            </div>
+                            <div id="btnLogi" class="">
+                                <button type="button"
+                                        id="btnValidaUsuario"
+                                        class="btn btn-labeled btn-success  ">
+                                    Validar Usuario
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        @*</div>
+            </div>*@
+    </div>
+</article>
+
+
+
+
+
+
+
+@section Scripts{
+    <script type="text/javascript">
+
+        ////Bloquear boton
+        //function doct_DisabledButtonAndEventClick(ctl, msg) {
+        //    $(ctl).prop("disabled", true);
+        //    //$(ctl).prop("disabled", true).text(msg);
+        //    //$(".submit-progress").removeClass("hidden");
+        //    //$(".submit-progress").removeClass("hidden");
+        //    return true;
+        //}
+
+
+        function LlamarAdministrador() {
+            alertify.alert('', "Favor contactar a Administrador Tel: 829-865-7498");
+        }
+
+        window.console.log("Antes de entrar al metodo ready");
+        $(document).ready(function () {
+
+            //habilitar boton
+            $("#btnValidaUsuario").prop("disabled", false);
+            doct_EnableButtonAndEventClick($("#btnValidaUsuario"), "Validar Usuario", $('button'));
+
+            //quito splash
+            $.LoadingOverlay("hide");
+            window.console.log("Dentro al metodo ready");
+
+            //// asignar valores a los text usuausuario y clave
+            //$("#txtEmail").val('admin@hotmail.com');
+            //$("#txtClave").val('Admin7@hotmail.com');
+
+            $("#txtEmail").keypress(function (e) {
+                if (e.keyCode == 13) {
+                    $("#txtClave").focus();
+                }
+                // return false;
+            });
+            $("#txtClave").keypress(function (e) {
+                if (e.keyCode == 13) {
+                    if ($("#btnValidaUsuario").attr('disabled')) {
+                        //Disabled
+                    } else {
+                        //Not Disabled
+                        $("#btnValidaUsuario").click();
+                    }
+                }
+                // return false;
+            });
+
+
+            //login
+            $("#btnValidaUsuario").on("click", function () {
+
+                var f = $('#frmInicioSesionUsar_usuario').valid();
+                if (f == false) { return false; }
+
+                //button proseesand
+                var btn = $(this);
+
+                var todosbtn = $('button');
+                //bloquear boton
+                doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+                //Comienzo LOADING
+                $.LoadingOverlay("show");
+
+                // Hide it after 3 seconds
+                //setTimeout(function () {
+                //    $.LoadingOverlay("hide");
+                //    //si falla el iniciar sesion para que vuelva a su estado normal
+                //    ////doct_EnableButtonAndEventClick($("#btnValidaUsuario"), "Iniciar Sesion");
+                //}, 3000);
+                //fIN LOADING
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Index", "PaginaPresentacion")',
+                    data: $('#frmInicioSesionUsar_usuario').serialize(),
+                    datatype: "application/json; charset=utf-8",
+                    cache: false,
+                    complete: (function () {
+
+                        $.LoadingOverlay("hide");
+                    }),
+                    success: (function (data) {
+
+                        // alert("Entro devolvio data ");
+                        if (data.respuesta) {
+                            location.reload();
+                            // alert("" + data.redirect);
+                            // window.location.href = data.redirect;
+                            var di = data.redirect;
+                            //  alert("salida desde  controller " + di);
+                            //if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+                            //  alert("Es local host " + window.location.pathname + di);
+                            //window.location.href = window.location.pathname + di;
+                            //}else
+                            //{
+
+                            // doct_EnableButtonAndEventClick(btn, "Validar Usuario", todosbtn);
+                            //quito splash
+                            // $.LoadingOverlay("hide");
+
+                            window.location.href = di;
+
+
+                            //}
+                        }
+                        else {
+
+                            //cuando devuelva del controlador la respuesta entonces se abilita el boton
+
+                            doct_EnableButtonAndEventClick(btn, "Validar Usuario", todosbtn);
+                            //quito splash
+                            //$.LoadingOverlay("hide");
+
+                            alert(data.error);
+                        }
+
+
+
+                    }),
+
+                    error: (function () {
+                        //cuando devuelva del controlador la respuesta entonces se abilita el boton
+
+                        doct_EnableButtonAndEventClick(btn, "Validar Usuario", todosbtn);
+                        //quito splash
+                        $.LoadingOverlay("hide");
+
+                        try {
+                            alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                        } catch (e) {
+                            alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                        }
+                    })
+                })
+
+                return false;
+            });
+
+
+        });
+    </script>
+}
+
+
+

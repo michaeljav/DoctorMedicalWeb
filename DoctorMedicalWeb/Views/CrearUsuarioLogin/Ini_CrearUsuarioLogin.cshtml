@@ -1,0 +1,265 @@
+﻿@{
+    ViewBag.Title = "Ini_CrearUsuarioLogin";
+}
+
+<h2>Ini_CrearUsuarioLogin</h2>
+<div class="row" id="CrearUsar_usuario" hidden>
+    <button id="btnCrearUsar_usuario" class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Crea una cuenta
+    </button>
+    <div class="collapse" id="collapseExample">
+        <div class="well">
+            <div class="row">
+                <div class="panel ">
+                    <div class="panel-body">
+
+                        @using (Html.BeginForm("CrearUsar_usuario", "PaginaPresentacion", FormMethod.Post, new { Id = "frmCrearUsar_usuario", autocomplete = "off" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <h2>Nueva Cuenta</h2>
+                            </div>
+
+                            @Html.LabelFor(model => model.Usar_usuario.UsuaNombre, new { @class = "col-md-12  control-label   label-register   " })
+                            <div class="input-group  textbox-register  ">
+                                @Html.TextBoxFor(model => model.Usar_usuario.UsuaNombre, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = "col-md-12  form-control ",
+                                                placeholder = Html.DisplayNameFor(n => n.Usar_usuario.UsuaNombre)
+                                               })
+                                @Html.ValidationMessageFor(model => model.Usar_usuario.UsuaNombre, null, new { @class = "label label-danger" })
+                            </div>
+
+                            @Html.LabelFor(model => model.Usar_usuario.UsuaApellido, new { @class = "col-md-12  control-label   label-register   " })
+                            <div class="input-group textbox-register  ">
+                                @Html.TextBoxFor(model => model.Usar_usuario.UsuaApellido, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = "col-md-12  form-control ",
+                                                placeholder = Html.DisplayNameFor(n => n.Usar_usuario.UsuaApellido)
+                                               })
+                                @Html.ValidationMessageFor(model => model.Usar_usuario.UsuaApellido, null, new { @class = "label label-danger" })
+                            </div>
+
+                            @Html.LabelFor(model => model.Usar_usuario.UsuaEmail, new { @class = "col-md-12  control-label   label-register   " })
+
+                            <div class="input-group textbox-register  ">
+                                @Html.TextBoxFor(model => model.Usar_usuario.UsuaEmail, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = "col-md-12  form-control ",
+                                                placeholder = Html.DisplayNameFor(n => n.Usar_usuario.UsuaEmail)
+                                               })
+                                @Html.ValidationMessageFor(model => model.Usar_usuario.UsuaEmail, null, new { @class = "label label-danger" })
+                                @Html.ValidationMessage("Validacion-Completa", new { @class = "label label-danger", id = "Validacion-Completa" })
+                            </div>
+
+                            <label class="col-md-12  control-label   label-register " for="Email">Vuelva a Ingresar el Correo</label>
+                            <div class="input-group textbox-register  ">
+                                @Html.TextBoxFor(model => model.Usar_usuario.UsuaEmailConfirmacion, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = "col-md-12  form-control ",
+                                                placeholder = "Vuelva a Ingresar el Correo"
+                                               })
+                                @Html.ValidationMessageFor(model => model.Usar_usuario.UsuaEmailConfirmacion, null, new { @class = "label label-danger" })
+                                @Html.ValidationMessage("Validacion-Completa", new { @class = "label label-danger", id = "Validacion-Completa2" })
+                            </div>
+
+                            @Html.LabelFor(model => model.Usar_usuario.UsuaClave, new { @class = "col-md-12  control-label   label-register" })
+                            <div class="input-group textbox-register">
+                                @Html.PasswordFor(model => model.Usar_usuario.UsuaClave, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = "col-md-12  form-control",
+                                                placeholder = Html.DisplayNameFor(n => n.Usar_usuario.UsuaClave)
+                                               })
+                                @Html.ValidationMessageFor(model => model.Usar_usuario.UsuaClave, null, new { @class = "label label-danger" })
+                            </div>
+
+                            <label class="col-md-12  control-label   label-register " for="Email">Vuelva a Ingresar el Contrasenia</label>
+                            <div class="input-group textbox-register  ">
+                                @Html.PasswordFor(model => model.Usar_usuario.UsuaClaveConfirmacion, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = "col-md-12  form-control ",
+                                                placeholder = "Vuelva a Ingresar el Contrasenia"
+                                               })
+                                @Html.ValidationMessageFor(model => model.Usar_usuario.UsuaClaveConfirmacion, null, new { @class = "label label-danger" })
+                            </div>
+
+                            <label class="col-md-12  control-label   label-register " for="PaisSecuencia">País</label>
+                            <div class="input-group textbox-register  ">
+
+                                @* Este es el que uso   @Html.DropDownListFor(m => m.Usar_usuario.PaisSecuencia,
+                                    ViewBag.PaisList as SelectList,
+                                    "Seleccione Pais",
+                                    new { @class = "form-control" })*@
+
+
+
+                                @*@Html.DropDownListFor(m => m.Usar_usuario.PaisSecuencia,
+                                    new SelectList(ViewBag.PaisList, "PaisSecuencia", "PaisNombre"),
+                                    "Seleccione Pais",
+                                    new { @class = "form-control" })*@
+                                @*@Html.DropDownListFor(m => m.Usar_usuario.pais, (IEnumerable<SelectListItem>)new SelectList(ViewBag.PaisList), "Seleccione Pais", new { @class = "form-control" })*@
+                                @Html.ValidationMessageFor(model => model.Usar_usuario.PaisSecuencia, null, new { @class = "label label-danger" })
+                            </div>
+                            <label class="col-md-12  control-label   label-register " for="PlanSecuencia_fk">Plan</label>
+                            <div class="input-group textbox-register  ">
+                                @*@Html.DropDownListFor(m => m.Usar_usuario.PlanSecuencia_fk,
+                                        ViewBag.PlanesList as SelectList,
+                                        "Seleccione Plan",
+                                        new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Usar_usuario.PlanSecuencia_fk, null, new { @class = "label label-danger" })*@
+                            </div>
+
+                            <label class="col-md-12  control-label   label-register " for="EspeSecuencia_fk">Especialidad</label>
+                            <div class="input-group textbox-register  ">
+                                @*@Html.DropDownListFor(m => m.Usar_usuario.EspeSecuencia_fk,
+                                         ViewBag.Especialidad as SelectList,
+                                        "Seleccione Especialidad",
+                                        new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Usar_usuario.EspeSecuencia_fk, null, new { @class = "label label-danger" })*@
+                            </div>
+
+                            <label class=" control-label   label-register">
+                                Fecha Nacimiento
+                            </label>
+                            <div class="row">
+                                <div id="idDias" class="col-xs-4 col-md-4">
+                                    @*@Html.DropDownListFor(m => m.Usar_usuario.UsuaFechaNacimientoDia, (IEnumerable<SelectListItem>)new SelectList(ViewBag.lDia, "Value", "Text"), "Seleccione Dia", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Usar_usuario.UsuaFechaNacimientoDia, null, new { @class = "label label-danger" })*@
+
+                                </div>
+                                <div id="idMeses" class="col-xs-4 col-md-4">
+                                    @*@Html.DropDownListFor(m => m.Usar_usuario.UsuaFechaNacimientoMes, (IEnumerable<SelectListItem>)new SelectList(ViewBag.lMes, "Value", "Text"), "Seleccione Mes", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Usar_usuario.UsuaFechaNacimientoMes, null, new { @class = "label label-danger" })*@
+
+                                </div>
+                                <div id="idanios" class="col-xs-4 col-md-4">
+                                    @*@Html.DropDownListFor(m => m.Usar_usuario.UsuaFechaNacimientoAnio, (IEnumerable<SelectListItem>)new SelectList(ViewBag.lAnio, "Value", "Text"), "Seleccione Año", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Usar_usuario.UsuaFechaNacimientoAnio, null, new { @class = "label label-danger" })*@
+
+                                </div>
+                            </div>
+                            <label class="radio-inline">
+                                @Html.RadioButtonFor(m => m.Usar_usuario.UsuaGenero, "Masculino")
+                                @Html.Label("Masculino")
+                                @*@Html.ValidationMessageFor(m => m.Usar_usuario.UsuaGenero, null, new { @class = "label label-danger" })*@
+                                @*<input type="radio" name="sex" id="inlineCheckbox1" value="male" />*@
+                                @*masculino*@
+                            </label>
+                            <label class="radio-inline">
+                                @Html.RadioButtonFor(m => m.Usar_usuario.UsuaGenero, "Femenino")
+                                @Html.Label("Femenino")
+                                @Html.ValidationMessageFor(m => m.Usar_usuario.UsuaGenero, null, new { @class = "label label-danger" })
+                                @*<input type="radio" name="sex" id="inlineCheckbox2" value="female" />
+                                    Femenino*@
+                            </label>
+
+
+                            <br />
+                            <br />
+                            <div class="form-group">
+                                <button id="btnRegistrarUser"
+                                        type="button"
+                                        class="btn btn-info btn-block"
+                                        @*onclick="return doct_DisabledButtonAndEventClick(this,'Procesando...')"*@>
+                                    Crea tu cuenta
+                                </button>
+                            </div>
+                            @*<p class="form-group">Creando una cuenta , you agree to our <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a>.</p>
+                                <hr>*@
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+<script>
+
+
+    //scrolling button
+    $("#btnCrearUsar_usuario").click(function () {
+        $("html, body").animate({ scrollTop: $(document).height() - 400 }, 1000);
+    });
+
+
+    //Register
+    $("#btnRegistrarUser").on("click", function () {
+
+        var f = $('#frmCrearUsar_usuario').valid();
+        if (f == false) { return false; }
+
+        //button proseesand
+        var btn = $(this);
+
+        var todosbtn = $('button');
+        //bloquear boton
+        doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+        //Comienzo LOADING
+        $.LoadingOverlay("show");
+
+        // Hide it after 3 seconds
+        //setTimeout(function () {
+        //    $.LoadingOverlay("hide");
+        //    //si falla el iniciar sesion para que vuelva a su estado normal
+        //    doct_EnableButtonAndEventClick($("#btnRegistrarUser"), "Crea tu cuenta");
+        //}, 3000);
+        //fIN LOADING
+
+
+
+
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("CrearUsar_usuario", "PaginaPresentacion")',
+            data: $('#frmCrearUsar_usuario').serialize(),
+            datatype: "application/json; charset=utf-8",
+            cache: false,
+            complete: (function () {
+
+                $.LoadingOverlay("hide");
+            }),
+            //si se logra enviar el json, se ejecuta esta condicion de susscess
+            success: (function (data) {
+
+                //cuando devuelva del controlador la respuesta entonces se abilita el boton
+
+                doct_EnableButtonAndEventClick(btn, "Crear tu cuenta", todosbtn);
+
+
+                if (data.respuesta) {
+                    window.location.href = data.redirect;
+                }
+                else {
+                    //este if solo se ejecutara si al consultar el usuario que se va a crear,
+                    // no existe
+                    if (data.errorAlconsultarelusuarioParaCrear) {
+                        $("#Validacion-Completa").text(data.error).show();
+                        $("#Validacion-Completa2").text(data.error).show();
+                    }
+                    //  alert(data.error + ' (El result json devolvio)');
+                    alert(data.error);
+                }
+            }),
+            //se ejecuta si no se envio el result json desde el controlador
+            error: (function (xhr, ajaxOptions, throwError) {
+
+                //cuando devuelva del controlador la respuesta entonces se abilita el boton
+
+                doct_EnableButtonAndEventClick(btn, "Crea tu cuenta", todosbtn);
+                //quito splash
+                $.LoadingOverlay("hide");
+
+                try {
+                    alert('Error en controller y no se ejecuto el result json ' + throwError);
+                } catch (e) {
+                    alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                }
+            })
+        })
+
+
+        return false;
+    });
+
+</script>
+
+}

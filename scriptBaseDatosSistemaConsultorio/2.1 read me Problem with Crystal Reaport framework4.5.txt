@@ -1,0 +1,29 @@
+I got solution for your problem,Please try to my step by step.
+For my version all seem your.
+
+1. You need to use Web Application Project,No Website Project because Web App will combine DLL to project also.
+2. Copy C:\inetpub\wwwroot\aspnet_client\system_web\4_0_30319\crystalreportviewers13 (you'll got it when you install -CRforVS_redist_install_32bit_13_0.exe)   To your project such as  (ProjectName/crystalreportviewers13)
+3. copy this below to your web.config
+3.1
+<configSections>
+    <sectionGroup name="businessObjects">
+      <sectionGroup name="crystalReports">
+        <section name="rptBuildProvider" type="CrystalDecisions.Shared.RptBuildProviderHandler, CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, Custom=null" />
+           <section name="crystalReportViewer" type="System.Configuration.NameValueSectionHandler" />
+      </sectionGroup>
+    </sectionGroup>
+      </configSections>
+3.2
+ <businessObjects>
+      <crystalReports>
+        <rptBuildProvider>
+          <add embedRptInResource="true" />
+        </rptBuildProvider>
+        <crystalReportViewer>
+              <add key="ResourceUri" value="/crystalreportviewers13" />
+      </crystalReportViewer>
+      </crystalReports>
+    </businessObjects>
+3.4 Publish your web application with FTP Mode to your any folder,and copy this publish to your web server then TEST it!
+
+Please try to do this,if you have any problem please post your error again,I'll review it in soon.

@@ -1,0 +1,92 @@
+
+
++para la seleccionde la tarde es por orden de llegada
++Reunion con secretaria-datos faltantes para 
+Reclamacion. Beneficio: no  ser recurrenten en solicitud
+de informacion al paciente en cada consulta.
++facturacion-caja
++reclamacion
++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COSA IMPORTANTE: TENGO QUE VALIDAR CADA VEZ QUE ABRO UNA VENTANA
+VALIDAR  QUE LA HORA DEL SERVIDOR ESTE IGUAL A LA DEL CLIENTE
+TOLERANCIA DE 30 MINUTOS SOLAMENTE.
+ASI NO TENDRE PROBLEMAS CON EL CALENDARIO YA QUE EL CALENDARIO
+COJE LA HORA DEL CLIENTE PARA DICIR CUAL ES LA HORA ACTUAL.
+
+Me quede buscando los datos del paciente  para cuando de click
+a un evento  lo pueda ver a que paciente se refiere
+ en el la agenda falta estas librerias
+faltan librerias
+jquery.easing.min.js
+antes de jrenders
+
+navigationdrawerbase
+
+listviewbase.js
+
+
+
+
+No funciona la hora de pm
+--Para la v1.0.4 ira la receta si Dios permite.
+Para implementar la cita:
+Tengo que verificar la tabla y lo 
+==>base datos:  borre la tabla schudule y modifique cita para 
+usarla
+
+
+En la receta
+==>Poner fecha de creacion modificable.
+--agregar En momentos de crear un flash el cursor debbe de estar en nombre
+--agregar la version ponerla en el  config
+--agregar un mensaje que si el combo no tiene dato lo diga.
+
+
+
+En Doctor
+==>Ver contrasenia
+
+En paciente
+==>fecha de nacimiento arreglar size, No se ve el ultimo digito del
+   Anio.
+
+En consulta
+==> el punto del imc
+
+
+En el reporte receta
+==>El nombre Brito solo con B.
+
+
+
+En usuario personal
+==>Hacer que el perfil se seleccione una vez se traiga el personal
+==> verificara por que en el personal la categoria no sale  igual
+ que el perfil en la pagina de usuario personal.
+
+
+
+eN CONSULTA
+==>CUANDO SE VA A PONER EL NUMERO DE POLIZA
+   SI PONEN LETRA DECIR QUE SOLO PUEDE INTRODUCIR NUMERO
+
+En sistema
+==>CREAR TOOLTIPS 
+

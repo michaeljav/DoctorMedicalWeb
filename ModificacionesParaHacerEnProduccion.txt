@@ -1,0 +1,9 @@
+Moficacion de tabla cita
+height: 139px;
+
+Modificaciones de tabal de HorarioDiaTrabajo en 
+HorarioTrabajo
+Crear Tabla DiasSemana
+crear HorarioTrabajoDetalle
+
+

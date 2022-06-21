@@ -1,0 +1,27 @@
+
+
+
+
+
+
+pARA HACER LA PRUEBA TENGO QUE LIMPIAR PRIMERO TODA LA DATA
+DE LA BASE DE DATOS Y LUEGO EJECUTAR EL SCRIPT
+"INSERTA DATOS EN TABLAS PARA PRUEBA INICIALES DEL SISTEMA"
+
+==>doctor 1 admin
+usuario: admin@gmail.com
+pass: Admin7@gmail.com
+
+==>doctor 2 joelina 
+usuario: joelina@gmail.com
+pass: Joelina7@gmail.com
+
+==>doctor 3 Michael
+usuario: michael@gmail.com
+pass: Michael7@gmail.com
+
+==>doctor 4 javier 2 consultorio
+usuario: consultorio@gmail.com
+pass: consultorio7@gmail.com
+
+

@@ -1,0 +1,38 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ReportViwerMaster.master.cs" Inherits="DoctorMedicalWeb.Views.Shared.ReportViwerMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+     <%--<style type="text/css" media="print">
+        @page 
+        {
+            size: auto !important;   /* auto is the current printer page size */
+            margin: 0mm !important;  /* this affects the margin in the printer settings */
+        }
+
+        body 
+        {
+            background-color:#FFFFFF !important; 
+            border: solid 1px black  !important;
+            margin: 0px !important;  /* the margin on the content before printing */
+       }
+    </style>--%>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

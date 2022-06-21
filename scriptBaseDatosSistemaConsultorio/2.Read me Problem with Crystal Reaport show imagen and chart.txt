@@ -1,0 +1,32 @@
+No se mostraba la imagen o cuadros que insertaba en el crystal report
+en esta pagian encontre la solucioin
+Crystal report not showing images : CrytalImageHandler not found
+
+
+
+
+https://stackoverflow.com/questions/43581994/crystal-report-not-showing-images-crytalimagehandler-not-found
+http://www.fullfrontalnerdity.co.za/post/missing-images-on-crystal-reports-in-asp-net
+
+0
+down vote
+I also faced this issue regarding loading images on crystal report in mvc but able to solve this issue by following these steps.
+
+Possible Solutions:
+
+The first thing to check is whether the Crystal Reports Image Handler has been included. This handler configuration doesn't seem to be added to the web.config by default, so open it up & look at the <httpHandlers> element. You need the following there:
+
+<add verb="GET" path="CrystalImageHandler.aspx" type="CrystalDecisions.Web.CrystalImageHandler, CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"/>
+Also, check the <handlers> element in the <system.webServer> parent node, as the handler needs to be added there as well:
+
+<add name="CrystalImageHandler.aspx_GET" verb="GET" path="CrystalImageHandler.aspx" type="CrystalDecisions.Web.CrystalImageHandler, CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" preCondition="integratedMode"/>
+Issue in ASP.NET MVC
+
+If you are using Crystal Reports in ASP.NET MVC, the images may still fail to load. This is because the ASP.NET MVC routing engine is trying to map the resource request for the Image Handler to a controller action & since it can't, returns a 404 status.
+
+To resolve this tell ASP.NET MVC routing engine to ignore requests for this resource. To do so, open up your routing configuration code (RouteConfig.cs).
+
+There should already be an ignore for .axd resources. Add the following ignore rule:
+
+routes.IgnoreRoute("{*allaspx}", new { allaspx = @".*(CrystalImageHandler).*" });
+Source

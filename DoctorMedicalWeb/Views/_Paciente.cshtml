@@ -1,0 +1,47 @@
+﻿@model DoctorMedicalWeb.Models.Usar_Paciente
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Paciente</title>
+</head>
+<body>
+    <div id="parcialpaciente">
+        <div class="panel panel-info">
+            <div class="panel-heading">Paciente En Consulta</div>
+            <div class="panel-body">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            @{ if (!string.IsNullOrEmpty(@Model.PaciFotoPath))
+                             {
+                                <p><img src="@Url.Content(@Model.PaciFotoPath.ToString() + "?" + DoctorMedicalWeb.Libreria.Lib.GetLocalDateTime().ToString("ddyyhhmmss"))" @*class="img-thumbnail "*@ alt="Cinque Terre" @*width="304" height="236"*@ id="PaciPicture" /></p>
+                             }
+                             else
+                             {
+
+                                <p><img src="~/Content/AdminFiles/images/_user-alt.png" @*class="img-thumbnail "*@ alt="Cinque Terre" @*width="304" height="236"*@ id="PaciPicture" /></p>
+                             }
+                            }
+                        </div>
+                        <div id="datosPaciente" class="col-xs-12 col-sm-8 col-md-8">
+                            <p>@Html.LabelFor(s => s.PaciNombre) :   @Model.PaciNombre</p>
+                            <p><label>Apellido</label>: @Model.PaciApellido1  @Model.PaciApellido2</p>
+                            <p><label>Nacimiento</label>:   @Model.FechaNacimientoString</p>
+                            <p><label>Ultima Consulta</label>:   @Model.FechaNacimientoString</p>
+                            <p><input type="button" value="Consultas Anteriores"/></p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+</html>

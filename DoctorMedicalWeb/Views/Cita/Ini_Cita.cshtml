@@ -1,0 +1,1415 @@
+﻿@model DoctorMedicalWeb.Models.Usar_Cita
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@*Los refrencio en el layout
+
+
+
+
+
+
+*@
+
+
+
+
+<script src="~/Scripts/ej/web/ej.grid.min.js"></script>
+<script src="~/Scripts/ej/web/ej.schedule.min.js"></script>
+<script src="~/Scripts/ej/web/ej.listview.min.js"></script>
+<script src="~/Scripts/ej/web/ej.recurrenceeditor.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dropdownlist.min.js"></script>
+<script src="~/Scripts/ej/web/ej.radiobutton.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dialog.min.js"></script>
+<script src="~/Scripts/ej/web/ej.button.min.js"></script>
+<script src="~/Scripts/ej/web/ej.autocomplete.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.checkbox.min.js"></script>
+<script src="~/Scripts/ej/web/ej.editor.min.js"></script>
+<script src="~/Scripts/ej/web/ej.menu.min.js"></script>
+<script src="~/Scripts/ej/web/ej.navigationdrawer.min.js"></script>
+<script src="~/Scripts/ej/web/ej.tooltip.min.js"></script>
+@*Grid*@
+<script src="~/Scripts/ej/web/ej.pager.min.js"></script>
+<script src="~/Scripts/ej/web/ej.waitingpopup.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.toolbar.min.js"></script>
+<script src="~/Scripts/ej/web/ej.excelfilter.min.js"></script>
+@*End Grid*@
+
+
+
+
+
+
+<div class="container">
+    @using (Html.BeginForm("Save", "Cita", FormMethod.Post, new { id = "frmCita", autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Citas</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="cuerpo ">
+                        <div class="row">
+
+                            <div id="menu" class="col-xs-12 col-sm-12 col-md-12" style="bottom: 10px;z-index: 999;">
+                                <button type="button" id="btnNuevo" class="btn btn-lg btn-primary glyphicon glyphicon-plus " accesskey="n">Nuevo</button>
+                                <button type="button" id="btnSave" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk " accesskey="s" hidden>Guardar</button>
+                                <button type="button" id="btnBuscarPaciente" class="btn btn-lg btn-danger glyphicon glyphicon-search  " accesskey="x">Pacientes</button>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <!--Patient current-->
+                                <div id="parcialpaciente">
+                                    <div class="panel panel-info ">
+                                        <div class="panel-heading">
+                                            Paciente
+                                            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="content">
+                                                <div class="row">
+
+                                                    <div id="datosPaciente" class="col-xs-12 col-sm-12 col-md-12">
+
+                                                        <div class="col-xs-12 col-sm-5 col-md-5">
+                                                            <div class="row">
+                                                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                    <p>@Html.LabelFor(s => s.PaciNombre):<span id="PaciNombre"></span></p>
+                                                                </div>
+                                                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                    <p><label>Apellido</label>:<span id="PaciApellido"></span></p>
+                                                                </div>
+                                                            </div>
+                                                            <p>@Html.LabelFor(s => s.ConsultorioClinica):<span id="ConsultorioClinica"></span></p>
+                                                            <p> @Html.LabelFor(s => s.CodigoPaciente):<span id="CodigoPaciente"></span> </p>
+
+
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-sm-4 col-md-4">
+                                                            <p><label>@Html.LabelFor(s => s.PaciTelefono):</label> <span id="PaciTelefono"></span></p>
+                                                            <p><label>@Html.LabelFor(s => s.PaciEmail):</label> <span id="PaciEmail"></span></p>
+
+                                                            <div class="form-group form-inline ">
+                                                                @Html.LabelFor(model => model.CitaCancelada)
+                                                                @Html.CheckBoxFor(model => model.CitaCancelada, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.CitaCancelada) })
+                                                                @Html.ValidationMessageFor(model => model.CitaCancelada)
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-3">
+
+                                                            <div class="form-group ">
+                                                                @Html.LabelFor(model => model.CitaCancelacionMotivo)
+                                                                @Html.TextAreaFor(model => model.CitaCancelacionMotivo, new { @class = "form-control", placeholder = "Motivo Cancelación" })
+                                                                @Html.ValidationMessageFor(model => model.CitaCancelacionMotivo)
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Patient current-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                @{ @ViewBag.HSTART; List<string> workWeek = new List<string>() { "Monday", "Tuesday", "Wednesday", "Friday", "Saturday" };}
+                                @(Html.EJ().Schedule("citas")
+                                        .Width("100%")
+                                        .Height("525px")
+                                        .CurrentDate((new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)))
+                                         .Locale("es-ES")
+            //    .ShowQuickWindow(false)
+
+//.StartHour(@ViewBag.HSTART)
+            ////.EndHour(ViewBag.HEND)
+            ////.StartHour(00)
+            ////.EndHour(24)
+
+
+                                    .TimeMode(TimeMode.Hour24)
+                                        .DateFormat("dd/MMM/yyyy")
+                                        .ShowTimeZoneFields(false)
+                                        .ShowAllDayRow(false)
+
+                                            //.ShowCurrentTimeIndicator(true)
+
+                                       .ScheduleClientSideEvents(evt => evt.AppointmentWindowOpen("onAppointmentWindowOpen"))
+
+                    .AppointmentSettings(fields => fields.Datasource(@ViewBag.listCitas)
+                                            .Id("ProgramId")
+                                            .Subject("ProgramName")
+                                            .StartTime("ProgramStartTime")
+                                            .EndTime("ProgramEndTime")
+                                            .Description("Comments")
+                                            .AllDay("IsAllDay")
+                                            .Recurrence("IsRecurrence")
+                                            .RecurrenceRule("RecurrenceRule"))
+                                )
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.PaciSecuencia_fk)
+
+
+    }
+
+</div>
+
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="modalValidacion">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("PendientesValidar", "Paciente", FormMethod.Post, new { @id = "frmMostrarPaciente", @class = "form-horizontal", @role = "form", onsumbit = "formSubmit()" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-primary">Lista de Paciente</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="col-md-12">
+                            @{
+
+                                @(Html.EJ().Grid<DoctorMedicalWeb.Models.Usar_Paciente>("GridPaciente")
+
+                            .Datasource((IEnumerable<object>)ViewBag.listPaciente)
+                                        .IsResponsive()
+                                        .AllowResizing(true)
+                                        .AllowPaging()
+                                        .PageSettings(e => e.PageSize(5))
+                                        .ToolbarSettings(toolbar => { toolbar.ShowToolbar().ToolbarItems(items => { items.AddTool(ToolBarItems.Search); }); })
+                             .ClientSideEvents(eve => { eve.RecordDoubleClick("rowSelectedPaciente"); })
+                                        .Columns(col =>
+                                        {
+                                            col.Field("PaciSecuencia").HeaderText("ID").IsPrimaryKey(true).Visible(false).TextAlign(TextAlign.Right).Width(50).Add();
+                                            col.Field("PaciCodigo").HeaderText("Código").Width(150).Add();
+                                            //col.Field("PaciApellido1").HeaderText("Apellido1").Width(150).Add();
+                                            //col.Field("PaciApellido2").HeaderText("Apellido2").Width(150).Add();
+                                            col.Field("NombreCompleto").HeaderText("Nombre").Width(150).Add();
+                                            col.Field("PaciDocumento").HeaderText("Documento").Width(150).Add();
+
+                                        })
+                                )}
+
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnSeleccionarPaciente" class="btn btn-primary">Seleccionar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        var formularioGlobal = 'frmCita';
+        var campoSecuencia = 'PaciSecuencia_fk';
+        var vista = '@ViewBag.VistaCsharp';
+        var control = '@ViewBag.ControlCsharp';
+
+
+
+        $("#btnSeleccionarPaciente").click(function (args) {
+
+            rowSelectedPaciente(args);
+        });
+
+        function onAppointmentWindowOpen(args) {
+            $("#" + this._id + "recurrence").closest('td').css("display", "none");
+            $(".e-repeatlbl").closest('td').css("display", "none");
+
+            $("#" + this._id + "allday").closest('td').css("display", "none");
+            $(".e-alldaytext").closest('td').css("display", "none");
+
+            $("#" + this._id + "enddate").closest('td').css("display", "none");
+            $("#" + this._id + "startdate").closest('td').css("display", "none");
+
+
+        }
+
+
+        //select row grid personal
+        function rowSelectedPaciente(args) {
+            console.log("entro ");
+
+            var rowsele = $("#GridPaciente").ejGrid("instance");
+            var a = rowsele.getSelectedRecords();
+            if (a.length > 0) {
+
+                //fill info patient
+
+                fillPatientInfo(a[0]);
+                $("#modalValidacion").modal('toggle');
+            }
+            else {
+                alertify.alert('', "Favor seleccione paciente");
+            }
+        }
+
+
+        function fillPatientInfo(Usar_Paciente) {
+            //  alertify.alert('',a.PersNombre);
+            $("#PaciSecuencia_fk").val(Usar_Paciente.PaciSecuencia);
+            $("#ConsultorioClinica").html(Usar_Paciente.clinRazonSocial);
+            $("#CodigoPaciente").html(Usar_Paciente.PaciCodigo);
+            $("#PaciNombre").html(Usar_Paciente.PaciNombre);
+            var appe = "";
+            if (Usar_Paciente.PaciApellido1 != null) {
+                appe = Usar_Paciente.PaciApellido1;
+            }
+
+            if (Usar_Paciente.PaciApellido2 != null) {
+                appe = appe + " " + Usar_Paciente.PaciApellido2;
+            }
+
+            $("#PaciApellido").html(appe);
+            var cell = ""
+            if (Usar_Paciente.PaciCelular != null) {
+                cell = Usar_Paciente.PaciCelular;
+            }
+
+            if (Usar_Paciente.PaciTelefono != null) {
+                cell = cell + " // " + Usar_Paciente.PaciTelefono;
+            }
+
+            $("#PaciTelefono").html(cell);
+            var em = ""
+            if (Usar_Paciente.PaciEmail != null) {
+                em = Usar_Paciente.PaciEmail;
+            }
+            $("#PaciEmail").html(em);
+
+            if (Usar_Paciente.CitaCancelada != undefined)
+                $("#CitaCancelada").prop('checked', Usar_Paciente.CitaCancelada);
+
+            if (Usar_Paciente.CitaCancelacionMotivo != undefined)
+                $("#CitaCancelacionMotivo").val(Usar_Paciente.CitaCancelacionMotivo);
+
+
+        }
+
+        //select row paciente
+
+
+        function getIsBefore(datime) {
+            var result;
+
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: '@Url.Action("getIsBefore", ViewBag.ControlCsharp)',
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                data: JSON.stringify({ dateTime: datime }),
+                traditional: true,
+                cache: false,
+                success: (function (data) {
+                    result = data.respuesta;
+                }),//end susccess
+                error: (function () {
+
+                    try {
+
+                        alertify.alert('', 'Error en controller login y no se ejecuto el result json ');
+                    } catch (e) {
+                        alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                    }
+                })    //end error
+            });
+            return result;
+        }
+
+
+
+        function getAppointmentPatientInfo(usar_cita) {
+            var result;
+            $.LoadingOverlay("show");
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: '@Url.Action("getAppointmentPatientInfo", ViewBag.ControlCsharp)',
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                data: JSON.stringify({ usar_cita: usar_cita.appointment }),
+                traditional: true,
+                cache: false,
+                complete: (function () {
+
+                    $.LoadingOverlay("hide");
+                }),
+                success: (function (data) {
+                    if (data.respuesta) {
+                        result = data.obj;
+                    } else {
+                        alertify.alert('', 'Inconvenientes al buscar el paciente de esta cita.');
+                    }
+                }),//end susccess
+                error: (function () {
+                    $.LoadingOverlay("hide");
+                    try {
+                        alertify.alert('', 'Error en controller login y no se ejecuto el result json ');
+                    } catch (e) {
+                        alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+
+                    }
+                })    //end error
+            });
+            return result;
+        }
+
+
+        //var jsonData = (function () {
+        //    var result;
+        //    $.ajax({
+        //        type: 'GET',
+        //        url: 'data.txt',
+        //        dataType: 'json',
+        //        async: false,
+        //        success: function (data) {
+        //            result = data;
+        //        }
+        //    });
+        //    return result;
+        //})();
+
+        //change format from gmt to MM/dd/yyyy
+        function changeFormatTime(datetimeGMT) {
+            //appoiment can't be before date current
+            //JavaScript Date Output
+            //Mon Aug 14 2017 11:00:00 GMT-0400 (SA Western Standard Time)
+            var dat = datetimeGMT;
+            var formatDate = "";
+            var myDateend = new Date(dat);
+            // date and time dd/MM/yyyy "15/8/2017 10:30:00"
+            myDateend = myDateend.toLocaleString('es-ES');
+            var chunks = myDateend.split('/');
+            //date format MM/dd/yyyy and hour minu.... "8/15/2017 10:30:00"
+            formatDate = [chunks[1], chunks[0], chunks[2]].join("/");
+
+            return formatDate;
+
+        }
+
+
+
+        //if i am inserting editing or deleting don't  allow another  acction
+        //i can make only one action. if i created a appointment and i want edit without press buton btnguardar
+        // i can do it.
+        function onlyOneAction(NewList_pr, EditList_pr, DeletedList_pr, appointment) {
+
+            var isworking = "";
+
+            //if i just created a appointment //
+            //i don't allow click another  appointment
+            //Object.keys to know the array associative's length
+            //if i have added an appointment
+            if (Object.keys(NewList_pr).length > 0) {
+                //si estoy editando por la ventana grande de moficacioin este campo ProgramId
+                //viene undefined por que la cita viene en otra forma de objeto
+                //if (args.appointment.ProgramId == undefined)
+                //{
+                //    if (NewList_pr[args.appointment.changed[0].ProgramId] == undefined) {
+                //        isworking = "Esta creando una cita, presione el boton Guardar para confirmar la creación o Nuevo para cancelar.";
+                //    } else {
+                //        //don't  execute the button btnNuevo
+                //        //because i am just editing the  appointment that created
+                //        isworking = "CanEditODeletsameAppointment";
+                //    }
+
+                //  } //si estoy editanto por resize o drag
+                // else {
+
+                ////and if diference appointment created recently
+                //if (NewList_pr[args.appointment.ProgramId] == undefined) {
+                //    isworking = "Esta creando una cita, presione el boton Guardar para confirmar la creación o Nuevo para cancelar.";
+                //} else {
+                //    //don't  execute the button btnNuevo
+                //    //because i am just editing the  appointment that created
+                //    isworking = "CanEditODeletsameAppointment";
+                //}
+
+
+                //and if diference appointment created recently
+                if (NewList_pr[appointment.ProgramId] == undefined) {
+                    isworking = "Esta creando una cita, presione el boton Guardar para confirmar la creación o Nuevo para cancelar.";
+                } else {
+                    //don't  execute the button btnNuevo
+                    //because i am just editing the  appointment that created
+                    isworking = "CanEditODeletsameAppointment";
+                }
+                //  }
+
+            }
+            if (Object.keys(EditList_pr).length > 0) {
+
+                //and if diference appointment created recently
+                if (EditList_pr[appointment.ProgramId] == undefined) {
+                    isworking = "Esta editando una cita, presione el boton Guardar para confirmar la edición o Nuevo para cancelar.";
+                } else {
+                    //don't  execute the button btnNuevo
+                    //because i am just editing the  appointment that created
+                    isworking = "CanEditODeletsameAppointment";
+                }
+            }
+            if (Object.keys(DeletedList_pr).length > 0) {
+
+                //and if diference appointment created recently
+                if (DeletedList_pr[appointment.ProgramId] == undefined) {
+                    isworking = "Esta borrando una cita, presione el boton Guardar para confirmar el borrado o Nuevo para cancelar.";
+                } else {
+                    //don't  execute the button btnNuevo
+                    //because i am just editing the  appointment that created
+                    isworking = "CanEditODeletsameAppointment";
+                }
+            }
+            return isworking;
+
+        }
+
+
+
+        function onlyOneActionNavegation(NewList_pr, EditList_pr, DeletedList_pr) {
+
+            var isworking = "";
+
+            //if i just created a appointment //
+            //i don't allow click another  appointment
+            //Object.keys to know the array associative's length
+            //if i have added an appointment
+            if (Object.keys(NewList_pr).length > 0) {
+
+                isworking = "Esta creando una cita, presione el boton Guardar para confirmar la creación o Nuevo para cancelar.";
+
+
+            }
+            if (Object.keys(EditList_pr).length > 0) {
+
+
+                isworking = "Esta editando una cita, presione el boton Guardar para confirmar la edición o Nuevo para cancelar.";
+
+            }
+            if (Object.keys(DeletedList_pr).length > 0) {
+
+
+                isworking = "Esta borrando una cita, presione el boton Guardar para confirmar el borrado o Nuevo para cancelar.";
+
+            }
+            return isworking;
+
+        }
+
+
+
+        //para agregar a la lista los editados, los cuales vienen desde el servidor
+        //o borrarlos si fueron creados y todavia no estaban en el servidor
+        function listaEditados(NewList_pr, EditList_pr, args) {
+
+            //search on new items if exists edit
+            if (NewList_pr[args.appointment.ProgramId] !== undefined) {
+
+                NewList_pr[args.appointment.ProgramId] = $.extend(true, {}, args.appointment);
+            }//add to EditList_pr
+            else {
+
+
+
+                EditList_pr[args.appointment.ProgramId] = $.extend(true, {}, args.appointment);
+            }
+        }
+
+        function getAppointment(args) {
+            let appoin = undefined;
+
+            //si estoy editando
+            if (args.appointment.changed !== undefined) {
+
+                appoin = args.appointment.changed[0];
+            } else
+                //si es un array es por que se esta creando una cita en la ventana grande NO EN LA VENTANA QUICK DE CITA
+                if ($.isArray(args.appointment) == true) {
+                    appoin = args.appointment[0];
+                } else
+                    //do click on appoint or  create an appointment en quick ventana
+                    if (args.appointment !== undefined) {
+                        appoin = args.appointment;
+                    }
+
+            return appoin;
+        }
+
+        $(document).ready(function () {
+
+
+            //funciona solo esta variable solo dentro de ready
+            var NewList_pr = {};//dictionary
+            var EditList_pr = {};
+            var DeletedList_pr = {};
+
+
+
+
+            //$("#citasenddate").ejDateTimePicker({ enabled: false });
+
+            $("#citas").ejSchedule({
+
+
+                beforeAppointmentCreate: function (args) {
+
+                    //if is monthn and agenda  ||          args.model.currentView == "agenda"
+                    if (args.model.currentView == "month") {
+
+                        alertify.alert('Usted no puede crear cita en esta vistas(Mes). Debe de crearla en las vistas (Dia,Semana o Semana Trabajo)');
+                        args.cancel = true;
+                        return true;
+                    }
+
+                    //esto espara extrear la cita nueva o que se esta editando
+                    let appointmen = getAppointment(args);
+                    //get day
+                    let dayap = appointmen.ProgramEndTime.getDay();
+                    dayap = dayap + 1;       
+                    let tFin  = appointmen.ProgramEndTime;
+                    let tIni = appointmen.ProgramStartTime;
+
+                    //you can make appointment into range time only                   
+                    var isInRange = AjaxSend(false, 'POST', '/Cita/isdateTimeIntoRange', JSON.stringify({ dia: dayap, horainicio: tIni, horafinal: tFin }), 'application/json; charset=utf-8')
+                   
+
+                    let _isHabilitadoDia = isInRange.dictionaryStringObjec["isHabilitadoDia"];
+                    let _TieneHoraConf = isInRange.dictionaryStringObjec["TieneHoraConf"];
+                    let _IsIntoRange = isInRange.dictionaryStringObjec["IsIntoRange"];
+                    let _HoraComienzo = isInRange.dictionaryStringObjec["HoraComienzo"];
+                    let _HoraFinalizar = isInRange.dictionaryStringObjec["HoraFinalizar"];
+
+                    if (_isHabilitadoDia == false) {
+                        alertify.alert('', 'Este dia no esta habilitado para insertar cita.');
+                        args.cancel = true;
+                        return true;
+
+                    }
+
+                    if (_TieneHoraConf == false) {
+                        alertify.alert('', 'Usted no tiene asignado un rango de hora para trabajar en este dia.');
+                        args.cancel = true;
+                        return true;
+
+                    }
+                    if (_IsIntoRange == false) {
+
+                        alertify.alert('', 'Usted no puede insertar cita en esta hora. El rango de hora permitida en éste dia es Desde: ' + _HoraComienzo + ' Hata: ' + _HoraFinalizar);
+                        args.cancel = true;
+                        return true;
+
+                    }
+
+                      
+
+                    //var schObj = $("#schedule").data("ejSchedule");
+                    //schObj.deleteAppointment(args.appointment);
+
+                  
+                    //you can't  create if is  adding editing delete
+                    var isworking = onlyOneAction(NewList_pr, EditList_pr, DeletedList_pr, appointmen);
+
+                    if (isworking != "" && isworking != "CanEditODeletsameAppointment") {
+                        alertify.alert('', isworking);
+                        args.cancel = true;
+                        return true;
+                    }
+
+                    //you should select patient before
+                    if ($("#PaciSecuencia_fk").val() == "") {
+                        alertify.alert('', "Favor seleccione paciente primero");
+                        args.cancel = true;
+                        return false;
+                    }
+                    var programstarttime = "";
+                    //when i create  cita  by window
+                    if (args.appointment[0] != undefined) {
+
+                        //create a appointment by window with comment
+                        programstarttime = args.appointment[0].ProgramStartTime;
+
+                    } else {
+
+                        //create a appointment by ShowQuickWindow
+                        programstarttime = args.appointment.ProgramStartTime;
+
+                    }
+
+                    ////appoiment can't be before date current
+                    //convert JavaScript Date Output
+                    //Tue Mar 24 2015 20:00:00 GMT-0400 (SA Western Standard Time) to MM/dd/yyyy
+                    formattedDate = changeFormatTime(programstarttime);
+
+                    //appoiment can't be before the time today
+                    var istimeBefore = getIsBefore(formattedDate);
+                    if (istimeBefore == true) {
+                        alertify.alert('', "Favor cree la cita desde la fecha y hora actual  en adelante");
+                        args.cancel = true;
+                        return false;
+
+                    }
+
+
+                    //   while (objtoUpdate.length == 0)
+                    //if exist this new programId then sum 1
+                    //var objtoUpdate = $.grep(receta, function (e) { return e.ReceSecuencia == $('#Consult_ReceSecuencia').val(); });
+                    //if(objtoUpdate && objtoUpdate.length == 1){}
+
+                    // maximo valor
+                    var maxCount = 0;
+                    var dataSourcSchec = args.model.appointmentSettings.dataSource;
+                    if (dataSourcSchec.length > 0) {
+                        var count = $.map(dataSourcSchec, function (dataSourcSchec) { return dataSourcSchec.ProgramId; }),
+              maxCount = Math.max.apply(this, count);
+                        // minCount = Math.min.apply(this, count);
+                    }
+                    //if the max is iquals sum 1
+                    //if (args.appointment.ProgramId == maxCount) {
+                    //    args.appointment.ProgramId = maxCount + 1;
+
+                    //}
+
+
+                    //when i create  cita  by window
+                    if (args.appointment[0] != undefined) {
+
+                        //create secuence a appointment by window with comment
+                        args.appointment[0].ProgramId = maxCount + 1;
+
+                    } else {
+
+                        //create a appointment by ShowQuickWindow
+                        //para que no se repitan los registros
+                        args.appointment.ProgramId = maxCount + 1;
+
+
+                    }
+
+
+
+                },
+                appointmentCreated: function (args) {
+
+                    //si la variable NewList_pr va estar arriba del document ready entonces lo ideal es usar esta linea Recomendado por syncfusion
+                    //    NewList_pr[args.appointment.Id] = $.extend(true, {}, ObjnewCita);
+                    //add patient
+                    // var sec = Object.keys(NewList_pr).length + 1;
+                    NewList_pr[args.appointment.ProgramId] = $.extend(true, {}, args.appointment);
+
+                },
+                appointmentChanged: function (args) {
+
+                    listaEditados(NewList_pr, EditList_pr, args);
+
+                },
+                appointmentRemoved: function (args) {
+
+                    if (NewList_pr[args.appointment.ProgramId] !== undefined) {
+                        delete NewList_pr[args.appointment.ProgramId];
+
+                    } else {
+                        delete EditList_pr[args.appointment.ProgramId];
+                        DeletedList_pr[args.appointment.ProgramId] = $.extend(true, {}, args.appointment);
+                    }
+                },               
+                appointmentClick: function (args) {
+
+                    //esto espara extrear la cita nueva o que se esta editando
+                    let appointmen = getAppointment(args);
+                    var isworking = onlyOneAction(NewList_pr, EditList_pr, DeletedList_pr, appointmen);
+
+                    if (isworking != "" && isworking != "CanEditODeletsameAppointment") {
+                        alertify.alert('', isworking);
+                        args.cancel = true;
+                        return true;
+                    }//If it is to modify the one that was created
+                    else if (isworking == "CanEditODeletsameAppointment") {
+                        // args.cancel = true;
+                        //solo retorno el evento sin cancelar el click para que me
+                        //pueda mostrar la ventana de edicion de la cita
+                        //pero salga de este metodo sin buscarme la informacion del paciente
+                        //por que puede que no haya sido guardado todavia.
+                        return true;
+                    }
+
+                    //  $('#btnNuevo').trigger('click'); no quiero que me recarge el grid solo borre los datos paciente
+                    cleanfieldLoadShedule();
+                    var patInfo = getAppointmentPatientInfo(args);
+
+                    ////add new element to object, agregar nueva propiedad al objeto
+                    $.extend(patInfo, { "CitaCancelada": args.appointment.CitaCancelada });
+                    if (args.appointment.CitaCancelacionMotivo != null)
+                        $.extend(patInfo, { "CitaCancelacionMotivo": args.appointment.CitaCancelacionMotivo });
+
+                    //fill info patient
+                    fillPatientInfo(patInfo);
+                },
+                dragStop: function (args) {
+
+                    //esto espara extrear la cita nueva o que se esta editando
+                    let appointmen = getAppointment(args);
+                    
+                    //you can't  dragstop  if is  adding editing delete
+                    var isworking = onlyOneAction(NewList_pr, EditList_pr, DeletedList_pr, appointmen);
+
+                    if (isworking != "" && isworking != "CanEditODeletsameAppointment") {
+                        alertify.alert('', isworking);
+                        args.cancel = true;
+                        return true;
+                    }
+
+                    /*  rango date*/
+                    //get day
+                    let dayap = appointmen.ProgramEndTime.getDay();
+                    dayap = dayap + 1;
+                    let tFin = appointmen.ProgramEndTime;
+                    let tIni = appointmen.ProgramStartTime;
+
+                    //you can make appointment into range time only                   
+                    var isInRange = AjaxSend(false, 'POST', '/Cita/isdateTimeIntoRange', JSON.stringify({ dia: dayap, horainicio: tIni, horafinal: tFin }), 'application/json; charset=utf-8')
+
+
+                    let _isHabilitadoDia = isInRange.dictionaryStringObjec["isHabilitadoDia"];
+                    let _TieneHoraConf = isInRange.dictionaryStringObjec["TieneHoraConf"];
+                    let _IsIntoRange = isInRange.dictionaryStringObjec["IsIntoRange"];
+                    let _HoraComienzo = isInRange.dictionaryStringObjec["HoraComienzo"];
+                    let _HoraFinalizar = isInRange.dictionaryStringObjec["HoraFinalizar"];
+
+                    if (_isHabilitadoDia == false) {
+                        alertify.alert('', 'Este dia no esta habilitado para insertar cita.');
+                        args.cancel = true;
+                        return true;
+
+                    }
+
+                    if (_TieneHoraConf == false) {
+                        alertify.alert('', 'Usted no tiene asignado un rango de hora para trabajar en este dia.');
+                        args.cancel = true;
+                        return true;
+
+                    }
+                    if (_IsIntoRange == false) {
+
+                        alertify.alert('', 'Usted no puede insertar cita en esta hora. El rango de hora permitida en éste dia es Desde: ' + _HoraComienzo + ' Hata: ' + _HoraFinalizar);
+                        args.cancel = true;
+                        return true;
+
+                    }
+
+                    /*End  rango date*/
+
+
+
+
+                    //appoiment can't be before date current
+                    //Mon Aug 14 2017 11:00:00 GMT-0400 (SA Western Standard Time)
+                    var dat = args.appointment.ProgramStartTime;
+                    var formatDate = "";
+
+                    //convert JavaScript Date Output
+                    //Tue Mar 24 2015 20:00:00 GMT-0400 (SA Western Standard Time) to MM/dd/yyyy
+                    formatDate = changeFormatTime(dat);
+
+                    //appoiment can't be before the time today
+                    var istimeBefore = getIsBefore(formatDate);
+                    if (istimeBefore == true) {
+                        alertify.alert('', "Favor arrastre la cita desde la fecha y hora actual  en adelante");
+                        args.cancel = true;
+                        return false;
+
+                    }
+
+                    // si es una cita nueva que se esta creando permito el risize sin
+                    // validar que haya seleccionado paciente,,
+                    //por que es una nueva creacion de cita por ende no esta en el servidor.
+                    //y los otros eventos no permite que ella cree una cita sin haber seleccionado paciente.
+                    if (Object.keys(NewList_pr).length < 1) {
+                        //    //busco primero el paciente de la cita a borrar
+                        //    // para asgurarme que sea  el correcto paciente de la cita
+                        //    //que se quiere borrar.
+                        var patInfo = getAppointmentPatientInfo(args);
+
+                        //you should select patient before
+                        if ($("#PaciSecuencia_fk").val() != patInfo.PaciSecuencia) {
+
+                            args.cancel = true;
+                            alertify.alert('', "Favor seleccione  primero la cita antes de modificar");
+                            return true;
+                        }
+                    }
+
+                    listaEditados(NewList_pr, EditList_pr, args);
+                    ////search on new items if exists edit
+                    //if (NewList_pr[args.appointment.ProgramId] !== undefined) {
+
+                    //    NewList_pr[args.appointment.ProgramId] = $.extend(true, {}, args.appointment);
+                    //}//add to EditList_pr
+                    //else {
+                    //    EditList_pr[args.appointment.ProgramId] = $.extend(true, {}, args.appointment);
+                    //}
+
+                },
+                resizeStop: function (args) {
+
+                    //esto espara extrear la cita nueva o que se esta editando
+                    let appointmen = getAppointment(args);
+                    //you can't  risize if is  adding editing delete
+                    var isworking = onlyOneAction(NewList_pr, EditList_pr, DeletedList_pr, appointmen);
+
+                    if (isworking != "" && isworking != "CanEditODeletsameAppointment") {
+                        alertify.alert('', isworking);
+                        args.cancel = true;
+                        return true;
+                    }
+
+
+                    /*  rango date*/
+                    //get day
+                    let dayap = appointmen.ProgramEndTime.getDay();
+                    dayap = dayap + 1;
+                    let tFin = appointmen.ProgramEndTime;
+                    let tIni = appointmen.ProgramStartTime;
+
+                    //you can make appointment into range time only                   
+                    var isInRange = AjaxSend(false, 'POST', '/Cita/isdateTimeIntoRange', JSON.stringify({ dia: dayap, horainicio: tIni, horafinal: tFin }), 'application/json; charset=utf-8')
+
+
+                    let _isHabilitadoDia = isInRange.dictionaryStringObjec["isHabilitadoDia"];
+                    let _TieneHoraConf = isInRange.dictionaryStringObjec["TieneHoraConf"];
+                    let _IsIntoRange = isInRange.dictionaryStringObjec["IsIntoRange"];
+                    let _HoraComienzo = isInRange.dictionaryStringObjec["HoraComienzo"];
+                    let _HoraFinalizar = isInRange.dictionaryStringObjec["HoraFinalizar"];
+
+                    if (_isHabilitadoDia == false) {
+                        alertify.alert('', 'Este dia no esta habilitado para insertar cita.');
+                        args.cancel = true;
+                        return true;
+
+                    }
+
+                    if (_TieneHoraConf == false) {
+                        alertify.alert('', 'Usted no tiene asignado un rango de hora para trabajar en este dia.');
+                        args.cancel = true;
+                        return true;
+
+                    }
+                    if (_IsIntoRange == false) {
+
+                        alertify.alert('', 'Usted no puede insertar cita en esta hora. El rango de hora permitida en éste dia es Desde: ' + _HoraComienzo + ' Hata: ' + _HoraFinalizar);
+                        args.cancel = true;
+                        return true;
+
+                    }
+
+                    /*End  rango date*/
+
+
+
+                    //appoiment can't be before date current
+                    //Mon Aug 14 2017 11:00:00 GMT-0400 (SA Western Standard Time)
+                    var dat = args.appointment.ProgramStartTime;
+                    var formatDate = "";
+
+                    //convert JavaScript Date Output
+                    //Tue Mar 24 2015 20:00:00 GMT-0400 (SA Western Standard Time) to MM/dd/yyyy
+                    formatDate = changeFormatTime(dat);
+
+                    //appoiment can't be before the time today
+                    var istimeBefore = getIsBefore(formatDate);
+                    if (istimeBefore == true) {
+                        alertify.alert('', "Favor reconfigure la cita desde la fecha y hora actual  en adelante");
+                        args.cancel = true;
+                        return false;
+
+                    }
+
+
+
+
+                    // si es una cita nueva que se esta creando permito el risize sin
+                    // validar que haya seleccionado paciente,,
+                    //por que es una nueva creacion de cita por ende no esta en el servidor.
+                    //y los otros eventos no permite que ella cree una cita sin haber seleccionado paciente.
+
+                    if (Object.keys(NewList_pr).length < 1) {
+                        //    //busco primero el paciente de la cita a borrar
+                        //    // para asgurarme que sea  el correcto paciente de la cita
+                        //    //que se quiere borrar.
+                        var patInfo = getAppointmentPatientInfo(args);
+
+                        //you should select patient before
+                        if ($("#PaciSecuencia_fk").val() != patInfo.PaciSecuencia) {
+
+                            args.cancel = true;
+                            alertify.alert('', "Favor seleccione  primero la cita antes de modificar");
+                            return true;
+                        }
+                    }
+
+                    //agregar los editados
+                    listaEditados(NewList_pr, EditList_pr, args);
+                    ////search on new items if exists edit
+                    //if (NewList_pr[args.appointment.ProgramId] !== undefined) {
+
+                    //    NewList_pr[args.appointment.ProgramId] = $.extend(true, {}, args.appointment);
+                    //}//add to EditList_pr
+                    //else {
+                    //    EditList_pr[args.appointment.ProgramId] = $.extend(true, {}, args.appointment);;
+                    //}
+
+
+
+                },
+                navigation: function (args) {
+                    //you can't  create if is  adding editing delete
+                    var isworking = onlyOneActionNavegation(NewList_pr, EditList_pr, DeletedList_pr);
+
+                    if (isworking != "") {
+                        alertify.alert('', isworking);
+                        args.cancel = true;
+                        return true;
+                    }
+
+                    //you should select patient before
+                    //if ($("#PaciSecuencia_fk").val() != "") {
+                    //    alertify.alert('', "Favor seleccione la cita primero");
+                    //    args.cancel = true;
+                    //    return false;
+                    //}
+                },
+                beforeAppointmentChange: function (args) {
+
+                    //esto espara extrear la cita nueva o que se esta editando
+                    let appointmen = getAppointment(args);
+                    //you can't  create if is  adding editing delete
+                    var isworking = onlyOneAction(NewList_pr, EditList_pr, DeletedList_pr, appointmen);
+
+                    if (isworking != "" && isworking != "CanEditODeletsameAppointment") {
+                        alertify.alert('', isworking);
+                        args.cancel = true;
+                        return true;
+                    }
+
+                    /*  rango date*/
+                    //get day
+                    let dayap = appointmen.ProgramEndTime.getDay();
+                    dayap = dayap + 1;
+                    let tFin = appointmen.ProgramEndTime;
+                    let tIni = appointmen.ProgramStartTime;
+
+                    //you can make appointment into range time only                   
+                    var isInRange = AjaxSend(false, 'POST', '/Cita/isdateTimeIntoRange', JSON.stringify({ dia: dayap, horainicio: tIni, horafinal: tFin }), 'application/json; charset=utf-8')
+
+
+                    let _isHabilitadoDia = isInRange.dictionaryStringObjec["isHabilitadoDia"];
+                    let _TieneHoraConf = isInRange.dictionaryStringObjec["TieneHoraConf"];
+                    let _IsIntoRange = isInRange.dictionaryStringObjec["IsIntoRange"];
+                    let _HoraComienzo = isInRange.dictionaryStringObjec["HoraComienzo"];
+                    let _HoraFinalizar = isInRange.dictionaryStringObjec["HoraFinalizar"];
+
+                    if (_isHabilitadoDia == false) {
+                        alertify.alert('', 'Este dia no esta habilitado para insertar cita.');
+                        args.cancel = true;
+                        return true;
+
+                    }
+
+                    if (_TieneHoraConf == false) {
+                        alertify.alert('', 'Usted no tiene asignado un rango de hora para trabajar en este dia.');
+                        args.cancel = true;
+                        return true;
+
+                    }
+                    if (_IsIntoRange == false) {
+
+                        alertify.alert('', 'Usted no puede insertar cita en esta hora. El rango de hora permitida en éste dia es Desde: ' + _HoraComienzo + ' Hata: ' + _HoraFinalizar);
+                        args.cancel = true;
+                        return true;
+
+                    }
+
+                    /*End  rango date*/
+
+
+
+                    //you should select patient before
+                    if ($("#PaciSecuencia_fk").val() == "") {
+                        alertify.alert('', "Favor seleccione la cita primero");
+                        args.cancel = true;
+                        return false;
+                    }
+
+
+
+                    //appoiment can't be before date current
+                    //Mon Aug 14 2017 11:00:00 GMT-0400 (SA Western Standard Time)
+                    var dat = args.appointment.changed[0].ProgramStartTime;
+                    var formatDate = "";
+
+                    //convert JavaScript Date Output
+                    //Tue Mar 24 2015 20:00:00 GMT-0400 (SA Western Standard Time) to MM/dd/yyyy
+                    formatDate = changeFormatTime(dat);
+
+                    //appoiment can't be before the time today
+                    var istimeBefore = getIsBefore(formatDate);
+                    if (istimeBefore == true) {
+                        alertify.alert('', "Favor reconfigure la cita desde la fecha y hora actual  en adelante");
+                        args.cancel = true;
+                        return false;
+
+                    }
+
+                    //var objtoUpdate = $.grep(receta, function (e) { return e.ReceSecuencia == $('#Consult_ReceSecuencia').val(); });
+                    //if(objtoUpdate && objtoUpdate.length == 1){}
+
+                    var dataSourcSchec = args.model.appointmentSettings.dataSource;
+                    //busco objeto en el datasource schedule
+                    var objSearched = $.grep(dataSourcSchec, function (e) { return e.ProgramId == args.appointment.changed[0].ProgramId; });
+                    if (objSearched && objSearched.length == 1) {
+                        //objeto actual para edigtar
+                        var objtoEditar = args.appointment.changed[0];
+
+                        //busco valor del datasource
+                        //y agrego cita secuencia al objeto actual editado
+                        ////add new element to object, agregar nueva propiedad al objeto
+                        $.extend(objtoEditar, { "CitaSecuencia": objSearched[0].CitaSecuencia });
+                        $.extend(objtoEditar, { "PaciSecuencia_fk": objSearched[0].PaciSecuencia_fk });
+                    }
+
+                },
+                beforeAppointmentRemove: function (args) {
+
+                    //esto espara extrear la cita nueva o que se esta editando
+                    let appointmen = getAppointment(args);
+                    //you can't  create if is  adding editing delete
+                    var isworking = onlyOneAction(NewList_pr, EditList_pr, DeletedList_pr, appointmen);
+
+                    if (isworking != "" && isworking != "CanEditODeletsameAppointment") {
+                        alertify.alert('', isworking);
+                        args.cancel = true;
+                        return true;
+                    }//If it is to modify the one that was created
+                    else if (isworking == "CanEditODeletsameAppointment") {
+                        // args.cancel = true;
+                        //solo retorno el evento sin cancelar el click  de borrar para que me
+                        //pueda borrar la cita pero no validarme si es otro paciente
+                        return true;
+                    }
+
+                    //busco primero el paciente de la cita a borrar
+                    // para asgurarme que sea  el correcto paciente de la cita
+                    //que se quiere borrar.
+                    var patInfo = getAppointmentPatientInfo(args);
+
+                    //you should select patient before
+                    if ($("#PaciSecuencia_fk").val() != patInfo.PaciSecuencia) {
+                        alertify.alert('', "Favor seleccione  primero la cita para borrar");
+                        args.cancel = true;
+                        return false;
+                    }
+
+                }
+
+            });//End events schedule
+
+
+
+
+            $('#btnSave').click(function (args) {
+                //button proseesand
+                var btn = $(this);
+                var todosbtn = $('button');
+
+
+                if ($("#PaciSecuencia_fk").val() == "") {
+                    alertify.alert('', "Favor seleccione paciente");
+                    return true;
+                }
+
+
+                var newlarr = [];
+                for (var newl in NewList_pr) {
+
+                    //moment("Fri Jun 21 00:00:00 UTC+0100 2013", "YYYY-MM-DD HH:mm Z");
+                    //var ht="";
+                    //   ht= NewList_pr[newl].ProgramEndTime;
+
+
+                    //var strDateTime = "Fri, 18 Oct 2013 11:38:23 GMT";
+                    //var strDateTime = ht;
+                    //var myDate = new Date(strDateTime);
+                    //var p = myDate.toDateString();
+                    //var pgm = myDate.toGMTString();
+                    //var put = myDate.toUTCString();
+                    //var datn = myDate.toLocaleString();
+                    //var datnf = myDate.toLocaleString('es-ES');
+                    //var datnfs = myDate.toLocaleString('en-US');
+                    //  'en-GB'
+
+
+
+                    //convert date dd/mm/yy on MM/dd/yyyy  consulta medica historial
+                    var myDateend = new Date(NewList_pr[newl].ProgramEndTime);
+                    var myDateStart = new Date(NewList_pr[newl].ProgramStartTime);
+
+                    NewList_pr[newl].ProgramEndTime = convertDate(myDateend.toLocaleString('es-ES'));
+                    NewList_pr[newl].ProgramStartTime = convertDate(myDateStart.toLocaleString('es-ES'));
+
+                    newlarr.push(NewList_pr[newl]);
+                }
+                var EditListarr = [];
+                for (var Edit in EditList_pr) {
+                    EditListarr.push(EditList_pr[Edit]);
+                }
+                var DeletedListarr = [];
+                for (var DeletedList in DeletedList_pr) {
+                    DeletedListarr.push(DeletedList_pr[DeletedList]);
+                }
+                var ch = $('#CitaCancelada').is(':checked');
+                var motican = $('#CitaCancelacionMotivo').val();
+                var cit = { PaciSecuencia_fk: $("#PaciSecuencia_fk").val(), CitaCancelada: ch, CitaCancelacionMotivo: motican }
+
+
+
+                var dataToSend = {
+                    'usar_cita': cit,
+                    'NewList': newlarr,
+                    'EditList': EditListarr,
+                    'DeletedList': DeletedListarr
+                };
+
+                if ((newlarr.length < 1) &&
+                    (EditListarr.length < 1) &&
+                    (DeletedListarr.length < 1)) {
+                    alertify.alert('', "Usted no ha creado, modificado o borrado cita");
+                    return true;
+                }
+
+
+                $.LoadingOverlay("show");
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Save", ViewBag.ControlCsharp)',
+                    contentType: 'application/json; charset=utf-8',
+                    datatype: 'json',
+                    data: JSON.stringify(dataToSend),
+                    traditional: true,
+                    cache: false,
+                    complete: (function () {
+
+                        $.LoadingOverlay("hide");
+                    }),
+                    success: (function (data) {
+
+                        if (data.respuesta) {
+                            $("#msgExitoso").show()
+                            setTimeout('$("#msgExitoso").hide()', 3000);
+
+                            //excute btnnuevo
+                            $('#btnNuevo').trigger('click');
+                            //RECARGAR GRID
+
+                            alertify.success('Ok');
+
+                        }
+                        else {
+
+                            alertify.alert('', data.error, function () { alertify.error('Cancelado'); });
+                        }
+
+                        ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                        doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+
+                    }),//end susccess
+                    error: (function () {
+                        $.LoadingOverlay("hide");
+                        try {
+                            alertify.alert('', 'Error en controller login y no se ejecuto el result json ');
+                        } catch (e) {
+                            alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                        }
+
+                        //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                        doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                        //quito splash
+                        //$.LoadingOverlay("hide");
+                    })    //end error
+                });
+
+            });//end save
+
+
+
+
+
+            function cleanfieldLoadShedule() {
+                $("#PaciSecuencia_fk").val("");
+                $("#ConsultorioClinica").html("");
+                $("#CodigoPaciente").html("");
+                $("#PaciNombre").html("");
+
+                $("#PaciApellido").html("");
+
+                $("#PaciTelefono").html("");
+
+                $("#PaciEmail").html("");
+
+                $("#CitaCancelada").prop('checked', false);
+
+                $("#CitaCancelacionMotivo").val("");
+
+
+
+            }
+
+            //nuevo registro
+            $("#btnNuevo").click(function () {
+
+                cleanfieldLoadShedule();
+
+                NewList_pr = {};//dictionary
+                EditList_pr = {};
+                DeletedList_pr = {};
+
+                $("#citas").ejSchedule({
+                    //currentDate: new Date(2015, 11, 7),
+                    currentDate: new Date(),
+                    appointmentSettings: {
+                        //Array of JSON data configure in dataSource
+                        dataSource: getListAppointmentOnly()
+                    }
+                });
+
+            });//end btnnuevo
+
+
+
+
+            //Set range hours to schedule
+            //send horarios
+            var data = AjaxSend(false, 'POST', '/Cita/getRangeHourWork', JSON.stringify({}), 'application/json; charset=utf-8')
+            if (data.respuesta) {
+
+                var hoini = data.dictionaryStringObjec["MinimaHoraComienzo"];
+                var hofi = data.dictionaryStringObjec["MaximaHoraFinaliza"];
+                var DivisionHo = data.dictionaryStringObjec["DivisionesHora"];
+                var IsExced7DaysConf = data.dictionaryStringObjec["IsExced7DaysConf"];
+                if (IsExced7DaysConf == true) {
+                    mensaje('Su configuración de horario ya tiene una semana, y fue desactivada.');
+                }
+
+                $(function () {
+                    $("#citas").ejSchedule({
+                        startHour: hoini,
+                        endHour: hofi,
+                        workHours: {
+                            highlight: true,
+                            start: hoini,
+                            end: hofi
+                        },
+                        timeScale: {
+                            enable: true,
+                            minorSlotCount: DivisionHo,
+                            majorSlot: 60,
+                        },
+                        readOnly: IsExced7DaysConf,
+                    });
+                });
+
+
+            }
+
+
+
+
+
+
+
+        });//end ready
+
+
+
+        function getListAppointmentOnly() {
+            var result;
+
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: '@Url.Action("getAppointments", ViewBag.ControlCsharp)',
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                data: JSON.stringify({}),
+                traditional: true,
+                cache: false,
+                success: (function (data) {
+                    result = data.someCollection;
+                }),//end susccess
+                error: (function () {
+
+                    try {
+
+                        alertify.alert('', 'Error en controller login y no se ejecuto el result json ');
+                    } catch (e) {
+                        alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                    }
+                })    //end error
+            });
+            return result;
+        }//end getlistAppointment
+
+
+        //show modal to show list personal
+        $("#btnBuscarPaciente").click(function () {
+
+            if ($('#' + campoSecuencia).val() > 0) {
+                alertify.alert('', 'Favor, pulse boton nuevo primero');
+                return false;
+            }
+            $("#modalValidacion").modal();
+
+        });
+
+    </script>
+}

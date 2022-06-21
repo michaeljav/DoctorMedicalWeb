@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dacca8a27abd4ab2809bb583ec3d889a" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Alergia" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.AnalisisClinico" Width="1.5" PointX="14.25" PointY="74.875" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ArchivosPaciente" Width="1.5" PointX="9.75" PointY="44.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Auditoria" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.CategoriaPersonal" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Cirugia" Width="1.5" PointX="15.5" PointY="62.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Cita" Width="1.5" PointX="15.5" PointY="44.625" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Clinica" Width="1.5" PointX="13.25" PointY="17.375" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedica" Width="1.5" PointX="12.5" PointY="41.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicaCirugia" Width="1.5" PointX="17.75" PointY="46" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicaEmbarazo" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicaEnfermeda" Width="1.5" PointX="17.75" PointY="50.625" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicaEnfermedaFamiliar" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicaHistorial" Width="1.5" PointX="7.5" PointY="46" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicaHistorialDiagnostico" Width="1.5" PointX="9.75" PointY="50" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicaHistorialEnfermeda" Width="1.5" PointX="17.75" PointY="78.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicaHistorialEvaluacionFisica" Width="1.5" PointX="9.75" PointY="40" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicaHistorialMotivoConsulta" Width="1.5" PointX="14.75" PointY="52" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicaHistorialTratamiento" Width="1.5" PointX="9.75" PointY="54" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ConsultaMedicalHistorialAlergia" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Consultorio" Width="1.5" PointX="15.5" PointY="20.875" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Diagnostico" Width="1.5" PointX="7.5" PointY="58.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Doctor" Width="1.5" PointX="5.25" PointY="43.875" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Enfermedad" Width="1.5" PointX="15.5" PointY="66.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Especialidade" Width="1.5" PointX="0.75" PointY="46.5" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.EspecialidadFormularioCampos" Width="1.5" PointX="3" PointY="41.375" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.EvaluacionFisica" Width="1.5" PointX="7.5" PointY="38.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Factura" Width="1.5" PointX="15.5" PointY="26.875" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.FacturaDetalle" Width="1.5" PointX="17.75" PointY="38.25" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.FacturaEstado" Width="1.5" PointX="13.25" PointY="24.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.FormularioCampos" Width="1.5" PointX="0.75" PointY="40" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Formulario" Width="1.5" PointX="0.75" PointY="42.5" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.FormulariosAccion" Width="1.5" PointX="6.75" PointY="5.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.GrupoSanguineo" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.HorariosDiaTrabajo" Width="1.5" PointX="13.25" PointY="12.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.ImagenDoctor" Width="1.5" PointX="7.5" PointY="89.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Imagene" Width="1.5" PointX="17.25" PointY="74.25" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.InstitucionAseguradoraPlane" Width="1.5" PointX="9.75" PointY="84.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.InstitucionesAseguradora" Width="1.5" PointX="7.5" PointY="83.875" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.LoginProvider" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Medicamento" Width="1.5" PointX="18.25" PointY="66" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Moneda" Width="1.5" PointX="1.5" PointY="54.5" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.MotivoConsulta" Width="1.5" PointX="12.5" PointY="37.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Paciente" Width="1.5" PointX="12" PointY="60.625" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.PacienteFoto" Width="1.5" PointX="14.25" PointY="70.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Pai" Width="1.5" PointX="11" PointY="32.375" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Personal" Width="1.5" PointX="13.25" PointY="30.875" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Plane" Width="1.5" PointX="0.75" PointY="50.25" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.PlanFactura" Width="1.5" PointX="5.25" PointY="53" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.PlanFacturaDetalle" Width="1.5" PointX="7.5" PointY="54.625" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.PlanFormulario" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Procedimiento" Width="1.5" PointX="15.5" PointY="38.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.RecetaAnalisisClinico" Width="1.5" PointX="16.5" PointY="57" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.RecetaImagene" Width="1.5" PointX="19.5" PointY="61" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.RecetaMedicamento" Width="1.5" PointX="20.5" PointY="53" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.RecetaPacienteVacuna" Width="1.5" PointX="19.5" PointY="57.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Receta" Width="1.5" PointX="14.25" PointY="56" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Representante" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Role" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.RolFormulario" Width="1.5" PointX="3" PointY="32.375" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.TipoArchivoPaciente" Width="1.5" PointX="7.5" PointY="42.25" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.TipoDocumento" Width="1.5" PointX="9.75" PointY="65.25" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.TipoFormulario" Width="1.5" PointX="1.5" PointY="37" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.TipoIndicacion" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.TipoPago" Width="1.5" PointX="13.25" PointY="28" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Tratamiento" Width="1.5" PointX="7.5" PointY="62.125" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.UsoMedicamento" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Usuario" Width="1.5" PointX="3" PointY="44.875" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.UsuarioConsultorio" Width="1.5" PointX="5.25" PointY="38.5" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Vacuna" Width="1.5" PointX="17.25" PointY="70.25" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.Accione" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.EstadoAgenda" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.PediatraParto" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.PEDIATRIAeMBARAZO" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.PlanFormularios_copia" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.TipoCompromiso" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.vw_ConsultorioDoctor" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.vw_ListDeFormuriosbyRolyUser" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.vw_planFormulario" Width="1.5" PointX="8.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.vw_UsuarioConsultorios" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.vw_UsuarioDoctor" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DoctorMedicalWebModel.vw_UsuariosPersonalDelDoctor" Width="1.5" PointX="15.75" PointY="8.75" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicalHistorialAlergias_Alergia" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_RecetaAnalisisClinico_AnalisisClinico" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ArchivosPaciente_Doctor" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ArchivosPaciente_Paciente" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ArchivosPaciente_TipoArchivoPaciente" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaCirugia_Cirugia" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Cita_Doctor" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Cita_Factura" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Cita_Paciente" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Cita_Personal" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Clinica_Pais" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Consultorio_Clinica2" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedica_Doctor" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedica_Paciente" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaCirugia_ConsultaMedica" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaEnfermeda_ConsultaMedica" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaEnfermeda_Enfermedad" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaHistorial_Doctor" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaHistorial_Paciente" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaHistorialEvaluacionFisica_ConsultaMedicaHistorial" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaHistorialTratamiento_ConsultaMedicaHistorial" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultorioMedicoHistorialDiagnostico_ConsultaMedicaHistorial" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultorioMedicoHistorialMotivoConsulta_ConsultaMedicaHistorial" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultorioMedicoHistorialDiagnostico_Diagnostico" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaHistorialEnfermeda_Enfermedad" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaHistorialEvaluacionFisica_EvaluacionFisica" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultorioMedicoHistorialMotivoConsulta_MotivoConsulta" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ConsultaMedicaHistorialTratamiento_Tratamiento" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Consultorio_Pais" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Doctor_Especialidades" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Doctor_Usuario" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_ImagenDoctor_Doctor" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_InstitucionesAseguradoras_Doctor" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Paciente_Doctor" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Procedimientos_Doctor" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Recetas_Doctor" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_TipoArchivoPaciente_Doctor" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_EspecialidadFormularioCampos_Especialidades" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Usuario_Especialidades" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_EspecialidadFormularioCampos_FormularioCampos" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_EspecialidadFormularioCampos_Formularios" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Factura_FacturaEstado" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Factura_Personal" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Factura_TipoPago" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_FacturaDetalle_Factura" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_FacturaDetalle_Procedimientos" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Formularios_TipoFormulario" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_RolFormularios_Formularios" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_HorariosDiaTrabajo_Pais" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_RecetaImagenes_Imagenes" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_InstitucionAseguradoraPlanes_InstitucionesAseguradoras" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Paciente_InstitucionAseguradoraPlanes" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Paciente_InstitucionesAseguradoras1" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_RecetaMedicamentos_Medicamento" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Planes_Moneda" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Procedimientos_Moneda" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Paciente_Pais" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Paciente_TipoDocumento" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_PacienteFoto_Paciente" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Recetas_Paciente" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Personal_Pais" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_PlanFacturaDetalle_Planes" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_Usuario_Planes" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_PlanFactura_Usuario" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_PlanFacturaDetalle_PlanFactura" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_RecetaAnalisisClinico_Recetas" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_RecetaImagenes_Recetas" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_RecetaMedicamentos_Recetas" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_RecetaPacienteVacunas_Recetas" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_RecetaPacienteVacunas_Vacunas" />
+        <AssociationConnector Association="DoctorMedicalWebModel.FK_UsuarioConsultorio_Usuario" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

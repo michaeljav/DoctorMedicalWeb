@@ -1,0 +1,2 @@
+Para Editar un reporte fuera del visual studio tengo que 
+utilizar el software crystal report 2008

@@ -1,0 +1,591 @@
+﻿@model DoctorMedicalWeb.Models.Usar_RolFormulario
+
+@{
+    ViewBag.Title = "Ini_RolePages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/ej/web/ej.grid.min.js"></script>
+<script src="~/Scripts/ej/web/ej.pager.min.js"></script>
+<script src="~/Scripts/ej/web/ej.waitingpopup.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dropdownlist.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dialog.min.js"></script>
+<script src="~/Scripts/ej/web/ej.button.min.js"></script>
+<script src="~/Scripts/ej/web/ej.autocomplete.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.checkbox.min.js"></script>
+<script src="~/Scripts/ej/web/ej.editor.min.js"></script>
+<script src="~/Scripts/ej/web/ej.tooltip.min.js"></script>
+<script src="~/Scripts/ej/web/ej.toolbar.min.js"></script>
+<script src="~/Scripts/ej/web/ej.menu.min.js"></script>
+<script src="~/Scripts/ej/web/ej.radiobutton.min.js"></script>
+<script src="~/Scripts/ej/web/ej.excelfilter.min.js"></script>
+
+
+<div class="container">
+    @using (Html.BeginForm("Save", "RolePages", FormMethod.Post, new { id = "frmRolPersonal", autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="row    ">
+            <div class="col-xs-12 col-md-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Crear Categoria Personal</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="cuerpo ">
+                        <div class="row">
+
+                            <div id="menu" class="col-xs-12 col-sm-12 col-md-12" style="bottom: 10px;z-index: 999;">
+                                <button type="button" id="btnSave" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk" accesskey="s" hidden>Guardar</button>
+                                @*<button type="button" id="btnTestList" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk" accesskey="s" hidden>Prueba</button>*@
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <label class="control-label " for="EspeSecuencia">Rol</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 tpDocumen ">
+                                            <div class="form-group ">
+                                                <div class="col-xs-12 col-sm-12 col-md-7 tdsec ">
+                                                    @Html.DropDownListFor(m => m.RoleSecuencia_fk, ViewBag.RolesLista as SelectList, "Seleccione Tipo Rol", new { @class = "form-control", onchange = "Select();" })
+                                                    @Html.ValidationMessageFor(model => model.RoleSecuencia_fk, null, new { @class = "label label-danger" })
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                @{
+                                    @(Html.EJ().Grid<DoctorMedicalWeb.ModelsComplementarios.Usar_vw_planFormularioModificado>("Searching")
+
+                                        .Datasource((IEnumerable<object>)ViewBag.planFormulariosLIsta)
+                                        .AllowSelection()
+                                        .SelectionType(SelectionType.Multiple)
+                                        .AllowPaging()
+                                        .IsResponsive()
+                                        .ClientSideEvents(eve =>
+                                        {
+                                            eve.RowSelected("rowselected");
+                                            eve.DataBound("databound");
+                                            eve.ActionComplete("complete");
+
+                                        })
+                                        .Columns(col =>
+                                        {
+
+                                            col.Field("FormSecuencia_fk").HeaderText("ID").IsPrimaryKey(true).TextAlign(TextAlign.Right).Width(50).Add();
+                                            col.Field("formPantalla").HeaderText("Formulario").Width(150).Add();
+                                            col.Type("checkbox").Width(150).Add();
+
+                                        })
+                                    )}
+
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <hr />
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    }
+
+
+</div>
+
+@section Scripts{
+
+
+
+    <script type="text/javascript">
+
+
+        //List records to send controler
+        window.records = [];
+        var SelecionarTodo = false;
+
+        function rowselected(args) {
+            console.log("rowselected(args)");
+
+
+            if ($(args.target).prop('checked') == false) {
+                args.data.seleccionado = true;//the object into grid
+                //use JSON.parse(JSON.stringify()); to create copy without
+                //Copying of an array of objects to another Array without object reference in javascript(Deep copy)
+                var ob = JSON.parse(JSON.stringify(args.data));
+                window.records.push(ob);
+            }
+            else if ($(args.target).prop('checked')) {
+                for (var i = 0; i < window.records.length; i++) {                    
+                    if (window.records[i].FormSecuencia_fk == args.data.FormSecuencia_fk) {
+                        args.data.seleccionado = false;//the object into grid
+                        window.records.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+        }
+
+    
+        //Indico todos  los que estan seleccionado con windows.record
+        function databound(args) {
+            console.log("databound(args)");
+
+            //////to handle the header checkbox selection
+            //////works only for local dataSource
+            $('.e-checkselectall').click(function () {
+                if (!$(this).is(':checked')) {
+                    window.records = [];
+                    //Select  false value into grid
+                    $.each(args.model.dataSource, function (keyselected, valueselected) {
+                        valueselected.seleccionado = false;
+                    });
+                }
+                else {
+
+                    //Select  true value into grid
+                    $.each(args.model.dataSource, function (keyselected, valueselected) {
+                        valueselected.seleccionado = true;
+                    });
+                    //use JSON.parse(JSON.stringify()); to create copy without
+                    //Copying of an array of objects to another Array without object reference in javascript(Deep copy)
+                    var ob = JSON.parse(JSON.stringify($("#Searching").ejGrid("model.dataSource")));
+                    window.records = ob;                    
+                }
+            });
+
+            //if selected all row selec checkbox head from method complete
+            if (SelecionarTodo == true) {
+                $(".e-checkselectall").prop('checked', true);
+
+            } else { $(".e-checkselectall").prop('checked', false); }
+
+
+            //add all the items from database rolform
+            var recordsFromDatabase = [];            
+            var modeldataSource = $("#Searching").ejGrid("model.dataSource");
+            $.each(modeldataSource, function (keyselected, valueselected) {
+                //search forms selected by user
+                if (valueselected.seleccionado === true) {
+                    //ingreso el objeto formulario que viene de la base de datos
+                    //window.records.push(valueselected);
+                    recordsFromDatabase.push(valueselected);
+                }
+            });
+            //use JSON.parse(JSON.stringify()); to create copy without
+            //Copying of an array of objects to another Array without object reference in javascript(Deep copy)
+            var objFromDatabase = JSON.parse(JSON.stringify(recordsFromDatabase));
+            //List records to send controler
+            window.records = objFromDatabase;
+        }
+
+        //en la actual pag del grid colorerar
+        //llenar list items from  database
+        function complete(args) {
+            console.log("complete(args)");
+
+            ////si el check head no esta check verifico que data tiene el usuario en la base de datos
+            ////esto es para que cuando se seleccione check all simplemente se seleccione todo y  no evalue
+            //// la data que tiene el usuario en la base de datos.
+            ////Este codigo va a correr solo cuando el check header no este habilitado
+
+            //// Create grid object.
+            var gridObj = $("#Searching").data("ejGrid");
+            var vecesSelectionadoTrue = 0;
+            //// Gets current view data of grid control
+            var rowscurrentViewData = gridObj.getCurrentViewData();
+            var listSelec = [];
+            $.each(rowscurrentViewData, function (keyselected, valueselected) {
+                //search forms selected by user
+                if (valueselected.seleccionado === true) {
+                    listSelec.push(keyselected);
+                    vecesSelectionadoTrue++;
+                }
+            });
+
+            $("#Searching").ejGrid({
+                dataSource: window.gridData,
+                selectedRowIndex: listSelec
+            });
+
+            //process to  chechkbox all
+            //every time update
+            SelecionarTodo = false;
+            //if rowscurrentViewData.length == 0 not has data
+            if (rowscurrentViewData.length == 0) {
+                $(".e-checkselectall").prop('checked', false);
+                SelecionarTodo = false;
+            } else//if vecesSelectionadoTrue is iquals  rowscurrentViewData.length  has all row
+                //are selected
+                if (vecesSelectionadoTrue == rowscurrentViewData.length) {
+
+                    $(".e-checkselectall").prop('checked', true);
+                    SelecionarTodo = true;
+                }
+
+
+           
+
+        }
+
+
+
+
+
+
+        function serializarFormulario($form) {
+            /// <summary>
+            /// Serializa un formulario en un objeto que puede ser recibido
+            /// correctamente del lado del servidor
+            /// </summary>
+            /// <param name="$form">Formulario jQuery a ser serializado</param>
+            var form = $form.serializeArray();
+
+            var data = {};
+            for (var i = 0; i < form.length; i++) {
+                data[form[i].name] = form[i].value;
+            }
+
+            return data;
+        }
+
+        $.fn.serializeObject = function () {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function () {
+                if (o[this.name] !== undefined) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+
+        $(document).ready(function () {
+
+
+
+            //start click savedoctor
+            $("#btnSave").on("click", function (e) {
+
+                var f = $('#frmRolPersonal').valid();
+
+                if (f == false) {
+
+                    return false;
+                }
+
+                var rowSeletedGrid = window.records;
+
+                var serialiformAu = $("#frmRolPersonal").serializeToJSON();
+
+                var jsonString = serialiformAu;
+
+                //button proseesand
+                var btn = $(this);
+                var todosbtn = $('button');
+                //bloquear boton
+                doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+                 alertify.confirm('', '¿Seguro que desea Editar?', function () {
+                 
+
+                        //    var model = @*@Html.Raw(Json.Encode(Model));*@
+
+
+                        //show screen block
+                        $.LoadingOverlay("show");
+                        //start ajax
+                        $.ajax({
+                            //traditional: true,
+
+                            url: '@Url.Action("Save", "RolePages")',
+                            type: "POST",
+
+                            //datatype: 'json',
+                            contentType: "application/json;",
+                            datatype: 'json',
+                            data: JSON.stringify({
+                                'FieldFormsvie': jsonString
+                                ,
+                                'grid': rowSeletedGrid
+                            }),
+                            cache: false,
+                            ////,traditional: true,
+                            complete: (function () {
+
+                
+                                   $.LoadingOverlay("hide");
+                            }),
+                              success:(function (data) {
+
+                                if (data.respuesta) {
+                                    $("#msgExitoso").show();
+                                    setTimeout('$("#msgExitoso").hide()', 3000);
+
+                                    alertify.success('Si')
+
+                                    //RECARGAR GRID
+                                    var gridObj = $("#Searching").ejGrid("instance");
+                                    gridObj.dataSource(data.someCollection);//dataSource method
+
+                                }
+                    else {
+                                    alert("Entro en error");
+                        alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                    }
+
+                    ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+            }),//end susccess
+                            error:(function () {
+
+                                try {
+                                    alertify.alert('','Error en controller login y no se ejecuto el result json ' );
+                                } catch (e) {
+                                    alertify.alert('','Problemas en el result json del controller, favor consultar al administrador ');
+                                }
+
+                                //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                                //quito splash
+                                //$.LoadingOverlay("hide");
+                            })   //end error
+                      
+
+                        })
+                          
+
+                     
+                 }
+                 , function () {
+                     ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                     doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                     alertify.error('No')
+                     return true;
+                 });/*End message confirm*/
+
+                return false;
+            });//end save click
+
+
+
+            //start click TestList
+            $("#btnTestList").on("click", function (e) {
+
+
+                //Funciono
+                var jsonObject = {
+                    "Name": "Rami",
+                    "Roles": [{ "RoleName": "Admin", "Description": "Admin Role" }, { "RoleName": "User", "Description": "User Role" }]
+                };
+                //Funciono
+
+                //button proseesand
+                var btn = $(this);
+                var todosbtn = $('button');
+                //bloquear boton
+                doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+                 alertify.confirm('', '¿Seguro que desea Editar?', function () {
+                 
+                        //show screen block
+                        $.LoadingOverlay("show");
+
+
+
+                        //start ajax
+                        $.ajax({
+                            //traditional: true,
+                            url: '@Url.Action("TestList", "RolePages")',
+                            type: "POST",
+                            data: JSON.stringify(jsonObject), //Funciono
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            cache: false,
+                            complete: (function () {
+
+                               
+                                   $.LoadingOverlay("hide");
+                            }),
+                            success:(function (data) {
+
+                                if (data.respuesta) {
+                                    $("#msgExitoso").show();
+                                    setTimeout('$("#msgExitoso").hide()', 3000);
+
+                                    alertify.success('Si')
+
+                                }
+                    else {
+                                    alert("Entro en error");
+                        alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                    }
+
+                    ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+            }),//end susccess
+                            error:(function () {
+
+                                try {
+                                    alertify.alert('','Error en controller login y no se ejecuto el result json ' );
+                                } catch (e) {
+                                    alertify.alert('','Problemas en el result json del controller, favor consultar al administrador ');
+                                }
+
+                                //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+                            })    //end error
+                        })
+                            
+                    
+                 }
+                 , function () {
+                     ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                     doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                     alertify.error('No')
+                     return true;
+                 });/*End message confirm*/
+
+
+                return false;
+            });//end TestList click
+
+
+
+        });//end document ready
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //fill grid
+        function Select() {
+
+            var f = $('#frmRolPersonal').valid();
+
+            if (f == false) {
+
+                return false;
+            }
+
+
+
+            //button proseesand
+            var btn = $(this);
+            var todosbtn = $('button');
+            //bloquear boton
+            doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+            //show screen block
+            $.LoadingOverlay("show");
+
+            //send object to controller
+            //start ajax
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("BuscarFormulariosDeRol", "RolePages")',
+                data: $('#frmRolPersonal').serialize(),
+                datatype: "application/json; charset=utf-8",
+                cache: false,
+                complete: (function () {
+
+                       $.LoadingOverlay("hide");
+                }),
+                  success:(function (data) {
+
+                    if (data.respuesta) {
+
+                        //RECARGAR GRID
+                        var gridObj = $("#Searching").ejGrid("instance");
+                        gridObj.dataSource(data.someCollection);//dataSource method
+
+
+                    }
+        else {
+
+            //  alert(data.error);
+                    }
+
+        ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+        doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+        }),//end susccess
+                error:(function () {
+
+                    try {
+                        alertify.alert('','Error en controller login y no se ejecuto el result json ' + throwError);
+                    } catch (e) {
+                        alertify.alert('','Problemas en el result json del controller, favor consultar al administrador ');
+                    }
+
+                    //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                    doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+                })   //end error
+            })
+              
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+}

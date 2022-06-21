@@ -1,0 +1,939 @@
+﻿@model DoctorMedicalWeb.Models.Usar_InstitucionesAseguradora
+
+@{
+    ViewBag.Title = "Ini_InstitucionAseguradora";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/ej/web/ej.grid.min.js"></script>
+<script src="~/Scripts/ej/web/ej.pager.min.js"></script>
+<script src="~/Scripts/ej/web/ej.waitingpopup.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dropdownlist.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dialog.min.js"></script>
+<script src="~/Scripts/ej/web/ej.button.min.js"></script>
+<script src="~/Scripts/ej/web/ej.autocomplete.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.checkbox.min.js"></script>
+<script src="~/Scripts/ej/web/ej.editor.min.js"></script>
+<script src="~/Scripts/ej/web/ej.tooltip.min.js"></script>
+<script src="~/Scripts/ej/web/ej.toolbar.min.js"></script>
+<script src="~/Scripts/ej/web/ej.menu.min.js"></script>
+<script src="~/Scripts/ej/web/ej.radiobutton.min.js"></script>
+<script src="~/Scripts/ej/web/ej.excelfilter.min.js"></script>
+
+
+
+<div class="container">
+    @using (Html.BeginForm("Save", "InstitucionAseguradora", FormMethod.Post, new { id = "frmInstitucionAseguradora", autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="row    ">
+            <div class="col-xs-12 col-md-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Institucion Aseguradora</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="cuerpo ">
+                        <div class="row">
+
+                            <div id="menu" class="col-xs-12 col-sm-12 col-md-12" style="bottom: 10px;z-index: 999;">
+                                <button type="button" id="btnNuevo" class="btn btn-lg btn-primary glyphicon glyphicon-plus" accesskey="n">Nuevo</button>
+                                <button type="button" id="btnSave" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk" accesskey="s" hidden>Guardar</button>
+                                <button type="button" id="btnBorrar" class="btn btn-lg btn-danger glyphicon glyphicon-trash " accesskey="x">Eliminar</button>
+                                <button type="button" id="btnLista" class="btn btn-lg btn-info glyphicon glyphicon-list-alt" onclick="window.location.href='@Url.Action("InstitucionAseguradoralista", ViewBag.ControlCsharp)'" accesskey="f">Listado</button>
+                            </div>
+                        </div>
+                        <br />
+
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row ">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.IAsegCodigo, new { @class = "  control-label      " })
+                                            @Html.TextBoxFor(model => model.IAsegCodigo, new { @class = "form-control  ", placeholder = "Código" })
+                                            @Html.ValidationMessageFor(model => model.IAsegCodigo, null, new { @class = "label label-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.IAsegNombre, new { @class = "  control-label      " })
+                                            @Html.TextBoxFor(model => model.IAsegNombre, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.IAsegNombre) })
+                                            @Html.ValidationMessageFor(model => model.IAsegNombre, null, new { @class = "label label-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row ">
+
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.IAsegRNC, new { @class = "  control-label      " })
+                                            @Html.TextBoxFor(model => model.IAsegRNC, new
+                                       {
+                                           @class = "form-control   ",
+                                           maxlength = "9", @*type = "number", min = 0, max = 100,*@ placeholder = Html.DisplayNameFor(n => n.IAsegRNC)
+                                       })
+                                            @Html.ValidationMessageFor(model => model.IAsegRNC, null, new { @class = "label label-danger" })
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.IAsegTelefono, new { @class = "control-label " })
+                                            @Html.TextBoxFor(m => m.IAsegTelefono, new { @class = "form-control  ", placeholder = "Teléfono" })
+                                            @Html.ValidationMessageFor(m => m.IAsegTelefono, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.IAsegCorreo, new { @class = "control-label " })
+                                            @Html.TextBoxFor(m => m.IAsegCorreo, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(m => m.IAsegCorreo) })
+                                            @Html.ValidationMessageFor(m => m.IAsegCorreo, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.IAsegWeb, new { @class = "control-label " })
+                                            @Html.TextBoxFor(m => m.IAsegWeb, new { @class = "form-control  ", placeholder = "Página Web" })
+                                            @Html.ValidationMessageFor(m => m.IAsegWeb, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="row">
+                                            <div id="Grid" class="col-md-12">
+                                                @*<h4>Planes</h4>*@
+                                                @Html.Label("Planes", new { @class = "control-label " })
+                                                @{
+                                                    @(
+ Html.EJ().Grid<DoctorMedicalWeb.Models.Usar_InstitucionAseguradoraPlanes>("Editing")
+                                                        .Datasource((IEnumerable<object>)ViewBag.ListaPlanesDeSeguro)
+                                                        .EditSettings(edit => { edit.AllowAdding().AllowDeleting().AllowEditing(); })
+                                                            .ToolbarSettings(toolbar =>
+                                                                {
+                                                                    toolbar.ShowToolbar().ToolbarItems(items =>
+                                                                    {
+                                                                        items.AddTool(ToolBarItems.Add);
+                                                                        items.AddTool(ToolBarItems.Edit);
+                                                                        items.AddTool(ToolBarItems.Delete);
+                                                                        items.AddTool(ToolBarItems.Update);
+                                                                        items.AddTool(ToolBarItems.Cancel);
+                                                                    });
+                                                                })
+                                                                .AllowPaging()
+                                                                 .PageSettings(e => e.PageSize(4))
+                                                                .Columns(col =>
+                                                                {
+
+
+                                                                    //col.Field("DoctSecuencia").HeaderText("DoctSecuenciaid")/*.IsPrimaryKey(true)*/.Visible(false).TextAlign(TextAlign.Right).Width(10).ValidationRules(v => v.AddRule("required", true).AddRule("number", true)).Add();
+                                                                    //col.Field("ClinSecuencia").HeaderText("ClinSecuencia ID").TextAlign(TextAlign.Right).Visible(false).Width(10).ValidationRules(v => v.AddRule("required", true).AddRule("number", true)).Add();
+                                                                    //col.Field("ConsSecuencia").HeaderText("ConsSecuencia ID").TextAlign(TextAlign.Right).Visible(false).Width(10).ValidationRules(v => v.AddRule("required", true).AddRule("number", true)).Add();
+                                                                    //col.Field("IAsegSecuencia").HeaderText("IAsegSecuencia ID").TextAlign(TextAlign.Right).Visible(false).Width(10).ValidationRules(v => v.AddRule("required", true).AddRule("number", true)).Add();
+
+                                                                    //col.Field("IAPlanSecuencia").HeaderText("IAPlanSecuencia ID").TextAlign(TextAlign.Right).Visible(false).Width(10).ValidationRules(v => v.AddRule("required", true).AddRule("number", true)).Add();
+                                                                    //    col.Field("IAPlanDescripcion").HeaderText("IAPlanDescripcion ID").EditTemplate(a => { a.Create("create").Read("read").Write("write"); }).TextAlign(TextAlign.Right).Width(10).ValidationRules(v => v.AddRule("required", true)).Add();
+                                                                    //col.Field("IAPlanSecuencia").HeaderText("IAPlanSecuencia ID").IsIdentity(true).IsPrimaryKey(true).TextAlign(TextAlign.Right).Visible(true).Width(10).ValidationRules(v => v.AddRule("required", false).AddRule("number", true)).Add();
+                                                                    //col.Field("IAPlanSecuencia").HeaderText("IAPlanSecuencia ID").IsPrimaryKey(true).TextAlign(TextAlign.Right).Visible(true).Width(10).ValidationRules(v => v.AddRule("required", true).AddRule("number", true)).Add();
+                                                                    //col.Field("IAPlanSecuencia").HeaderText("IAPlanSecuencia ID").IsPrimaryKey(true).TextAlign(TextAlign.Right).Visible(true).Width(10).ValidationRules(v => v.AddRule("required", true).AddRule("number", true)).Add();
+                                                                    col.Field("IAPlanSecuencia").HeaderText("Customer ID").IsPrimaryKey(true).Visible(false).TextAlign(TextAlign.Right).Add();
+                                                                    col.Field("IAPlanDescripcion").HeaderText("Plan").Width(10).Add();
+
+                                                                    //col.Field("IAPlanSecuencia").HeaderText("Customer ID").EditTemplate(a => { a.Create("create"); }).TextAlign(TextAlign.Right).Width(90).ValidationRules(v => v.AddRule("required", true)).Add();
+
+                                                                })
+            //.ClientSideEvents(eve => { eve.ActionComplete("complete").ActionBegin("begin").EndEdit("endEdit").EndAdd("endAdd"); })
+.ClientSideEvents(eve => { eve.EndAdd("endAdd").EndDelete("endDelete").BeforeBatchDelete("beforeBatchDelete"); })
+
+                                                    )
+
+                                                }
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Ultimos 5 Registros</h3>
+                            </div>
+                            <div class="row">
+                                <div id="Grid" class="col-md-12">
+                                    @{
+                                        @(Html.EJ().Grid<DoctorMedicalWeb.Models.Usar_InstitucionesAseguradora>("Searching")
+                                         .EnableAltRow(false)
+                                        .Datasource((IEnumerable<object>)ViewBag.ultimosCinco)
+                                        .Columns(col =>
+                                        {
+                                            col.Field("IAsegSecuencia").HeaderText("ID").IsPrimaryKey(true).TextAlign(TextAlign.Right).Width(50).Add();
+                                            col.Field("IAsegNombre").HeaderText("Aseguradora").Width(150).Add();
+                                            col.Field("IAsegRNC").HeaderText("RNC").Width(150).Add();
+                                            col.HeaderText("Gestionar Registros").Commands(command =>
+                                               {
+                                                   command.Type("detail")
+                                                          .ButtonOptions(new Syncfusion.JavaScript.Models.ButtonProperties()
+                                                          {
+                                                              Text = "Editar",
+                                                              Width = "100px",
+                                                              Click = "onClick"
+                                                          }).Add();
+
+                                               }).TextAlign(TextAlign.Left)
+
+                                               .Width(150)
+                                               .Add();
+                                        })
+
+                                        )}
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.DoctSecuencia)
+        @Html.HiddenFor(model => model.ClinSecuencia)
+        @Html.HiddenFor(model => model.ConsSecuencia)
+        @Html.HiddenFor(model => model.IAsegSecuencia)
+
+        @Html.HiddenFor(model => model.usuaSecuenciaCreacion)
+        @Html.HiddenFor(model => model.usuaSecuenciaModificacion)
+        @Html.HiddenFor(model => model.IAsegFechaCreacion)
+        @Html.HiddenFor(model => model.IAsegFechaModificacion)
+
+    }
+
+
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+
+        var formularioGlobal = 'frmInstitucionAseguradora';
+        var campoSecuencia = 'IAsegSecuencia';
+        var vista = 'Ini_InstitucionAseguradora';
+        var control = 'InstitucionAseguradora';
+
+
+
+        //Allow  only number
+        $('#IAsegCodigo').bind('keyup paste', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        /*gridPlanes*/
+
+
+        function endAdd(args) {
+
+            //si IAPlanSecuencia esta null indica que es uno nuevo que se esta
+            //agregando.
+            //agrego esto por que al borrar se elimina del grid y despues
+            //que valido en el controlador para ver si se pude eliminar
+            //por que no este asigando a un paciente, entonces vuelvo a agregarlo
+            //elmismo que se estaba borrando.
+
+            if (args.data.IAPlanSecuencia == null) {
+
+                var plns = args.model.dataSource;
+
+
+                //buscar el valor agregado que esta en null
+                var objtoUpdate = $.grep(plns, function (e) { return e.IAPlanSecuencia == null; });
+                if (objtoUpdate && objtoUpdate.length == 1) {
+                    //set numero 0 para que no de error al buscar el mayor valor de la lista
+                    objtoUpdate[0].IAPlanSecuencia = 0;
+
+                } else {
+
+                    alertify.alert('',"Contacte administrador, hay varios articulos con null");
+                }
+
+                ////encontrar el maximmo valor dentro del arry receta
+                var maxCount = 0;
+                if (plns.length > 0) {
+                    var count = $.map(plns, function (plns) { return plns.IAPlanSecuencia; }),
+                          maxCount = Math.max.apply(this, count),
+                          minCount = Math.min.apply(this, count);
+                }
+
+
+                //ahora que no tiene null lo busco de nuevo la propiedad  y le asigno la secuencia siguiente
+                //buscar el valor agregado que esta en 0
+                objtoUpdate = $.grep(plns, function (e) { return e.IAPlanSecuencia == 0; });
+                if (objtoUpdate && objtoUpdate.length == 1) {
+                    //set numero -1 para que no de error al buscar el mayor valor de la lista
+                    objtoUpdate[0].IAPlanSecuencia = maxCount + 1;
+
+                } else {
+
+                    alertify.alert('',"Contacte administrador, no se encuentra el valor -1 en planes");
+                }
+
+
+                //si recorro el datasource y me aparecen dos de los que acabo insertar
+                //entonces borro el que acabo de insertar
+                var vecesNombrePlan = 0;
+                //Prueba para no permito dos nombres iquals
+                $(plns).each(function (index, element) {
+                    var a = index;
+                    var el = element;
+                    if (element.IAPlanDescripcion == args.data.IAPlanDescripcion) {
+                        vecesNombrePlan = vecesNombrePlan + 1;
+
+                    }
+                    //si hay dos veces un plan entonces  borro el que acabo de insertar
+                    if (vecesNombrePlan == 2) {
+
+                        $("#Editing").ejGrid("deleteRecord", "IAPlanSecuencia", args.data);
+                        alertify.alert('','No puede repetir los  planes, ya existe el plan: ' + args.data.IAPlanDescripcion);
+                        return false;
+                    }
+
+                });
+
+
+
+            }
+
+            //$.each(args.model.dataSource, function (keyselected, valueselected) {
+            //    //keyselected["IAPlanSecuencia"] = secuGrid
+            //    valueselected.IAPlanSecuencia = secuGrid;
+            //    secuGrid--;
+            //});
+            //var gridObjPlan = $("#Editing").ejGrid("instance");
+            //gridObjPlan.dataSource(tra);//dataSource method
+        }
+
+        function endDelete(args) {
+
+
+
+            //solo realizo esto si se esta editando
+            //only on edit
+            if ($('#IAsegSecuencia').val().length !== 0) {
+
+                //verificar si no lo tiene un paciente este plan
+                //show screen block
+                $.LoadingOverlay("show");
+
+                //start ajax
+                $.ajax({
+                    async: false,
+                    type: "POST",
+                    url: '@Url.Action("VerifivarPaciente", ViewBag.ControlCsharp)',
+                    //data: formulSeri,
+                    //datatype: "application/json; charset=utf-8",
+                    contentType: "application/json;",
+                    datatype: 'json',
+                    data: JSON.stringify({
+                        'IAPlanDescripcion': args.data.IAPlanDescripcion
+                        ,
+                        'asegusec': $('#IAsegSecuencia').val()
+                        ,
+                        'plansec': args.data.IAPlanSecuencia
+                    }),
+                    cache: false,
+                    complete: (function () { $.LoadingOverlay("hide"); }),
+                    success: (function (data) {
+                        //si is true quiere decir  que ya hay un paciente con este plan a
+                        //no se puede borrar
+                        if (data.respuesta) {
+
+
+                            //agrego el que borro el metodo nuevamente al grid
+                            var a = args.data;
+                            $("#Editing").ejGrid("addRecord", a);
+
+                            alertify.alert('','No puede borrar este plan por que ya ha sido asigando a un paciente');
+                            return false;
+                        } else {
+                            //borrro el plan seleccionado
+                            ////if is not empty and from 1 to up
+                            //if( (jQuery.isEmptyObject($('#Consult_ReceSecuencia').val()) === false)&&  $('#Consult_ReceSecuencia').val() > 0){
+                            //    //var listToDelete = [1];
+                            //    var listToDelete = [parseInt($('#Consult_ReceSecuencia').val())];
+                            //    //excute btnnuevo
+                            //    $('#btnGinecoRecetaNuevo').trigger('click');
+
+                            //    receta.reduceRight(function (acc, obj, idx) {
+                            //        if (listToDelete.indexOf(obj.ReceSecuencia) > -1)
+                            //            receta.splice(idx, 1);
+                            //    }, 0);
+
+
+                        }//end else
+
+
+                    }),//end susccess
+                    error: (function () {
+
+                        try {
+                            alertify.alert('', 'Error en controller login y no se ejecuto el result json ');
+                        } catch (e) {
+                            alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                        }
+
+                    })   //end error
+                })//end ajax
+
+            }//end edit
+
+
+        }// endDelete(args);
+
+        //function create() {
+        //    alert("entro a crear");
+        //  //  return $("<input>");
+        //}
+
+        //function write(args) {
+        //    obj = $('#Editing').ejGrid('instance');
+        //    var data = ej.DataManager(obj.model.dataSource).executeLocal(new ej.Query().select("CustomerID"));
+        //    args.element.ejAutocomplete({ width: "100%", dataSource: data, enableDistinct: true, value: args.rowdata !== undefined ? args.rowdata["CustomerID"] : "" });
+        //}
+
+        //function read(args) {
+        //    args.ejAutocomplete('suggestionList').css('display', 'none');
+        //    return args.ejAutocomplete("getValue");
+        //}
+        //$("#Editing").keyup(function (e) {
+        //    if (e.keyCode == 40 && $(e.target).hasClass("e-autocomplete")) {
+        //        var autocomp = $("#Editing").ejAutocomplete("instance")
+        //        if (autocomp.getValue() != "" && autocomp.getActiveText() != "No suggestions")
+        //            $(e.target).val(autocomp.getActiveText());
+        //    }
+        //});
+
+
+
+
+
+
+
+
+
+
+        //function endEdit() {
+        //    var gridObj = $("#Editing").data("ejGrid");
+        //   // gridObj.refreshContent(); // Refreshes the grid contents only
+        //    gridObj.refreshContent(true); // Refreshes the template and grid contents
+        //}
+
+        //function create() {
+        //    return $("<input>");
+        //}
+
+        //function write(args) {
+        //    obj = $('#Editing').ejGrid('instance');
+        //    var data = ej.DataManager(obj.model.dataSource).executeLocal(new ej.Query().select("CustomerID"));
+        //    args.element.ejAutocomplete({ width: "100%", dataSource: data, enableDistinct: true, value: args.rowdata !== undefined ? args.rowdata["CustomerID"] : "" });
+        //}
+
+        //function read(args) {
+        //    args.ejAutocomplete('suggestionList').css('display', 'none');
+        //    return args.ejAutocomplete("getValue");
+        //}
+        //$("#Editing").keyup(function (e) {
+        //    if (e.keyCode == 40 && $(e.target).hasClass("e-autocomplete")) {
+        //        var autocomp = $("#EdittemplateCustomerID").ejAutocomplete("instance")
+        //        if (autocomp.getValue() != "" && autocomp.getActiveText() != "No suggestions")
+        //            $(e.target).val(autocomp.getActiveText());
+        //    }
+        //});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*end gridPlANES*/
+
+
+        $('#IAsegRNC').bind('keyup paste', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        function clearValidation(formElement) {
+            //Internal $.validator is exposed through $(form).validate()
+            var validator = $(formElement).validate();
+            //Iterate through named elements inside of the form, and mark them as error free
+            $('[name]', formElement).each(function () {
+                validator.successList.push(this);//mark as error free
+                validator.showErrors();//remove error messages if present
+            });
+            validator.resetForm();//remove error class on name elements and clear history
+            validator.reset();//remove all error and success data
+        }
+
+        function resetAllControls(f) {
+            f.find('input:text, input:password,input:hidden, input:file, select, textarea').val('');
+            f.find('input:radio, input:checkbox').prop('checked', false).prop('selected', false);
+
+            //lIMPIAR GRID planes
+            @*var gridObj = $("#Editing").ejGrid("instance");
+            var inc =  @Html.Raw(Json.Encode(ViewBag.ObjectoClean))
+            gridObj.dataSource(inc);//dataSource method*@
+
+            @*var gridObj = $("#Editing").ejGrid("instance");
+            var inc =  @Html.Raw(Json.Encode(ViewBag.ObjectoClean))
+            gridObj.dataSource('{ "DoctSecuencia": 0, "ClinSecuencia": 0, "ConsSecuencia": 0, "IAsegSecuencia": 0, "IAPlanSecuencia": 0, "IAPlanDescripcion": "" }');//dataSource method*@
+
+            //var inc = [{ DoctSecuencia: 0, ClinSecuencia: 0, ConsSecuencia: 0, IAsegSecuencia: 0, IAPlanSecuencia: 0, IAPlanDescripcion: "" }];
+
+            //// Create grid object.
+            //var gridObj = $("#Editing").data("ejGrid");
+            ////var defaultData = {OrderID:"10000"};
+            ////Set the default date to the column in grid.
+            //gridObj.setDefaultData(inc);
+
+            @*var inc =  @Html.Raw(Json.Encode(ViewBag.ObjectoClean))*@
+            var gridObjPlanes = $("#Editing").ejGrid("instance");
+            var nue = []
+            gridObjPlanes.dataSource([]);
+
+        };
+
+        jQuery(function ($) {
+            $("#IAsegTelefono").mask("(999) 999-9999");
+
+        });
+
+
+        //start document ready
+        $(document).ready(function () {
+
+            //formulario = 'frmInstitucionAseguradora';
+            //campoSecuencia = 'IAsegSecuencia';
+            //vista = 'Ini_InstitucionAseguradora';
+            //control = 'InstitucionAseguradora';
+
+
+
+
+            //valido si esta creando o editando
+            $("input").click(function () {
+
+                //editando
+                if ($("#" + campoSecuencia).val() > 0) {
+
+                    $("#EstadoAccion h2 span").html(" Editando");
+                } else {
+                    $("#EstadoAccion h2 span").html(" Creando");
+                }
+            });
+
+            //nuevo registro
+            $("#btnNuevo").click(function () {
+                //Form to clear
+                var formulario = $("#" + formularioGlobal);
+                //clear dataannotation
+                clearValidation(formulario);
+                //clear text
+                resetAllControls(formulario);
+                //clear div de accion
+                $('#EstadoAccion h2 span').empty();
+
+            });//end btnnuevo
+
+            //when press enter with focus in text doesn't triguet btnsave or metodo guardar
+            //$("#RoleDescripcion").keypress(function (event) {
+            //    //alert("ENTRO A GUARDAR Key");
+            //    if (event.which == 13) {
+            //        event.preventDefault();
+            //    }
+            //});
+
+            //start click savedoctor
+            $("#btnSave").on("click", function (e) {
+                //e.preventDefault();
+
+                var f = $('#' + formularioGlobal).valid();
+
+                if (f == false) {
+
+                    return false;
+                }
+
+                //button proseesand
+                var btn = $(this);
+                var todosbtn = $('button');
+                //bloquear boton
+                doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+                //form
+                var jsonString = $('#' + formularioGlobal).serializeToJSON();
+                //grid
+
+                var modeldataSource = $("#Editing").ejGrid("model.dataSource");
+
+
+
+                ////start validar si es editando
+                if ($("#IAsegSecuencia").val() > 0) {
+
+                     alertify.confirm('', '¿Seguro que desea Editar?', function () {
+                      
+                            var formulSeri = $('#' + formularioGlobal).serialize();
+
+                            //show screen block
+                            $.LoadingOverlay("show");
+
+
+                            //start ajax
+                            $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("Save", ViewBag.ControlCsharp)',
+                                //data: formulSeri,
+                                //datatype: "application/json; charset=utf-8",
+                                contentType: "application/json;",
+                                datatype: 'json',
+                                data: JSON.stringify({
+                                    'usar_InsitucionAseg': jsonString
+                                    ,
+                                    'planes': modeldataSource
+                                }),
+                                cache: false,
+                                complete: (function () {
+
+
+                                    $.LoadingOverlay("hide");
+                                }),
+                                success: (function (data) {
+
+                                    if (data.respuesta) {
+                                        $("#msgExitoso").show()
+                                        setTimeout('$("#msgExitoso").hide()', 3000);
+
+                                        alertify.success('Si')
+
+                                        //excute btnnuevo
+                                        $('#btnNuevo').trigger('click');
+                                        //RECARGAR GRID
+                                        var gridObj = $("#Searching").ejGrid("instance");
+                                        gridObj.dataSource(data.someCollection);//dataSource method
+
+                                        //var gridObjPlan = $("#Editing").ejGrid("instance");
+                                        //var prob = data.ObjectGridList;
+                                        //gridObjPlan.dataSource(data.ObjectGridList);//dataSource method
+
+
+                                    }
+                                    else {
+
+                                        alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                                    }
+
+
+                                    ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                                    doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+
+                                }),//end susccess
+                                error: (function () {
+
+                                    try {
+                                        alertify.alert('', 'Error en controller login y no se ejecuto el result json ' );
+                                    } catch (e) {
+                                        alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                                    }
+
+                                    //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                                    doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                                    //quito splash
+                                    //$.LoadingOverlay("hide");
+                                })   //end error
+                            })
+
+
+                       
+                     }
+                 , function () {
+                     ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                     doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                     alertify.error('No')
+                     return true;
+                 });/*End message confirm*/
+                }
+                    //Insertando
+                else {
+
+                    //show screen block
+                    $.LoadingOverlay("show");
+
+                    //start ajax
+                    $.ajax({
+
+                        type: "POST",
+                        url: '@Url.Action("Save", ViewBag.ControlCsharp)',
+                        //data: $('#' + formularioGlobal).serialize(),
+                        //datatype: "application/json; charset=utf-8",
+                        contentType: "application/json;",
+                        datatype: 'json',
+                        data: JSON.stringify({
+                            'usar_InsitucionAseg': jsonString
+                            ,
+                            'planes': modeldataSource
+                        }),
+                        cache: false,
+                        complete: (function () {
+
+
+                            $.LoadingOverlay("hide");
+                        }),
+                        success: (function (data) {
+
+                            if (data.respuesta) {
+
+                                $("#msgExitoso").show()
+                                setTimeout('$("#msgExitoso").hide()', 3000);
+
+                                //excute btnnuevo
+                                $('#btnNuevo').trigger('click');
+                                //Enlistar las ultimas 5 registros
+                                var gridObj = $("#Searching").ejGrid("instance");
+                                gridObj.dataSource(data.someCollection);//dataSource method
+                            }
+                            else {
+
+                                alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                                //undefined doen't has  value , empty or null
+                                if (data.redirect !== undefined && data.redirect !== null && data.redirect !== '') {
+                                    //var di = data.redirect;
+                                    //window.location.href = di;
+                                }
+                            }
+
+                            ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                            doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+                        }),//end susccess
+                        error: (function () {
+
+                            try {
+                                alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                            } catch (e) {
+                                alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                            }
+
+                            //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                            doct_EnableButtonAndEventClick($("#btnSave"), "Guardar", todosbtn);
+                            //quito splash
+                            //$.LoadingOverlay("hide");
+                        })   //end error
+                    })
+
+
+                }//end validar si es editando
+
+                return false;
+            });//end save click
+
+
+
+            $("#btnBorrar").click(function () {
+
+
+
+                //var f = $('#frmRole').valid();
+                var f = $('#' + formularioGlobal).valid();
+                if (f == false) {
+
+                    return false;
+                }
+                //var s = $("#RoleSecuencia").val();
+                var s = $("#" + campoSecuencia).val();
+                if (s == false) {
+                    alertify.alert('',"Favor seleccionar un role en el listado");
+                    return false;
+                }
+
+
+                //Preguntar si borrar
+                 alertify.confirm('', '¿Seguro que desea Borrar?', function () {
+                   
+                        //show screen block
+                        $.LoadingOverlay("show");
+                        //start ajax
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("Borrar", ViewBag.ControlCsharp)',
+                            data: $('#' + formularioGlobal).serialize(),
+                            datatype: "application/json; charset=utf-8",
+                            cache: false,
+                            complete: (function () {
+
+
+                                $.LoadingOverlay("hide");
+                            }),
+                            success: (function (data) {
+
+                                if (data.respuesta == true) {
+
+                                    //alertify.alert('',"Borrado exitosamente!");
+                                    //     window.location.reload();
+                                    //excute btnnuevo
+                                    $('#btnNuevo').trigger('click');
+                                    //mOSTRA MESAJE DE BIEN BORRADO
+                                    $("#msgBorrado").show()
+                                    setTimeout('$("#msgBorrado").hide()', 3000);
+
+                                    alertify.success('Si')
+
+                                    //RECARGAR GRID
+                                    var gridObj = $("#Searching").ejGrid("instance");
+                                    gridObj.dataSource(data.someCollection);//dataSource method
+
+                                } else {
+                                    alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                                }
+
+                            }),//end susccess
+                            error: (function () {
+
+                                try {
+                                    alertify.alert('', 'Error en controller login y no se ejecuto el result json ' );
+                                } catch (e) {
+                                    alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                                }
+                            })   //end error
+                        })
+
+                    
+                 }
+                 , function () {
+                    
+                     alertify.error('No')
+                     return true;
+                 });/*End message confirm*/
+            });//End  borrar
+
+
+        })//end ready document
+
+        //click edit grid
+        function onClick(args) {
+            //excute btnnuevo
+            $('#btnNuevo').trigger('click');
+            //button proseesand
+            var btn = $(this);
+            //var todosbtn = $('#btnDelete');
+            var todosbtn = $('button');
+            //bloquear boton
+            doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+            var grid = $("#Searching").ejGrid("instance");
+            var index = this.element.closest("tr").index();
+            var record = grid.getCurrentViewData()[index];
+
+            //alert("Record Details: " + JSON.stringify(record));
+
+
+            //show screen block
+            $.LoadingOverlay("show");
+            //send object to controller
+            //start ajax
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Editar", ViewBag.ControlCsharp)',
+                dataType: "json",
+                data: JSON.stringify(record),
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                complete: (function () {
+
+                    //No utilizo el  esbloqueador bloquear por que como la pagina se recarga
+                    //y le puse un bloqueador y desbloqueador  en el layout no necesito este
+                    //   $.LoadingOverlay("hide");
+                }),
+                success: (function (data) {
+
+                    if (data.respuesta) {
+
+                        var di = data.redirect;
+                        window.location.href = di;
+                    }
+                    else {
+
+                        alert(data.error);
+                    }
+
+                    ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                    doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+                }),//end susccess
+                error: (function () {
+
+                    try {
+                        alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                    } catch (e) {
+                        alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                    }
+
+                    //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                    doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+                })    //end error
+
+            })
+
+        }//end edit grid onClick
+
+
+    </script>
+}
+
+

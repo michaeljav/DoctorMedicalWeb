@@ -1,0 +1,372 @@
+
+/*div#LoginUsar_usuario, div#btnLogi > * {
+    display: inline-block;
+}*/
+
+.txt-right {
+    text-align: right;
+}
+
+.mg-top-s {
+    margin-top: 3px;
+}
+
+.mg-bottom-s {
+    margin-bottom: 8px;
+}
+
+div#btnLogi a {
+    font-size: 12px;
+    color: #0225f5;
+    font-weight: bolder;
+}
+
+.btn, .buttons, .modal-footer .btn + .btn, button {
+    background-color: #009688;
+    border: 1px solid #169F85;
+}
+
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.paddingLeftZero {
+    padding-left: 0px;
+}
+
+.paddingRightZero {
+    padding-right: 0px;
+}
+
+.mgLeftZero {
+    margin-left: 0px;
+}
+
+.mgRightZero {
+    margin-left: 0px;
+}
+
+/* center radio below label */
+.label-register-radioButon {
+    padding-left: 3px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.paddin16 {
+    PADDING-LEFT: 16px;
+}
+
+.checkboxgroup {
+    display: inline-block;
+    text-align: center;
+}
+
+    .checkboxgroup label {
+        display: block;
+    }
+
+/*start  Pagination*/
+.current {
+    color: green;
+}
+
+#pagin li {
+    display: inline-block;
+}
+
+
+#pagin a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+    #pagin a.current {
+        background-color: #337ab7;
+        color: white;
+        border-radius: 5px;
+    }
+
+    #pagin a:hover:not(.current) {
+        background-color: #ddd;
+        border-radius: 5px;
+    }
+
+/*End Pagination*/
+
+ul#pagin {
+    margin-top: 20px;
+    text-align: center;
+    padding-left: 0px;
+}
+
+button#btnRegistrarUser {
+    margin-top: 20px;
+}
+
+#RegistrarUser {
+    width: 70%;
+}
+
+
+
+
+.TextoAdvertencia {
+    font-size: 50px;
+    text-align: center;
+}
+
+
+.label-register {
+    padding-left: 0px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.textbox-register {
+    padding-left: 0px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+html, body {
+    /*padding-top: 30px;*/
+    height: 100%;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background: -webkit-linear-gradient(top,blue 0%,red 30%,green 80%,yellow 100%);
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a1dbff+0,cbebff+59,f0f9ff+100 */
+    background: #a1dbff; /* Old browsers */
+    background: -moz-linear-gradient(top, #a1dbff 0%, #cbebff 59%, #f0f9ff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #a1dbff 0%,#cbebff 59%,#f0f9ff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #a1dbff 0%,#cbebff 59%,#f0f9ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1dbff', endColorstr='#f0f9ff',GradientType=0 ); /* IE6-9 */
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+#artFirst {
+    background: red;
+    position: relative;
+    width: 90%;
+    height: 182px;
+    /*top: 196px;*/
+
+    /*top: 50%;
+    transform: translateY(-50%);*/
+   top: 50%;
+    transform: translateY(-50%); /* (x, y)  => position */
+  -ms-transform: translateY(-50%); /* IE 9 */
+  -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */    
+
+    margin: 0 auto;
+    max-width: 750px;
+}
+
+#loginUs {
+    /*display: block;*/
+}
+
+    #loginUs .well {
+        margin-bottom: 0px;
+    }
+
+    #loginUs.panel-primary {
+        width: 100%;
+        /*height: 182px;*/
+    }
+
+    #loginUs div.panel-body {
+        padding: 5px;
+    }
+
+.retroceder-label {
+    margin-left: -33px;
+}
+
+
+.retroceder-textbox {
+    margin-left: -27px;
+}
+
+.retroceder-boton {
+    margin-left: -20px;
+}
+
+.container-login {
+    /*min-height: 0;*/
+    /*width: 700px;*/
+    /*width: 100%;*/
+    height: 249px;
+    /*background-color: yellow;*/
+    /*color: #333333;*/
+    /*margin-top: 124PX;*/
+    margin-top: 10em;
+    padding: 0;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    /*padding-top: 30px;*/
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.labelMarginLogin {
+    margin-right: 61px;
+}
+
+
+#btnLogin {
+    margin-top: 34px;
+}
+
+.paddin-textbox-login {
+    padding-left: 15px;
+}
+
+
+
+.margin-col-login {
+    margin-left: -14px;
+}
+
+.margin-col-buton-login {
+    padding-left: 33px;
+}
+
+.btn-primary {
+    /*color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    width: 699px;*/
+}
+
+@media screen and (min-width: 480px) {
+
+    body {
+        /*background:blue;*/
+    }
+}
+
+@media screen and (min-width: 600px) {
+    body {
+        /*background:orange;*/
+    }
+}
+
+@media screen and (min-width: 767px) {
+    body {
+        /*background: yellow;*/
+    }
+
+    .pdgRight-s {
+        padding-right: 15px;
+    }
+
+    /*div#btnLogi > * {
+    display: block;
+}*/
+
+}
+
+@media screen and (min-width: 950px) {
+    body {
+        /*background:green;*/
+    }
+}
+
+
+
+
+
+
+
+/*screen-xs*/
+@media (max-width: 768px) {
+    #btnLogi.margin-col-buton-login {
+        padding-left: 44px;
+        /*margin-top: -28px;*/
+    }
+
+    #loginUs.panel-primary {
+        /*width: 700px;*/
+        /*height: 267px;*/
+    }
+}
+/*screen-sm*/
+@media (min-width: 768px) and (max-width: 992px) {
+    #btnLogi.margin-col-buton-login {
+        padding-left: 44px;
+        /*margin-top: -28px;*/
+    }
+
+    #loginUs.panel-primary {
+        /*width: 700px;*/
+        /*height: 267px;*/
+    }
+}
+/*screen-md*/
+@media (min-width: 992px) and (max-width: 1200px) {
+}
+/*screen-lg corresponds with col-lg*/
+@media (min-width: 1200px) {
+}
+
+
+
+
+
+
+
+
+
+
+/*CSS REGISTER*/
+
+
+h2 {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.container {
+    max-width: 360px;
+}
+
+.divider {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+    .divider hr {
+        margin: 7px 0px;
+        width: 35%;
+    }
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+/*FIN REGETIER*/

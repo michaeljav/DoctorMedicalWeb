@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)https://weblogs.asp.net/dixin/visual-studio-entity-data-model-wizard-not-responding -->
+<html lang="en-US" class="detail-blog-post url-visual-studio-entity-data-model-wizard-not-responding contents"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/getid.js.download"></script> 
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dixin's Blog - Visual Studio Entity Data Model Wizard Not Responding</title> 
+    <script async="" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/analytics.js.download"></script><script type="text/javascript" async="" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/recaptcha__es.js.download"></script><script async="" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/analytics.js.download"></script><script src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/jquery-1.11.1.min.js.download" type="text/javascript"></script>
+<!--[if lt IE 9]>
+<script src="//weblogs-asp.azureedge.net/node1/Themes/TheBootstrapMachine/Scripts/html5shiv.js?v=106159476" type="text/javascript"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script src="//weblogs-asp.azureedge.net/node1/Themes/TheBootstrapMachine/Scripts/respond.min.js?v=106159476" type="text/javascript"></script>
+<![endif]-->
+<script src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/bootstrap.min.js.download" type="text/javascript"></script>
+<meta content="Orchard" name="generator">
+<meta content="Visual Studio Entity Data Model Wizard Not Responding" name="og:title">
+<meta content="https://weblogs.asp.net/dixin/visual-studio-entity-data-model-wizard-not-responding" name="og:url">
+<meta content="article" name="og:type">
+<meta content="summary" name="twitter:card">
+<meta content="TSQL,SQL Server,Entity Framework" name="keywords">
+<meta content="This post is for the issue that Entity Data Model Wizard becomes not responding. In Visual Studio 2015, when clicking the Finish button to create the entity data model from SQL Server 2014 SP!&amp;#160;&amp;#8230;" name="description">
+<link href="https://weblogs-asp.azureedge.net/node1/favicon.ico?v=106159476" rel="shortcut icon" type="image/x-icon">
+<link href="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/styles.min.css" rel="stylesheet" type="text/css">
+
+<link rel="alternate" type="application/rss+xml" title="Dixin&#39;s Blog" href="https://weblogs.asp.net/dixin/rss?containerid=12">
+
+    <!--<link rel="stylesheet" type="text/css" href="https://weblogs.asp.net/Themes/TheBootstrapMachine/styles/azure/styles.min.css">-->
+<link rel="stylesheet" type="text/css" href="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/styles.min(1).css">
+<!--<link rel="stylesheet" type="text/css" href="https://mscblogs.blob.core.windows.net/media/dixin/Media/Blog/Style.css"/>-->
+<style type="text/css">
+    ul.blog-posts li .blog-post header h2 a,
+    ul.blog-posts li .blog-post header h2 a:link,
+    ul.blog-posts li .blog-post header h2 a:visited {
+        color: #157ab5;
+    }
+
+        ul.blog-posts li .blog-post header h2 a:hover,
+        ul.blog-posts li .blog-post header h2 a:active {
+            color: #2fa4e7;
+        }
+
+    /* Chrome */
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-weight: 300;
+    }
+
+    .navbar {
+        margin-bottom: 0;
+    }
+
+    .layout-navigation {
+        margin-bottom: 30px;
+    }
+
+    /* Title */
+    article.blog.content-item header h1 {
+        color: #000000;
+        font-size: 50px;
+        line-height: 1em;
+    }
+
+    /* Description */
+    div.blog-description p,
+    .widget-blogtitle p {
+        font-size: 20px;
+        font-weight: 300;
+    }
+
+    /* Homepage article title */
+    ul.blog-posts li .blog-post header {
+        border-top: 1px solid #CCCCCC;
+        margin-top: 25px;
+    }
+
+        ul.blog-posts li .blog-post header h2 {
+            font-size: 30px;
+            font-weight: 300;
+            line-height: 1.5em;
+            margin: 0.5em 0;
+        }
+
+    /* Homepage article content */
+    ul.blog-posts li .blog-post h1,
+    ul.blog-posts li .blog-post h2,
+    ul.blog-posts li .blog-post h3 {
+        color: rgb(80, 81, 81);
+        font-size: 20px;
+        line-height: 22px;
+        margin: 0 0 1em 0;
+        font-weight: normal;
+        font-family: wf_segoe-ui_normal, 'Segoe UI', Segoe, 'Segoe WP', Tahoma, Verdana, Arial, sans-serif;
+    }
+
+    /* Article title */
+    article.blog-post header h1 {
+        color: #000000;
+        font-size: 50px;
+        line-height: 1.5em;
+        margin: 0.5em 0;
+    }
+
+    .tags:before, .metadata:after {
+        height: 0;
+    }
+
+    /* Article content*/
+    .blog-post h1 {
+        font-size: 40px;
+    }
+
+    .blog-post h2 {
+        font-size: 30px;
+    }
+
+    .blog-post h3 {
+        font-size: 20px;
+    }
+
+    article.blog-post h1,
+    article.blog-post h2,
+    article.blog-post h3 {
+        color: rgb(49, 126, 172);
+        margin: 1em 0 0.5em 0;
+        line-height: 1.5em;
+    }
+
+    .blog-post blockquote {
+        background: url(https://aspblogs.blob.core.windows.net/media/dixin/Media/Blog/quote.gif) 8px 10px no-repeat;
+        padding: 50px 0 0 0px;
+        border: 1px solid #CCCCCC;
+        border-radius: 4px;
+    }
+
+    .blog-post blockquote p, .blog-post blockquote ul, .blog-post blockquote ol {
+        padding: 0px 9.5px;
+    }
+
+    .blog-post blockquote ul, .blog-post blockquote ol {
+        padding-left: 40px;
+    }
+
+    .label {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    article.blog-post ul {
+        margin-bottom: 10px;
+    }
+
+    article.blog-post table,
+    article.blog-post td {
+        border-color: rgb(80, 81, 81);
+        border-style: solid;
+    }
+
+    article.blog-post table {
+        border-width: 0 0 1px 1px;
+        border-spacing: 0;
+        border-collapse: collapse;
+        font-family: wf_segoe-ui_normal, 'Segoe UI', Segoe, 'Segoe WP', Tahoma, Verdana, Arial, sans-serif;
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    article.blog-post td {
+        border-width: 1px 1px 0 0;
+        padding: 2px 4px;
+    }
+
+    pre.code {
+        border: none;
+        border-radius: 0px;
+    }
+
+    @media (max-width:768px) {
+        ul.blog-posts, article.blog-post, ul.comments { 
+            word-wrap: break-word;
+        }
+
+        article.blog-post header h1 {
+            font-size: 30px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        article.widget-headerpicture {
+            display: none;
+        }
+    }
+
+    @media (max-width: 992px) {
+        article.blog-post pre.code {
+            overflow-x: auto;
+        }
+    }
+</style>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments);
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-494599-7', 'auto');
+    ga('send', 'pageview');
+</script>
+</head> 
+<body>
+    
+    
+
+<div class="aside-2" id="layout-wrapper">
+<div id="layout-navigation" class="group">
+    <div class="zone zone-navigation">
+<article class="widget-navigation widget-menu-widget widget">
+    
+<nav role="navigation">
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://weblogs.asp.net/dixin/">Dixin's Blog</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="navbar-nav nav menu menu-main-menu">
+                
+                
+<li class="first"><a href="https://weblogs.asp.net/dixin/">Coding</a>
+</li>
+<li><a href="https://weblogs.asp.net/dixin/linq-via-csharp">LINQ via C#</a>
+</li>
+<li><a href="https://weblogs.asp.net/dixin/rss?containerid=12">RSS</a>
+</li>
+<li><a href="https://www.flickr.com/dixin">Photography</a>
+</li>
+<li class="last"><a href="https://www.youtube.com/user/dixinyan">Videography</a>
+</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="https://weblogs.asp.net/dixin/Users/Account/LogOn?ReturnUrl=%2Fdixin%2Fvisual-studio-entity-data-model-wizard-not-responding" rel="nofollow">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+</article>
+<article class="widget-headerpicture widget-navigation widget-html-widget widget">
+    
+<div><img src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/Microsoft Way.jpg" style="max-width: 100%; vertical-align: middle;"></div>
+</article></div>
+</div>
+<div id="layout-main-container">
+<div id="layout-main" class="group">
+    <div id="layout-content" class="group">
+                <div id="before-content">
+            <div class="zone zone-before-content">
+<article class="widget-blogtitle widget-before-content widget-html-widget widget">
+    
+<h1 style="font-size: 50px; line-height: 50px; margin-top: 20px;">Dixin's Blog</h1>
+<p style="font-size: 20px; line-height: 30px;">Coding.</p>
+</article></div>
+        </div>
+                <div id="content" class="group">
+            <div class="zone zone-content">
+<article class="blog-post content-item">
+    <header>
+        
+
+
+
+
+<h1>Visual Studio Entity Data Model Wizard Not Responding</h1>
+
+            <div class="metadata">
+                <time class="clearfix" datetime="2016-02-13" pubdate="">Saturday, February 13, 2016</time>
+
+<div class="tags">
+        <a class="tag label label-default" rel="tag" href="https://weblogs.asp.net/dixin/Tags/TSQL">TSQL</a>
+        <a class="tag label label-default" rel="tag" href="https://weblogs.asp.net/dixin/Tags/SQL%20Server">SQL Server</a>
+        <a class="tag label label-default" rel="tag" href="https://weblogs.asp.net/dixin/Tags/Entity%20Framework">Entity Framework</a>
+</div>
+            </div>
+    </header>
+    
+<p>This post is for the issue that Entity Data Model Wizard becomes not responding. In Visual Studio 2015, when clicking the Finish button to create the entity data model from SQL Server 2014 SP! database, the wizard is frozen:</p>
+<p><a href="https://aspblogs.blob.core.windows.net/media/dixin/Windows-Live-Writer/2458277efd49_7AB8/image_2.png" target="_blank"><img width="617" height="559" title="image" style="border: 0px currentcolor; display: inline; background-image: none;" alt="image" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/image_thumb.png" border="0"></a></p>
+<p>Then:</p>
+<p><a href="https://aspblogs.blob.core.windows.net/media/dixin/Windows-Live-Writer/2458277efd49_7AB8/image_4.png" target="_blank"><img width="352" height="200" title="image" style="margin: 0px; border: 0px currentcolor; display: inline; background-image: none;" alt="image" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/image_thumb_1.png" border="0"></a></p>
+<p>There are some solutions like <a href="http://stackoverflow.com/questions/16901708/ado-net-entity-data-model-bug" target="_blank">deleting all data connections</a> in Server explorer (by delete file %AppData%\Microsoft\VisualStudio\14.0\ServerExplorer\DefaultView.SEView), but didn’t work for Visual Studio 2015 + SQL Server 2014 SP1. After trouble shooting with SQL Server Profiler, it shows Visual Studio hangs because it of the following query (the code is formatted for readability):</p>
+<pre class="code"><span style="color: blue;">SELECT
+    </span>[UnionAll1]<span style="color: gray;">.</span>[Ordinal] <span style="color: blue;">AS </span>[C1]<span style="color: gray;">,
+    </span>[Extent1]<span style="color: gray;">.</span>[CatalogName] <span style="color: blue;">AS </span>[CatalogName]<span style="color: gray;">,
+    </span>[Extent1]<span style="color: gray;">.</span>[SchemaName] <span style="color: blue;">AS </span>[SchemaName]<span style="color: gray;">,
+    </span>[Extent1]<span style="color: gray;">.</span>[Name] <span style="color: blue;">AS </span>[Name]<span style="color: gray;">,
+    </span>[UnionAll1]<span style="color: gray;">.</span>[Name] <span style="color: blue;">AS </span>[C2]<span style="color: gray;">,
+    </span>[UnionAll1]<span style="color: gray;">.</span>[IsNullable] <span style="color: blue;">AS </span>[C3]<span style="color: gray;">,
+    </span>[UnionAll1]<span style="color: gray;">.</span>[TypeName] <span style="color: blue;">AS </span>[C4]<span style="color: gray;">,
+    </span>[UnionAll1]<span style="color: gray;">.</span>[MaxLength] <span style="color: blue;">AS </span>[C5]<span style="color: gray;">,
+    </span>[UnionAll1]<span style="color: gray;">.</span>[Precision] <span style="color: blue;">AS </span>[C6]<span style="color: gray;">,
+    </span>[UnionAll1]<span style="color: gray;">.</span>[DateTimePrecision] <span style="color: blue;">AS </span>[C7]<span style="color: gray;">,
+    </span>[UnionAll1]<span style="color: gray;">.</span>[Scale] <span style="color: blue;">AS </span>[C8]<span style="color: gray;">,
+    </span>[UnionAll1]<span style="color: gray;">.</span>[IsIdentity] <span style="color: blue;">AS </span>[C9]<span style="color: gray;">,
+    </span>[UnionAll1]<span style="color: gray;">.</span>[IsStoreGenerated] <span style="color: blue;">AS </span>[C10]<span style="color: gray;">,
+    </span><span style="color: blue;">CASE
+        WHEN </span><span style="color: gray;">(</span>[Project5]<span style="color: gray;">.</span>[C2] <span style="color: gray;">IS NULL) </span><span style="color: blue;">THEN </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>0 <span style="color: blue;">AS bit</span><span style="color: gray;">)
+        </span><span style="color: blue;">ELSE </span>[Project5]<span style="color: gray;">.</span>[C2]
+    <span style="color: blue;">END AS </span>[C11]
+<span style="color: blue;">FROM </span><span style="color: gray;">(
+    </span><span style="color: blue;">SELECT
+        </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>TABLE_NAME<span style="color: gray;">) </span>[Id]<span style="color: gray;">,
+        </span>TABLE_CATALOG [CatalogName]<span style="color: gray;">,
+        </span>TABLE_SCHEMA [SchemaName]<span style="color: gray;">,
+        </span>TABLE_NAME [Name]
+    <span style="color: blue;">FROM </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">TABLES
+    </span><span style="color: blue;">WHERE </span>TABLE_TYPE <span style="color: gray;">= </span><span style="color: red;">'BASE TABLE'</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[Extent1]
+<span style="color: gray;">INNER JOIN (
+    </span><span style="color: blue;">SELECT
+        </span>[Extent2]<span style="color: gray;">.</span>[Id] <span style="color: blue;">AS </span>[Id]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[Name] <span style="color: blue;">AS </span>[Name]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[Ordinal] <span style="color: blue;">AS </span>[Ordinal]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[IsNullable] <span style="color: blue;">AS </span>[IsNullable]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[TypeName] <span style="color: blue;">AS </span>[TypeName]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[MaxLength] <span style="color: blue;">AS </span>[MaxLength]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[Precision] <span style="color: blue;">AS </span>[Precision]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[DateTimePrecision] <span style="color: blue;">AS </span>[DateTimePrecision]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[Scale] <span style="color: blue;">AS </span>[Scale]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[IsIdentity] <span style="color: blue;">AS </span>[IsIdentity]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[IsStoreGenerated] <span style="color: blue;">AS </span>[IsStoreGenerated]<span style="color: gray;">,
+        </span>0 <span style="color: blue;">AS </span>[C1]<span style="color: gray;">,
+        </span>[Extent2]<span style="color: gray;">.</span>[ParentId] <span style="color: blue;">AS </span>[ParentId]
+    <span style="color: blue;">FROM </span><span style="color: gray;">(
+        </span><span style="color: blue;">SELECT
+            </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">) </span>[Id]<span style="color: gray;">,
+            </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">) </span>[ParentId]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>COLUMN_NAME [Name]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>ORDINAL_POSITION [Ordinal]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: blue;">CASE </span>c<span style="color: gray;">.</span>IS_NULLABLE
+                <span style="color: blue;">WHEN </span><span style="color: red;">'YES' </span><span style="color: blue;">THEN </span>1
+                <span style="color: blue;">WHEN </span><span style="color: red;">'NO' </span><span style="color: blue;">THEN </span>0
+                <span style="color: blue;">ELSE </span>0
+            <span style="color: blue;">END AS bit</span><span style="color: gray;">) </span>[IsNullable]<span style="color: gray;">,
+            </span><span style="color: blue;">CASE
+                WHEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">IN (</span><span style="color: red;">'varchar'</span><span style="color: gray;">, </span><span style="color: red;">'nvarchar'</span><span style="color: gray;">, </span><span style="color: red;">'varbinary'</span><span style="color: gray;">) AND
+                    </span>c<span style="color: gray;">.</span>CHARACTER_MAXIMUM_LENGTH <span style="color: gray;">= -</span>1 <span style="color: blue;">THEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">+ </span><span style="color: red;">'(max)'
+                </span><span style="color: blue;">ELSE </span>c<span style="color: gray;">.</span>DATA_TYPE
+            <span style="color: blue;">END
+            AS </span>[TypeName]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>CHARACTER_MAXIMUM_LENGTH [MaxLength]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>NUMERIC_PRECISION <span style="color: blue;">AS integer</span><span style="color: gray;">) </span>[Precision]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>DATETIME_PRECISION <span style="color: blue;">AS integer</span><span style="color: gray;">) </span>[DateTimePrecision]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>NUMERIC_SCALE <span style="color: blue;">AS integer</span><span style="color: gray;">) </span>[Scale]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>COLLATION_CATALOG [CollationCatalog]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>COLLATION_SCHEMA [CollationSchema]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>COLLATION_NAME [CollationName]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>CHARACTER_SET_CATALOG [CharacterSetCatalog]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>CHARACTER_SET_SCHEMA [CharacterSetSchema]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>CHARACTER_SET_NAME [CharacterSetName]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>0 <span style="color: blue;">AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsMultiSet]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: magenta;">COLUMNPROPERTY</span><span style="color: gray;">(</span><span style="color: magenta;">OBJECT_ID</span><span style="color: gray;">(</span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: red;">'.' </span><span style="color: gray;">+ </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">)), </span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">, </span><span style="color: red;">'IsIdentity'</span><span style="color: gray;">) </span><span style="color: blue;">AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsIdentity]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: magenta;">COLUMNPROPERTY</span><span style="color: gray;">(</span><span style="color: magenta;">OBJECT_ID</span><span style="color: gray;">(</span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: red;">'.' </span><span style="color: gray;">+ </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">)), </span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">, </span><span style="color: red;">'IsComputed'</span><span style="color: gray;">) | </span><span style="color: blue;">CASE
+                WHEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">= </span><span style="color: red;">'timestamp' </span><span style="color: blue;">THEN </span>1
+                <span style="color: blue;">ELSE </span>0
+            <span style="color: blue;">END AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsStoreGenerated]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>COLUMN_DEFAULT <span style="color: blue;">AS </span>[Default]
+        <span style="color: blue;">FROM </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">COLUMNS </span>c
+        <span style="color: gray;">INNER JOIN </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">TABLES </span>t
+            <span style="color: blue;">ON </span>c<span style="color: gray;">.</span>TABLE_CATALOG <span style="color: gray;">= </span>t<span style="color: gray;">.</span>TABLE_CATALOG
+            <span style="color: gray;">AND </span>c<span style="color: gray;">.</span>TABLE_SCHEMA <span style="color: gray;">= </span>t<span style="color: gray;">.</span>TABLE_SCHEMA
+            <span style="color: gray;">AND </span>c<span style="color: gray;">.</span>TABLE_NAME <span style="color: gray;">= </span>t<span style="color: gray;">.</span>TABLE_NAME
+            <span style="color: gray;">AND </span>t<span style="color: gray;">.</span>TABLE_TYPE <span style="color: gray;">= </span><span style="color: red;">'BASE TABLE'</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[Extent2]
+    <span style="color: blue;">UNION </span><span style="color: gray;">ALL
+    </span><span style="color: blue;">SELECT
+        </span>[Extent3]<span style="color: gray;">.</span>[Id] <span style="color: blue;">AS </span>[Id]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[Name] <span style="color: blue;">AS </span>[Name]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[Ordinal] <span style="color: blue;">AS </span>[Ordinal]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[IsNullable] <span style="color: blue;">AS </span>[IsNullable]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[TypeName] <span style="color: blue;">AS </span>[TypeName]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[MaxLength] <span style="color: blue;">AS </span>[MaxLength]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[Precision] <span style="color: blue;">AS </span>[Precision]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[DateTimePrecision] <span style="color: blue;">AS </span>[DateTimePrecision]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[Scale] <span style="color: blue;">AS </span>[Scale]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[IsIdentity] <span style="color: blue;">AS </span>[IsIdentity]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[IsStoreGenerated] <span style="color: blue;">AS </span>[IsStoreGenerated]<span style="color: gray;">,
+        </span>6 <span style="color: blue;">AS </span>[C1]<span style="color: gray;">,
+        </span>[Extent3]<span style="color: gray;">.</span>[ParentId] <span style="color: blue;">AS </span>[ParentId]
+    <span style="color: blue;">FROM </span><span style="color: gray;">(
+        </span><span style="color: blue;">SELECT
+            </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">) </span>[Id]<span style="color: gray;">,
+            </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">) </span>[ParentId]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>COLUMN_NAME [Name]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>ORDINAL_POSITION [Ordinal]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: blue;">CASE </span>c<span style="color: gray;">.</span>IS_NULLABLE
+                <span style="color: blue;">WHEN </span><span style="color: red;">'YES' </span><span style="color: blue;">THEN </span>1
+                <span style="color: blue;">WHEN </span><span style="color: red;">'NO' </span><span style="color: blue;">THEN </span>0
+                <span style="color: blue;">ELSE </span>0
+            <span style="color: blue;">END AS bit</span><span style="color: gray;">) </span>[IsNullable]<span style="color: gray;">,
+            </span><span style="color: blue;">CASE
+                WHEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">IN (</span><span style="color: red;">'varchar'</span><span style="color: gray;">, </span><span style="color: red;">'nvarchar'</span><span style="color: gray;">, </span><span style="color: red;">'varbinary'</span><span style="color: gray;">) AND
+                    </span>c<span style="color: gray;">.</span>CHARACTER_MAXIMUM_LENGTH <span style="color: gray;">= -</span>1 <span style="color: blue;">THEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">+ </span><span style="color: red;">'(max)'
+                </span><span style="color: blue;">ELSE </span>c<span style="color: gray;">.</span>DATA_TYPE
+            <span style="color: blue;">END
+            AS </span>[TypeName]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>CHARACTER_MAXIMUM_LENGTH [MaxLength]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>NUMERIC_PRECISION <span style="color: blue;">AS integer</span><span style="color: gray;">) </span>[Precision]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>DATETIME_PRECISION <span style="color: blue;">AS integer</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[DateTimePrecision]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>NUMERIC_SCALE <span style="color: blue;">AS integer</span><span style="color: gray;">) </span>[Scale]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>COLLATION_CATALOG [CollationCatalog]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>COLLATION_SCHEMA [CollationSchema]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>COLLATION_NAME [CollationName]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>CHARACTER_SET_CATALOG [CharacterSetCatalog]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>CHARACTER_SET_SCHEMA [CharacterSetSchema]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>CHARACTER_SET_NAME [CharacterSetName]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>0 <span style="color: blue;">AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsMultiSet]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: magenta;">COLUMNPROPERTY</span><span style="color: gray;">(</span><span style="color: magenta;">OBJECT_ID</span><span style="color: gray;">(</span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: red;">'.' </span><span style="color: gray;">+ </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">)), </span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">, </span><span style="color: red;">'IsIdentity'</span><span style="color: gray;">) </span><span style="color: blue;">AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsIdentity]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: magenta;">COLUMNPROPERTY</span><span style="color: gray;">(</span><span style="color: magenta;">OBJECT_ID</span><span style="color: gray;">(</span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: red;">'.' </span><span style="color: gray;">+ </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">)), </span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">, </span><span style="color: red;">'IsComputed'</span><span style="color: gray;">) | </span><span style="color: blue;">CASE
+                WHEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">= </span><span style="color: red;">'timestamp' </span><span style="color: blue;">THEN </span>1
+                <span style="color: blue;">ELSE </span>0
+            <span style="color: blue;">END AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsStoreGenerated]<span style="color: gray;">,
+            </span>c<span style="color: gray;">.</span>COLUMN_DEFAULT [Default]
+        <span style="color: blue;">FROM </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">COLUMNS </span>c
+        <span style="color: gray;">INNER JOIN </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">VIEWS </span>v
+            <span style="color: blue;">ON </span>c<span style="color: gray;">.</span>TABLE_CATALOG <span style="color: gray;">= </span>v<span style="color: gray;">.</span>TABLE_CATALOG
+            <span style="color: gray;">AND </span>c<span style="color: gray;">.</span>TABLE_SCHEMA <span style="color: gray;">= </span>v<span style="color: gray;">.</span>TABLE_SCHEMA
+            <span style="color: gray;">AND </span>c<span style="color: gray;">.</span>TABLE_NAME <span style="color: gray;">= </span>v<span style="color: gray;">.</span>TABLE_NAME
+        <span style="color: blue;">WHERE </span><span style="color: gray;">NOT (</span>v<span style="color: gray;">.</span>TABLE_SCHEMA <span style="color: gray;">= </span><span style="color: red;">'dbo'
+        </span><span style="color: gray;">AND </span>v<span style="color: gray;">.</span>TABLE_NAME <span style="color: gray;">IN (</span><span style="color: red;">'syssegments'</span><span style="color: gray;">, </span><span style="color: red;">'sysconstraints'</span><span style="color: gray;">)
+        AND </span><span style="color: magenta;">SUBSTRING</span><span style="color: gray;">(</span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: magenta;">SERVERPROPERTY</span><span style="color: gray;">(</span><span style="color: red;">'productversion'</span><span style="color: gray;">) </span><span style="color: blue;">AS varchar</span><span style="color: gray;">(</span>20<span style="color: gray;">)), </span>1<span style="color: gray;">, </span>1<span style="color: gray;">) = </span>8<span style="color: gray;">)) </span><span style="color: blue;">AS </span>[Extent3]<span style="color: gray;">) </span><span style="color: blue;">AS </span>[UnionAll1]
+    <span style="color: blue;">ON </span><span style="color: gray;">(</span>0 <span style="color: gray;">= </span>[UnionAll1]<span style="color: gray;">.</span>[C1]<span style="color: gray;">)
+    AND (</span>[Extent1]<span style="color: gray;">.</span>[Id] <span style="color: gray;">= </span>[UnionAll1]<span style="color: gray;">.</span>[ParentId]<span style="color: gray;">)
+LEFT OUTER JOIN (
+    </span><span style="color: blue;">SELECT
+        </span>[UnionAll2]<span style="color: gray;">.</span>[Id] <span style="color: blue;">AS </span>[C1]<span style="color: gray;">,
+        </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>1 <span style="color: blue;">AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[C2]
+
+    <span style="color: blue;">FROM </span><span style="color: gray;">(
+        </span><span style="color: blue;">SELECT
+            </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>tc<span style="color: gray;">.</span>CONSTRAINT_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>tc<span style="color: gray;">.</span>CONSTRAINT_NAME<span style="color: gray;">) </span>[Id]<span style="color: gray;">,
+            </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>tc<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>tc<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">) </span>[ParentId]<span style="color: gray;">,
+            </span>tc<span style="color: gray;">.</span>CONSTRAINT_NAME [Name]<span style="color: gray;">,
+            </span>tc<span style="color: gray;">.</span>CONSTRAINT_TYPE [ConstraintType]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: blue;">CASE </span>tc<span style="color: gray;">.</span>IS_DEFERRABLE
+                <span style="color: blue;">WHEN </span><span style="color: red;">'NO' </span><span style="color: blue;">THEN </span>0
+                <span style="color: blue;">ELSE </span>1
+            <span style="color: blue;">END AS bit</span><span style="color: gray;">) </span>[IsDeferrable]<span style="color: gray;">,
+            </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: blue;">CASE </span>tc<span style="color: gray;">.</span>INITIALLY_DEFERRED
+                <span style="color: blue;">WHEN </span><span style="color: red;">'NO' </span><span style="color: blue;">THEN </span>0
+                <span style="color: blue;">ELSE </span>1
+            <span style="color: blue;">END AS bit</span><span style="color: gray;">) </span>[IsInitiallyDeferred]
+        <span style="color: blue;">FROM </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">TABLE_CONSTRAINTS </span>tc
+        <span style="color: blue;">WHERE </span>tc<span style="color: gray;">.</span>TABLE_NAME <span style="color: gray;">IS NOT NULL) </span><span style="color: blue;">AS </span>[Extent4]
+    <span style="color: gray;">INNER JOIN (
+        </span><span style="color: blue;">SELECT
+            </span>7 <span style="color: blue;">AS </span>[C1]<span style="color: gray;">,
+            </span>[Extent5]<span style="color: gray;">.</span>[ConstraintId] <span style="color: blue;">AS </span>[ConstraintId]<span style="color: gray;">,
+            </span>[Extent6]<span style="color: gray;">.</span>[Id] <span style="color: blue;">AS </span>[Id]
+        <span style="color: blue;">FROM </span><span style="color: gray;">(
+            </span><span style="color: blue;">SELECT
+                </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>CONSTRAINT_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>CONSTRAINT_NAME<span style="color: gray;">) </span>[ConstraintId]<span style="color: gray;">,
+                </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>TABLE_NAME<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>COLUMN_NAME<span style="color: gray;">) </span>[ColumnId]
+            <span style="color: blue;">FROM </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">KEY_COLUMN_USAGE</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[Extent5]
+        <span style="color: gray;">INNER JOIN (
+            </span><span style="color: blue;">SELECT
+                </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">) </span>[Id]<span style="color: gray;">,
+                </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">) </span>[ParentId]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>COLUMN_NAME [Name]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>ORDINAL_POSITION [Ordinal]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: blue;">CASE </span>c<span style="color: gray;">.</span>IS_NULLABLE
+                    <span style="color: blue;">WHEN </span><span style="color: red;">'YES' </span><span style="color: blue;">THEN </span>1
+                    <span style="color: blue;">WHEN </span><span style="color: red;">'NO' </span><span style="color: blue;">THEN </span>0
+                    <span style="color: blue;">ELSE </span>0
+                <span style="color: blue;">END AS bit</span><span style="color: gray;">) </span>[IsNullable]<span style="color: gray;">,
+                </span><span style="color: blue;">CASE
+                    WHEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">IN (</span><span style="color: red;">'varchar'</span><span style="color: gray;">, </span><span style="color: red;">'nvarchar'</span><span style="color: gray;">, </span><span style="color: red;">'varbinary'</span><span style="color: gray;">) AND
+                        </span>c<span style="color: gray;">.</span>CHARACTER_MAXIMUM_LENGTH <span style="color: gray;">= -</span>1 <span style="color: blue;">THEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">+ </span><span style="color: red;">'(max)'
+                    </span><span style="color: blue;">ELSE </span>c<span style="color: gray;">.</span>DATA_TYPE
+                <span style="color: blue;">END
+                AS </span>[TypeName]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>CHARACTER_MAXIMUM_LENGTH [MaxLength]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>NUMERIC_PRECISION <span style="color: blue;">AS integer</span><span style="color: gray;">) </span>[Precision]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>DATETIME_PRECISION <span style="color: blue;">AS integer</span><span style="color: gray;">) </span>[DateTimePrecision]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>NUMERIC_SCALE <span style="color: blue;">AS integer</span><span style="color: gray;">) </span>[Scale]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>COLLATION_CATALOG [CollationCatalog]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>COLLATION_SCHEMA [CollationSchema]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>COLLATION_NAME [CollationName]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>CHARACTER_SET_CATALOG [CharacterSetCatalog]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>CHARACTER_SET_SCHEMA [CharacterSetSchema]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>CHARACTER_SET_NAME [CharacterSetName]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>0 <span style="color: blue;">AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsMultiSet]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: magenta;">COLUMNPROPERTY</span><span style="color: gray;">(</span><span style="color: magenta;">OBJECT_ID</span><span style="color: gray;">(</span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: red;">'.' </span><span style="color: gray;">+ </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">)), </span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">, </span><span style="color: red;">'IsIdentity'</span><span style="color: gray;">) </span><span style="color: blue;">AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsIdentity]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: magenta;">COLUMNPROPERTY</span><span style="color: gray;">(</span><span style="color: magenta;">OBJECT_ID</span><span style="color: gray;">(</span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: red;">'.' </span><span style="color: gray;">+ </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">)), </span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">, </span><span style="color: red;">'IsComputed'</span><span style="color: gray;">) | </span><span style="color: blue;">CASE
+                    WHEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">= </span><span style="color: red;">'timestamp' </span><span style="color: blue;">THEN </span>1
+                    <span style="color: blue;">ELSE </span>0
+                <span style="color: blue;">END AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsStoreGenerated]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>COLUMN_DEFAULT <span style="color: blue;">AS </span>[Default]
+            <span style="color: blue;">FROM </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">COLUMNS </span>c
+            <span style="color: gray;">INNER JOIN </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">TABLES </span>t
+                <span style="color: blue;">ON </span>c<span style="color: gray;">.</span>TABLE_CATALOG <span style="color: gray;">= </span>t<span style="color: gray;">.</span>TABLE_CATALOG
+                <span style="color: gray;">AND </span>c<span style="color: gray;">.</span>TABLE_SCHEMA <span style="color: gray;">= </span>t<span style="color: gray;">.</span>TABLE_SCHEMA
+                <span style="color: gray;">AND </span>c<span style="color: gray;">.</span>TABLE_NAME <span style="color: gray;">= </span>t<span style="color: gray;">.</span>TABLE_NAME
+                <span style="color: gray;">AND </span>t<span style="color: gray;">.</span>TABLE_TYPE <span style="color: gray;">= </span><span style="color: red;">'BASE TABLE'</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[Extent6]
+            <span style="color: blue;">ON </span>[Extent6]<span style="color: gray;">.</span>[Id] <span style="color: gray;">= </span>[Extent5]<span style="color: gray;">.</span>[ColumnId]
+        <span style="color: blue;">UNION </span><span style="color: gray;">ALL
+        </span><span style="color: blue;">SELECT
+            </span>11 <span style="color: blue;">AS </span>[C1]<span style="color: gray;">,
+            </span>[Extent7]<span style="color: gray;">.</span>[ConstraintId] <span style="color: blue;">AS </span>[ConstraintId]<span style="color: gray;">,
+            </span>[Extent8]<span style="color: gray;">.</span>[Id] <span style="color: blue;">AS </span>[Id]
+        <span style="color: blue;">FROM </span><span style="color: gray;">(
+            </span><span style="color: blue;">SELECT
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(NULL </span><span style="color: blue;">AS nvarchar</span><span style="color: gray;">(</span>1<span style="color: gray;">)) </span>[ConstraintId]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(NULL </span><span style="color: blue;">AS nvarchar</span><span style="color: gray;">(</span><span style="color: magenta;">max</span><span style="color: gray;">)) </span>[ColumnId]
+            <span style="color: blue;">WHERE </span>1 <span style="color: gray;">= </span>2<span style="color: gray;">) </span><span style="color: blue;">AS </span>[Extent7]
+        <span style="color: gray;">INNER JOIN (
+            </span><span style="color: blue;">SELECT
+                </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">) </span>[Id]<span style="color: gray;">,
+                </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">) </span>[ParentId]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>COLUMN_NAME [Name]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>ORDINAL_POSITION [Ordinal]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: blue;">CASE </span>c<span style="color: gray;">.</span>IS_NULLABLE
+                    <span style="color: blue;">WHEN </span><span style="color: red;">'YES' </span><span style="color: blue;">THEN </span>1
+                    <span style="color: blue;">WHEN </span><span style="color: red;">'NO' </span><span style="color: blue;">THEN </span>0
+                    <span style="color: blue;">ELSE </span>0
+                <span style="color: blue;">END AS bit</span><span style="color: gray;">) </span>[IsNullable]<span style="color: gray;">,
+                </span><span style="color: blue;">CASE
+                    WHEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">IN (</span><span style="color: red;">'varchar'</span><span style="color: gray;">, </span><span style="color: red;">'nvarchar'</span><span style="color: gray;">, </span><span style="color: red;">'varbinary'</span><span style="color: gray;">) AND
+                        </span>c<span style="color: gray;">.</span>CHARACTER_MAXIMUM_LENGTH <span style="color: gray;">= -</span>1 <span style="color: blue;">THEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">+ </span><span style="color: red;">'(max)'
+                    </span><span style="color: blue;">ELSE </span>c<span style="color: gray;">.</span>DATA_TYPE
+                <span style="color: blue;">END
+                AS </span>[TypeName]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>CHARACTER_MAXIMUM_LENGTH [MaxLength]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>NUMERIC_PRECISION <span style="color: blue;">AS integer</span><span style="color: gray;">) </span>[Precision]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>DATETIME_PRECISION <span style="color: blue;">AS integer</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[DateTimePrecision]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>NUMERIC_SCALE <span style="color: blue;">AS integer</span><span style="color: gray;">) </span>[Scale]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>COLLATION_CATALOG [CollationCatalog]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>COLLATION_SCHEMA [CollationSchema]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>COLLATION_NAME [CollationName]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>CHARACTER_SET_CATALOG [CharacterSetCatalog]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>CHARACTER_SET_SCHEMA [CharacterSetSchema]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>CHARACTER_SET_NAME [CharacterSetName]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span>0 <span style="color: blue;">AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsMultiSet]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: magenta;">COLUMNPROPERTY</span><span style="color: gray;">(</span><span style="color: magenta;">OBJECT_ID</span><span style="color: gray;">(</span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: red;">'.' </span><span style="color: gray;">+ </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">)), </span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">, </span><span style="color: red;">'IsIdentity'</span><span style="color: gray;">) </span><span style="color: blue;">AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsIdentity]<span style="color: gray;">,
+                </span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: magenta;">COLUMNPROPERTY</span><span style="color: gray;">(</span><span style="color: magenta;">OBJECT_ID</span><span style="color: gray;">(</span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_SCHEMA<span style="color: gray;">) + </span><span style="color: red;">'.' </span><span style="color: gray;">+ </span><span style="color: magenta;">QUOTENAME</span><span style="color: gray;">(</span>c<span style="color: gray;">.</span>TABLE_NAME<span style="color: gray;">)), </span>c<span style="color: gray;">.</span>COLUMN_NAME<span style="color: gray;">, </span><span style="color: red;">'IsComputed'</span><span style="color: gray;">) | </span><span style="color: blue;">CASE
+                    WHEN </span>c<span style="color: gray;">.</span>DATA_TYPE <span style="color: gray;">= </span><span style="color: red;">'timestamp' </span><span style="color: blue;">THEN </span>1
+                    <span style="color: blue;">ELSE </span>0
+                <span style="color: blue;">END AS bit</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[IsStoreGenerated]<span style="color: gray;">,
+                </span>c<span style="color: gray;">.</span>COLUMN_DEFAULT [Default]
+            <span style="color: blue;">FROM </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">COLUMNS </span>c
+            <span style="color: gray;">INNER JOIN </span><span style="color: green;">INFORMATION_SCHEMA</span><span style="color: gray;">.</span><span style="color: green;">VIEWS </span>v
+                <span style="color: blue;">ON </span>c<span style="color: gray;">.</span>TABLE_CATALOG <span style="color: gray;">= </span>v<span style="color: gray;">.</span>TABLE_CATALOG
+                <span style="color: gray;">AND </span>c<span style="color: gray;">.</span>TABLE_SCHEMA <span style="color: gray;">= </span>v<span style="color: gray;">.</span>TABLE_SCHEMA
+                <span style="color: gray;">AND </span>c<span style="color: gray;">.</span>TABLE_NAME <span style="color: gray;">= </span>v<span style="color: gray;">.</span>TABLE_NAME
+            <span style="color: blue;">WHERE </span><span style="color: gray;">NOT (</span>v<span style="color: gray;">.</span>TABLE_SCHEMA <span style="color: gray;">= </span><span style="color: red;">'dbo'
+            </span><span style="color: gray;">AND </span>v<span style="color: gray;">.</span>TABLE_NAME <span style="color: gray;">IN (</span><span style="color: red;">'syssegments'</span><span style="color: gray;">, </span><span style="color: red;">'sysconstraints'</span><span style="color: gray;">)
+            AND </span><span style="color: magenta;">SUBSTRING</span><span style="color: gray;">(</span><span style="color: magenta;">CAST</span><span style="color: gray;">(</span><span style="color: magenta;">SERVERPROPERTY</span><span style="color: gray;">(</span><span style="color: red;">'productversion'</span><span style="color: gray;">) </span><span style="color: blue;">AS varchar</span><span style="color: gray;">(</span>20<span style="color: gray;">)), </span>1<span style="color: gray;">, </span>1<span style="color: gray;">) = </span>8<span style="color: gray;">)) </span><span style="color: blue;">AS </span>[Extent8]
+            <span style="color: blue;">ON </span>[Extent8]<span style="color: gray;">.</span>[Id] <span style="color: gray;">= </span>[Extent7]<span style="color: gray;">.</span>[ColumnId]<span style="color: gray;">) </span><span style="color: blue;">AS </span>[UnionAll2]
+        <span style="color: blue;">ON </span><span style="color: gray;">(</span>7 <span style="color: gray;">= </span>[UnionAll2]<span style="color: gray;">.</span>[C1]<span style="color: gray;">)
+        AND (</span>[Extent4]<span style="color: gray;">.</span>[Id] <span style="color: gray;">= </span>[UnionAll2]<span style="color: gray;">.</span>[ConstraintId]<span style="color: gray;">)
+    </span><span style="color: blue;">WHERE </span>[Extent4]<span style="color: gray;">.</span>[ConstraintType] <span style="color: gray;">= </span><span style="color: red;">N'PRIMARY KEY'</span><span style="color: gray;">) </span><span style="color: blue;">AS </span>[Project5]
+    <span style="color: blue;">ON </span>[UnionAll1]<span style="color: gray;">.</span>[Id] <span style="color: gray;">= </span>[Project5]<span style="color: gray;">.</span>[C1]
+<span style="color: blue;">WHERE </span>[Extent1]<span style="color: gray;">.</span>[Name] <span style="color: gray;">LIKE </span><span style="color: red;">N'%'
+</span></pre>
+<p>This query executes for almost 7 minutes to retrieve 491 rows of schema info:</p>
+<p><a href="https://aspblogs.blob.core.windows.net/media/dixin/Windows-Live-Writer/2458277efd49_7AB8/image_14.png" target="_blank"><img width="759" height="630" title="image" style="margin: 0px; border: 0px currentcolor; display: inline; background-image: none;" alt="image" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/image_thumb_6.png" border="0"></a></p>
+<p>This is too long running. After trying around, the only working solution is to <a href="https://msdn.microsoft.com/en-us/library/bb933794.aspx" target="_blank">change</a> SQL Server 2014 SP! database’s default <a href="https://msdn.microsoft.com/en-us/library/bb510680.aspx" target="_blank">compatibility mode</a> (120) to SQL Server 2012 (110):</p>
+<pre class="code"><span style="color: blue;">ALTER DATABASE </span>[AdventureWorks2014]
+<span style="color: blue;">SET COMPATIBILITY_LEVEL </span><span style="color: gray;">= </span>110<span style="color: gray;">;
+</span><span style="color: blue;">GO
+
+SELECT compatibility_level
+FROM </span><span style="color: green;">sys</span><span style="color: gray;">.</span><span style="color: green;">databases </span><span style="color: blue;">WHERE </span>name <span style="color: gray;">= </span><span style="color: red;">N'AdventureWorks2014'</span><span style="color: gray;">;
+</span><span style="color: blue;">GO
+</span></pre>
+<p>Then above schema query executes in 8 seconds:</p>
+<p><a href="https://aspblogs.blob.core.windows.net/media/dixin/Windows-Live-Writer/2458277efd49_7AB8/image_12.png" target="_blank"><img width="759" height="630" title="image" style="margin: 0px; border: 0px currentcolor; display: inline; background-image: none;" alt="image" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/image_thumb_5.png" border="0"></a></p>
+<p>Disregarding this long running query execution as <a href="https://entityframework.codeplex.com/workitem/2445" target="_blank">a regression</a>, at least in Entity Model Wizard, the UI thread should not be used to execute the query, which causes Visual Studio frozen.</p>
+</article></div>
+        </div>
+                <div id="after-content">
+            <div class="zone zone-after-content">
+
+<h2 class="comment-count">8 Comments</h2>
+<ul class="comments"><li class="first ">
+
+
+<blockquote class="comment comment-3470">
+
+    
+
+<p class="text">
+thanks for sharing. <br>
+this is a really great site. <br>
+
+</p>
+
+
+    <footer>
+        <span class="who"><strong><a href="http://xn----4mcbuhcsd6mvade17j9n.com/" rel="nofollow">تور کیش</a></strong></span>
+        - <span class="when"><time datetime="2015-12-19T01:37:10.0000000Z"><a class="alert-link" href="https://weblogs.asp.net/dixin/visual-studio-entity-data-model-wizard-not-responding#comment-3470">Friday, December 18, 2015 5:37:10 PM</a></time></span>
+    </footer>
+
+    
+</blockquote>
+
+
+</li>
+<li class="">
+
+
+<blockquote class="comment comment-3475">
+
+    
+
+<p class="text">
+ thanks for sharing. <br>
+
+</p>
+
+
+    <footer>
+        <span class="who"><strong><a href="http://ircctv.org/" rel="nofollow">دوربین مداربسته</a></strong></span>
+        - <span class="when"><time datetime="2015-12-24T10:35:58.0000000Z"><a class="alert-link" href="https://weblogs.asp.net/dixin/visual-studio-entity-data-model-wizard-not-responding#comment-3475">Thursday, December 24, 2015 2:35:58 AM</a></time></span>
+    </footer>
+
+    
+</blockquote>
+
+
+</li>
+<li class="">
+
+
+<blockquote class="comment comment-3528">
+
+    
+
+<p class="text">
+Yeah, it's not responding all th way, it pisses me off!!! <br>
+
+</p>
+
+
+    <footer>
+        <span class="who"><strong><a href="https://www.hydromaxbathmate.com/?ko=46" rel="nofollow">Hydromax</a></strong></span>
+        - <span class="when"><time datetime="2016-01-12T18:54:59.0000000Z"><a class="alert-link" href="https://weblogs.asp.net/dixin/visual-studio-entity-data-model-wizard-not-responding#comment-3528">Tuesday, January 12, 2016 10:54:59 AM</a></time></span>
+    </footer>
+
+    
+</blockquote>
+
+
+</li>
+<li class="">
+
+
+<blockquote class="comment comment-3764">
+
+    
+
+<p class="text">
+thanks for this <br>
+
+</p>
+
+
+    <footer>
+        <span class="who"><strong><a href="http://uonbi.ac.ke/" rel="nofollow">alcajerah</a></strong></span>
+        - <span class="when"><time datetime="2016-06-22T10:57:00.0000000Z"><a class="alert-link" href="https://weblogs.asp.net/dixin/visual-studio-entity-data-model-wizard-not-responding#comment-3764">Wednesday, June 22, 2016 3:57:00 AM</a></time></span>
+    </footer>
+
+    
+</blockquote>
+
+
+</li>
+<li class="">
+
+
+<blockquote class="comment comment-3773">
+
+    
+
+<p class="text">
+Thanks for sharing.  <br>
+It helps a lot! <br>
+
+</p>
+
+
+    <footer>
+        <span class="who"><strong>Roy</strong></span>
+        - <span class="when"><time datetime="2016-06-29T08:46:54.0000000Z"><a class="alert-link" href="https://weblogs.asp.net/dixin/visual-studio-entity-data-model-wizard-not-responding#comment-3773">Wednesday, June 29, 2016 1:46:54 AM</a></time></span>
+    </footer>
+
+    
+</blockquote>
+
+
+</li>
+<li class="">
+
+
+<blockquote class="comment comment-3779">
+
+    
+
+<p class="text">
+Worked great, thanks! <br>
+
+</p>
+
+
+    <footer>
+        <span class="who"><strong>Michael</strong></span>
+        - <span class="when"><time datetime="2016-07-01T19:55:07.0000000Z"><a class="alert-link" href="https://weblogs.asp.net/dixin/visual-studio-entity-data-model-wizard-not-responding#comment-3779">Friday, July 1, 2016 12:55:07 PM</a></time></span>
+    </footer>
+
+    
+</blockquote>
+
+
+</li>
+<li class="">
+
+
+<blockquote class="comment comment-3835">
+
+    
+
+<p class="text">
+Awesome, works like a charm :) <br>
+
+</p>
+
+
+    <footer>
+        <span class="who"><strong>Krunal Meher</strong></span>
+        - <span class="when"><time datetime="2016-08-03T15:49:35.0000000Z"><a class="alert-link" href="https://weblogs.asp.net/dixin/visual-studio-entity-data-model-wizard-not-responding#comment-3835">Wednesday, August 3, 2016 8:49:35 AM</a></time></span>
+    </footer>
+
+    
+</blockquote>
+
+
+</li>
+<li class="last ">
+
+
+<blockquote class="comment comment-3842">
+
+    
+
+<p class="text">
+I tried to be clever - and update the project to last versio of Entity Framework and also upgrade the sql server to last 2016 and nothing helps... <br>
+ <br>
+eventually, I SET COMPATIBILITY_LEVEL = 110; <br>
+and now it's working good. <br>
+ <br>
+What is our conclusions ? <br>
+Is microsoft still working on ef to suppport 120 version ? <br>
+ <br>
+Thanks ! <br>
+
+</p>
+
+
+    <footer>
+        <span class="who"><strong>alon</strong></span>
+        - <span class="when"><time datetime="2016-08-09T08:55:35.0000000Z"><a class="alert-link" href="https://weblogs.asp.net/dixin/visual-studio-entity-data-model-wizard-not-responding#comment-3842">Tuesday, August 9, 2016 1:55:35 AM</a></time></span>
+    </footer>
+
+    
+</blockquote>
+
+
+</li>
+</ul>
+
+
+
+
+
+
+
+    <span id="comment-form-beacon"></span>
+<form action="https://weblogs.asp.net/dixin/Comments/Comment/Create?ReturnUrl=%2Fdixin%2Fvisual-studio-entity-data-model-wizard-not-responding" class="comment-form" method="post"><div class="edit-item">
+    <div class="edit-item-primary">
+            <div class="edit-item-content">
+                
+
+<input id="JavaScriptAntiSpamPart_IAmHuman" name="JavaScriptAntiSpamPart.IAmHuman" type="hidden" value="False">
+
+
+        <legend id="add-comment">Add a Comment</legend>
+        <div class="form-group">
+            <label for="Comments_Author">Name</label>
+            <input class="form-control" id="Comments_Author" name="Comments.Author" type="text" value="">
+            <p class="help-block">As it will appear on the website</p>
+        </div>
+        <div class="form-group">
+            <label for="Comments_Email">Email</label>
+            <input class="form-control" id="Comments_Email" name="Comments.Email" type="text" value="">
+            <p class="help-block">Not displayed</p>
+        </div>
+        <div class="form-group">
+            <label for="Comments_SiteName">Url</label>
+            <input class="form-control" id="Comments_SiteName" name="Comments.SiteName" type="text" value="">
+            <p class="help-block">Your website</p>
+        </div>
+
+    <div class="form-group">
+        <label for="Comments_CommentText">Comment</label>
+        <textarea class="comment-text form-control" cols="30" id="Comments_CommentText" name="Comments.CommentText" rows="10"></textarea>
+    </div>
+    <input id="Comments_CommentedOn" name="Comments.CommentedOn" type="hidden" value="3468">
+    <input id="Comments_RepliedOn" name="Comments.RepliedOn" type="hidden" value="">
+
+<fieldset>
+    <input id="CommonPart_ContainerId" name="CommonPart.ContainerId" type="hidden" value="">
+</fieldset>
+    <script src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/api.js.download"></script>
+    <fieldset>
+        <div class="g-recaptcha" data-sitekey="6LeWMvMSAAAAABS5yD-ILrzuh9LsHPpFW-wS82_r"><div style="width: 304px; height: 78px;"><div><iframe src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/anchor.html" title="widget del recaptcha" width="304" height="78" frameborder="0" scrolling="no" name="undefined"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea></div></div>
+        <noscript>
+            &lt;div style="width: 302px; height: 352px;"&gt;
+                &lt;div style="width: 302px; height: 352px; position: relative;"&gt;
+                    &lt;div style="width: 302px; height: 352px; position: absolute;"&gt;
+                        &lt;iframe src="https://www.google.com/recaptcha/api/fallback?k=6LeWMvMSAAAAABS5yD-ILrzuh9LsHPpFW-wS82_r"
+                                frameborder="0" scrolling="no"
+                                style="width: 302px; height:352px; border-style: none;"&gt;
+                        &lt;/iframe&gt;
+                    &lt;/div&gt;
+                    &lt;div style="width: 250px; height: 80px; position: absolute; border-style: none;
+                                bottom: 21px; left: 25px; margin: 0px; padding: 0px; right: 25px;"&gt;
+                        &lt;textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                                  class="g-recaptcha-response"
+                                  style="width: 250px; height: 80px; min-height: 80px; border: 1px solid #c1c1c1;
+                                         margin: 0px; padding: 0px; resize: none;" value=""&gt;
+                        &lt;/textarea&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        </noscript>
+    </fieldset>
+
+            </div>
+    </div>
+    <div class="edit-item-secondary group">
+            </div>
+</div>
+
+        <button class="btn btn-primary" type="submit">Submit Comment</button>
+<input name="__RequestVerificationToken" type="hidden" value="CeMmhoRg3lg3hT_8nzr0c2SAiigKrk5yc8OUditfHeMkLVvEUmqz1OmMa2N4tPPie2b3LIvJQl3P1axU2uKJkNPGfTiEXQh3dMDRCCcQpik1"></form></div>
+        </div>
+    </div>
+    <aside id="aside-second" class="aside-second">
+        <div class="zone zone-aside-second">
+<article class="widget-Photos widget-aside-second widget-html-widget widget">
+    
+<p style="margin-top: 30px; margin-bottom: 20px;"><a target="_blank" href="https://flickr.com/dixin/9215169916/"><img width="225" height="225" alt="" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/DIX_8601.jpg"></a></p>
+<!--<p style="margin-bottom: 20px;"><a target="_blank" href="https://aspblogs.blob.core.windows.net:443/media/dixin/Media/Dixin-MVP.jpg"><img width="225" height="91" alt="" src="https://aspblogs.blob.core.windows.net:443/media/dixin/Media/Blog/MVP_horizontal.225.fw.jpg" /></a></p>-->
+<p style="margin-bottom: 20px;"><img width="225" height="180" alt="" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/Dixin.jpg"></p>
+<p class="social"><a href="https://weblogs.asp.net/dixin/rss?containerid=12"> <img src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/rss.png"></a> <a target="_blank" href="https://twitter.com/dixinyan"><img src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/twitter.png"></a> <a target="_blank" href="https://flickr.com/dixin"><img src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/Flickr.png" style="width: 32px; height: 32px;"></a></p>
+</article>
+<article class="widget-aside-second widget-tag-cloud widget">
+    
+
+<ul class="tag-cloud">
+        <li class="tag-cloud-tag tag-cloud-tag-4">
+
+
+            <a datascale="0.75" href="https://weblogs.asp.net/dixin/Tags/.NET" style="font-size:1.8em; font-weight:700">.NET</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/.NET%20Core" style="font-size:1em; font-weight:400">.NET Core</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/7z" style="font-size:1em; font-weight:400">7z</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/7-Zip" style="font-size:1em; font-weight:400">7-Zip</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/AJAX" style="font-size:1em; font-weight:400">AJAX</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Android" style="font-size:1em; font-weight:400">Android</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Applicative%20Functors" style="font-size:1em; font-weight:400">Applicative Functors</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/ASP" style="font-size:1em; font-weight:400">ASP</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/ASP.NET" style="font-size:1em; font-weight:400">ASP.NET</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/ASP.NET%20MVC" style="font-size:1em; font-weight:400">ASP.NET MVC</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Async" style="font-size:1em; font-weight:400">Async</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Await" style="font-size:1em; font-weight:400">Await</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Azure%20SQL%20Database" style="font-size:1em; font-weight:400">Azure SQL Database</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Bifunctors" style="font-size:1em; font-weight:400">Bifunctors</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-5">
+
+
+            <a datascale="1" href="https://weblogs.asp.net/dixin/Tags/C%23" style="font-size:2em; font-weight:800">C#</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/C%23%202.0" style="font-size:1em; font-weight:400">C# 2.0</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-2">
+
+
+            <a datascale="0.25" href="https://weblogs.asp.net/dixin/Tags/C%23%203.0" style="font-size:1.2em; font-weight:500">C# 3.0</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/C%23%204.0" style="font-size:1em; font-weight:400">C# 4.0</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/C%23%205.0" style="font-size:1em; font-weight:400">C# 5.0</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/C%23%206.0" style="font-size:1em; font-weight:400">C# 6.0</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/C%23%207.0" style="font-size:1em; font-weight:400">C# 7.0</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/C%23%20Features" style="font-size:1em; font-weight:400">C# Features</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Categories" style="font-size:1em; font-weight:400">Categories</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Category%20Theory" style="font-size:1em; font-weight:400">Category Theory</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Church%20Booleans" style="font-size:1em; font-weight:400">Church Booleans</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Church%20Encoding" style="font-size:1em; font-weight:400">Church Encoding</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Church%20Lists" style="font-size:1em; font-weight:400">Church Lists</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Church%20Numeral" style="font-size:1em; font-weight:400">Church Numeral</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Church%20Numerals" style="font-size:1em; font-weight:400">Church Numerals</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Church%20Pairs" style="font-size:1em; font-weight:400">Church Pairs</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Closure" style="font-size:1em; font-weight:400">Closure</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Code%20Analysis" style="font-size:1em; font-weight:400">Code Analysis</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Code%20First" style="font-size:1em; font-weight:400">Code First</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Coding%20Guidelines" style="font-size:1em; font-weight:400">Coding Guidelines</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Combinators" style="font-size:1em; font-weight:400">Combinators</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Combinatory%20Logic" style="font-size:1em; font-weight:400">Combinatory Logic</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Concurrency%20VIsualizer" style="font-size:1em; font-weight:400">Concurrency VIsualizer</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Conpression" style="font-size:1em; font-weight:400">Conpression</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Covariance%20And%20Contravariance" style="font-size:1em; font-weight:400">Covariance And Contravariance</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/CSS" style="font-size:1em; font-weight:400">CSS</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Curry" style="font-size:1em; font-weight:400">Curry</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Debug" style="font-size:1em; font-weight:400">Debug</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Dynamic" style="font-size:1em; font-weight:400">Dynamic</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/EF" style="font-size:1em; font-weight:400">EF</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/EF%20Core" style="font-size:1em; font-weight:400">EF Core</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Entity%20Framework" style="font-size:1em; font-weight:400">Entity Framework</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Entity%20Framework%20Core" style="font-size:1em; font-weight:400">Entity Framework Core</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Extraction" style="font-size:1em; font-weight:400">Extraction</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/F%23" style="font-size:1em; font-weight:400">F#</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Fiddler" style="font-size:1em; font-weight:400">Fiddler</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/File%20System" style="font-size:1em; font-weight:400">File System</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Fixed%20Point%20Combinator" style="font-size:1em; font-weight:400">Fixed Point Combinator</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Functional%20C%23" style="font-size:1em; font-weight:400">Functional C#</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-3">
+
+
+            <a datascale="0.5" href="https://weblogs.asp.net/dixin/Tags/Functional%20Programming" style="font-size:1.5em; font-weight:600">Functional Programming</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Functors" style="font-size:1em; font-weight:400">Functors</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/FxCop" style="font-size:1em; font-weight:400">FxCop</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Git" style="font-size:1em; font-weight:400">Git</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/GitHub" style="font-size:1em; font-weight:400">GitHub</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Hardware" style="font-size:1em; font-weight:400">Hardware</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Haskell" style="font-size:1em; font-weight:400">Haskell</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Higher-Order" style="font-size:1em; font-weight:400">Higher-Order</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/HTML" style="font-size:1em; font-weight:400">HTML</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/HTML5" style="font-size:1em; font-weight:400">HTML5</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/HTTP" style="font-size:1em; font-weight:400">HTTP</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Hyper-v" style="font-size:1em; font-weight:400">Hyper-v</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/IIS" style="font-size:1em; font-weight:400">IIS</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Introducing%20LINQ" style="font-size:1em; font-weight:400">Introducing LINQ</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Iota" style="font-size:1em; font-weight:400">Iota</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/ISO" style="font-size:1em; font-weight:400">ISO</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Iteractive%20Extensions" style="font-size:1em; font-weight:400">Iteractive Extensions</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Ix" style="font-size:1em; font-weight:400">Ix</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/JavaScript" style="font-size:1em; font-weight:400">JavaScript</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/jQuery" style="font-size:1em; font-weight:400">jQuery</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Lambda%20Calculus" style="font-size:1em; font-weight:400">Lambda Calculus</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Lambda%20Expression" style="font-size:1em; font-weight:400">Lambda Expression</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-3">
+
+
+            <a datascale="0.5" href="https://weblogs.asp.net/dixin/Tags/LINQ" style="font-size:1.5em; font-weight:600">LINQ</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/LINQ%20to%20Entities" style="font-size:1em; font-weight:400">LINQ to Entities</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/LINQ%20to%20Objects" style="font-size:1em; font-weight:400">LINQ to Objects</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/LINQ%20to%20SQL" style="font-size:1em; font-weight:400">LINQ to SQL</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/LINQ%20to%20XML" style="font-size:1em; font-weight:400">LINQ to XML</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-2">
+
+
+            <a datascale="0.25" href="https://weblogs.asp.net/dixin/Tags/LINQ%20via%20C%23" style="font-size:1.2em; font-weight:500">LINQ via C#</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/LINQ%20via%20C%23%20Series" style="font-size:1em; font-weight:400">LINQ via C# Series</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/MacOSX" style="font-size:1em; font-weight:400">MacOSX</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/MEF" style="font-size:1em; font-weight:400">MEF</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Microsoft" style="font-size:1em; font-weight:400">Microsoft</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Microsoft%20Redmond%20Campus" style="font-size:1em; font-weight:400">Microsoft Redmond Campus</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Monadal%20Categories" style="font-size:1em; font-weight:400">Monadal Categories</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Monadal%20Functors" style="font-size:1em; font-weight:400">Monadal Functors</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Monads" style="font-size:1em; font-weight:400">Monads</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Monoid%60" style="font-size:1em; font-weight:400">Monoid`</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Monoidal%20Categories" style="font-size:1em; font-weight:400">Monoidal Categories</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Monoidal%20Functors" style="font-size:1em; font-weight:400">Monoidal Functors</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Monoids" style="font-size:1em; font-weight:400">Monoids</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Natural%20Transformation" style="font-size:1em; font-weight:400">Natural Transformation</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Nexus" style="font-size:1em; font-weight:400">Nexus</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Node.js" style="font-size:1em; font-weight:400">Node.js</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/NTFS" style="font-size:1em; font-weight:400">NTFS</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Object-Relational%20Mapping" style="font-size:1em; font-weight:400">Object-Relational Mapping</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Observable" style="font-size:1em; font-weight:400">Observable</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Office" style="font-size:1em; font-weight:400">Office</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/OneDrive" style="font-size:1em; font-weight:400">OneDrive</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Open%20XML" style="font-size:1em; font-weight:400">Open XML</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Parallel%20Computing" style="font-size:1em; font-weight:400">Parallel Computing</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Parallel%20LINQ" style="font-size:1em; font-weight:400">Parallel LINQ</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Partial%20Application" style="font-size:1em; font-weight:400">Partial Application</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/PLINQ" style="font-size:1em; font-weight:400">PLINQ</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Process" style="font-size:1em; font-weight:400">Process</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Profiling" style="font-size:1em; font-weight:400">Profiling</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/RAR" style="font-size:1em; font-weight:400">RAR</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Reactive%20Extensions" style="font-size:1em; font-weight:400">Reactive Extensions</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Reductions" style="font-size:1em; font-weight:400">Reductions</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Ruby" style="font-size:1em; font-weight:400">Ruby</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Rx" style="font-size:1em; font-weight:400">Rx</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Seattle" style="font-size:1em; font-weight:400">Seattle</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Silverlight" style="font-size:1em; font-weight:400">Silverlight</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/SKI" style="font-size:1em; font-weight:400">SKI</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/SQL" style="font-size:1em; font-weight:400">SQL</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/SQL%20Azure" style="font-size:1em; font-weight:400">SQL Azure</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/SQL%20Functions" style="font-size:1em; font-weight:400">SQL Functions</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/SQL%20Server" style="font-size:1em; font-weight:400">SQL Server</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/SQL%20Stored%20Procedure" style="font-size:1em; font-weight:400">SQL Stored Procedure</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Storage" style="font-size:1em; font-weight:400">Storage</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/String%20Interpolation" style="font-size:1em; font-weight:400">String Interpolation</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Testing" style="font-size:1em; font-weight:400">Testing</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/TSQL" style="font-size:1em; font-weight:400">TSQL</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Tumblr" style="font-size:1em; font-weight:400">Tumblr</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/UI%20Design" style="font-size:1em; font-weight:400">UI Design</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Unicode" style="font-size:1em; font-weight:400">Unicode</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Usability" style="font-size:1em; font-weight:400">Usability</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/VHD" style="font-size:1em; font-weight:400">VHD</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/VHDX" style="font-size:1em; font-weight:400">VHDX</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Virtual%20Hard%20Disk" style="font-size:1em; font-weight:400">Virtual Hard Disk</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Virtual%20Machine" style="font-size:1em; font-weight:400">Virtual Machine</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Visual%20Studio" style="font-size:1em; font-weight:400">Visual Studio</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/VSTO" style="font-size:1em; font-weight:400">VSTO</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Web" style="font-size:1em; font-weight:400">Web</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/WebOS" style="font-size:1em; font-weight:400">WebOS</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Windows" style="font-size:1em; font-weight:400">Windows</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Windows%20Live" style="font-size:1em; font-weight:400">Windows Live</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Windows%20Live%20Writer" style="font-size:1em; font-weight:400">Windows Live Writer</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Windows%20Media%20Center" style="font-size:1em; font-weight:400">Windows Media Center</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/WMI" style="font-size:1em; font-weight:400">WMI</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/XHTML" style="font-size:1em; font-weight:400">XHTML</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/XML" style="font-size:1em; font-weight:400">XML</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Y%20Combinator" style="font-size:1em; font-weight:400">Y Combinator</a>
+        </li>
+        <li class="tag-cloud-tag tag-cloud-tag-1">
+
+
+            <a datascale="0" href="https://weblogs.asp.net/dixin/Tags/Zip" style="font-size:1em; font-weight:400">Zip</a>
+        </li>
+</ul>
+</article>
+<article class="widget-Map widget-aside-second widget-html-widget widget">
+    <header>
+        <h1>Map</h1>
+        
+    </header>
+    
+<p><a href="http://www.myworldmaps.net/mapstats.aspx?mapid=3c496209-ba15-4edf-b4c6-620808665d09" target="_blank"><img src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/small"></a></p>
+</article>
+<article class="widget-aside-second widget-blog-archives widget">
+    <header>
+        <h1>Archives</h1>
+        
+    </header>
+    
+<div class="archives">
+    <ul class="years">
+
+        <li>
+            <h4>2017</h4>
+             <ul class="archiveMonthList"><li class="first"><a href="https://weblogs.asp.net/dixin/archive/2017/3">March (3)</a></li><li class="last"><a href="https://weblogs.asp.net/dixin/archive/2017/1">January (148)</a></li></ul>
+       </li>
+        <li class="previous">
+            <h4>2016 <span>(424)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="https://weblogs.asp.net/dixin/archive/2016/12">December (26)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2016/11">November (19)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2016/10">October (12)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2016/9">September (95)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2016/8">August (80)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2016/7">July (6)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2016/6">June (11)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2016/5">May (79)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2016/4">April (90)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2016/3">March (2)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2016/2">February (2)</a></li><li class="last"><a href="https://weblogs.asp.net/dixin/archive/2016/1">January (2)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2015 <span>(134)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="https://weblogs.asp.net/dixin/archive/2015/11">November (50)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2015/8">August (5)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2015/5">May (11)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2015/4">April (2)</a></li><li class="last"><a href="https://weblogs.asp.net/dixin/archive/2015/2">February (66)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2014 <span>(8)</span></h4>
+            <ul class="archiveMonthList"><li class="first last"><a href="https://weblogs.asp.net/dixin/archive/2014/11">November (8)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2013 <span>(0)</span></h4>
+            
+        </li>
+        <li class="previous">
+            <h4>2012 <span>(32)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="https://weblogs.asp.net/dixin/archive/2012/12">December (7)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2012/11">November (19)</a></li><li class="last"><a href="https://weblogs.asp.net/dixin/archive/2012/3">March (6)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2011 <span>(10)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="https://weblogs.asp.net/dixin/archive/2011/6">June (2)</a></li><li class="last"><a href="https://weblogs.asp.net/dixin/archive/2011/1">January (8)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2010 <span>(299)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="https://weblogs.asp.net/dixin/archive/2010/12">December (2)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2010/10">October (4)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2010/6">June (6)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2010/5">May (6)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2010/4">April (24)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2010/3">March (256)</a></li><li class="last"><a href="https://weblogs.asp.net/dixin/archive/2010/1">January (1)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2009 <span>(421)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="https://weblogs.asp.net/dixin/archive/2009/12">December (25)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2009/11">November (199)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2009/10">October (14)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2009/9">September (168)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2009/8">August (10)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2009/6">June (1)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2009/3">March (2)</a></li><li class="last"><a href="https://weblogs.asp.net/dixin/archive/2009/2">February (2)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2008 <span>(4)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="https://weblogs.asp.net/dixin/archive/2008/12">December (1)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2008/11">November (1)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2008/6">June (1)</a></li><li class="last"><a href="https://weblogs.asp.net/dixin/archive/2008/1">January (1)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2007 <span>(9)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="https://weblogs.asp.net/dixin/archive/2007/12">December (2)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2007/11">November (1)</a></li><li><a href="https://weblogs.asp.net/dixin/archive/2007/10">October (3)</a></li><li class="last"><a href="https://weblogs.asp.net/dixin/archive/2007/9">September (3)</a></li></ul>
+        </li>
+    </ul>
+</div>
+</article>
+<article class="widget-aside-second widget-recent-blog-posts widget">
+    <header>
+        <h1>Recent Posts</h1>
+        
+    </header>
+    <ul class="recent-posts">
+    <li>
+        <a href="https://weblogs.asp.net/dixin/lambda-calculus-via-csharp-7-fixed-point-combinator-and-recursion">Lambda Calculus via C# (7) Fixed Point Combinator and Recursion</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/lambda-calculus-via-csharp-6-combinatory-logic">Lambda Calculus via C# (6) Combinatory Logic</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/lambda-calculus-via-csharp-5-list">Lambda Calculus via C# (5) List</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/lambda-calculus-via-csharp-4-tuple-and-signed-numeral">Lambda Calculus via C# (4) Tuple and Signed Numeral</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/functional-csharp-asynchronous-function">Functional C# (14) Asynchronous Function</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/entity-framework-core-and-linq-to-entities-9-performance">Entity Framework/Core and LINQ to Entities (9) Performance</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/entity-framework-core-and-linq-to-entities-8-optimistic-concurrency">Entity Framework/Core and LINQ to Entities (8) Optimistic Concurrency</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/entity-framework-core-and-linq-to-entities-7-data-changes-and-transactions">Entity Framework/Core and LINQ to Entities (7) Data Changes and Transactions</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/debugging-classic-asp-with-visual-studio">Debugging Classic ASP with Modern Visual Studio</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/entity-framework-core-and-linq-to-entities-6-query-data-loading">Entity Framework/Core and LINQ to Entities (6) Query Data Loading</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/entity-framework-core-and-linq-to-entities-5-query-translation-implementation">Entity Framework/Core and LINQ to Entities (5) Query Translation Implementation</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/entity-framework-core-and-linq-to-entities-4-query-methods">Entity Framework/Core and LINQ to Entities (4) Query Methods (Operators)</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/entity-framework-core-and-linq-to-entities-3-logging-and-tracing-queries">Entity Framework/Core and LINQ to Entities (3) Logging and Tracing Queries</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/entity-framework-core-and-linq-to-entities-2-modeling-database-object-relational-mapping">Entity Framework/Core and LINQ to Entities (2) Modeling Database: Object-Relational Mapping</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/entity-framework-core-and-linq-to-entities-1-remote-query">Entity Framework/Core and LINQ to Entities (1) Remote Query</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/functional-csharp-pattern-matching">Functional C# (15) Pattern matching</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/functional-csharp-local-function-and-closure">Functional C# (5) Local Function and Closure</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/functional-csharp-function-parameter-and-return-value">Functional C# (3) Function Parameter and Return Value</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/category-theory-via-csharp-8-more-linq-to-monads">Category Theory via C# (8) More LINQ to Monads</a>
+    </li>
+    <li>
+        <a href="https://weblogs.asp.net/dixin/category-theory-via-csharp-7-monad-and-linq-to-monads">Category Theory via C# (7) Monad and LINQ to Monads</a>
+    </li>
+</ul>
+
+</article>
+<article class="widget-aside-second widget-html-widget widget">
+    <header>
+        <h1>Friends</h1>
+        
+    </header>
+    
+<ul>
+<li><a href="http://markzhou.com/" target="_blank">Mark Zhou</a></li>
+<li><a href="http://www.walkintothewind.com/" target="_blank">Yingfeng Huang - Walk into the wind</a></li>
+</ul>
+</article></div>
+    </aside>
+</div>
+</div>
+<div id="layout-footer" class="group">
+    <footer id="footer">
+        <div id="footer-quad" class="group">
+                                            </div>
+        <div id="footer-sig" class="group">
+            <div class="zone zone-footer">    <div class="credits text-muted"><span class="terms"><a href="http://www.asp.net/terms-of-use">Terms Of Use</a></span> - <span class="poweredby">Powered by <a href="http://www.orchardproject.net/" target="_blank">Orchard</a></span></div>
+</div>
+        </div>
+    </footer>
+</div>
+</div>
+
+        <script type="text/javascript">
+        (function ($) {
+            var $field = $("#JavaScriptAntiSpamPart_IAmHuman");
+
+            $field.closest("form").submit(function () {
+                $field.val("True");
+            });
+        })(jQuery);
+    </script>
+
+
+    <script>
+		(function (i, s, o, g, r, a, m)
+		{
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function ()
+			{
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-61337531-1', 'auto');
+		ga('send', 'pageview');
+    </script>
+    <script src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/broker.js.download"></script>
+    <script type="text/javascript" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/prod-analytics-asp.min.js.download"></script>
+    <script>
+    $("div.zone div.blog-description").text("Coding.");
+</script>
+
+<script type="text/javascript" src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/ms.js.download"></script><div style="background-color: #fff; border: 1px solid #ccc; box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2); position: absolute; left: 0px; top: -10000px; transition: visibility 0s linear 0.3s, opacity 0.3s linear; opacity: 0; visibility: hidden; z-index: 2000000000;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: #fff; opacity: 0.05;  filter: alpha(opacity=5)"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0; height: 0; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0; height: 0; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe src="./Dixin&#39;s Blog - Visual Studio Entity Data Model Wizard Not Responding_files/bframe.html" title="Reto recaptcha" frameborder="0" scrolling="no" name="d4nnhev2boa0" style="width: 100%; height: 100%;"></iframe></div></div></body></html>

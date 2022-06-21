@@ -1,0 +1,357 @@
+﻿@model IEnumerable<DoctorMedicalWeb.Models.Usar_TipoFormulario>
+
+@{
+    ViewBag.Title = "lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+}
+
+
+<script src="~/Scripts/ej/web/ej.grid.min.js"></script>
+<script src="~/Scripts/ej/web/ej.pager.min.js"></script>
+<script src="~/Scripts/ej/web/ej.waitingpopup.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dropdownlist.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dialog.min.js"></script>
+<script src="~/Scripts/ej/web/ej.button.min.js"></script>
+<script src="~/Scripts/ej/web/ej.autocomplete.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.checkbox.min.js"></script>
+<script src="~/Scripts/ej/web/ej.editor.min.js"></script>
+<script src="~/Scripts/ej/web/ej.tooltip.min.js"></script>
+<script src="~/Scripts/ej/web/ej.toolbar.min.js"></script>
+<script src="~/Scripts/ej/web/ej.menu.min.js"></script>
+<script src="~/Scripts/ej/web/ej.radiobutton.min.js"></script>
+<script src="~/Scripts/ej/web/ej.excelfilter.min.js"></script>
+
+
+<a class="btn btn-info btn-lg"  href=@Url.Action("Ini_TipoFormulario", "TipoFormulario")><span class="glyphicon glyphicon-arrow-left"></span></a>
+<div class="jumbotron">
+    <h1>Listado</h1>
+   
+</div>
+@{<span class="sampleName"> Listado</span>}
+@{
+    @(Html.EJ().Grid<DoctorMedicalWeb.Models.Usar_TipoFormulario>("Searching")
+                    .Datasource((IEnumerable<object>)ViewBag.datasource)
+                        //.ClientSideEvents(eve => eve.RecordDoubleClick("onClick"))   
+                         
+           .ToolbarSettings(toolbar =>
+                {
+                    toolbar.ShowToolbar().ToolbarItems(items =>
+                    {
+                        items.AddTool(ToolBarItems.PrintGrid);
+                    });
+                })
+       
+        .AllowPaging()
+        .ToolbarSettings(toolbar => { toolbar.ShowToolbar().ToolbarItems(items => { items.AddTool(ToolBarItems.Search); }); })
+        .Columns(col =>
+        {
+           col.Field("TFormSecuencia").HeaderText("ID").IsPrimaryKey(true).TextAlign(TextAlign.Right).Width(75).Add();
+           col.Field("TFormDescripcion").HeaderText("Formulario").Width(120).Add();       
+         col.HeaderText("Gestionar Registros").Commands(command =>
+            {
+                command.Type("detail")
+                       .ButtonOptions(new Syncfusion.JavaScript.Models.ButtonProperties()
+                       {
+                           Text = "Editar",
+                           Width = "100px",
+                           Click = "onClick"
+                       }).Add();
+                
+            }).TextAlign(TextAlign.Left)
+
+            .Width(150)
+            .Add();
+            
+          }        
+          )
+
+       
+    )
+}
+
+<script type="text/javascript">
+
+    //$("#Grid").ejGrid({
+    //    recordDoubleClick: function (args) { }
+    //});
+
+    //$("#Searching").ready(function () {
+ 
+
+    //    $("#Searching").ejGrid({
+            @*recordDoubleClick: function (args) {
+                alert("entro");
+                var a;
+                @{if (ViewBag.dataSource != null) {
+
+                        @:a = true;        
+                }
+                }
+
+                if(a==true)
+                    //onClick(args);
+                  
+            
+                    alert(" Paso");
+                //$('#btnNuevo').trigger('click');
+            }*@
+    //    });
+
+    //});
+    //$(document).ready(function () {
+    //    $("#Searching").ejGrid({
+    //        recordDoubleClick: function (args) {
+
+    //            alert("preuba");
+
+    //            // args.cancel   - Returns the cancel option value.
+
+    //            // args.model    - Returns the grid model.
+
+    //            // args.type     - Returns the name of the event.
+
+    //            //args.currentRowIndex  -Return the index of the row clicked.
+
+    //            //args.currentRow  -Return the target row.
+
+    //            //args.currentData  -Return the data of the row.
+
+    //        }
+    //    });
+
+    //});
+
+
+    function onClick(args) {
+        //button proseesand
+        var btn = $(this);
+        //var todosbtn = $('#btnDelete');
+        var todosbtn = $('button');
+        //bloquear boton
+        doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+        var grid = $("#Searching").ejGrid("instance");
+        var index = this.element.closest("tr").index();
+        var record = grid.getCurrentViewData()[index];
+
+        //alert("Record Details: " + JSON.stringify(record));
+
+        //send object to controller
+        //start ajax
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Editar", "TipoFormulario")',
+            dataType: "json",
+            data: JSON.stringify(record),
+            contentType: "application/json; charset=utf-8",
+            cache: false
+        })
+        .success(function (data) {
+
+            if (data.respuesta) {
+
+                //$("#msgExitoso").fadeIn('slow').animate({ opacity: 1.0 }, 1500).effect("pulsate", { times: 2 }, 800).fadeOut('slow');
+                //$("#msgExitoso").show()
+                //setTimeout('$("#msgExitoso").hide()', 2500);
+
+                //location.reload();
+                var di = data.redirect;
+                window.location.href = di;
+            }
+            else {
+
+                alert(data.error);
+            }
+
+
+            ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+            doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+
+        })//end susccess
+        .error(function () {
+
+            try {
+                alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+            } catch (e) {
+                alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+            }
+
+            //cuando devuelva del controlador la respuesta entonces se abilita el boton
+            doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+            //quito splash
+            //$.LoadingOverlay("hide");
+        });    //end error
+
+    }//end onClick
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div>
+
+    @{<span class="sampleName"> Grid/Edting/Command Column</span>}
+    @{
+        @(Html.EJ().Grid<DoctorMedicalWeb.Models.Usar_TipoFormulario>("CommandGrid")
+                            .Datasource(ds => ds.Json((IEnumerable<object>)ViewBag.dataSource).UpdateURL("CommandUpdate").RemoveURL("CommandDelete").Adaptor(AdaptorType.RemoteSaveAdaptor))
+                            //.Datasource(ds => ds.Json((IEnumerable<object>)ViewBag.dataSource).CrudURL("CommandUpdate").Adaptor(AdaptorType.RemoteSaveAdaptor))
+            .AllowPaging()
+            .EnableAutoSaveOnSelectionChange(true)
+            .PageSettings(page => { page.PageSize(10); })
+            .EnableRowHover(true)
+
+
+                            //.EditSettings(edit => { edit.AllowDeleting().AllowEditOnDblClick(false); })
+                                   .EditSettings(edit => { edit.AllowDeleting().AllowEditing().AllowEditOnDblClick(true); })
+            .Columns(col =>
+            {
+                col.Field("TFormSecuencia").HeaderText("Order ID").IsPrimaryKey(true).TextAlign(TextAlign.Right).Width(75).Add();
+                col.Field("TFormDescripcion").HeaderText("Customer ID").Width(120).Add();
+                //col.Field("OrderID").HeaderText("Order ID").IsPrimaryKey(true).TextAlign(TextAlign.Right).Width(75).Add();
+                //col.Field("EmployeeID").HeaderText("Employee ID").TextAlign(TextAlign.Right).EditType(EditingType.Numeric).ValidationRules(v => v.AddRule("number", true)).Width(90).Add();
+                //col.Field("Freight").HeaderText("Freight").TextAlign(TextAlign.Right).EditType(EditingType.Numeric).Width(75).Format("{0:C}").NumericEditOptions(new EditorProperties() { DecimalPlaces = 2 }).ValidationRules(v => v.AddRule("range", "[0,1000]")).Add();
+                //col.Field("ShipCity").HeaderText("Ship City").Width(90).ValidationRules(v => v.AddRule("required", true)).Add();
+                //col.Field("ShipCountry").HeaderText("Ship Country").Width(90).Add();
+                //col.Field("Verified").HeaderText("Verified").EditType(EditingType.Boolean).Width(75).Add();
+                col.HeaderText("Manage Records").Commands(command =>
+                {
+                    //command.Type(UnboundType.Edit)
+                    command.Type(UnboundType.Edit)
+                               .ButtonOptions(new Syncfusion.JavaScript.Models.ButtonProperties()
+                           {
+                               Text = "Edit",
+
+
+                           }).Add();
+                    command.Type(UnboundType.Delete)
+                           .ButtonOptions(new Syncfusion.JavaScript.Models.ButtonProperties()
+                            {
+                                Text = "Delete"
+                            }).Add();
+                    command.Type(UnboundType.Save)
+                           .ButtonOptions(new Syncfusion.JavaScript.Models.ButtonProperties()
+                            {
+                                Text = "Save",
+                                Width = "100px",
+                                Enabled=true
+                            }).Add();
+                    command.Type(UnboundType.Cancel)
+                           .ButtonOptions(new Syncfusion.JavaScript.Models.ButtonProperties()
+                            {
+                                Text = "Cancel"
+                            }).Add();
+                }).Width(130).Add();
+            })
+        )
+    }
+
+
+    </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TFormSecuencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TFormDescripcion)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TFormSecuencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TFormDescripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+    </table>*@

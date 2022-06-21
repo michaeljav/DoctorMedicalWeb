@@ -1,0 +1,1016 @@
+﻿@model DoctorMedicalWeb.Models.Usar_Paciente
+
+@{
+    ViewBag.Title = "Ini_Paciente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/ej/web/ej.grid.min.js"></script>
+<script src="~/Scripts/ej/web/ej.pager.min.js"></script>
+<script src="~/Scripts/ej/web/ej.waitingpopup.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dropdownlist.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dialog.min.js"></script>
+<script src="~/Scripts/ej/web/ej.button.min.js"></script>
+<script src="~/Scripts/ej/web/ej.autocomplete.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.checkbox.min.js"></script>
+<script src="~/Scripts/ej/web/ej.editor.min.js"></script>
+<script src="~/Scripts/ej/web/ej.tooltip.min.js"></script>
+<script src="~/Scripts/ej/web/ej.toolbar.min.js"></script>
+<script src="~/Scripts/ej/web/ej.menu.min.js"></script>
+<script src="~/Scripts/ej/web/ej.radiobutton.min.js"></script>
+<script src="~/Scripts/ej/web/ej.excelfilter.min.js"></script>
+
+
+<div class="container  ">
+
+    @using (Html.BeginForm("Save", "Paciente", FormMethod.Post, new { id = "frmPaciente", autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="row    ">
+            <div class="col-xs-12 col-md-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Paciente</h2>
+                        <p id="par"></p>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="cuerpo ">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <button type="button" id="btnNuevo" class="btn btn-lg btn-primary glyphicon glyphicon-plus" accesskey="n">Nuevo</button>
+                                <button type="button" id="btnSave" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk" accesskey="s" hidden>Guardar</button>
+                                <button type="button" id="btnBorrar" class="btn btn-lg btn-danger glyphicon glyphicon-trash " accesskey="x">Eliminar</button>
+                                <button type="button" id="btnLista" class="btn btn-lg btn-info glyphicon glyphicon-list-alt" onclick="window.location.href='@Url.Action("Pacientelista", ViewBag.ControlCsharp)'" accesskey="f">Listado</button>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6" style="bottom: 10px;z-index: 999;">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-4 col-md-4">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.PaciCodigo, new { @class = "  control-label     " })
+                                            @Html.TextBoxFor(model => model.PaciCodigo, new { @class = "form-control", @readonly = "readonly", @style = "background:rgb(255, 255, 192) !important", placeholder = "Código" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 col-md-4">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.UsuaFechaCreacion, new { @class = "  control-label     " })
+                                            @Html.TextBoxFor(model => model.UsuaFechaCreacionString, new { @class = "form-control", @readonly = "readonly", @style = "background:rgb(255, 255, 192) !important" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-2 col-md-2">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.EsMenor, new { @class = "  control-label     " })
+                                            @Html.CheckBoxFor(model => model.EsMenor, new
+                                       {
+                                           @class = "form-control  "@*, @onclick = "ClickshowhiddenDocument(this)"*@ })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.PaciNombre, new { @class = "  control-label      " })
+                                            @Html.TextBoxFor(model => model.PaciNombre, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.PaciNombre) })
+                                            @Html.ValidationMessageFor(model => model.PaciNombre, null, new { @class = "label label-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.PaciApellido1, new { @class = "control-label      " })
+                                            @Html.TextBoxFor(model => model.PaciApellido1, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.PaciApellido1) })
+                                            @Html.ValidationMessageFor(model => model.PaciApellido1, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.PaciApellido2, new { @class = "control-label      " })
+                                            @Html.TextBoxFor(model => model.PaciApellido2, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.PaciApellido2) })
+                                            @Html.ValidationMessageFor(model => model.PaciApellido2, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        @{ if (!string.IsNullOrEmpty(@Model.PaciFotoPath))
+                                         {
+                                            <img src="@Url.Content(@Model.PaciFotoPath.ToString() + "?" + DoctorMedicalWeb.Libreria.Lib.GetLocalDateTime().ToString("ddyyhhmmss"))" @*class="img-thumbnail "*@ class="img-responsive" alt="Cinque Terre" @*width="304" height="236"*@ id="PaciPicture">
+                                         }
+                                         else
+                                         {
+
+                                            <img src="~/Content/AdminFiles/images/_user-alt.png" @*class="img-thumbnail "*@ class="img-responsive" alt="Cinque Terre" @*width="304" height="236"*@ id="PaciPicture">
+                                         }
+                                        }
+                                        <input type="file" id="ImagenSeleccionada" name="imagen" accept="image/gif, image/jpeg, image/png" onchange="showimagepreview(this, 'PaciPicture')" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <label class="control-label " for="EspeSecuencia">Cédula o Pasaporte</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-4 col-md-5">
+                                        @Html.DropDownListFor(m => m.TDSecuencia, ViewBag.tipoDocumentos as SelectList, "Tipo Documento", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.TDSecuencia, null, new { @class = "label label-danger" })
+                                    </div>
+                                    <div class="col-xs-12 col-sm-7 col-md-7">
+                                        @Html.TextBoxFor(model => model.PaciDocumento, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.PaciDocumento) })
+                                        @Html.ValidationMessageFor(m => m.PaciDocumento, null, new { @class = "label label-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(model => model.PaciDireccion, new { @class = "control-label " })
+                                    @Html.TextBoxFor(model => model.PaciDireccion, new { @class = "form-control  ", placeholder = "Dirección" })
+                                    @Html.ValidationMessageFor(m => m.PaciDireccion, null, new { @class = "label label-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-5 col-md-5">
+                                        <div class="form-group  ">
+
+                                            <label class="control-label " for="PaciGenero">Genero</label>
+                                            <p>
+                                                <label class="radio-inline">
+                                                    @Html.RadioButtonFor(m => m.PaciGenero, "Masculino")
+                                                    @Html.Label("Masculino")
+                                                </label>
+                                                <label class="radio-inline ">
+                                                    @Html.RadioButtonFor(m => m.PaciGenero, "Femenino")
+                                                    @Html.Label("Femenino")
+
+                                                </label>
+                                            </p>
+                                            @Html.ValidationMessageFor(m => m.PaciGenero, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-7 col-md-7">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 paddingLeftZero paddingRightZero">
+                                            <div class="form-group  ">
+                                                @Html.LabelFor(model => model.PaciFechaNacimiento, new { @class = "control-label " })
+                                                @Html.EJ().DatePickerFor(m => m.PaciFechaNacimiento).DateFormat("dd/MM/yyyy").Width("100%")
+                                                @Html.ValidationMessageFor(m => m.PaciFechaNacimiento, null, new { @class = "label label-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 paddingRightZero">
+                                            <div class="form-group ">
+                                                @Html.LabelFor(c => c.GSangSecuencia_fk)
+                                                @Html.DropDownListFor(m => m.GSangSecuencia_fk, ViewBag.grupoSanguineo as SelectList, "Sagre", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.GSangSecuencia_fk, null, new { @class = "label label-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-2 col-md-2 ">
+                                        <div class="form-group  ">
+                                            @Html.LabelFor(model => model.PaciEdad, new { @class = "control-label " })
+                                            @Html.TextBoxFor(m => m.PaciEdad, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.PaciEdad) })
+                                            @Html.ValidationMessageFor(m => m.PaciEdad, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-10 col-md-10 ">
+                                        <div class="form-group  ">
+                                            @Html.LabelFor(model => model.PaciLugarNacimiento, new { @class = "control-label " })
+                                            @Html.TextBoxFor(m => m.PaciLugarNacimiento, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.PaciLugarNacimiento) })
+                                            @Html.ValidationMessageFor(m => m.PaciLugarNacimiento, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row ">
+
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(c => c.IAsegSecuencia, new { @class = "control-label " })
+                                            @Html.DropDownListFor(m => m.IAsegSecuencia, ViewBag.institucionAseguBag as SelectList, "Aseguradora", new { @class = "form-control", onchange = "ChangeDropdown()" })
+                                            @Html.ValidationMessageFor(model => model.IAsegSecuencia, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(c => c.IAPlanSecuencia, new { @class = "control-label " })
+                                            @Html.DropDownListFor(m => m.IAPlanSecuencia, ViewBag.InsticuionasegPlanBag as SelectList, "Plan", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.IAPlanSecuencia, null, new { @class = "label label-danger" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(c => c.PaciNumeroSeguroSocial, new { @class = "control-label " })
+                                            @Html.TextBoxFor(m => m.PaciNumeroSeguroSocial, new { @class = "form-control  ", placeholder = "Número Seg.Social" })
+                                            @Html.ValidationMessageFor(m => m.PaciNumeroSeguroSocial, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(c => c.PaciNumeroPoliza, new { @class = "control-label " })
+                                            @Html.TextBoxFor(m => m.PaciNumeroPoliza, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(m => m.PaciNumeroPoliza) })
+                                            @Html.ValidationMessageFor(m => m.PaciNumeroPoliza, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(c => c.PaciCelular, new { @class = "control-label " })
+                                            @Html.TextBoxFor(m => m.PaciCelular, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(m => m.PaciCelular) })
+                                            @Html.ValidationMessageFor(m => m.PaciCelular, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                        <div class="form-group  ">
+                                            @Html.LabelFor(model => model.PaciTelefono, new { @class = "control-label " })
+                                            @Html.TextBoxFor(m => m.PaciTelefono, new { @class = "form-control  ", placeholder = "Teléfono" })
+                                            @Html.ValidationMessageFor(m => m.PaciTelefono, null, new { @class = "label label-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(c => c.PaciEstadoCivil, new { @class = "control-label " })
+                                            @Html.DropDownListFor(m => m.PaciEstadoCivil, ViewBag.estCivil as SelectList, "Estado Civil", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.PaciEstadoCivil, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(c => c.PaciProfesion, new { @class = "control-label " })
+                                            @Html.TextBoxFor(m => m.PaciProfesion, new { @class = "form-control  ", placeholder = "Profesión" })
+                                            @Html.ValidationMessageFor(m => m.PaciProfesion, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(c => c.PaciNombreEmergencia, new { @class = "control-label " })
+                                    @Html.TextBoxFor(m => m.PaciNombreEmergencia, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(m => m.PaciNombreEmergencia) })
+                                    @Html.ValidationMessageFor(m => m.PaciNombreEmergencia, null, new { @class = "label label-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(c => c.PaciApellidoEmergencia, new { @class = "control-label " })
+                                    @Html.TextBoxFor(m => m.PaciApellidoEmergencia, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(m => m.PaciNombreEmergencia) })
+                                    @Html.ValidationMessageFor(m => m.PaciApellidoEmergencia, null, new { @class = "label label-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(c => c.PaciDireccionEmergencia, new { @class = "control-label " })
+                                    @Html.TextBoxFor(m => m.PaciDireccionEmergencia, new { @class = "form-control  ", placeholder = "Emergencia Dirección" })
+                                    @Html.ValidationMessageFor(m => m.PaciDireccionEmergencia, null, new { @class = "label label-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(c => c.PaciTelefonoEmergencia, new { @class = "control-label " })
+                                    @Html.TextBoxFor(m => m.PaciTelefonoEmergencia, new { @class = "form-control  ", placeholder = "Emergencia Teléfono" })
+                                    @Html.ValidationMessageFor(m => m.PaciTelefonoEmergencia, null, new { @class = "label label-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(c => c.PaciEmail, new { @class = "control-label " })
+                                    @Html.TextBoxFor(m => m.PaciEmail, new { @class = "form-control  ", placeholder = "Correo Electrónico" })
+                                    @Html.ValidationMessageFor(m => m.PaciEmail, null, new { @class = "label label-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(c => c.PaciFacebook, new { @class = "control-label " })
+                                    @Html.TextBoxFor(m => m.PaciFacebook, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(m => m.PaciFacebook) })
+                                    @Html.ValidationMessageFor(m => m.PaciFacebook, null, new { @class = "label label-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Ultimos 5 Registros</h3>
+                            </div>
+                            <div class="row">
+                                <div id="Grid" class="col-md-12">
+                                    @{
+                                        @(Html.EJ().Grid<DoctorMedicalWeb.Models.Usar_Paciente>("Searching")
+                                         .EnableAltRow(false)
+                                        .Datasource((IEnumerable<object>)ViewBag.ultimosCinco)
+                                        .Columns(col =>
+                                        {
+                                            col.Field("PaciSecuencia").HeaderText("ID").IsPrimaryKey(true).Visible(false).TextAlign(TextAlign.Right).Width(50).Add();
+                                            col.Field("PaciCodigo").HeaderText("Código").Visible(true).TextAlign(TextAlign.Right).Width(120).Add();
+                                            col.Field("PaciNombre").HeaderText("Nombre").Width(150).Add();
+                                            col.Field("PaciApellido1").HeaderText("Primer Apellido").Width(150).Add();
+                                            col.Field("PaciApellido2").HeaderText("Segundo Apellido").Width(150).Add();
+                                            col.Field("PaciDocumento").HeaderText("Documento").Width(150).Add();
+                                            col.HeaderText("").Commands(command =>
+                                               {
+                                                   command.Type("detail")
+                                                          .ButtonOptions(new Syncfusion.JavaScript.Models.ButtonProperties()
+                                                          {
+                                                              Text = "Editar",
+                                                              Width = "100px",
+                                                              Click = "onClick"
+                                                          }).Add();
+
+                                               }).TextAlign(TextAlign.Left)
+
+                                               .Width(60)
+                                               .Add();
+                                        })
+
+                                        )}
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.DoctSecuencia_fk)
+        @Html.HiddenFor(model => model.PaisSecuencia_fk)
+        @Html.HiddenFor(model => model.ClinSecuencia_fk)
+        @Html.HiddenFor(model => model.ConsSecuencia_fk)
+        @Html.HiddenFor(model => model.PaciSecuencia)
+        @Html.HiddenFor(model => model.PaciCodigo)
+        @Html.HiddenFor(model => model.PaciApodo)
+        @Html.HiddenFor(model => model.PaciCodigoPostal)
+        @Html.HiddenFor(model => model.UsuaSecuenciaCreacion)
+        @Html.HiddenFor(model => model.UsuaFechaCreacion)
+        @Html.HiddenFor(model => model.UsuaSecuenciaModificacion)
+        @Html.HiddenFor(model => model.UsuaFechaModificacion)
+        @Html.HiddenFor(model => model.PaciFotoPath)
+        @Html.HiddenFor(model => model.PaciFotoNombre)
+
+    }
+</div>
+@section Scripts{
+
+    <script type="text/javascript">
+
+        var formularioGlobal = 'frmPaciente';
+        var campoSecuencia = 'PaciSecuencia';
+        var vista = 'Ini_Paciente';
+        var control = 'Paciente';
+
+
+        //Probando anios desde la fecha de nacimiento
+        //$(document).ready(function () {
+        //var p = moment([1987, 11, 06]).toNow(true);
+        //$("#par").text("Anos "+p);
+        //});
+
+
+
+
+
+        //Allow  only number
+        $('#PaciNumeroSeguroSocial').bind('keyup paste', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+        $('#PaciNumeroPoliza').bind('keyup paste', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+                //Allow  only number
+
+
+        function ChangeDropdown() {
+           // alert('Changed');
+            /// $('#YourLabelId').val('ReplaceWithThisValue');
+            //show screen block
+            $.LoadingOverlay("show");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetPlanesSeguros", "Paciente")',
+                data: { IAseguraSecuenciaSelect: $("#IAsegSecuencia > option:selected").attr("value") },
+                complete: (function () {
+
+                   
+                       $.LoadingOverlay("hide");
+                }),
+                success: function (data) {
+                    var items = [];
+                    var pro = data;
+                    items.push("<option>--Plan--</option>");
+                    $.each(data.someCollection, function () {
+                        items.push("<option value=" + this.Value + ">" + this.Text + "</option>");
+                    });
+                    $("#IAPlanSecuencia").html(items.join(' '));
+                }
+            })
+        }
+
+        /*dataanotation Valid date*/
+        $.validator.addMethod('date',
+       function (value, element, params) {
+           if (this.optional(element)) {
+               return true;
+           }
+           var ok = true;
+           try {
+               $.datepicker.parseDate('dd/mm/yy', value);
+           }
+           catch (err) {
+               ok = false;
+           }
+           return ok;
+       });
+        /*end dataanotation Valid date*/
+
+        /*Valid lang*/
+        $(function () {
+
+            $("#PaciFechaNacimiento").ejDatePicker({
+                //value: new Date(),
+                locale: "es-ES",            //sets custom “fr-FR” locale
+                watermarkText: "Fecha",
+                buttonText: 'Hoy'
+            });
+        })
+
+        /*end Valid lang*/
+
+
+        //change event for datepicker
+        @*$("#PaciFechaNacimiento").ejDatePicker({
+            change: function (args) {
+           
+
+              
+
+
+
+                var age=0;
+
+                var date = args;
+                var arr = date.value.split('/');
+                var day = arr[0];
+                var month = arr[1];
+                var yearBirth = arr[2];
+
+               
+                var currentYear =@ViewBag.currentYear;
+                var currentMonth=@ViewBag.currentMonth;
+                var currentDay= @ViewBag.currentDay;
+
+                var yearPerson= currentYear - yearBirth;
+
+
+
+                var testAge = moment([yearBirth, month, day]).toNow(true);
+
+                //if yearPerson
+                if(yearPerson > 0){
+
+                    $( "#PaciEdad" ).prop( "disabled", true );
+                    var monthleftToBirth = 12 -currentMonth 
+                    var daisleftToBirth =
+                    //The month has to be equal or greater 
+                    //if(currentMonth >= month)
+                    //if(monthleftToBirth >)
+                    //{
+                    //    //The day has to be equal or greater 
+                    //    if(currentDay >= day)
+                    //    {
+                    //        age= yearPerson;
+                    //    }
+                    //    else{
+                    //        age= yearPerson-1;
+                    //    }
+                    //}
+
+
+                    $( "#PaciEdad" ).val( age );
+                }
+                //Months
+                else if(yearPerson == 0){
+
+                    $( "#PaciEdad" ).prop( "disabled", false );
+                  
+                }
+
+
+
+            }
+        });*@
+
+
+
+        function clearValidation(formElement) {
+            //Internal $.validator is exposed through $(form).validate()
+            var validator = $(formElement).validate();
+            //Iterate through named elements inside of the form, and mark them as error free
+            $('[name]', formElement).each(function () {
+                validator.successList.push(this);//mark as error free
+                validator.showErrors();//remove error messages if present
+            });
+            validator.resetForm();//remove error class on name elements and clear history
+            validator.reset();//remove all error and success data
+        }
+
+        function resetAllControls(f) {
+            f.find('input:text, input:password,input:hidden, input:file, select, textarea').val('');
+            f.find('input:radio, input:checkbox').prop('checked', false).prop('selected', false);
+            //the checkbox's input  hidden set false because the code hidden the clean up
+            f.find('input[name="EsMenor"]:hidden').val('false');
+
+            //     f.find('input:hidden ').val('');
+            //  f.find('input:radio').prop('checked', false).prop('selected', false);
+            //   f.find('input:radio').prop('selected', false);
+            //f.find("input[type='checkbox']").removeAttr('checked');
+            //f.find("input[type='checkbox']").attr('checked',false);
+            //   f.find("input[type='checkbox']").prop('checked', false);
+
+            //$('#EsMenor').attr('checked', false);
+        };
+
+        jQuery(function ($) {
+            $("#PaciTelefono").mask("(999) 999-9999");
+            $("#PaciCelular").mask("(999) 999-9999");
+            $("#PaciTelefonoEmergencia").mask("(999) 999-9999");
+        });
+
+        function showimagepreview(input, imgtag) {
+            if (input.files && input.files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    // $('#doctPicture').attr('src', e.target.result);
+                    $('#' + imgtag).attr('src', e.target.result);
+                }
+                filerdr.readAsDataURL(input.files[0]);
+            }
+        }
+
+        //click edit grid
+        function onClick(args) {
+            //excute btnnuevo
+            $('#btnNuevo').trigger('click');
+            //button proseesand
+            var btn = $(this);
+            //var todosbtn = $('#btnDelete');
+            var todosbtn = $('button');
+            //bloquear boton
+            doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+            var grid = $("#Searching").ejGrid("instance");
+            var index = this.element.closest("tr").index();
+            var record = grid.getCurrentViewData()[index];
+
+            //alert("Record Details: " + JSON.stringify(record));
+
+            //show screen block
+            $.LoadingOverlay("show");
+
+
+            //send object to controller
+            //start ajax
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Editar", ViewBag.ControlCsharp)',
+                dataType: "json",
+                data: JSON.stringify(record),
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                complete: (function () {
+
+                    //No utilizo el  esbloqueador bloquear por que como la pagina se recarga
+                    //y le puse un bloqueador y desbloqueador  en el layout no necesito este
+                    //   $.LoadingOverlay("hide");
+                }),
+                success: (function (data) {
+
+                    if (data.respuesta) {
+
+                        //$("#msgExitoso").fadeIn('slow').animate({ opacity: 1.0 }, 1500).effect("pulsate", { times: 2 }, 800).fadeOut('slow');
+                        //$("#msgExitoso").show()
+                        //setTimeout('$("#msgExitoso").hide()', 2500);
+
+                        //location.reload();
+                        var di = data.redirect;
+                        window.location.href = di;
+                    }
+                    else {
+
+                        alert(data.error);
+                    }
+
+
+                    ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                    doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+
+                }),//end susccess
+                error: (function () {
+
+                    try {
+                        alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                    } catch (e) {
+                        alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                    }
+
+                    //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                    doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                    //quito splash
+                    //$.LoadingOverlay("hide");
+                })    //end error
+            })
+
+        }//end edit grid onClick
+
+
+        /*load page*/
+        $(document).ready(function () {
+
+
+
+            //valido si esta creando o editando
+            $("input").click(function () {
+
+                //editando
+                if ($("#" + campoSecuencia).val() > 0) {
+
+                    $("#EstadoAccion h2 span").html(" Editando");
+                } else {
+                    $("#EstadoAccion h2 span").html(" Creando");
+                }
+            });
+
+        
+
+            //nuevo registro
+            $("#btnNuevo").click(function () {
+                //Form to clear
+                var formulario = $("#" + formularioGlobal);
+                //clear dataannotation
+                //clearValidation(formulario);
+                //clear text
+                resetAllControls(formulario);
+                //clear div de accion
+                $('#EstadoAccion h2 span').empty();
+
+                //if exist img  clean
+                if ($("#PaciPicture").length > 0) {
+                    $('#PaciPicture').attr('src', '/Content/AdminFiles/images/_user-alt.png');
+                }
+
+            });//end btnnuevo
+
+            //start click savedoctor
+            $("#btnSave").on("click", function (e) {
+                //e.preventDefault();
+
+
+
+                var f = $('#' + formularioGlobal).valid();
+
+                if (f == false) {
+
+                    return false;
+                }
+
+                //button proseesand
+                var btn = $(this);
+                var todosbtn = $('button');
+                //bloquear boton
+                doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+
+                //var forSerialize = $('#frmSaveDoctor').serialize();
+                //var myform = document.getElementById("frmSaveDoctor");
+                var formData = new FormData();
+
+                //add all controlers form to FormData
+                var other_data = $('#' + formularioGlobal).serializeArray();
+                $.each(other_data, function (key, input) {
+                    if (input.name == 'PaciFechaNacimiento') {
+                        //convert date dd/mm/yy to  MM/dd/yyyy  consulta medica historial
+                        input.value = convertDate(input.value);
+                    }
+                    formData.append(input.name, input.value);
+                });
+                var jsonfile = document.getElementById("ImagenSeleccionada").files[0];
+                formData.append("file", jsonfile);
+
+
+
+
+                ////start validar si es editando
+                if ($("#" + campoSecuencia).val() > 0) {
+
+                     alertify.confirm('', '¿Seguro que desea Editar?', function () {
+                     
+                            //show screen block
+                            $.LoadingOverlay("show");
+                            // var formulSeri = $('#' + formularioGlobal).serialize();
+                            //start ajax
+                            $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("Save", ViewBag.ControlCsharp)',
+                                //data: $('#' + formularioGlobal).serialize(),
+                                data: formData,
+                                dataType: 'json',//file test
+                                contentType: false,//file test
+                                processData: false,//file test
+                                //datatype: "application/json; charset=utf-8",
+                                cache: false,
+                                complete: (function () {
+
+
+                                    $.LoadingOverlay("hide");
+                                }),
+                                 success:(function (data) {
+
+                                    if (data.respuesta) {
+                                        $("#msgExitoso").show()
+                                        setTimeout('$("#msgExitoso").hide()', 3000);
+
+                                        //excute btnnuevo
+                                        $('#btnNuevo').trigger('click');
+
+                                        alertify.success('Si')
+
+
+                                        //RECARGAR GRID
+                                        var gridObj = $("#Searching").ejGrid("instance");
+                                        gridObj.dataSource(data.someCollection);//dataSource method
+
+                                    }
+                        else {
+
+                                        alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                        }
+
+
+                        ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                                    doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+
+                }),//end susccess
+                error:(function () {
+
+                    try {
+                        alertify.alert('', 'Error en controller login y no se ejecuto el result json ' );
+                    } catch (e) {
+                        alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                    }
+
+                    //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                    doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                    //quito splash
+                    //$.LoadingOverlay("hide");
+                })    //end error
+                            })
+                               
+
+                        
+                     }
+                 , function () {
+                     ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                     doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                     alertify.error('No')
+                     return true;
+                 });/*End message confirm*/
+                }
+                    //Insertando
+                else {
+
+                    //show screen block
+                    $.LoadingOverlay("show");
+                    //start ajax
+                    $.ajax({
+
+                        type: "POST",
+                        url: '@Url.Action("Save", ViewBag.ControlCsharp)',
+                        //data: $('#' + formularioGlobal).serialize(),
+                        //datatype: "application/json; charset=utf-8",
+                        data: formData,
+                        dataType: 'json',//file test
+                        contentType: false,//file test
+                        processData: false,//file test
+                        cache: false,
+                        complete: (function () {
+
+
+                            $.LoadingOverlay("hide");
+                        }),
+                          success:(function (data) {
+
+                               if (data.respuesta) {
+
+                                   $("#msgExitoso").show()
+                                   setTimeout('$("#msgExitoso").hide()', 3000);
+
+                                   //excute btnnuevo
+                                   $('#btnNuevo').trigger('click');
+
+
+                                   //Enlistar las ultimas 5 registros
+                                   var gridObj = $("#Searching").ejGrid("instance");
+                                   gridObj.dataSource(data.someCollection);//dataSource method
+                               }
+                else {
+
+                                   alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                    //undefined doen't has  value , empty or null
+                    if (data.redirect !== undefined && data.redirect !== null && data.redirect !== '') {
+                        //var di = data.redirect;
+                        //window.location.href = di;
+                    }
+                }
+
+                ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+            }),//end susccess
+                           error:(function () {
+
+                               try {
+                                   alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                               } catch (e) {
+                                   alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                               }
+
+                               //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                               doct_EnableButtonAndEventClick($("#btnSave"), "Guardar", todosbtn);
+                               //quito splash
+                               //$.LoadingOverlay("hide");
+                           })   //end error
+                    })
+                         
+
+                }//end validar si es editando
+
+                return false;
+            });//end save click
+
+            $("#btnBorrar").click(function () {
+
+
+
+                //var f = $('#frmRole').valid();
+                var f = $('#' + formularioGlobal).valid();
+                if (f == false) {
+
+                    return false;
+                }
+                //var s = $("#RoleSecuencia").val();
+                var s = $("#" + campoSecuencia).val();
+                if (s == false) {
+                    alertify.alert('',"Favor seleccionar un role en el listado");
+                    return false;
+                }
+
+
+                //Preguntar si borrar
+                 alertify.confirm('', '¿Seguro que desea Borrar?', function () {
+                
+                        //show screen block
+                        $.LoadingOverlay("show");
+                        //start ajax
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("Borrar", ViewBag.ControlCsharp)',
+                            data: $('#' + formularioGlobal).serialize(),
+                            datatype: "application/json; charset=utf-8",
+                            cache: false,
+                            complete: (function () {
+
+
+                                $.LoadingOverlay("hide");
+                            }),
+                              success:(function (data) {
+
+                        if (data.respuesta == true) {
+
+                            //alertify.alert('',"Borrado exitosamente!");
+                            //     window.location.reload();
+                            //excute btnnuevo
+                            $('#btnNuevo').trigger('click');
+                            //mOSTRA MESAJE DE BIEN BORRADO
+                            $("#msgBorrado").show()
+                            setTimeout('$("#msgBorrado").hide()', 3000);
+
+                            alertify.success('Si')
+
+                            //RECARGAR GRID
+                            var gridObj = $("#Searching").ejGrid("instance");
+                            gridObj.dataSource(data.someCollection);//dataSource method
+
+                        } else {
+                            alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                    }
+
+                }),//end susccess
+                    error:(function () {
+
+                        try {
+                            alertify.alert('', 'Error en controller login y no se ejecuto el result json ' );
+                        } catch (e) {
+                            alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                        }
+                    })    //end error
+
+                        })
+                  
+                    
+                 }
+                 , function () {
+                   
+                     alertify.error('No')
+                     return true;
+                 });/*End message confirm*/
+            });//End  borrar
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //    $('#ReprDocumento').hide();
+            //    $('#PaciDocumento').hide();
+            //    /*if checkbox is menor  is checked when the page come fill*/
+            //    if($('#EsMenor').is(":checked"))
+            //    {
+            //        $('#ReprDocumento').show();
+
+            //    } else {
+            //        $('#PaciDocumento').show();
+            //    }
+
+            //});
+            //function ClickshowhiddenDocument(a) {
+            //    if ($('#EsMenor').is(":checked")) {
+            //        $('#ReprDocumento').show();
+            //        $('#PaciDocumento').hide();
+            //    } else {
+            //        $('#ReprDocumento').hide();
+            //        $('#PaciDocumento').show();         //    }
+
+        }//End $(document).ready(function ()
+
+   )</script>
+}

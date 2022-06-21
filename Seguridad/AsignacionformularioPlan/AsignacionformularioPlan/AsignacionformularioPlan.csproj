@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DE0E2B12-5CC7-4E95-BFF3-61BC19947EEC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AsignacionformularioPlan</RootNamespace>
+    <AssemblyName>AsignacionformularioPlan</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accione.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Alergia.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnalisisClinico.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArchivosPaciente.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Auditoria.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaPersonal.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cirugia.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cita.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clinica.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedica.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicaCirugia.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicaEmbarazo.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicaEnfermeda.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicaEnfermedaFamiliar.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicaHistorial.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicaHistorialDiagnostico.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicaHistorialEnfermeda.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicaHistorialEvaluacionFisica.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicaHistorialMotivoConsulta.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicaHistorialTratamiento.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMedicalHistorialAlergia.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Consultorio.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Diagnostico.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enfermedad.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Especialidade.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EspecialidadFormularioCampos.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstadoAgenda.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluacionFisica.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Factura.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FacturaDetalle.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FacturaEstado.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulario.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioCampos.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FormulariosAccion.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="formularioSeleccionado.cs" />
+    <Compile Include="frmFormulariosCrear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFormulariosCrear.Designer.cs">
+      <DependentUpon>frmFormulariosCrear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GrupoSanguineo.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HorariosDiaTrabajo.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImagenDoctor.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imagene.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstitucionAseguradoraPlane.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstitucionesAseguradora.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginProvider.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Medicamento.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Moneda.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MotivoConsulta.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Paciente.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PacienteFoto.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pai.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PediatraParto.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PEDIATRIAeMBARAZO.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personal.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Plane.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlanFactura.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlanFacturaDetalle.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlanFormulario.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlanFormularios_copia.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Procedimiento.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Receta.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecetaAnalisisClinico.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecetaImagene.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecetaMedicamento.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecetaPacienteVacuna.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Representante.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RolFormulario.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeguriModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeguriModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeguriModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeguriModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeguriModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="TipoArchivoPaciente.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoCompromiso.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoDocumento.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoFormulario.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoIndicacion.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoPago.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tratamiento.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsoMedicamento.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioConsultorio.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vacuna.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_ConsultorioDoctor.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_ListDeFormuriosbyRolyUser.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_planFormulario.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_UsuarioConsultorios.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_UsuarioDoctor.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_UsuariosPersonalDelDoctor.cs">
+      <DependentUpon>SeguriModel.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFormulariosCrear.resx">
+      <DependentUpon>frmFormulariosCrear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EntityDeploy Include="SeguriModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SeguriModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SeguriModel.edmx.diagram">
+      <DependentUpon>SeguriModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SeguriModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SeguriModel.edmx</DependentUpon>
+      <LastGenOutput>SeguriModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SeguriModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SeguriModel.edmx</DependentUpon>
+      <LastGenOutput>SeguriModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,416 @@
+﻿@model DoctorMedicalWeb.Models.Usar_Usuario
+@{
+    ViewBag.Title = "Ini_RegistrosSistema";
+    Layout = "~/Views/Shared/_LayoutPaginaPresentacion.cshtml";
+}
+
+
+
+
+<script src="~/Scripts/LibJs/PaginationDiv.js"></script>
+
+
+<script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+
+
+
+<div id="RegistrarUser" class="panel panel-primary center">
+    <div class="panel-heading">Registrarse</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("CrearUsar_usuario", "PaginaPresentacion", FormMethod.Post, new { Id = "frmCrearUsar_usuario", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="line-content">
+                @*Pais , Plan , Especialidad*@
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="  control-label   label-register " for="PaisSecuencia">País</label>
+                        <div class="input-group textbox-register  ">
+                            @Html.DropDownListFor(m => m.PaisSecuencia, ViewBag.PaisList as SelectList, "Seleccione Pais", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PaisSecuencia, null, new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-7 paddingLeftZero">
+                            <label class=" control-label   label-register " for="EspeSecuencia_fk">Especialidad</label>
+                            <div class="input-group textbox-register  ">
+                                @Html.DropDownListFor(m => m.EspeSecuencia_fk,
+                                     ViewBag.Especialidad as SelectList,
+                                    "Seleccione Especialidad",
+                                    new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.EspeSecuencia_fk, null, new { @class = "label label-danger" })
+                            </div>
+
+                        </div>
+                        <div class="col-md-5 paddingLeftZero paddingRightZero">
+                            <label class=" control-label   label-register " for="PlanSecuencia_fk">Plan</label>
+                            <div class="input-group textbox-register  ">
+                                @Html.DropDownListFor(m => m.PlanSecuencia_fk,
+                                    ViewBag.PlanesList as SelectList,
+                                    "Plan",
+                                    new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PlanSecuencia_fk, null, new { @class = "label label-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*Email confirmar email*@
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.UsuaEmail, new { @class = " control-label   label-register   " })
+                        <div class="input-group textbox-register  ">
+                            @Html.TextBoxFor(model => model.UsuaEmail, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = "  form-control ",
+                                                placeholder = Html.DisplayNameFor(n => n.UsuaEmail)
+                                               })
+                            @Html.ValidationMessageFor(model => model.UsuaEmail, null, new { @class = "label label-danger" })
+                            @Html.ValidationMessage("Validacion-Completa", new { @class = "label label-danger", id = "Validacion-Completa" })
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <label class="  control-label   label-register " for="Email">Vuelva a Ingresar el Correo</label>
+                        <div class="input-group textbox-register  ">
+                            @Html.TextBoxFor(model => model.UsuaEmailConfirmacion, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = "  form-control ",
+                                                placeholder = "Vuelva a Ingresar el Correo"
+                                               })
+                            @Html.ValidationMessageFor(model => model.UsuaEmailConfirmacion, null, new { @class = "label label-danger" })
+                            @Html.ValidationMessage("Validacion-Completa", new { @class = "label label-danger", id = "Validacion-Completa2" })
+                        </div>
+
+                    </div>
+                </div>
+                @*Clave y confirmar Clave*@
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.UsuaClave, new { @class = "  control-label   label-register" })
+                        <div class="input-group textbox-register">
+                            @Html.PasswordFor(model => model.UsuaClave, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = " form-control",
+                                                placeholder = Html.DisplayNameFor(n => n.UsuaClave)
+                                               })
+                            @Html.ValidationMessageFor(model => model.UsuaClave, null, new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class=" control-label   label-register " for="Email">Vuelva a Ingresar el Contrasenia</label>
+                        <div class="input-group textbox-register  ">
+                            @Html.PasswordFor(model => model.UsuaClaveConfirmacion, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = " form-control ",
+                                                placeholder = "Vuelva a Ingresar el Contrasenia"
+                                               })
+                            @Html.ValidationMessageFor(model => model.UsuaClaveConfirmacion, null, new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                </div>
+                @*Nombre y apellido*@
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.UsuaNombre, new { @class = " control-label   label-register   " })
+                        <div class="input-group  textbox-register  ">
+                            @Html.TextBoxFor(model => model.UsuaNombre, new
+                           {
+                               @class = " form-control ",
+                               placeholder = Html.DisplayNameFor(n => n.UsuaNombre)
+                           })
+                            @Html.ValidationMessageFor(model => model.UsuaNombre, null, new { @class = "label label-danger" })
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.UsuaApellido, new { @class = " control-label   label-register   " })
+                        <div class="input-group textbox-register  ">
+                            @Html.TextBoxFor(model => model.UsuaApellido, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = " form-control ",
+                                                placeholder = Html.DisplayNameFor(n => n.UsuaApellido)
+                                               })
+                            @Html.ValidationMessageFor(model => model.UsuaApellido, null, new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Segundo Tabl*@
+            <div class="line-content">
+
+                @* Nacimiento,Genero,Direccion *@
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6 paddingRightZero paddingLeftZero">
+                            <label class=" control-label   label-register " for="UsuaFechaNacimiento">Nacimiento</label>
+                            <div class="form-group textbox-register  ">
+                                @Html.EJ().DatePickerFor(model => model.UsuaFechaNacimiento).DateFormat("dd/MM/yyyy").Width("100%").ClientSideEvents(e => e.Change("onChange"))
+                                @Html.ValidationMessageFor(model => model.UsuaFechaNacimiento, null, new { @class = "label label-danger" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-md-6 ">
+
+                            <div class="checkboxgroup">
+                                <label class=" control-label label-register-radioButon      " for="UsuaFechaNacimiento">Masculino</label>
+                                @Html.RadioButtonFor(m => m.UsuaGenero, "Masculino")
+                            </div>
+                            <div class="checkboxgroup ">
+                                <label class=" control-label   label-register-radioButon " for="UsuaFechaNacimiento">Femenino</label>
+                                @Html.RadioButtonFor(m => m.UsuaGenero, "Femenino")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class=" control-label   label-register " for="EspeSecuencia_fk">Dirección</label>
+                        <div class="input-group textbox-register  ">
+                            @Html.TextBoxFor(m => m.UsuaDireccion,
+                                    new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UsuaDireccion, null, new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                </div>
+                @*Ciudad ,Estado o Provincia y  Codigo Postal*@
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.UsuaCiudad, new { @class = " control-label   label-register   " })
+                        <div class="input-group  textbox-register  ">
+                            @Html.TextBoxFor(model => model.UsuaCiudad, new
+                           {
+                               @class = " form-control ",
+                               placeholder = Html.DisplayNameFor(n => n.UsuaCiudad)
+                           })
+                            @Html.ValidationMessageFor(model => model.UsuaNombre, null, new { @class = "label label-danger" })
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6 paddingLeftZero ">
+                            @Html.LabelFor(model => model.UsuaProvincia, new { @class = " control-label   label-register   " })
+                            <div class="input-group textbox-register  ">
+                                @Html.TextBoxFor(model => model.UsuaProvincia, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = " form-control ",
+                                                placeholder = Html.DisplayNameFor(n => n.UsuaProvincia)
+                                               })
+                                @Html.ValidationMessageFor(model => model.UsuaProvincia, null, new { @class = "label label-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 paddingLeftZero paddingRightZero">
+                            @Html.LabelFor(model => model.UsuaCodigoPostal, new { @class = " control-label   label-register   " })
+                            <div class="input-group textbox-register  ">
+                                @Html.TextBoxFor(model => model.UsuaCodigoPostal, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = " form-control ",
+                                                placeholder = Html.DisplayNameFor(n => n.UsuaCodigoPostal)
+                                               })
+                                @Html.ValidationMessageFor(model => model.UsuaCodigoPostal, null, new { @class = "label label-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                @*Clinica y consultirrio*@
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group textbox-register  ">
+                            <label class=" control-label   label-register " for="clinRazonSocial">Clínica</label>
+                            @Html.TextBoxFor(m => m.clinRazonSocial, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.clinRazonSocial, null, new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group textbox-register  ">
+                            <label class=" control-label   label-register " for="ConsCodigo">Consultorio</label>
+                            @Html.TextBoxFor(m => m.ConsCodigo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ConsCodigo, null, new { @class = "label label-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                @*Tel y  Celular*@
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6 paddingLeftZero">
+                            @Html.LabelFor(model => model.UsuaTelefono, new { @class = " control-label   label-register   " })
+                            <div class="input-group textbox-register  ">
+                                @Html.TextBoxFor(model => model.UsuaTelefono, new { @class = " form-control ", @placeholder = "Teléfono" })
+                                @Html.ValidationMessageFor(model => model.UsuaTelefono, null, new { @class = "label label-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6 paddingLeftZero paddingRightZero">
+                            @Html.LabelFor(model => model.UsuaOficina, new { @class = " control-label   label-register   " })
+                            <div class="input-group textbox-register  ">
+                                @Html.TextBoxFor(model => model.UsuaOficina, new
+                                               { @*@Value = "michael@hotmail.com",*@ @class = " form-control ",
+                                                placeholder = Html.DisplayNameFor(n => n.UsuaOficina)
+                                               })
+                                @Html.ValidationMessageFor(model => model.UsuaOficina, null, new { @class = "label label-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6 paddingLeftZero">
+                            @Html.LabelFor(model => model.UsuaCelular, new { @class = " control-label   label-register   " })
+                            <div class="input-group textbox-register  ">
+                                @Html.TextBoxFor(model => model.UsuaCelular, new { @class = " form-control ", @placeholder = "Celular" })
+                                @Html.ValidationMessageFor(model => model.UsuaCelular, null, new { @class = "label label-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="btnRegistrarUser"
+                        type="button"
+                        class="btn btn-info btn-block"
+                        @*onclick="return doct_DisabledButtonAndEventClick(this,'Procesando...')"*@>
+                    Crea tu cuenta
+                </button>
+            </div>
+            @* <div class="line-content">   </div>
+                <div class="line-content">4 I have some content</div>
+                     <div class="line-content">5 I have some content</div>
+                     <div class="line-content">6 I have some content</div>
+                     <div class="line-content">7 I have some content</div>
+                     <div class="line-content">8 I have some content</div>
+                     <div class="line-content">9 I have some content</div>
+                     <div class="line-content">10 I have some content</div>
+                     <div class="line-content">11 I have some content</div>
+                     <div class="line-content">12 I have some content</div>*@
+
+            <ul id="pagin"></ul>
+        }
+
+    </div>
+    @*<div class="panel-footer">Panel footer</div>*@
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#PaisSecuencia").val('2');
+            $("#EspeSecuencia_fk").val('1');
+            $("#PlanSecuencia_fk").val('2');
+            $("#UsuaEmail").val('micha@gmail.com');
+            $("#UsuaEmailConfirmacion").val('micha@gmail.com');
+            $("#UsuaClave").val('michaeljav');
+            $("#UsuaClaveConfirmacion").val('michaeljav');
+            $("#UsuaNombre").val('michaeljav');
+            $("#UsuaApellido").val('michaeljav');
+            //$('input:radio[name=UsuaGenero]:checked').val();
+            $("#UsuaGenero").prop("checked", true);
+            $("#UsuaDireccion").val('direccion');
+            $("#UsuaCiudad").val('ciurdad');
+            $("#clinRazonSocial").val('clinica');
+            $("#ConsCodigo").val('cosnultorio');
+            $("#UsuaTelefono").val('telefono');
+            $("#UsuaFechaNacimiento").ejDatePicker({ value: "06/12/1987" });
+            //$("#UsuaFechaNacimiento").data("ejDatePicker").getValue();
+
+        });
+
+
+        @*Resgistar*@
+        $("#btnRegistrarUser").click(function () {
+
+            //if ($("#PaciSecuencia_fk").val() <= 0) {
+            //    alertify.alert('', "Favor, seleccione un paciente. ")
+            //    return false;
+            //}
+           var fe= $("#UsuaFechaNacimiento").data("ejDatePicker").getValue();
+           if (fe === null) {
+                alertify.alert('', "Favor, seleccione un fecha de nacimiento. ")
+                return false;
+            }
+            var f = $('#frmCrearUsar_usuario' ).valid();
+
+            if (f == false) {
+                alertify.alert('', "Hay campos necesarios que llenar");
+                return false;
+            }
+
+
+            //if ($("#CMedEmbarazadaFecha").val() != '' || $("#CMedEmbarazadaFechaProbableParto").val() != '') {
+
+            //    //if checkbox is  false
+            //    if ($('#CMedEmbarazada').is(":checked") == 0) {
+            //        alertify.alert('', "Favor, cotejar la casilla embarazada. ");
+            //        return false;
+            //    }
+            //}
+
+
+            //si hay combox vacios en la consulta deben de llenarse
+
+            //  motivo consulta
+            //if ($("#MConsSecuencia_fk").data("ejDropDownList").getSelectedValue() == "") {
+            //    alertify.alert('', 'Favor seleccionar el motivo de consulta');
+            //    return;
+            //}
+
+            //this is a ojbect json
+            var jsonForm = $('#frmCrearUsar_usuario').serializeToJSON();
+
+            //convert date dd/mm/yy on MM/dd/yyyy  consulta medica historial
+            jsonForm.UsuaFechaNacimiento = convertDate(jsonForm.UsuaFechaNacimiento);
+            dat = JSON.stringify({ usar_usuario: jsonForm })
+            //send horarios
+            let urz = '@Url.Action("CrearUsar_usuario", "RegistroSistema")'
+            //var data = AjaxSend(false, 'POST', '/HorarioTrabajo/Save', dat, 'application/json; charset=utf-8')
+            var data = AjaxSend(false, 'POST', urz, dat, 'application/json; charset=utf-8')
+
+        });
+
+
+
+
+
+
+        /*COMENTE TENGO QUE DESCOMENTARLO*/
+        /*dataanotation Valid date*/
+        $.validator.addMethod('date',
+       function (value, element, params) {
+           if (this.optional(element)) {
+               return true;
+           }
+
+           //if (this.optional(element) || moment(value, "dd/MM/YYYY", true).isValid()) {
+           //    return true;
+           //}
+           var ok = true;
+           try {
+
+
+               $.datepicker.parseDate('dd/mm/yy', value);
+
+           }
+           catch (err) {
+               ok = false;
+           }
+           return ok;
+       });
+
+
+        /*end dataanotation Valid date*/
+        /*Valid lang*/
+        $(function () {
+
+            $("#UsuaFechaNacimiento").ejDatePicker({
+                //value: new Date(),
+                locale: "es-ES",            //Esto es simplemente para que este en lenguaje espan
+                //locale: "en-US",
+                //locale: "es-DO",
+                watermarkText: "Fecha",
+                buttonText: 'Hoy'
+            });
+
+
+        })
+
+        /*end Valid lang*/
+    </script>
+}
+
+
+
+
+
+
+
+

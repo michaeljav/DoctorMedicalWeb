@@ -1,0 +1,520 @@
+﻿@model DoctorMedicalWeb.Models.Usar_TipoFormulario
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/ej/web/ej.grid.min.js"></script>
+<script src="~/Scripts/ej/web/ej.pager.min.js"></script>
+<script src="~/Scripts/ej/web/ej.waitingpopup.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dropdownlist.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dialog.min.js"></script>
+<script src="~/Scripts/ej/web/ej.button.min.js"></script>
+<script src="~/Scripts/ej/web/ej.autocomplete.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.checkbox.min.js"></script>
+<script src="~/Scripts/ej/web/ej.editor.min.js"></script>
+<script src="~/Scripts/ej/web/ej.tooltip.min.js"></script>
+<script src="~/Scripts/ej/web/ej.toolbar.min.js"></script>
+<script src="~/Scripts/ej/web/ej.menu.min.js"></script>
+<script src="~/Scripts/ej/web/ej.radiobutton.min.js"></script>
+<script src="~/Scripts/ej/web/ej.excelfilter.min.js"></script>
+
+
+<div class="container  ">
+
+    @using (Html.BeginForm("SaveTipoFormulario", "TipoFormulario", FormMethod.Post, new { id = "frmTipoFormulario", autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="row    ">
+            <div class="col-xs-12 col-md-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Guardar Tipo Formulario</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="cuerpo ">
+                        <div class="row">
+
+                            <div id="menu" class="col-xs-12 col-sm-12 col-md-12" style="bottom: 10px;z-index: 999;">
+
+                                @*<button type="button" id="btnSave" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk" accesskey="s" hidden>
+                                <br />Guardar
+                            </button>*@
+                                <button type="button" id="btnNuevo" class="btn btn-lg btn-primary glyphicon glyphicon-plus" accesskey="n">Nuevo</button>
+                                <button type="button" id="btnSave" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk" accesskey="s" hidden>Guardar</button>
+                                @*<button type="button" id="btnEditar" class="btn btn-lg btn-warning glyphicon glyphicon-pencil" accesskey="a" hidden>Editar</button>*@
+                                @*<button type="button" id="btnCancelar" class="btn btn-lg btn-danger glyphicon glyphicon-remove " accesskey="c">Cancelar</button>*@
+                                <button type="button" id="btnBorrar" class="btn btn-lg btn-danger glyphicon glyphicon-trash " accesskey="x">Eliminar</button>
+                                <button type="button" id="btnLista" class="btn btn-lg btn-info glyphicon glyphicon-list-alt" onclick="window.location.href='@Url.Action("TipoFormulariolista", "TipoFormulario")'" accesskey="f">Listado</button>
+
+
+
+                                @*<button type="button" id="btnSaveDoctor" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk" data-toggle="modal" data-target="#confirm-delete">
+                                <br><u>G</u>uardar
+                            </button>*@
+                                @*<button id="btnCon" class="btn btn-lg btn-success glyphicon glyphicon-save hidden" accesskey="c"><br><u>C</u>onciliar</button>
+                                <button id="btnDesCon" class="btn btn-lg btn-warning glyphicon glyphicon-open hidden" accesskey="e"><br><u>E</u>storno</button>
+                            <button id="btnDet" class="btn btn-lg btn-success glyphicon glyphicon glyphicon-eye-open" accesskey="v" hidden><br><u>V</u>er</button>
+                            <button type="reset" id="btnReset" class="btn btn-lg btn-primary glyphicon glyphicon-refresh" accesskey="n"><br><u>N</u>uevo</button>
+                            <button id="btnEdit" class="btn btn-lg btn-warning glyphicon glyphicon-pencil" accesskey="a" hidden><br><u>E</u>ditar</button>
+                            <button id="btnExc" class="btn btn-lg btn-danger glyphicon glyphicon-trash" accesskey="x" hidden><br>E<u>l</u>minar</button>
+                            <button id="btnLoc" class="btn btn-lg btn-info glyphicon glyphicon-list-alt" accesskey="l"><br><u>L</u>ocalizar</button>
+                            <button id="btnRel" class="btn btn-lg btn-default glyphicon glyphicon glyphicon-stats" accesskey="r" data-toggle="modal" data-target="#ModalRel"><br><u>R</u>elatório</button>*@
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row ">
+                            @*@Html.TextBoxFor(model => model.TFormSecuencia, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.TFormSecuencia) })*@
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(model => model.TFormDescripcion, new { @class = "  control-label      " })
+                                    @Html.TextBoxFor(model => model.TFormDescripcion, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.TFormDescripcion) })
+                                    @Html.ValidationMessageFor(model => model.TFormDescripcion, null, new { @class = "label label-danger" })
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Ultimos 5 Registros</h3>
+                            </div>
+                            <div class="row">
+                                <div id="Grid" class="col-md-12">
+                                    @{
+                                        @(Html.EJ().Grid<DoctorMedicalWeb.Models.Usar_TipoFormulario>("Searching")
+            //.Datasource((IEnumerable<object>)ViewBag.datasource)
+.EnableAltRow(false)
+
+.Datasource((IEnumerable<object>)ViewBag.ultimosCinco)
+
+
+//.AllowResizing(true)
+
+
+//.AllowPaging(true)
+            //.PageSettings(p => p.PageCount(5).PageSize(10))
+            //.IsResponsive(true)
+            //.EnableResponsiveRow(true)
+            //.FilterSettings(filter => { filter.FilterType(FilterType.Menu); })
+            //.AllowTextWrap()
+            //.TextWrapSettings(wrap => { wrap.WrapMode(WrapMode.Both); })
+            //.ShowColumnChooser()
+            //.AllowScrolling()
+            //.ScrollSettings(col => { col.Height("auto").Width("100%"); })
+
+//.AllowResizing(true)
+            //.AllowAutoWrap((bool)ViewData["AllowAutoWrap"])
+            //.AllowTextWrap(true)
+            //.TextWrapSettings( c =>{wrapMode: "both"})
+            //.AllowTextWrap(true)
+
+            //.AllowPaging()
+            //.ToolbarSettings(toolbar => { toolbar.ShowToolbar().ToolbarItems(items => { items.AddTool(ToolBarItems.Search); }); })
+
+//.AllowTextWrap()
+            //.TextWrapSettings(t => { t.WrapMode(WrapMode.Both); })
+        .Columns(col =>
+        {
+            //col.Field("TFormSecuencia").HeaderText("Formulario ID").IsPrimaryKey(true).TextAlign(TextAlign.Right).Width(75).Add();
+            col.Field("TFormSecuencia").HeaderText("ID").IsPrimaryKey(true).TextAlign(TextAlign.Right).Width(50).Add();
+            //col.Field("TFormDescripcion").HeaderText("Formulario").Width(120).Add();
+            col.Field("TFormDescripcion").HeaderText("Formulario").Width(150).Add();
+            //col.Field("EmployeeID").HeaderText("Employee ID").TextAlign(TextAlign.Right).Width(100).Add();
+            //col.Field("Freight").HeaderText("Freight").TextAlign(TextAlign.Right).Width(100).Format("{0:C}").Add();
+            //col.Field("ShipCity").HeaderText("Ship City").Width(120).Add();
+            //col.Field("Verified").HeaderText("Verified").Width(120).Add();
+            col.HeaderText("Gestionar Registros").Commands(command =>
+               {
+                   command.Type("detail")
+                          .ButtonOptions(new Syncfusion.JavaScript.Models.ButtonProperties()
+                          {
+                              Text = "Editar",
+                              Width = "100px",
+                              Click = "onClick"
+                          }).Add();
+
+               }).TextAlign(TextAlign.Left)
+
+               .Width(150)
+               .Add();
+
+        }
+          )
+
+         //.ClientSideEvents(eve => eve.RecordDoubleClick("onClickc"));
+
+                                        )
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.TFormSecuencia)
+
+    }
+</div>
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+       
+       
+
+
+        function clearValidation(formElement) {
+            //Internal $.validator is exposed through $(form).validate()
+            var validator = $(formElement).validate();
+            //Iterate through named elements inside of the form, and mark them as error free
+            $('[name]', formElement).each(function () {
+                validator.successList.push(this);//mark as error free
+                validator.showErrors();//remove error messages if present
+            });
+            validator.resetForm();//remove error class on name elements and clear history
+            validator.reset();//remove all error and success data
+        }
+
+
+        function resetAllControls(f) {
+
+
+            f.find('input:text, input:password,input:hidden, input:file, select, textarea').val('');
+            f.find('input:radio, input:checkbox').prop('checked', false).prop('selected', false);
+        };
+
+
+
+        //start document ready
+        $(document).ready(function () {
+
+            //$("#TFormSecuencia").val("1");
+            //$("#TFormDescripcion").val("1");
+
+          
+            //$(function () {
+            //    $("#Searching").ejGrid({
+                  
+            //        allowTextWrap: true,
+            //        textWrapSettings: { wrapMode: "both" }
+                   
+            //    });
+            //});
+
+            $("#btnBorrar").click(function () {
+
+                var f = $('#frmTipoFormulario').valid();
+
+                if (f == false) {
+
+                    return false;
+                }
+                var s = $("#TFormSecuencia").val();
+                if (s == false) {
+                   
+                    return false;
+                }
+
+
+                //Preguntar si borrar
+                 alertify.confirm('', '¿Seguro que desea Borrar?', function () {
+                  
+
+                        //start ajax
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("Borrar", "TipoFormulario")',
+                            data: $('#frmTipoFormulario').serialize(),
+                            datatype: "application/json; charset=utf-8",
+                            cache: false
+                        })
+                        .success(function (data) {
+
+                            if (data.respuesta == true) {
+
+                                //alertify.alert('',"Borrado exitosamente!");
+                           //     window.location.reload();
+                                //excute btnnuevo
+                                $('#btnNuevo').trigger('click');
+                                //mOSTRA MESAJE DE BIEN BORRADO
+                                $("#msgBorrado").show()
+                                setTimeout('$("#msgBorrado").hide()', 3000);
+
+                                alertify.success('Si')
+
+                                //RECARGAR GRID
+                                var gridObj = $("#Searching").ejGrid("instance");
+                                gridObj.dataSource(data.someCollection);//dataSource method 
+
+                            } else {
+                                alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                            }
+
+                        })//end susccess
+                        .error(function () {
+
+                            try {
+                                alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                            } catch (e) {
+                                alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                            }
+                        });    //end error
+                    }
+                     , function () {
+                        
+                         alertify.error('',"Favor seleccionar un tipo formulario en el listado");
+                         return true;
+                     });/*End message confirm*/
+            });//End  borrar
+
+            //nuevo registro
+            $("#btnNuevo").click(function () {
+                //Form to clear
+                var formulario = $("#frmTipoFormulario");
+                //clear dataannotation
+                clearValidation(formulario);
+                //clear text
+                resetAllControls(formulario);
+                //clear div de accion
+                $('#EstadoAccion h2 span').empty();
+
+            });
+
+            //valido si esta creando o editando
+            $("input").click(function () {
+
+                //editando
+                if ($("#TFormSecuencia").val() > 0) {
+
+                    $("#EstadoAccion h2 span").html(" Editando");
+                } else {
+                    $("#EstadoAccion h2 span").html(" Creando");
+                }
+            });
+                    
+
+            //start click savedoctor
+            $("#btnSave").on("click", function (e) {
+                //e.preventDefault();
+
+                var f = $('#frmTipoFormulario').valid();
+
+                if (f == false) {
+
+                    return false;
+                }
+                
+                //button proseesand
+                var btn = $(this);
+                //var todosbtn = $('#btnDelete');
+                var todosbtn = $('button');
+                //bloquear boton
+                doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+
+                ////start validar si es editando
+                if ($("#TFormSecuencia").val() > 0) {
+
+
+                     alertify.confirm('', '¿Seguro que desea Editar?', function () {
+                       
+                            //start ajax
+                            $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("Save", "TipoFormulario")',
+                                data: $('#frmTipoFormulario').serialize(),
+                                datatype: "application/json; charset=utf-8",
+                                cache: false
+                            })
+                            .success(function (data) {
+
+                                if (data.respuesta) {
+                                    $("#msgExitoso").show()
+                                    setTimeout('$("#msgExitoso").hide()', 3000);
+
+                                    alertify.success('Si')
+
+                                    //excute btnnuevo
+                                    $('#btnNuevo').trigger('click');
+                                                                       //RECARGAR GRID
+                                    var gridObj = $("#Searching").ejGrid("instance");
+                                    gridObj.dataSource(data.someCollection);//dataSource method  
+
+                                }
+                                else {
+
+                                    alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                                }
+
+
+                                ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+
+                            })//end susccess
+                            .error(function () {
+
+                                try {
+                                    alertify.alert('', 'Error en controller login y no se ejecuto el result json ' );
+                                } catch (e) {
+                                    alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                                }
+
+                                //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                                //quito splash
+                                //$.LoadingOverlay("hide");
+                            });    //end error
+
+                    
+                     }
+                 , function () {
+                     ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                     doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                     alertify.error('No')
+                     return true;
+                 });/*End message confirm*/
+                }
+                    //Insertando
+                else {
+                    //start ajax
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Save", "TipoFormulario")',
+                        data: $('#frmTipoFormulario').serialize(),
+                        datatype: "application/json; charset=utf-8",
+                        cache: false
+                    })
+                    .success(function (data) {
+
+                        if (data.respuesta) {
+                            
+                            $("#msgExitoso").show()
+                            setTimeout('$("#msgExitoso").hide()', 3000);
+
+                            //excute btnnuevo
+                            $('#btnNuevo').trigger('click');                          
+                            //Enlistar las ultimas 5 registros   
+                            var gridObj = $("#Searching").ejGrid("instance");
+                            gridObj.dataSource(data.someCollection);//dataSource method 
+                        }
+                        else {
+                            alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                        }
+
+                        ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                        doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+                    })//end susccess
+                    .error(function () {
+
+                        try {
+                            alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                        } catch (e) {
+                            alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                        }
+
+                        //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                        doct_EnableButtonAndEventClick($("#btnSave"), "Guardar", todosbtn);
+                        //quito splash
+                        //$.LoadingOverlay("hide");
+                    });    //end error
+
+                }//end validar si es editando
+
+                return false;
+            });
+            //end save click
+
+
+
+        });//End document ready
+
+
+        //click edit grid
+        function onClick(args) {
+            //excute btnnuevo
+            $('#btnNuevo').trigger('click');
+            //button proseesand
+            var btn = $(this);
+            //var todosbtn = $('#btnDelete');
+            var todosbtn = $('button');
+            //bloquear boton
+            doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+            var grid = $("#Searching").ejGrid("instance");
+            var index = this.element.closest("tr").index();
+            var record = grid.getCurrentViewData()[index];
+       
+            //alert("Record Details: " + JSON.stringify(record));
+
+            //send object to controller
+            //start ajax
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Editar", "TipoFormulario")',
+                dataType: "json",
+                data: JSON.stringify(record),
+                contentType: "application/json; charset=utf-8",
+                cache: false
+            })
+            .success(function (data) {
+
+                if (data.respuesta) {
+
+                    //$("#msgExitoso").fadeIn('slow').animate({ opacity: 1.0 }, 1500).effect("pulsate", { times: 2 }, 800).fadeOut('slow');
+                    //$("#msgExitoso").show()
+                    //setTimeout('$("#msgExitoso").hide()', 2500);
+
+                    //location.reload();
+                    var di = data.redirect;
+                    window.location.href = di;
+                }
+                else {
+
+                    alert(data.error);
+                }
+
+
+                ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+
+            })//end susccess
+            .error(function () {
+
+                try {
+                    alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                } catch (e) {
+                    alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                }
+
+                //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                //quito splash
+                //$.LoadingOverlay("hide");
+            });    //end error
+
+        }//end edit grid onClick
+
+    </script>
+}
+
+
+
+

@@ -1,0 +1,574 @@
+﻿@model DoctorMedicalWeb.Models.Usar_Doctor
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+
+<div class="container  ">
+
+    @using (Html.BeginForm("SaveDoctor", "Doctor", FormMethod.Post, new { id = "frmSaveDoctor", autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="row    ">
+            <div class="col-xs-12 col-md-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Información Acerca del Doctor</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="cuerpo ">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <button type="button" id="btnSaveDoctor" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk" accesskey="s" hidden><br><u>G</u>uardar</button>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6" style="bottom: 10px;z-index: 999;">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-4 col-md-4">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.DoctFechaCreacion, new { @class = "  control-label     " })
+                                            @Html.TextBoxFor(model => model.DoctFechaCreacion, new { @class = "form-control  ", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.DoctNombre, new { @class = "  control-label      " })
+                                            @Html.TextBoxFor(model => model.DoctNombre, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.DoctNombre) })
+                                            @Html.ValidationMessageFor(model => model.DoctNombre, null, new { @class = "label label-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.DoctApellido, new { @class = "control-label      " })
+                                            @Html.TextBoxFor(model => model.DoctApellido, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.DoctApellido) })
+                                            @Html.ValidationMessageFor(model => model.DoctApellido, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.UsuaEmail, new { @class = "  control-label      " })
+                                            @Html.TextBoxFor(model => model.UsuaEmail, new { @class = "form-control  ", @readonly = "readonly", @style = "background:rgb(255, 255, 192) !important", placeholder = Html.DisplayNameFor(n => n.UsuaEmail) })
+                                            @Html.ValidationMessageFor(model => model.UsuaEmail, null, new { @class = "label label-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="row">
+
+
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+
+                                        @{ if (string.IsNullOrEmpty(@Model.DoctFotoPath.ToString()) == false)
+                                         {
+
+                                            <img src="@Url.Content(@Model.DoctFotoPath.ToString() + "?" + DoctorMedicalWeb.Libreria.Lib.GetLocalDateTime().ToString("ddyyhhmmss"))" class="img-responsive" @*class="img-thumbnail "*@ alt="Cinque Terre" @*width="304" height="236"*@ id="doctPicture">
+                                         }
+                                         else
+                                         {
+
+                                            <img src="~/Content/AdminFiles/images/_user-alt.png" @*class="img-thumbnail "*@ class="img-responsive" alt="Cinque Terre" @*width="304" height="236"*@ id="doctPicture">
+
+                                         }
+                                        }
+                                        <input type="file" id="ImagenSeleccionada" name="imagen" accept="image/gif, image/jpeg, image/png" onchange="showimagepreview(this, 'doctPicture')" />
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <label class="control-label " for="EspeSecuencia">Cédula o Pasaporte</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-4 col-md-5">
+                                        @*<div class="form-group form-inline">*@
+                                        @*<div class="textbox-register  ">*@
+                                        @Html.DropDownListFor(m => m.TDSecuencia, ViewBag.tipoDocumentos as SelectList, "Seleccione Tipo Documento", new { @class = "form-control" })
+                                        @*@Html.TextBoxFor(model => model.DoctDocumento, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.DoctDocumento) })*@
+                                        @Html.ValidationMessageFor(model => model.TDSecuencia, null, new { @class = "label label-danger" })
+                                        @*@Html.ValidationMessageFor(m => m.DoctDocumento, null, new { @class = "label label-danger" })*@
+                                        @*</div>*@
+                                        @*</div>*@
+                                    </div>
+                                    <div class="col-xs-12 col-sm-7 col-md-7">
+                                        @*<div class="form-group form-inline">*@
+                                        @*<label class="control-label " for="EspeSecuencia">Cédula o Pasaporte</label>*@
+                                        @*<div class="textbox-register  ">*@
+                                        @Html.TextBoxFor(model => model.DoctDocumento, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.DoctDocumento) })
+                                        @Html.ValidationMessageFor(m => m.DoctDocumento, null, new { @class = "label label-danger" })
+                                        @*</div>*@
+                                        @*</div>*@
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div id="cuprediv" class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(model => model.DoctCUPRE, new { @class = "  control-label      " })
+                                    @Html.TextBoxFor(model => model.DoctCUPRE, new { @class = " form-control  ", placeholder = Html.DisplayNameFor(n => n.DoctCUPRE) })
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-5 col-md-5">
+                                        <div class="form-group  ">
+
+                                            <label class="control-label " for="DoctGenero">Genero</label>
+                                            <p>
+                                                <label class="radio-inline">
+                                                    @Html.RadioButtonFor(m => m.DoctGenero, "Masculino")
+                                                    @Html.Label("Masculino")
+                                                </label>
+                                                <label class="radio-inline ">
+                                                    @Html.RadioButtonFor(m => m.DoctGenero, "Femenino")
+                                                    @Html.Label("Femenino")
+
+
+                                                </label>
+                                                @Html.ValidationMessageFor(m => m.DoctGenero, null, new { @class = "label label-danger" })
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-7 col-md-7">
+                                        <div class="form-group  ">
+                                            @Html.LabelFor(model => model.DoctFechaNacimiento, new { @class = "control-label " })
+                                            @Html.EJ().DatePickerFor(m => m.DoctFechaNacimiento).DateFormat("dd/MM/yyyy").Width("100%")
+                                            @*@Html.EJ().DatePickerFor(m => m.DoctFechaNacimiento).DateFormat("dd/MM/yyyy").Locale("es-ES").Width("100%")*@
+                                            @*@Html.EJ().DatePickerFor(m => m.DoctFechaNacimiento).Width("100%")*@
+                                            @Html.ValidationMessageFor(m => m.DoctFechaNacimiento, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.DoctDireccion, new { @class = "control-label " })
+                                            @Html.TextBoxFor(model => model.DoctDireccion, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(n => n.DoctDireccion) })
+                                            @Html.ValidationMessageFor(m => m.DoctDireccion, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row ">
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group ">
+                                            <label class="control-label " for="EspeSecuencia">Especialidad</label>
+                                            @*<div class="input-group textbox-register  ">*@
+                                            @Html.DropDownListFor(m => m.EspeSecuencia, ViewBag.Especialidad as SelectList, "Seleccione Especialidad", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.EspeSecuencia, null, new { @class = "label label-danger" })
+                                            @*</div>*@
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(model => model.DoctCelular, new { @class = "control-label " })
+
+                                            @Html.TextBoxFor(m => m.DoctCelular, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(m => m.DoctCelular) })
+                                            @Html.ValidationMessageFor(m => m.DoctCelular, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                        <div class="form-group  ">
+                                            @Html.LabelFor(model => model.DoctTelefono, new { @class = "control-label " })
+                                            @*@Html.EJ().MaskEditTextBoxFor(m => m.DoctTelefono)*@
+                                            @Html.TextBoxFor(m => m.DoctTelefono, new { @class = "form-control  ", placeholder = Html.DisplayNameFor(m => m.DoctTelefono) })
+                                            @Html.ValidationMessageFor(m => m.DoctTelefono, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(model => model.UsuaClave, new { @class = "  control-label      " })
+                                    @Html.PasswordFor(model => model.UsuaClave, new { @class = "form-control  ", value = Model.UsuaClave, placeholder = Html.DisplayNameFor(n => n.UsuaClave) })
+                                    @Html.ValidationMessageFor(model => model.UsuaClave, null, new { @class = "label label-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group ">
+                                    @Html.LabelFor(model => model.UsuaClaveConfirmacion, new { @class = "  control-label      " })
+                                    @Html.PasswordFor(model => model.UsuaClaveConfirmacion, new { @class = "form-control  ", value = Model.UsuaClaveConfirmacion, placeholder = Html.DisplayNameFor(n => n.UsuaClaveConfirmacion) })
+                                    @Html.ValidationMessageFor(model => model.UsuaClaveConfirmacion, null, new { @class = "label label-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.DoctSecuencia)
+        @Html.HiddenFor(model => model.UsuSecuencia)
+        @Html.HiddenFor(model => model.UsuaSecuenciaCreacion)
+        @Html.HiddenFor(model => model.DoctFechaCreacion)
+        @Html.HiddenFor(model => model.UsuaSecuenciaModificacion)
+        @Html.HiddenFor(model => model.DoctFechaModificacion)
+        @Html.HiddenFor(model => model.PaisSecuencia)
+
+    }
+</div>
+
+
+
+@section Scripts{
+
+
+    <script type="text/javascript">
+        //start preview photo
+
+        function showimagepreview(input, imgtag) {
+            if (input.files && input.files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    // $('#doctPicture').attr('src', e.target.result);
+                    $('#' + imgtag).attr('src', e.target.result);
+                }
+                filerdr.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+
+        //end preview photo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        jQuery(function ($) {
+            //$("#date").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+            $("#DoctTelefono").mask("(999) 999-9999");
+            $("#DoctCelular").mask("(999) 999-9999");
+
+            //$("#DoctFechaNacimiento").datepicker();
+            //$("#tin").mask("99-9999999");
+            //$("#ssn").mask("999-99-9999");
+        });
+
+        //$("#DoctFechaNacimiento").datepicker({ dateFormat: "dd/mm/yy" });
+
+        //$("#DoctFechaNacimiento").datepicker({
+        //    dateFormat: 'dd/mm/yy',
+        //    showOn: "button"
+        //});
+
+
+
+
+        //$("#DoctFechaNacimiento").datepicker({ dateFormat: "dd/mm/yy" }).mask("99/99/9999", { placeholder: "dia/mes/año" });
+        /*dataanotation Valid date*/
+        $.validator.addMethod('date',
+       function (value, element, params) {
+           if (this.optional(element)) {
+               return true;
+           }
+           var ok = true;
+           try {
+              $.datepicker.parseDate('dd/mm/yy', value);
+           }
+           catch (err) {
+               ok = false;
+           }
+           return ok;
+       });
+        /*end dataanotation Valid date*/
+
+
+
+        /*Valid lang*/
+        $(function () {
+
+            $("#DoctFechaNacimiento").ejDatePicker({
+                //value: new Date(),
+                locale: "es-ES",            //sets custom “fr-FR” locale  
+                watermarkText: "Seleccione Fecha",
+                buttonText: 'Hoy'
+            });
+        })
+        //$("#DoctFechaNacimiento").display("block").width("100%")
+
+        /*end Valid lang*/
+
+
+        //start document ready
+        $(document).ready(function () {
+
+
+
+            //$("#ConfirmarNo").on("click", function () {
+
+            //    return;
+            //})
+
+            //$("#ConfirmarSi").on("click", function () {
+            //  //  $("#btnSaveDoctor1").click();
+            //    alert('si');
+            //})
+
+
+            //start click savedoctor
+            $("#btnSaveDoctor").on("click", function (e) {
+                //$("#ConfirmarSi").on("click", function () {
+                e.preventDefault();
+
+                var f = $('#frmSaveDoctor').valid();
+
+                if (f == false) { return false; }
+
+                 alertify.confirm('', '¿Seguro que desea Guardar?', function () {
+        
+                  
+
+                        //button proseesand
+                        var btn = $(this);
+
+                        var todosbtn = $('button');
+                        //bloquear boton
+                        doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+                        ////Comienzo LOADING
+                        //$.LoadingOverlay("show");
+
+                        var serialiformAu = $("#frmSaveDoctor").serializeToJSON();
+                      
+                        var formData = new FormData();
+                        var totalFiles = document.getElementById("ImagenSeleccionada").files.length;
+                        for (var i = 0; i < totalFiles; i++) {
+                            var file = document.getElementById("ImagenSeleccionada").files[i];
+
+                            formData.append("ImagenSeleccionada", file);
+                        }
+
+
+                        //var jsonfile =JSON.stringify(formData);
+                        //var jsonfile = JSON.parse(formData);
+                        var jsonfile = document.getElementById("ImagenSeleccionada").files[0];
+
+
+
+
+                        //var forSerialize = $('#frmSaveDoctor').serialize();
+                        //var myform = document.getElementById("frmSaveDoctor");
+                        var formData = new FormData();
+
+                        //add all controlers form to FormData
+                        var other_data = $('#frmSaveDoctor').serializeArray();
+
+
+                        $.each(other_data, function (key, input) {
+                            if (input.name == 'DoctFechaNacimiento') {
+                                //convert date dd/mm/yy to  MM/dd/yyyy  consulta medica historial
+                                input.value = convertDate(input.value);
+                            }
+                            formData.append(input.name, input.value);
+                        });
+
+                        formData.append("file", jsonfile);
+                        //show screen block
+                        $.LoadingOverlay("show");
+                        //start ajax
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("SaveDoctor", "Doctor")',
+                            //data: $('#frmSaveDoctor').serialize(),
+                            //data: JSON.stringify({
+                            //    'usar_doctor': serialiformAu
+                            //    ,
+                            //    'files': document.getElementById("ImagenSeleccionada").files[0]
+                            //}),
+                            data: formData,
+                            dataType: 'json',//file test
+                            contentType: false,//file test
+                            processData: false,//file test
+                            //data: { usar_doctor: forSerialize, files: formData },
+                            //datatype: "application/json; charset=utf-8", //Serialize
+                            //contentType: "application/json;", //Json
+                            //datatype: 'json', //json y serialize objet
+
+                            //datatype: "json",
+                            //contentType: "application/json; charset=utf-8",
+                            //processData: false,
+                            cache: false,
+                            complete: (function () {
+
+                                //No utilizo el  esbloqueador bloquear por que como la pagina se recarga
+                                //y le puse un bloqueador y desbloqueador  en el layout no necesito este
+                                   $.LoadingOverlay("hide");
+                            }),
+                            //start success
+                        success:(function (data) {
+
+                            ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                            doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+                        ////quito splash
+                        //$.LoadingOverlay("hide");
+                        // alert("Entro devolvio data ");
+                        //cuando devuelva del controlador la respuesta entonces se abilita el boton
+
+                        if (data.respuesta) {
+
+                            //$("#msgExitoso").fadeIn('slow').animate({ opacity: 1.0 }, 1500).effect("pulsate", { times: 2 }, 800).fadeOut('slow');
+                            $("#msgExitoso").show()
+                            setTimeout('$("#msgExitoso").hide()', 2500);
+
+                            alertify.success('Si')
+
+
+                            //location.reload();
+                            //var di = data.redirect;
+                            //window.location.href = di;
+                        }
+                        else {
+
+                            alert(data.error);
+                        }
+                    }),
+                            //end susccess
+                            //start error
+                      error:(function (jqXHR, textStatus, errorThrown) {
+                          alert('Error: ' + textStatus + ' ' + errorThrown.message);
+                          //var r = response;
+                          //alert('' + response);
+                          //.error(function (xhr, status, err) {
+                          //var x = xhr;
+                          //var s = status;
+                          //var e = err;
+                          //if (x.status == 0) {
+                          //    alert('You are offline!!\n Please Check Your Network.');
+                          //} else if (x.status == 404) {
+                          //    alert('Requested URL not found.');
+                          //    /*------>*/
+                          //} else if (x.status == 550) { // <----- THIS IS MY CUSTOM ERROR CODE
+                          //    alert(x.responseText);
+                          //} else if (x.status == 500) {
+                          //    alert('Internel Server Error.');
+                          //} else if (e == 'parsererror') {
+                          //    alert('Error.\nParsing JSON Request failed.');
+                          //} else if (e == 'timeout') {
+                          //    alert('Request Time out.');
+                          //} else {
+                          //    alert('Unknow Error.\n' + x.responseText);
+                          //}
+
+                          //alert(xhr.responseText);
+                          //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                          doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                          //quito splash
+                          //$.LoadingOverlay("hide");
+
+                          try {
+                              alertify.alert('', 'Error en controller login y no se ejecuto el result json ');
+                          } catch (e) {
+                              alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                          }
+
+                          //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                          doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                          //quito splash
+                          //$.LoadingOverlay("hide");
+                      })
+                //end error
+                        })
+                            //end ajax
+                         
+
+
+                       
+                    }
+                     , function () {
+                         ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                         doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                         alertify.error('No')
+                         return true;
+                     });/*End message confirm*/
+
+                //return false;
+            });
+            //end save click
+
+
+
+
+            //valido si esta creando o editando
+            $("input").click(function () {
+
+                //editando
+                if ($("#DoctSecuencia").val() > 0) {
+
+                    $("#EstadoAccion h2 span").html(" Editando");
+                } else {
+                    $("#EstadoAccion h2 span").html(" Creando");
+                }
+            });
+
+        });//End document ready
+
+    </script>
+}
+
+
+
+

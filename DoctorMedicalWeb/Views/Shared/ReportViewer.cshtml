@@ -1,0 +1,71 @@
+﻿@model DoctorMedicalWeb.Models.Usar_vw_receta
+<div>
+    @*@using (Html.BeginForm())
+    {*@
+
+     
+    <div style="width: auto; height: 500px;  min-height:404%" id="viewer"> </div>
+        
+        
+    @*}*@
+
+   
+    <!-- Setting property and initializing ejReportViewer widget.-->
+    <script type="text/javascript">
+    @*var comentarrew = '@Model.ReceComentario.ToString()'*@
+
+    @*var comentar2 = @Html.Raw("'" + Model.ReceComentario + "'")*@
+    @*var comentar=@Html.Raw(HttpUtility.HtmlDecode(Model.ReceComentario))*@
+
+    @*var comentar='@HttpUtility.JavaScriptStringEncode(Model.ReceComentario)'*@
+    @*var comentar = '@Model.ReceComentario.Replace("\n", "\\")';*@
+    @*var comentar = '@Html.Raw(HttpUtility.HtmlEncode(@Model.ReceComentario).Replace("\n", "<br />"))';*@
+        @*@*var comentar='@Html.Raw(HttpUtility.HtmlDecode(Model.ReceComentario))'*@
+        @*var comentar = '@Html.Raw(HttpUtility.HtmlEncode(@Model.ReceComentario).Replace("\n", "\\n"))';*@
+        @*var comentar = '@Model.ReceComentario.Replace("\n", "\\n")'*@
+        var comentar = `@Model.ReceComentario`
+     
+
+    var NombreDoct = '@Model.DoctNombre @Model.DoctApellido'
+    var NombrePaci = '@Model.PaciNombre @Model.PaciApellido1 @Model.PaciApellido2'
+    var Fecha = '@Model.ReceFechaString'
+
+    $(function () {
+        $("#viewer").ejReportViewer({
+            reportServiceUrl: "/api/ReportApi",
+            processingMode: ej.ReportViewer.ProcessingMode.Local,
+
+            reportPath: '~/ReportSSR/RectaMelbaRerporteSinDatasetYParametro.rdl',
+            parameters: [{
+                name: 'Comentario',
+                labels: ['ComentarioLab'],
+                values: ['' + comentar],
+                nullable: false
+            },
+            {
+                name: 'NombreDoctora',
+                labels: ['NombreMostradoDoctora'],
+                values: ['' + NombreDoct],
+                nullable: false
+            }
+            ,
+            {
+                name: 'NombrePaciente',
+                labels: ['NombreMostradopaci'],
+                values: ['' + NombrePaci],
+                nullable: false
+            },
+            {
+                name: 'FechaCreacion',
+                labels: ['NombreMostradoFecha'],
+                values: ['' + Fecha],
+                nullable: false
+            }]
+        });
+
+    });
+    // reportPath: '~/ReportSSR/RectaMelbaRerporteSinDataset.rdl'
+    //reportPath: '~/ReportSSR/DocConsuRec_1.rdl'
+    //reportPath: '~/ReportSSR/primer reporte.rdl'
+    </script>
+</div>

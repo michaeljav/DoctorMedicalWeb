@@ -1,0 +1,1731 @@
+﻿@model DoctorMedicalWeb.ModelsComplementarios.Usar_RecetaComplementaria
+
+@{
+    ViewBag.Title = "Ini_Receta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<script src="~/Scripts/ej/web/ej.grid.min.js"></script>
+<script src="~/Scripts/ej/web/ej.pager.min.js"></script>
+<script src="~/Scripts/ej/web/ej.waitingpopup.min.js"></script>
+<script src="~/Scripts/ej/web/ej.dropdownlist.min.js"></script>
+
+<script src="~/Scripts/ej/web/ej.dialog.min.js"></script>
+<script src="~/Scripts/ej/web/ej.button.min.js"></script>
+<script src="~/Scripts/ej/web/ej.autocomplete.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.timepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.datetimepicker.min.js"></script>
+<script src="~/Scripts/ej/web/ej.checkbox.min.js"></script>
+
+<script src="~/Scripts/ej/web/ej.editor.min.js"></script>
+<script src="~/Scripts/ej/web/ej.tooltip.min.js"></script>
+<script src="~/Scripts/ej/web/ej.toolbar.min.js"></script>
+<script src="~/Scripts/ej/web/ej.menu.min.js"></script>
+<script src="~/Scripts/ej/web/ej.radiobutton.min.js"></script>
+<script src="~/Scripts/ej/web/ej.excelfilter.min.js"></script>
+
+<script src="~/Scripts/ej/web/ej.treeview.min.js"></script>
+<script src="~/Scripts/ej/web/ej.splitter.min.js"></script>
+<script src="~/Scripts/ej/datavisualization/ej.chart.min.js"></script>
+<script src="~/Scripts/ej/datavisualization/ej.map.min.js"></script>
+<script src="~/Scripts/ej/common/ej.touch.min.js"></script>
+<script src="~/Scripts/ej/datavisualization/ej.circulargauge.min.js"></script>
+<script src="~/Scripts/ej/datavisualization/ej.lineargauge.min.js"></script>
+<script src="~/Scripts/ej/web/ej.reportviewer.min.js"></script>
+
+@*<div id="viewer"> </div>*@
+<div class="container">
+
+    @*<div style="height: 650px;width: 950px;min-height:404px;" id="viewer"></div>*@
+  
+    @using (Html.BeginForm("Save", "Receta", FormMethod.Post, new { id = "frmReceta", autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="row    ">
+            <div class="col-xs-12 col-md-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Análisis Clínico</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="cuerpo ">
+                        <div class="row">
+
+                            <div id="menu" class="col-xs-12 col-sm-12 col-md-12" style="bottom: 10px;z-index: 999;">
+                                <button type="button" id="btnNuevo" class="btn btn-lg btn-primary glyphicon glyphicon-plus" accesskey="n">Nuevo</button>
+                                <button type="button" id="btnSave" class="btn btn-lg btn-success glyphicon glyphicon-floppy-disk" accesskey="s" hidden>Guardar</button>
+                                <button type="button" id="btnBorrar" class="btn btn-lg btn-danger glyphicon glyphicon-trash " accesskey="x">Eliminar</button>
+                                <button type="button" id="btnLista" class="btn btn-lg btn-info glyphicon glyphicon-list-alt" onclick="window.location.href='@Url.Action("Recetalista", ViewBag.ControlCsharp)'" accesskey="f">Listado</button>
+                                <button type="button" id="btnBuscarPaciente" class="btn btn-lg btn-danger glyphicon glyphicon-search " accesskey="x">Buscar  Paciente</button>
+                                <button type="button" id="btnGinecoRecetaImprimirReceta" class="btn  btn-danger  btn-lg glyphicon glyphicon-print " accesskey="x"> Imprimir Receta</button>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row ">
+                            @*<div class="col-xs-12 col-sm-2 col-md-2">
+                            <div class="form-group formFields ">
+                                @Html.LabelFor(c => c.ReceSecuencia)
+                                @Html.TextBoxFor(model => model.ReceSecuencia, new { @class = "form-control", @readonly = "readonly", @style = "background:rgb(255, 255, 192) !important", placeholder = "Sec." })
+                                @Html.ValidationMessageFor(model => model.ReceSecuencia, null, new { @class = "label label-danger" })
+                            </div>
+                        </div>*@
+                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                <div class="form-group formFields ">
+                                    @Html.LabelFor(c => c.RecCodigo)
+                                    @Html.TextBoxFor(model => model.RecCodigo, new { @class = "form-control", @readonly = "readonly", @style = "background:rgb(255, 255, 192) !important", placeholder = "Código" })
+                                    @Html.ValidationMessageFor(model => model.RecCodigo, null, new { @class = "label label-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                <div class="form-group formFields ">
+                                    @Html.LabelFor(c => c.ReceFecha)
+                                    @*@Html.TextBoxFor(model => model.ReceFechaString, new { @class = "form-control", @readonly = "readonly", @style = "background:rgb(255, 255, 192) !important", placeholder = Html.DisplayNameFor(n => n.ReceFecha) })*@
+                                    @Html.EJ().DatePickerFor(model => model.ReceFecha).DateFormat("dd/MM/yyyy").Width("100%").ShowFooter(false)
+                                    @*@Html.EJ().DatePickerFor(model => model.ReceFechaString).DateFormat("dd/MM/yyyy").Width("100%")*@
+                                    @Html.ValidationMessageFor(model => model.ReceFecha, null, new { @class = "label label-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+
+
+                                <div class="form-group formFields ">
+                                    @Html.LabelFor(c => c.PaciNombre)
+                                    @Html.TextBoxFor(model => model.PaciNombre, new { @class = "form-control", @readonly = "readonly", @style = "background:rgb(255, 255, 192) !important", placeholder = Html.DisplayNameFor(n => n.PaciNombre) })
+                                    @Html.ValidationMessageFor(model => model.PaciNombre, null, new { @class = "label label-danger" })
+                                </div>
+
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+
+                                        <div class="form-group formFields ">
+                                            @Html.LabelFor(c => c.PaciApellido1)
+                                            @Html.TextBoxFor(model => model.PaciApellido1, new { @class = "form-control", @readonly = "readonly", @style = "background:rgb(255, 255, 192) !important", placeholder = Html.DisplayNameFor(n => n.PaciApellido1) })
+                                            @Html.ValidationMessageFor(model => model.PaciApellido1, null, new { @class = "label label-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group formFields ">
+                                            @Html.LabelFor(c => c.PaciApellido2)
+                                            @Html.TextBoxFor(model => model.PaciApellido2, new { @class = "form-control", @readonly = "readonly", @style = "background:rgb(255, 255, 192) !important", placeholder = Html.DisplayNameFor(n => n.PaciApellido2) })
+                                            @Html.ValidationMessageFor(model => model.PaciApellido2, null, new { @class = "label label-danger" })
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group formFields ">
+                                    @Html.LabelFor(c => c.PaciDocumento)
+                                    @Html.TextBoxFor(model => model.PaciDocumento, new { @class = "form-control", @readonly = "readonly", @style = "background:rgb(255, 255, 192) !important", placeholder = Html.DisplayNameFor(n => n.PaciDocumento) })
+                                    @Html.ValidationMessageFor(model => model.PaciDocumento, null, new { @class = "label label-danger" })
+                                </div>
+
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row ">
+                                    <div class="col-xs-12 col-sm-10 col-md-10">
+                                        <div class="form-group formFields ">
+                                            <label class="control-label">Medicamentos</label>
+                                            @Html.EJ().DropDownListFor(m => m.MediSecuencia_fk).Datasource((IEnumerable<DoctorMedicalWeb.App_Data.Medicamento>)ViewBag.MedicamentosListaCheck).DropDownListFields(d => d.Text("MediNombre").Value("MediSecuencia")).ShowCheckbox(true).EnableFilterSearch(true).Width("100%").MultiSelectMode(MultiSelectModeTypes.VisualMode).ClientSideEvents(e => e.Change("drpvaluechangeMedicamento")).WatermarkText("Seleccione Medicamento")
+                                            <span class="label label-danger field-validation-error " id="ErrorComboMedicamentos" style="visibility:hidden">Favor seleccione Medicamentos</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-2 col-md-2">
+                                        <div class="form-group ">
+                                            <label> </label>
+                                            <button type="button" class="form-control btn btn-xs btn-primary glyphicon glyphicon-flash " id="ActuMedicamento"></button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row ">
+                                    <div class="col-xs-12 col-sm-10 col-md-10">
+                                        <div class="form-group formFields ">
+                                            <label class="control-label">Análisis Clínico</label>
+                                            @Html.EJ().DropDownListFor(m => m.AClinSecuencia_fk).Datasource((IEnumerable<DoctorMedicalWeb.App_Data.AnalisisClinico>)ViewBag.AnalisisClinicoListaCheck).DropDownListFields(d => d.Text("AClinNombre").Value("AClinSecuencia")).ShowCheckbox(true).EnableFilterSearch(true).Width("100%").MultiSelectMode(MultiSelectModeTypes.VisualMode).ClientSideEvents(e => e.Change("drpvaluechangeAnalisis")).WatermarkText("Seleccione Análisis")
+                                            <span class="label label-danger field-validation-error " id="ErrorComboMedicamentos" style="visibility:hidden">Favor seleccione Medicamentos</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-2 col-md-2">
+                                        <div class="form-group ">
+                                            <label> </label>
+                                            <button type="button" class="form-control btn btn-xs btn-primary glyphicon glyphicon-flash " id="ActuAnalisisClinico"></button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row ">
+                                    <div class="col-xs-12 col-sm-10 col-md-10">
+                                        <div class="form-group formFields">
+                                            <label class="control-label">Imágenes</label>
+                                            @Html.EJ().DropDownListFor(m => m.ImagSecuencia_fk).Datasource((IEnumerable<DoctorMedicalWeb.App_Data.Imagene>)ViewBag.ImagenesListaCheck).DropDownListFields(d => d.Text("ImagNombre").Value("ImagSecuencia")).ShowCheckbox(true).EnableFilterSearch(true).Width("100%").MultiSelectMode(MultiSelectModeTypes.VisualMode).ClientSideEvents(e => e.Change("drpvaluechangeImagen")).WatermarkText("Seleccione Imagen")
+                                            <span class="label label-danger field-validation-error " id="ErrorComboMedicamentos" style="visibility:hidden">Favor seleccione Medicamentos</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-2 col-md-2">
+                                        <div class="form-group ">
+                                            <label> </label>
+                                            <button type="button" class="form-control btn btn-xs btn-primary glyphicon glyphicon-flash " id="ActuImagenes"></button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+
+                                <div class="form-group ">
+                                    @Html.LabelFor(c => c.ReceComentario)
+                                    @Html.TextAreaFor(model => model.ReceComentario, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.ReceComentario) })
+                                    @Html.ValidationMessageFor(model => model.ReceComentario, null, new { @class = "label label-danger" })
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-md-12">
+                                <h3>Ultimos 5 Registros</h3>
+                            </div>
+                            <div class="row">
+                                <div id="Grid" class="col-md-12">
+                                    @{
+                                        @(Html.EJ().Grid<object>("Searching")
+                                         .EnableAltRow(false)
+                                        .Datasource((IEnumerable<object>)ViewBag.ultimosCinco)
+                                        .Columns(col =>
+                                        {
+
+
+
+                                            col.Field("ReceSecuencia").HeaderText("ID").IsPrimaryKey(true).Visible(false).TextAlign(TextAlign.Right).Width(50).Add();
+                                            col.Field("RecCodigo").HeaderText("Código").Visible(true).TextAlign(TextAlign.Right).Width(100).Add();
+                                            col.Field("RecSinConsultaNombre").HeaderText("Nombre").Width(230).Add();
+                                            col.Field("ReceFechaString").HeaderText("Fecha de Cita").Type("date").Format("{0:dd/MM/yyyy}").Width(100).Add();
+                                            col.HeaderText("").Commands(command =>
+                                               {
+                                                   command.Type("detail")
+                                                          .ButtonOptions(new Syncfusion.JavaScript.Models.ButtonProperties()
+                                                          {
+                                                              Text = "Editar",
+                                                              Width = "100px",
+                                                              Click = "onClick"
+                                                          }).Add();
+
+                                               }).TextAlign(TextAlign.Left)
+
+                                               .Width(60)
+                                               .Add();
+                                        })
+
+                                        )}
+
+
+
+                                    <
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        @Html.HiddenFor(model => model.PaciSecuencia_fk)
+        @Html.HiddenFor(model => model.ReceSecuencia)
+    @Html.HiddenFor(model => model.CMHistSecuencia_fk)
+    @Html.HiddenFor(model => model.DoctSecuencia_fk)
+
+
+
+
+    }
+
+
+</div>
+
+
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="modalValidacion">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("PendientesValidar", "Paciente", FormMethod.Post, new { @id = "frmMostrarPaciente", @class = "form-horizontal", @role = "form", onsumbit = "formSubmit()" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-primary">Lista de Paciente</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="col-md-12">
+                            @{
+                                @*@(Html.EJ().Grid<DoctorMedicalWeb.App_Data.Paciente>("ModalPaciente")*@
+    @(Html.EJ().Grid<DoctorMedicalWeb.Models.Usar_Paciente>("ModalPaciente")
+                    //.EnableAltRow(false)
+                            .Datasource((IEnumerable<object>)ViewBag.listPaciente)
+                                        .IsResponsive()
+                                        .AllowResizing(true)
+                                        .AllowPaging()
+                                        .PageSettings(e => e.PageSize(5))
+                    //.AllowScrolling(true)
+                    //.ScrollSettings(col => { col.Width(400).Height(300); })
+                                        .ToolbarSettings(toolbar => { toolbar.ShowToolbar().ToolbarItems(items => { items.AddTool(ToolBarItems.Search); }); })
+                             .ClientSideEvents(eve => { eve.RecordDoubleClick("rowSelectedPaciente"); })
+                                        .Columns(col =>
+                                        {
+                                            col.Field("PaciSecuencia").HeaderText("ID").IsPrimaryKey(true).Visible(false).TextAlign(TextAlign.Right).Width(50).Add();
+                                            //col.Field("PaciNombre").HeaderText("Nombre").Width(150).Add();
+                                            //col.Field("PaciApellido1").HeaderText("Apellido1").Width(150).Add();
+                                            //col.Field("PaciApellido2").HeaderText("Apellido2").Width(150).Add();
+                                            col.Field("NombreCompleto").HeaderText("Nombre").Width(150).Add();
+                                            col.Field("PaciDocumento").HeaderText("Documento").Width(150).Add();
+
+                                        })
+    )}
+
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnSeleccionarPaciente" class="btn btn-primary">Seleccionar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal Receta-->
+<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="modalReceta">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("Receta", "Consulta", FormMethod.Post, new { @id = "frmReceta", @class = "form-horizontal", @role = "form" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-primary"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="col-md-12">
+
+                            @*<iframe id="loadReport" src='@Url.Content(("~/Reports/CrystalViewer/RecetaGinecologica.aspx?id=" + ViewBag.doctReport))' style="width:100%; height:800px; border:none;"></iframe>*@
+                            <iframe id="loadReport" src="" style="width:100%; height:800px; border:none;"></iframe>
+
+
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+                @*<div class="modal-footer">
+                        <button type="button" id="btnReceta" class="btn btn-primary">Seleccionar</button>
+                    </div>*@
+            }
+        </div>
+    </div>
+</div>
+<!--EndModal Receta-->
+
+<!--Modal Maintenance-->
+<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="modalMaintenance">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("PendientesValidar", "Consulta", FormMethod.Post, new
+            {
+                @id = "frmMaintenance",
+                @class = "form-horizontal",
+                @role = "form"@*, onsumbit = "formSubmit()"*@ }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-primary"><span id="TituloModalMaintenance"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group ">
+                                        <label>Nombre:</label>
+                                        <input type="text" class="form-control" id="NombreMaintenance" />
+                                        @Html.ValidationMessage("NombreMaintenance", null, new { @class = "label label-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group ">
+                                        <label>Descripción:</label>
+                                        <textarea class="form-control" cols="20" id="DescripcionMaintenance" name="DescripcionMaintenance" rows="2"></textarea>
+                                        @Html.ValidationMessage("DescripcionMaintenance", null, new { @class = "label label-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" class="form-control" id="idMaintenance" />
+                    <input type="hidden" class="form-control" id="idDropdownlist" />
+                    <button type="button" id="btnActualizarMaintenance" class="btn btn-primary">Guardar Mantenimiento</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!--EndModal Maintenance-->
+
+
+
+
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+    //$(function () {
+    //    $("#viewer").ejReportViewer({
+    //        reportServiceUrl: "/api/ReportApi",
+    //        processingMode: ej.ReportViewer.ProcessingMode.Local,
+    //        reportPath: '~/ReportSSR/primer reporte.rdl'
+    //    });
+
+    //});
+
+    //,
+    //toolbarSettings:{
+    //    items: ej.ReportViewer.ToolbarItems.All & ~ej.ReportViewer.ToolbarItems.Parameters
+    //}
+    //reportPath: '~/App_Data/primer reporte.rdl'
+
+
+
+
+    var formularioGlobal = 'frmReceta';
+    var campoSecuencia = 'ReceSecuencia';
+    var vista = '@ViewBag.VistaCsharp';
+    var control = '@ViewBag.ControlCsharp';
+
+    //cuando cargo la vista desde una edicion
+    //y se carga un combobox el metodo de asignar el valor del combobox(motivoconsulta,evaluacionfisica....)
+    //se ejecuta nuevamente y me vuelve a insertar en el comentario el valor que puso razor de manera automatica
+    //en el combobox, por ende se repite. y para que no pase, identifico que si la vista se muestra,
+    //desde una edicion la primera asignacion de valor al combobox, no se deba ejecutar el metodo (setNewLineTextonTexboxAre)
+    var IsEditing=false;
+
+    //cuando se  agrega un mantenimiento flash al cargarse nuevamente los items con el nuevo item agregado al  dropdownlist
+    // se borran los que estaban previamente  seleccionados
+    //por eso cuando este realizando el seleccionado  del los anteriores  items
+    // no permitire que se ejecute  el metodo (setNewLineTextonTexboxAre) para que no me agregue  nuevamente los  nombres
+    //a los texbox.  utilizo esta variable numerica por que  la cantidad de items que seleccione
+    //asi mismo seran las veces que se ejecutar el  metodo onchange del dropdownlist. es decir el se dispara por cada items seleccionado
+    var IsAddingFlashMaintenance = 0;
+    //esta otra variable trabaja junto con IsAddingFlashMaintenance
+    //para ser un secuencial para saber cuando ya se ha seleccionado todos
+    //los items previamente.
+    var secuenciaIsAddingFlashMaintenance=0;
+
+
+
+    $('#ActuMedicamento').click(function () {
+        if ($("#PaciSecuencia_fk").val() <= 0) {
+            alertify.alert('',"Favor, seleccione un paciente. ")
+            return false;
+        }
+        //select items selected
+        $('#idDropdownlist').val('MediSecuencia_fk');
+
+        $('#TituloModalMaintenance').html('Medicamento');
+        $('#idMaintenance').val('Medicamento');
+        $("#modalMaintenance").modal();
+    });
+
+    $('#ActuImagenes').click(function () {
+        if ($("#PaciSecuencia_fk").val() <= 0) {
+            alertify.alert('',"Favor, seleccione un paciente. ")
+            return false;
+        }
+        //select items selected
+        $('#idDropdownlist').val('ImagSecuencia_fk');
+        $('#TituloModalMaintenance').html('Imagen');
+        $('#idMaintenance').val('Imagenes');
+        $("#modalMaintenance").modal();
+    });
+
+    $('#ActuAnalisisClinico').click(function () {
+        if ($("#PaciSecuencia_fk").val() <= 0) {
+            alertify.alert('',"Favor, seleccione un paciente. ")
+            return false;
+        }
+        $('#TituloModalMaintenance').html('Análisis Clínico');
+        $('#idMaintenance').val('AnalisisClinico');
+        //select items selected
+        $('#idDropdownlist').val('AClinSecuencia_fk');
+        $("#modalMaintenance").modal();
+    });
+
+
+
+    $('#btnActualizarMaintenance').click(function () {
+
+
+
+        var mant={
+            'Maintenance': $('#idMaintenance').val(),
+            'Nombre': $("#NombreMaintenance").val(),
+            'Descripcion': $("#DescripcionMaintenance").val()
+        };
+
+        var itemsSelectedDropdownlist=[];
+        var a= $('#idDropdownlist').val();
+        itemsSelectedDropdownlist= getItemsSelected(a);
+
+        //limpio los seleccionados, por que cuando inserto el data source
+        //se vuelve agregar duplicados los items que estaban seleccionados como campos ocultos
+        // y el razor   los manda asi mismo para le controlador
+        //si habian selecionados los deselecciono
+        //if(itemsSelectedDropdownlist.length >0 &&  itemsSelectedDropdownlist[0] !="" ){
+
+        //  //  $('#ImagSecuencia_fk').ejDropDownList("uncheckAll");
+        //    //$('#ImagSecuencia_fk').ejDropDownList("destroy");
+        //    //$('#ImagSecuencia_fk').ejDropDownList("unselectItemByValue", "ComputerIT, Cookery ");
+        //    if (jQuery.isEmptyObject(itemsSelectedDropdownlist) === false )
+        //    {
+        //        var DropDownListObj =  $('#ImagSecuencia_fk').ejDropDownList({showCheckbox : true }).data("ejDropDownList");
+
+        //        DropDownListObj.unselectItemByValue(itemsSelectedDropdownlist.toString());
+        //    }
+        //}
+
+        updateMaintenance(mant);
+
+        //para cuando se  vaya a seleccionar los items que estaban seleccionados,
+        //no se vuelvan a describir en el textbox
+        //si tiene valor inserto la cantidad de registros que se van a seleccionar
+        //por que esas seran las veces que se ejecutara  el evento onchange de dropdownlist
+        //nota el array vacio tiene length 1 pero vacio.
+        if(itemsSelectedDropdownlist.length > 0 && itemsSelectedDropdownlist[0] !=""){
+            IsAddingFlashMaintenance=itemsSelectedDropdownlist.length;
+        }
+
+        //if dropdownli is empty then select the items
+        //because  the new items was inserted (setNewLineTextonTexboxAre)
+        var hasItems=[];
+        hasItems= getItemsSelected(a);
+        //var coun=hasItems.length ;
+        //var co =   hasItems[0];
+        if(hasItems.length == 1 && hasItems[0]==""){
+
+            setItemsSelected(a,itemsSelectedDropdownlist);
+
+            ////mjm para borrar
+            //var hasItemst=[];
+            //hasItemst= getItemsSelected(a);
+            ////mjm para borrar
+
+            $("#modalMaintenance").modal('toggle');
+            $('#idMaintenance').val('');
+            $("#NombreMaintenance").val('')
+            $("#DescripcionMaintenance").val('')
+        }
+
+
+    });
+
+
+
+    //get items selected and selected after
+    function getItemsSelected(controlCombo){
+
+        var test=  $('#'+controlCombo).data("ejDropDownList");
+        var itemsSele=  $('#'+controlCombo).data("ejDropDownList").getSelectedValue().split(",");
+        return itemsSele;
+
+    }
+    function setItemsSelected(controlCombo,arrayItems){
+
+        //is not is empty
+        if (jQuery.isEmptyObject(arrayItems) === false )
+        {
+            var DropDownListObj =  $('#'+controlCombo).ejDropDownList({showCheckbox : true }).data("ejDropDownList");
+
+            DropDownListObj.selectItemByValue(arrayItems.toString());
+        }
+
+    }
+
+
+
+    function updateMaintenance(objJson){
+        //show screen block
+        $.LoadingOverlay("show");
+        $.ajax({
+            type: "POST",
+            async: false,
+            url: '@Url.Action("updateMaintenance", ViewBag.ControlCsharp)',
+            //data:JSON.stringify( {'fechEmbarazo': args.value}),
+            data:JSON.stringify({'maintenance': objJson} ),
+            contentType: "application/json;",
+            datatype: 'json',
+            cache: false,
+            complete: (function () {
+
+                $.LoadingOverlay("hide");
+            }),
+            success:(function (data) {
+                var a=data;
+
+
+                if (data.respuesta) {
+
+
+                    if(data.obj=='Medicamento'){
+
+
+                        $('#MediSecuencia_fk').ejDropDownList({
+                            dataSource: data.someCollection,
+                            fields: {
+                                text: "MediNombre",
+                                value: "MediSecuencia"
+                            }
+                        });
+                    }  else if(data.obj=='AnalisisClinico'){
+
+
+                        $('#AClinSecuencia_fk').ejDropDownList({
+                            dataSource: data.someCollection,
+                            fields: {
+                                text: "AClinNombre",
+                                value: "AClinSecuencia"
+                            }
+                        });
+                    }
+                    else if(data.obj=='Imagenes'){
+
+                        $('#ImagSecuencia_fk').ejDropDownList({
+                            dataSource: data.someCollection,
+                            fields: {
+                                text: "ImagNombre",
+                                value: "ImagSecuencia"
+                            }
+                        });
+
+                    }
+
+
+
+
+
+
+
+
+
+
+                }
+                else {
+                    alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                }
+                //else {
+
+                //    BuscarDatosEmbarazo(args.value);
+
+                //    $("#CMedEmbarazadaFechaProbableParto").ejDatePicker({  enabled: true });
+                //}
+
+                ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                //   doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+            }),//end susccess
+            error:(function (response) {
+                //var r = jQuery.parseJSON(response.responseText);
+                //alert("Message: " + r.Message);
+                //alert("StackTrace: " + r.StackTrace);
+                //alert("ExceptionType: " + r.ExceptionType);
+
+                //function () {
+
+                //    try {
+                //        alertify.alert('','Error en controller login y no se ejecuto el result json ' );
+                //    } catch (e) {
+                //        alertify.alert('','Problemas en el result json del controller, favor consultar al administrador ');
+                //    }
+            })    //end error
+        })
+
+
+
+    }
+
+
+
+
+    //show recept
+    $('#btnGinecoRecetaImprimirReceta').click(function(){
+
+        let ur= '@Url.Action("reportRect","DashBoard")'
+
+        let  datpac=JSON.stringify({ paciSecuencia:''+$("#PaciSecuencia_fk").val(), CMHistSecuencia:''+$("#CMHistSecuencia_fk").val(), ReceSecuencia:''+$("#ReceSecuencia").val()});
+
+        //call partial view with report
+        // var data = AjaxSend(false, 'POST', ur, JSON.stringify({}), 'application/json; charset=utf-8','html')
+        var data = AjaxSend(false, 'POST', ur, datpac, 'application/json; charset=utf-8','html')
+
+
+        $( "#reportviewerContent" ).empty();
+
+        //$('#reportviewerContent').html(div);
+        $( "#reportviewerContent" ).append(data);
+        //$('#reportviewerContent').html(data);
+        //   $( "#reportviewerContent" ).empty();
+        //$('#reportviewerContent').html(div);
+
+
+
+        $("#modalRecetaReport").modal();
+
+        //let showur= '@*@Url.Action("ShowreportRect","DashBoard")'*@
+        //var dataRepo = AjaxSend(false, 'POST', showur, datpac, 'application/json; charset=utf-8')
+
+
+
+        //$("#viewer").ejReportViewer({ dataSources: dataRepo.obj });
+
+        //var sef=$("#viewer").ejReportViewer();
+        //sef.dataSources =dataRepo.obj;
+        //sef.dataSources =[{name:"dsourceReceta", value:[dataRepo.obj]}];
+        //var daextra=[dataRepo.obj];
+        //var prob=ej.DataManager(daextra).executeLocal(ej.Query());
+
+        //var proxy = $('#viewer').data('ejReportViewer');
+
+        //var reportObj = $('#viewer').data("ejReportViewer");
+        //reportObj.model.dataSources = [{
+        //    value: ej.DataManager(daextra).executeLocal(ej.Query()),
+        //    name: "DataSetvw_Receta"
+        //}];
+
+
+
+        //$("#viewer").ejReportViewer({
+        //    parameters: [{
+        //        name:"nombre",
+
+        //        prompt:"NombreMostrado"
+
+
+        //    }]
+        //});
+
+        //$("#viewer").ejReportViewer({
+        //    parameters: [{
+        //        name:"Vehicle",
+        //        labels:["Motor Bikes"],
+        //        prompt:"Please select the color",
+        //        values:["Red","Green","Blue","Yellow","Black"],
+        //        nullable:false
+        //    }]
+        //});
+
+
+        //var reportObj = $('#viewer').data("ejReportViewer");
+        //reportObj.model.dataSources = [{
+        //    value: ej.DataManager(daextra).executeLocal(ej.Query()),
+        //    name: "dsourceReceta"
+        //}];
+
+        //var reportObj = $('#viewer').data("ejReportViewer");
+        //reportObj.model.dataSources = [{
+        //    value: ej.DataManager(daextra).executeLocal(ej.Query()),
+        //    name: "DataSetvw_Receta"
+
+        //}];
+
+
+        //$("#reportviewer").ejReportViewer({ dataSources: [name:"Menu Items",
+        //values:[{ OrderId: "21D60", FoodName: "Burger", Price: 20, Category: "Veg" },
+        //        { OrderId: "21D61", FoodName: "Pizza", Price: 25, Category: "Non-Veg" },
+        //        { OrderId: "21D63", FoodName: "Sandwiches", Price: 30, Category: "Non-Veg" },
+        //        { OrderId: "21D65", FoodName: "Chicken Drum Sticks", Price: 23, Category: "Non-Veg" },
+        //        { OrderId: "21D64", FoodName: "Fulka", Price: 15, Category: "Veg" }]]
+        //});
+
+        //send horarios
+        //var data = AjaxSend(false, 'POST', '/Cita/getRangeHourWork', JSON.stringify({}), 'application/json; charset=utf-8')
+        //if (data.respuesta) {
+
+        //    var hoini = data.dictionaryStringObjec["MinimaHoraComienzo"];
+        //    var hofi = data.dictionaryStringObjec["MaximaHoraFinaliza"];
+        //    var DivisionHo = data.dictionaryStringObjec["DivisionesHora"];
+        //    var IsExced7DaysConf = data.dictionaryStringObjec["IsExced7DaysConf"];
+        //    if (IsExced7DaysConf == true) {
+        //        mensaje('Su configuración de horario ya tiene una semana, y fue desactivada.');
+        //    }
+
+        //    $(function () {
+        //        $("#citas").ejSchedule({
+        //            startHour: hoini,
+        //            endHour: hofi,
+        //            workHours: {
+        //                highlight: true,
+        //                start: hoini,
+        //                end: hofi
+        //            },
+        //            timeScale: {
+        //                enable: true,
+        //                minorSlotCount: DivisionHo,
+        //                majorSlot: 60,
+        //            },
+        //            readOnly: IsExced7DaysConf,
+        //        });
+        //    });
+
+
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //get
+        //$(function () {
+        //    $("#viewer").ejReportViewer({
+        //        reportServiceUrl: "/api/ReportApi",
+        //        processingMode: ej.ReportViewer.ProcessingMode.Local,
+        //        reportPath: '~/ReportSSR/primer reporte.rdl'
+        //        //reportPath: '~/App_Data/primer reporte.rdl'
+        //    });
+
+        //});
+
+
+
+
+
+
+        @*if($('#'+campoSecuencia).val()  <= 0)
+            {
+                alertify.alert('','Favor, guarde primero la receta');
+                return false;
+            }
+
+            if ( $('#'+campoSecuencia).val() > 0) {
+
+
+                //show screen block
+                $.LoadingOverlay("show");
+
+                var d=$('#DoctSecuencia_fk').val();
+                var p=$('#PaciSecuencia_fk').val();
+                var c=$('#CMHistSecuencia_fk').val();
+                var r=$('#ReceSecuencia').val();
+
+                var rpt= '@Url.Content("~/Reports/CrystalViewer/RecetaGinecologica.aspx")'
+                rpt= rpt+"?d="+d;
+                rpt= rpt+"&p="+p;
+                rpt= rpt+"&c="+c;
+                rpt= rpt+"&r="+r;
+
+
+
+                $("#loadReport").attr("src", rpt);
+
+                //Send doct, pac, rec.
+
+
+                $("#modalReceta").modal();
+                $.LoadingOverlay("hide");
+            }else{
+
+                alertify.alert('','Favor, seleccione una recta para imprimir');
+            }*@
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //select row grid personal
+    function rowSelectedPaciente(args) {
+        console.log("entro ");
+
+        var rowsele = $("#ModalPaciente").ejGrid("instance");
+        var a = rowsele.getSelectedRecords();
+        if (a.length > 0) {
+            //  alertify.alert('',a.PersNombre);
+            $("#PaciSecuencia_fk").val(a[0].PaciSecuencia);
+            $("#PaciNombre").val(a[0].PaciNombre);
+            $("#PaciApellido1").val(a[0].PaciApellido1);
+            $("#PaciApellido2").val(a[0].PaciApellido2);
+            $("#PaciDocumento").val(a[0].PaciDocumento);
+            //get date actual server
+            let urlHoraServidor = '@Url.Action("GetTimeActual", "DashBoard")'
+            //send horarios
+            var data = AjaxSend(false, 'POST', urlHoraServidor, JSON.stringify({}), 'application/json; charset=utf-8')
+             
+            $("#ReceFecha").ejDatePicker({ value: ''+data.obj });
+
+            $("#modalValidacion").modal('toggle');
+        }
+        else {
+            alertify.alert('',"Favor seleccione paciente");
+        }
+    }
+
+    //select row paciente
+    $("#btnSeleccionarPaciente").click(function () {
+
+        var rowsele = $("#ModalPaciente").ejGrid("instance");
+        var a = rowsele.getSelectedRecords();
+        if (a.length > 0) {
+
+
+            $("#PaciSecuencia_fk").val(a[0].PaciSecuencia);
+            $("#PaciNombre").val(a[0].PaciNombre);
+            $("#PaciApellido1").val(a[0].PaciApellido1);
+            $("#PaciApellido2").val(a[0].PaciApellido2);
+            $("#PaciDocumento").val(a[0].PaciDocumento);
+            //get date actual server
+            let urlHoraServidor = '@Url.Action("GetTimeActual", "DashBoard")'
+            //send horarios
+            var data = AjaxSend(false, 'POST', urlHoraServidor, JSON.stringify({}), 'application/json; charset=utf-8')
+             
+            $("#ReceFecha").ejDatePicker({ value: ''+data.obj });
+
+
+            $("#modalValidacion").modal('toggle');
+
+        }
+        else {
+            alertify.alert('',"Favor seleccione paciente");
+        }
+    })
+
+
+
+
+    function clearValidation(formElement) {
+        //Internal $.validator is exposed through $(form).validate()
+        var validator = $(formElement).validate();
+        //Iterate through named elements inside of the form, and mark them as error free
+        $('[name]', formElement).each(function () {
+            validator.successList.push(this);//mark as error free
+            validator.showErrors();//remove error messages if present
+        });
+        validator.resetForm();//remove error class on name elements and clear history
+        validator.reset();//remove all error and success data
+    }
+
+    function resetAllControls(f) {
+        f.find('input:text, input:password,input:hidden, input:file, select, textarea').val('');
+        f.find('input:radio, input:checkbox').prop('checked', false).prop('selected', false);
+
+
+    };
+
+    function resetDropdownlistcheckbox(dbc) {
+        $('#' + dbc).ejDropDownList("clearText");
+    }
+    var secItems=0;
+    var listText = [];
+    function setNewLineTextonTexboxAre(textAreaToWRITE, textSelectedSender) {
+
+        //si tiene items por seleccionar  no le permito que prosiga
+        if(IsAddingFlashMaintenance > 0  ){
+            if(secuenciaIsAddingFlashMaintenance != IsAddingFlashMaintenance ){
+
+                //esto es para saber cuando ya se ha eleccionado todos los items
+                secuenciaIsAddingFlashMaintenance=   secuenciaIsAddingFlashMaintenance+1;
+
+                if(secuenciaIsAddingFlashMaintenance == IsAddingFlashMaintenance ) {
+                    // para que vuelva a funcionar este metodo normalmente  pongo la variable (IsAddingFlashMaintenance) en cero
+                    IsAddingFlashMaintenance=0;
+                    secuenciaIsAddingFlashMaintenance=0;
+                }
+
+                return false;
+            }
+
+        }
+
+        ////if isn't find the text checked on downlistcheck
+        //if ($.inArray(textSelectedSender, listText) === -1) {
+        //    listText.push(textSelectedSender);
+
+
+        //    if ($.trim($("#" + textAreaToWRITE).val()).length < 1) {
+        //        $("#" + textAreaToWRITE).val((textSelectedSender + ':'));
+        //    }
+        //    else {
+        //        //get the first time without breakline
+        //        var contentTexar = $("#" + textAreaToWRITE).val();
+        //        //new line with new item
+        //        $("#" + textAreaToWRITE).val((contentTexar + '\r\n\n' + textSelectedSender + ':'));
+        //    }
+        //}
+
+
+
+
+
+
+        //if isn't find the text checked on downlistcheck
+        // if ($.inArray(textSelectedSender, listText) === -1) {
+        listText.push(textSelectedSender);
+        //secuencia de items
+        secItems=secItems+1;
+
+        if ($.trim($("#" + textAreaToWRITE).val()).length < 1) {
+            //$("#" + textAreaToWRITE).val((secItems+"."+textSelectedSender + ':'));
+            $("#" + textAreaToWRITE).val((textSelectedSender + ':'));
+        }
+        else {
+            //get the first time without breakline
+            var contentTexar = $("#" + textAreaToWRITE).val();
+            //new line with new item
+            //$("#" + textAreaToWRITE).val((contentTexar + '\r\n\n' +secItems+"."+textSelectedSender + ':'));
+            $("#" + textAreaToWRITE).val((contentTexar + '\r\n\n' +textSelectedSender + ':'));
+        }
+        // }
+    }
+    var listTextMedi = [];
+    function setNewLineTextonTexboxAreMedi(textAreaToWRITE, textSelectedSender) {
+
+        //si tiene items por seleccionar  no le permito que prosiga
+        if(IsAddingFlashMaintenance > 0  ){
+            if(secuenciaIsAddingFlashMaintenance != IsAddingFlashMaintenance ){
+
+                //esto es para saber cuando ya se ha eleccionado todos los items
+                secuenciaIsAddingFlashMaintenance=   secuenciaIsAddingFlashMaintenance+1;
+
+                if(secuenciaIsAddingFlashMaintenance == IsAddingFlashMaintenance ) {
+                    // para que vuelva a funcionar este metodo normalmente  pongo la variable (IsAddingFlashMaintenance) en cero
+                    IsAddingFlashMaintenance=0;
+                    secuenciaIsAddingFlashMaintenance=0;
+                }
+
+                return false;
+            }
+
+        }
+
+        ////if isn't find the text checked on downlistcheck
+        //if ($.inArray(textSelectedSender, listTextMedi) === -1) {
+        //    listTextMedi.push(textSelectedSender);
+
+        //    var textcom = (textSelectedSender + ':\nDosificación:\nDuración:');
+
+        //    if ($.trim($("#" + textAreaToWRITE).val()).length < 1) {
+
+        //        $("#" + textAreaToWRITE).val(textcom);
+        //    }
+        //    else {
+        //        //get the first time without breakline
+        //        var contentTexar = $("#" + textAreaToWRITE).val();
+        //        //new line with new item
+        //        $("#" + textAreaToWRITE).val((contentTexar + '\r\n\n' + textcom ));
+        //    }
+        //}
+
+
+
+
+        //if isn't find the text checked on downlistcheck
+        // if ($.inArray(textSelectedSender, listTextMedi) === -1) {
+        listTextMedi.push(textSelectedSender);
+
+        //secuencia de items
+        secItems=secItems+1;
+
+        //var textcom = (secItems+"."+textSelectedSender + ':\n   Dosificación:\n   Duración:');
+        //        var textcom = (textSelectedSender + ':\n   Dosificación:\n   Duración:');
+        var textcom = ('Medicamento: '+textSelectedSender + '\nDosificación:\nDuración:');
+
+        if ($.trim($("#" + textAreaToWRITE).val()).length < 1) {
+
+            $("#" + textAreaToWRITE).val(textcom);
+        }
+        else {
+            //get the first time without breakline
+            var contentTexar = $("#" + textAreaToWRITE).val();
+            //new line with new item
+            $("#" + textAreaToWRITE).val((contentTexar + '\r\n\n' +textcom ));
+        }
+        // }
+
+    }
+
+
+    function drpvaluechangeImagen(sender) {
+
+        if(sender.isChecked==true){
+            if(IsEditing==true  )
+                return false;
+
+            setNewLineTextonTexboxAre('ReceComentario', sender.selectedText);
+
+        }
+
+
+
+
+    }
+    function drpvaluechangeAnalisis(sender) {
+
+        if(sender.isChecked==true){
+            if(IsEditing==true  )
+                return false;
+            setNewLineTextonTexboxAre('ReceComentario', sender.selectedText);
+
+        }
+
+
+
+
+
+
+    } function drpvaluechangeMedicamento(sender) {
+
+        if(sender.isChecked==true){
+            if(IsEditing==true  )
+                return false;
+
+            setNewLineTextonTexboxAreMedi('ReceComentario', sender.selectedText);
+
+        }
+
+
+
+
+    }
+
+
+
+    /*dataanotation Valid date*/
+    $.validator.addMethod('date',
+   function (value, element, params) {
+       if (this.optional(element)) {
+           return true;
+       }
+       var ok = true;
+       try {
+           $.datepicker.parseDate('dd/mm/yy', value);
+       }
+       catch (err) {
+           ok = false;
+       }
+       return ok;
+   });
+    /*end dataanotation Valid date*/
+
+    //show modal to show list personal
+    $("#btnBuscarPaciente").click(function () {
+
+        if($('#'+campoSecuencia).val()  > 0)
+        {
+            alertify.alert('','Favor, pulse boton nuevo primero');
+            return false;
+        }
+        $("#modalValidacion").modal();
+
+    });
+
+
+
+
+    //start document ready
+    $(document).ready(function () {
+
+      
+        //valido si esta creando o editando
+        $("input").click(function () {
+
+            //editando
+            if ($("#" + campoSecuencia).val() > 0) {
+
+                $("#EstadoAccion h2 span").html(" Editando");
+            } else {
+                $("#EstadoAccion h2 span").html(" Creando");
+            }
+        });
+
+
+        //if is editing fill data patient
+        var pac =  @Html.Raw(Json.Encode(Model.PaciSecuencia_fk));
+        //Editando
+        if(pac > 0){
+            //cuando cargo la vista desde una edicion
+            //y se carga un combobox el metodo de asignar el valor del combobox(motivoconsulta,evaluacionfisica....)
+            //se ejecuta nuevamente y me vuelve a insertar en el comentario el valor que puso razor de manera automatica
+            //en el combobox, por ende se repite. y para que no pase, identifico que si la vista se muestra,
+            //desde una edicion la primera asignacion de valor al combobox, no se deba ejecutar el metodo (setNewLineTextonTexboxAre)
+            IsEditing=true;
+
+
+          
+
+        }else {
+            //set date now from server to date
+            @*$("#ReceFecha").ejDatePicker({ value: '@ViewBag.datNow' });*@
+        @*$("#ReceFechaString").ejDatePicker({ value: '@ViewBag.datNow' });*@
+        }
+
+        //when is ready open modal to choose paciente
+        if ($("#ReceSecuencia").val() <= 0) {
+            $("#modalValidacion").modal();
+        }
+
+        //LLenando medicamentos .
+        var modelMedi = @Html.Raw(Json.Encode(ViewBag.FillDropDownListCheckJsonMedicamentos));
+
+        //is not is empty
+        if (jQuery.isEmptyObject(modelMedi) === false )
+        {
+            var DropDownListObj =  $('#MediSecuencia_fk').ejDropDownList({showCheckbox : true }).data("ejDropDownList");
+            DropDownListObj.selectItemByValue(modelMedi.toString());
+        }
+        //LLenando medicamentos .
+        var modelAnalis = @Html.Raw(Json.Encode(ViewBag.FillDropDownListCheckJsonAnalisis));
+
+        //is not is empty
+        if (jQuery.isEmptyObject(modelAnalis) === false )
+        {
+            var DropDownListObj =  $('#AClinSecuencia_fk').ejDropDownList({showCheckbox : true }).data("ejDropDownList");
+            DropDownListObj.selectItemByValue(modelAnalis.toString());
+        }
+
+        //LLenando medicamentos .
+        var modelImage = @Html.Raw(Json.Encode(ViewBag.FillDropDownListCheckJsonImagenes));
+
+        //is not is empty
+        if (jQuery.isEmptyObject(modelImage) === false )
+        {
+            var DropDownListObj =  $('#ImagSecuencia_fk').ejDropDownList({showCheckbox : true }).data("ejDropDownList");
+            DropDownListObj.selectItemByValue(modelImage.toString());
+        }
+
+
+
+
+
+
+        //nuevo registro
+        $("#btnNuevo").click(function () {
+            //when  create one new
+            listTextMedi = [];
+            listText = [];
+
+            //Form to clear
+            var formulario = $("#" + formularioGlobal);
+            //clear dataannotation
+            clearValidation(formulario);
+            //clear text
+            resetAllControls(formulario);
+
+            resetDropdownlistcheckbox("MediSecuencia_fk");
+            resetDropdownlistcheckbox("AClinSecuencia_fk");
+            resetDropdownlistcheckbox("ImagSecuencia_fk");
+
+            //show modal to show list paciente
+            //   $("#modalValidacion").modal();
+
+            //clear div de accion
+            $('#EstadoAccion h2 span').empty();
+
+        });//end btnnuevo
+
+        //when press enter with focus in text doesn't triguet btnsave or metodo guardar
+        //$("#RoleDescripcion").keypress(function (event) {
+        //    //alert("ENTRO A GUARDAR Key");
+        //    if (event.which == 13) {
+        //        event.preventDefault();
+        //    }
+        //});
+
+        //start click savedoctor
+        $("#btnSave").on("click", function (e) {
+            //e.preventDefault();
+
+
+            //valid date
+            //var ur = '@*@Url.Action("IsRightDate", "DashBoard")*@';
+            isRightDateClient('@Url.Action("IsRightDate", "DashBoard")');
+
+
+            var f = $('#' + formularioGlobal).valid();
+
+            if (f == false) {
+
+                return false;
+            }
+
+
+            //button proseesand
+            var btn = $(this);
+            var todosbtn = $('button');
+
+            if($('#PaciNombre').val().length <= 0){
+                alertify.alert('','Favor seleccionar un paciente');
+                return false;
+            }
+
+            //bloquear boton
+            doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+
+            //mjm para borrar
+            //var itemsSelectedDropdownlistpr=[];
+            //itemsSelectedDropdownlistpr= getItemsSelected("ImagSecuencia_fk");
+            //mjm para borrar
+
+            //Serial
+            // var formulSeri = $('#' + formularioGlobal).serialize();
+
+            //receta
+            //this is a ojbect json
+            var usar_RecetaComplementaria = $('#' + formularioGlobal).serializeToJSON();
+            //formatear fech
+            //convert date dd/mm/yy on MM/dd/yyyy  consulta medica historial
+            usar_RecetaComplementaria.ReceFecha =convertDate(usar_RecetaComplementaria.ReceFecha);
+
+            if( $("#ImagSecuencia_fk").data("ejDropDownList").getSelectedValue() !== ""){
+                usar_RecetaComplementaria.ImagSecuencia_fk = $("#ImagSecuencia_fk").data("ejDropDownList").getSelectedValue().split(",");
+            }else{
+                usar_RecetaComplementaria.ImagSecuencia_fk=[];
+            }
+
+            if( $("#AClinSecuencia_fk").data("ejDropDownList").getSelectedValue() !== ""){
+                usar_RecetaComplementaria.AClinSecuencia_fk = $("#AClinSecuencia_fk").data("ejDropDownList").getSelectedValue().split(",");
+            }else{
+                usar_RecetaComplementaria.AClinSecuencia_fk=[];
+            }
+
+            if( $("#MediSecuencia_fk").data("ejDropDownList").getSelectedValue() !== ""){
+                usar_RecetaComplementaria.MediSecuencia_fk = $("#MediSecuencia_fk").data("ejDropDownList").getSelectedValue().split(",");
+            }else{
+                usar_RecetaComplementaria.MediSecuencia_fk=[];
+            }
+
+            var NombreReceta  = "";
+            var imag ="";
+            imag=$("#ImagSecuencia_fk").data("ejDropDownList").getSelectedValue();
+            var analiclini ="";
+            analiclini=$("#AClinSecuencia_fk").data("ejDropDownList").getSelectedValue();
+            var medi ="";
+            medi=$("#MediSecuencia_fk").data("ejDropDownList").getSelectedValue();
+            //si hay mas de dos seleccionados entonces pongo nombre de receta mezcladas
+            var cantSelec=0;
+            if(imag != ""){
+                cantSelec=cantSelec+1
+                NombreReceta="Receta Imagenes";
+            }
+            if(analiclini != ""){
+                cantSelec=cantSelec+1
+                NombreReceta="Receta Analisis Clínico";
+            }
+
+            if(medi != ""){
+                cantSelec=cantSelec+1
+                NombreReceta="Receta Medicamentos";
+            }
+            //si es mayor de 1 entonces quiere decir que hay una mezcla de
+            //indicaciones es decir medicamentos analicis clin, ect. en una misma receta
+            if(cantSelec > 1){
+                NombreReceta="Receta Mezclada";
+            }
+
+
+            //nombre de la receta
+            usar_RecetaComplementaria.RecNombre=NombreReceta;
+
+
+
+
+
+            ////start validar si es editando
+            if ($("#" + campoSecuencia).val() > 0) {
+
+                alertify.confirm('', '¿Seguro que desea Editar?', function () {
+
+                    //   var formulSeri = $('#' + formularioGlobal).serialize();
+
+
+
+                    //show screen block
+                    $.LoadingOverlay("show");
+                    //start ajax
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Save", ViewBag.ControlCsharp)',
+                        contentType:  'application/json; charset=utf-8',
+                        datatype: 'json',
+                        // data: $('#' + formularioGlobal).serialize(),
+                        data:JSON.stringify(usar_RecetaComplementaria),
+                        //  datatype: "application/json; charset=utf-8",
+                        cache: false,
+                        complete: (function () {
+
+                            $.LoadingOverlay("hide");
+                        }),
+                        success:(function (data) {
+
+                            if (data.respuesta) {
+                                $("#msgExitoso").show()
+                                setTimeout('$("#msgExitoso").hide()', 3000);
+
+                                alertify.success('Si')
+
+                                //excute btnnuevo
+                                $('#btnNuevo').trigger('click');
+                                //RECARGAR GRID
+                                var gridObj = $("#Searching").ejGrid("instance");
+                                gridObj.dataSource(data.someCollection);//dataSource method
+
+
+                            }
+                            else {
+
+                                alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                            }
+
+                            ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                            doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+
+                        }),//end susccess
+                        error:(function () {
+
+                            try {
+                                alertify.alert('', 'Error en controller login y no se ejecuto el result json ' );
+                            } catch (e) {
+                                alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                            }
+
+                            //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                            doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                            //quito splash
+                            //$.LoadingOverlay("hide");
+                        })   //end error
+                    })
+
+
+
+                }
+            , function () {
+                ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                alertify.error('No')
+                return true;
+            });/*End message confirm*/
+            }
+                //Insertando
+            else {
+
+                //show screen block
+                $.LoadingOverlay("show");
+                //start ajax
+                $.ajax({
+
+                    type: "POST",
+                    url: '@Url.Action("Save", ViewBag.ControlCsharp)',
+                    contentType:  'application/json; charset=utf-8',
+                    datatype: 'json',
+                    // data: $('#' + formularioGlobal).serialize(),
+                    data:JSON.stringify(usar_RecetaComplementaria),
+                    //  datatype: "application/json; charset=utf-8",
+                    cache: false,
+                    complete: (function () {
+
+                        $.LoadingOverlay("hide");
+                    }),
+                    success:(function (data) {
+
+                        if (data.respuesta) {
+
+                            $("#msgExitoso").show()
+                            setTimeout('$("#msgExitoso").hide()', 3000);
+
+                            //excute btnnuevo
+                            $('#btnNuevo').trigger('click');
+                            //Enlistar las ultimas 5 registros
+                            var gridObj = $("#Searching").ejGrid("instance");
+                            gridObj.dataSource(data.someCollection);//dataSource method
+                        }
+                        else {
+
+                            alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                            //undefined doen't has  value , empty or null
+                            if (data.redirect !== undefined && data.redirect !== null && data.redirect !== '') {
+                                //var di = data.redirect;
+                                //window.location.href = di;
+                            }
+                        }
+
+                        ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                        doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+                    }),//end susccess
+                    error:(function () {
+
+                        try {
+                            alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                        } catch (e) {
+                            alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                        }
+
+                        //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                        doct_EnableButtonAndEventClick($("#btnSave"), "Guardar", todosbtn);
+                        //quito splash
+                        //$.LoadingOverlay("hide");
+                    })   //end error
+                })
+
+
+            }//end validar si es editando
+
+            return false;
+        });//end save click
+
+
+
+        $("#btnBorrar").click(function () {
+
+            var f = $('#' + formularioGlobal).valid();
+            if (f == false) {
+
+                return false;
+            }
+
+            var s = $("#" + campoSecuencia).val();
+            if (s == false) {
+                alertify.alert('',"Favor seleccionar un role en el listado");
+                return false;
+            }
+
+
+            //Preguntar si borrar
+            alertify.confirm('', '¿Seguro que desea Borrar?', function () {
+
+
+                //show screen block
+                $.LoadingOverlay("show");
+                //start ajax
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Borrar", ViewBag.ControlCsharp)',
+                    data: $('#' + formularioGlobal).serialize(),
+                    datatype: "application/json; charset=utf-8",
+                    cache: false,
+                    complete: (function () {
+
+                        $.LoadingOverlay("hide");
+                    }),
+                    success:(function (data) {
+
+                        if (data.respuesta == true) {
+
+                            //alertify.alert('',"Borrado exitosamente!");
+                            //     window.location.reload();
+                            //excute btnnuevo
+                            $('#btnNuevo').trigger('click');
+                            //mOSTRA MESAJE DE BIEN BORRADO
+                            $("#msgBorrado").show()
+                            setTimeout('$("#msgBorrado").hide()', 3000);
+
+                            alertify.success('Si')
+
+                            //RECARGAR GRID
+                            var gridObj = $("#Searching").ejGrid("instance");
+                            gridObj.dataSource(data.someCollection);//dataSource method
+
+                        } else {
+                            alertify.alert('', data.error, function () { alertify.success('Ok'); });
+                        }
+
+                    }),//end susccess
+                    error:(function () {
+
+                        try {
+                            alertify.alert('', 'Error en controller login y no se ejecuto el result json ' );
+                        } catch (e) {
+                            alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                        }
+                    })   //end error
+
+                })
+
+
+            }
+            , function () {
+
+                alertify.error('No')
+                return true;
+            });/*End message confirm*/
+        });//End  borrar
+
+
+        //after pass edit set false
+        //cuando cargo la vista desde una edicion
+        //y se carga un combobox el metodo de asignar el valor del combobox(motivoconsulta,evaluacionfisica....)
+        //se ejecuta nuevamente y me vuelve a insertar en el comentario el valor que puso razor de manera automatica
+        //en el combobox, por ende se repite. y para que no pase, identifico que si la vista se muestra,
+        //desde una edicion la primera asignacion de valor al combobox, no se deba ejecutar el metodo (setNewLineTextonTexboxAre)
+        IsEditing=false;
+
+
+    })//end ready document
+
+    //click edit grid
+    function onClick(args) {
+        //excute btnnuevo
+        $('#btnNuevo').trigger('click');
+        //button proseesand
+        var btn = $(this);
+        //var todosbtn = $('#btnDelete');
+        var todosbtn = $('button');
+        //bloquear boton
+        doct_DisabledButtonAndEventClick(btn, 'Procesando...', todosbtn);
+
+        var grid = $("#Searching").ejGrid("instance");
+        var index = this.element.closest("tr").index();
+        var record = grid.getCurrentViewData()[index];
+
+        //alert("Record Details: " + JSON.stringify(record));
+
+        //show screen block
+        $.LoadingOverlay("show");
+
+
+        //send object to controller
+        //start ajax
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Editar", ViewBag.ControlCsharp)',
+            dataType: "json",
+            data: JSON.stringify(record),
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            complete: (function () {
+
+                //No utilizo el  esbloqueador bloquear por que como la pagina se recarga
+                //y le puse un bloqueador y desbloqueador  en el layout no necesito este
+                //   $.LoadingOverlay("hide");
+            }),
+            success:(function (data) {
+
+                if (data.respuesta) {
+
+                    //$("#msgExitoso").fadeIn('slow').animate({ opacity: 1.0 }, 1500).effect("pulsate", { times: 2 }, 800).fadeOut('slow');
+                    //$("#msgExitoso").show()
+                    //setTimeout('$("#msgExitoso").hide()', 2500);
+
+                    //location.reload();
+                    var di = data.redirect;
+                    window.location.href = di;
+                }
+                else {
+
+                    alert(data.error);
+                }
+
+
+                ////cuando devuelva del controlador la respuesta entonces se abilita el boton
+                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+
+
+            }),//end susccess
+            error:(function () {
+
+                try {
+                    alertify.alert('', 'Error en controller login y no se ejecuto el result json ' + throwError);
+                } catch (e) {
+                    alertify.alert('', 'Problemas en el result json del controller, favor consultar al administrador ');
+                }
+
+                //cuando devuelva del controlador la respuesta entonces se abilita el boton
+                doct_EnableButtonAndEventClick(btn, "Guardar", todosbtn);
+                //quito splash
+                //$.LoadingOverlay("hide");
+            })    //end error
+        })
+
+    }//end edit grid onClick
+
+
+    </script>
+}
+
